@@ -19,8 +19,8 @@ class SlidingVector3View: UIView {
             let slidingInput = SlidingInputView { value in
                 print("Slider \(i) | value \(value)")
             }
-            slidingInput.minValue = -1000
-            slidingInput.maxValue = 1000
+            slidingInput.minValue = -100
+            slidingInput.maxValue = 100
             
             stackView.addArrangedSubview(slidingInput)
             
