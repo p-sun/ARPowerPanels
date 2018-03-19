@@ -83,7 +83,18 @@ class SlidingInputView: UIView {
     }
     
     func setValue(_ value: CGFloat) {
-        if value >= minValue && value <= maxValue {
+        func isCurrentValueCloseTo(targetValue: CGFloat, currentValue: CGFloat) -> Bool {
+            let range = valueChangePerPanUnit * 30.0
+            return currentValue >= targetValue - range && currentValue <= targetValue + range
+        }
+        
+        if isCurrentValueCloseTo(targetValue: 0, currentValue: value) {
+            self.value = 0
+        } else if isCurrentValueCloseTo(targetValue: minValue, currentValue: value) {
+            self.value = minValue
+        } else if isCurrentValueCloseTo(targetValue: maxValue, currentValue: value) {
+            self.value = maxValue
+        } else if value >= minValue && value <= maxValue {
             self.value = value
         }
     }
