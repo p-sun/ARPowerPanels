@@ -26,8 +26,8 @@ class SceneViewController: UIViewController {
         sceneView.showsStatistics = true
         sceneView.debugOptions  = [.showConstraints, ARSCNDebugOptions.showFeaturePoints]
         
-        let scene = SCNScene(named: "art.scnassets/ship.scn")!
-        sceneView.scene = scene
+        let foxNode = Model.fox.createNode()
+        sceneView.scene.rootNode.addChildNode(foxNode)
     }
     
     override func viewWillAppear(_ animated: Bool) {
