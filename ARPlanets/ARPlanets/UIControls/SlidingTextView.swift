@@ -24,8 +24,7 @@ class SlidingInputView: UIView {
     ///
     /// - Parameters:
     ///   - valueChangePerPanUnit: How much the value is changed when the user pans the view by one unit.
-    ///   - decimalPlaces: Number of decimal places in the CGFloat value.
-    init(valueChangePerPanUnit: CGFloat = 1, decimalPlaces: Int) {
+    init(valueChangePerPanUnit: CGFloat = 1) {
         self.valueChangePerPanUnit = valueChangePerPanUnit
         self.textField = DecimalTextField(decimalPlaces: 2)
         super.init(frame: CGRect.zero)
