@@ -13,14 +13,26 @@ typealias SlidingInputViewValueDidChange = (_ value: CGFloat) -> Void
 class SlidingInputView: UIView {
 
     // MARK: - Variables
-    var value: CGFloat = 0 {
+    var minValue = CGFloat.leastNormalMagnitude {
         didSet {
-            textField.value = value
+            textField.minValue = minValue
+        }
+    }
+    var maxValue = CGFloat.greatestFiniteMagnitude {
+        didSet {
+            textField.maxValue = maxValue
+        }
+    }
+    private var value: CGFloat = 0 {
+        didSet {
+            if textField.value != value {
+                textField.value = value
+            }
             valueDidChange(value)
         }
     }
     private var originalValue: CGFloat = 0
-
+    
     private var valueDidChange: SlidingInputViewValueDidChange
     
     // MARK: - Private Constants
@@ -70,6 +82,12 @@ class SlidingInputView: UIView {
         addGestureRecognizer(panGestureRecognizer)
     }
     
+    func setValue(_ value: CGFloat) {
+        if value >= minValue && value <= maxValue {
+            self.value = value
+        }
+    }
+    
     @objc private func didPan(_ gestureRecognizer: UIPanGestureRecognizer) {
         switch gestureRecognizer.state {
         case .began:
@@ -77,9 +95,9 @@ class SlidingInputView: UIView {
         case .changed, .possible:
             let translation = gestureRecognizer.translation(in: self)
             let yDelta = translation.y * -1.0 * valueChangePerPanUnit
-            value = originalValue + yDelta
+            setValue(originalValue + yDelta)
         case .cancelled, .failed:
-            value = originalValue
+            setValue(originalValue)
         case .ended:
             break
         }
@@ -88,6 +106,6 @@ class SlidingInputView: UIView {
 
 extension SlidingInputView: DecimalTextFieldDelegate {
     func decimalTextField(valueDidChange value: CGFloat) {
-        valueDidChange(value)
+        setValue(value)
     }
 }

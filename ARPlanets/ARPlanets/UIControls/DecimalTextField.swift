@@ -21,6 +21,9 @@ class DecimalTextField: UITextField {
         }
     }
     
+    var minValue = CGFloat.leastNormalMagnitude
+    var maxValue = CGFloat.greatestFiniteMagnitude
+    
     var accessoryBackgroundColor = UIColor.lightGray
     var accessoryNormalTextColor = UIColor.white
     var accessoryHighlightedTextColor = UIColor.darkGray
@@ -102,7 +105,8 @@ extension DecimalTextField: UITextFieldDelegate {
         
         let editedString = (text! as NSString).replacingCharacters(in: range, with: string)
 
-        if let newValue = editedString.cgFloat(decimalPlaces: decimalPlaces, maximumDigits: maximumDigits) {
+        if let newValue = editedString.cgFloat(decimalPlaces: decimalPlaces, maximumDigits: maximumDigits),
+            newValue >= minValue, newValue <= maxValue {
             value = newValue
         }
         return false

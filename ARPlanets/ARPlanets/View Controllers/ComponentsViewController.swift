@@ -15,12 +15,19 @@ class ComponentsViewController: UIViewController {
         
         view.backgroundColor = .white
         
-        let inputView = SlidingInputView() { value in
-            print("value did change \(value)")
-        }
+//        let inputView = SlidingInputView() { value in
+//            print("value did change \(value)")
+//        }
+//        view.addSubview(inputView)
+//        inputView.constrainCenterX(to: view)
+//        inputView.constrainCenterY(to: view)
+//        inputView.constrainWidth(200)
+        
+        
+        let inputView = SlidingVector3View()
         view.addSubview(inputView)
         inputView.constrainCenterX(to: view)
         inputView.constrainCenterY(to: view)
-        inputView.constrainWidth(200)
+        inputView.constrainWidth(400)
     }
 }

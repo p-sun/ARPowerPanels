@@ -125,8 +125,8 @@
 		85C658B4205F0D6000DF7B49 /* UIControls */ = {
 			isa = PBXGroup;
 			children = (
-				85C658B5205F0D9C00DF7B49 /* SlidingTextView.swift */,
 				85C658C7205F7C1E00DF7B49 /* SlidingVector3View.swift */,
+				85C658B5205F0D9C00DF7B49 /* SlidingTextView.swift */,
 				85C658B7205F17F900DF7B49 /* DecimalTextField.swift */,
 			);
 			path = UIControls;
