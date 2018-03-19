@@ -86,12 +86,21 @@ class DecimalTextField: UITextField {
 extension DecimalTextField: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
-        // Remove occurences of "."
         let editedString = (text! as NSString).replacingCharacters(in: range, with: string)
-        let periodRemovedString = editedString.replacingOccurrences(of: ".", with: "")
-        
+
+        if let newValue = editedString.double(decimalPlaces: decimalPlaces, maximumDigits: maximumDigits) {
+            value = newValue
+        }
+        return false
+    }
+}
+
+private extension String {
+    func double(decimalPlaces: Int, maximumDigits: Int) -> Double? {
+        // Remove occurences of "."
+        let periodRemovedString = replacingOccurrences(of: ".", with: "")
         guard periodRemovedString.count < maximumDigits else {
-            return false
+            return nil
         }
         
         // Add "." back to the specified number of decimal places
@@ -104,11 +113,11 @@ extension DecimalTextField: UITextFieldDelegate {
         } else {
             newValueString = "0." + periodRemovedString
         }
-
+        
         // Convert the String to Double
         if let newValue = Double(newValueString) {
-            value = newValue
+            return newValue
         }
-        return false
+        return nil
     }
 }
