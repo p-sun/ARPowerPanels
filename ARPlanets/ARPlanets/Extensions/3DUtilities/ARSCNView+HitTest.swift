@@ -2,7 +2,7 @@
 //  ARSCNView+HitTest.swift
 //  ARWorld
 //
-//  Created by TSD040 on 2018-02-25.
+//  Created by Paige Sun on 2018-02-25.
 //  Copyright © 2018 sudo-world. All rights reserved.
 //
 

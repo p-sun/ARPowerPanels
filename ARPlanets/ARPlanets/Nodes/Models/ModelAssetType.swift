@@ -2,8 +2,8 @@
 //  ModelAssetType.swift
 //  ARPlanets
 //
-//  Created by TSD040 on 2018-03-18.
-//  Copyright © 2018 Pei Sun. All rights reserved.
+//  Created by Paige Sun on 2018-03-18.
+//  Copyright © 2018 Paige Sun. All rights reserved.
 //
 
 import UIKit
@@ -46,7 +46,7 @@ enum Model: String {
     func menuImage() -> UIImage {
         switch self {
         case .wolf:
-            return #imageLiteral(resourceName: "menuWolf")
+            return #imageLiteral(resourceName: "menuWolf") // TODO? Remove this? This is a really big file compared to the fox
         case .blueBox:
             return #imageLiteral(resourceName: "menuBlueBox")
         case .greenBall:

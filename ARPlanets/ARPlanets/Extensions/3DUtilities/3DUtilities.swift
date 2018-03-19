@@ -1,8 +1,8 @@
 /*
-See LICENSE folder for this sample’s licensing information.
-
 Abstract:
 Utility functions and type extensions used throughout the projects.
+ 
+Forked from Alun Bestor's Boxify app. https://github.com/p-sun/Boxify/
 */
 
 import Foundation
