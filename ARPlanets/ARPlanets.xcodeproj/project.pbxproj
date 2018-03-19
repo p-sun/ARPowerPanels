@@ -25,6 +25,7 @@
 		85C658C3205F643D00DF7B49 /* 3DUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C658C0205F643C00DF7B49 /* 3DUtilities.swift */; };
 		85C658C4205F643D00DF7B49 /* ARSCNView+HitTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C658C1205F643C00DF7B49 /* ARSCNView+HitTest.swift */; };
 		85C658C5205F643D00DF7B49 /* SCNVector3+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C658C2205F643C00DF7B49 /* SCNVector3+Extensions.swift */; };
+		85C658C8205F7C1E00DF7B49 /* SlidingVector3View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C658C7205F7C1E00DF7B49 /* SlidingVector3View.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		85C658C0205F643C00DF7B49 /* 3DUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = 3DUtilities.swift; sourceTree = "<group>"; };
 		85C658C1205F643C00DF7B49 /* ARSCNView+HitTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ARSCNView+HitTest.swift"; sourceTree = "<group>"; };
 		85C658C2205F643C00DF7B49 /* SCNVector3+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SCNVector3+Extensions.swift"; sourceTree = "<group>"; };
+		85C658C7205F7C1E00DF7B49 /* SlidingVector3View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlidingVector3View.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				85C658B5205F0D9C00DF7B49 /* SlidingTextView.swift */,
+				85C658C7205F7C1E00DF7B49 /* SlidingVector3View.swift */,
 				85C658B7205F17F900DF7B49 /* DecimalTextField.swift */,
 			);
 			path = UIControls;
@@ -245,6 +248,7 @@
 				85C65898205F061500DF7B49 /* SceneViewController.swift in Sources */,
 				85C658B6205F0D9C00DF7B49 /* SlidingTextView.swift in Sources */,
 				85C658B8205F17F900DF7B49 /* DecimalTextField.swift in Sources */,
+				85C658C8205F7C1E00DF7B49 /* SlidingVector3View.swift in Sources */,
 				85C658B2205F07FF00DF7B49 /* Constraints+Activation+Priority.swift in Sources */,
 				85C658BE205F63E700DF7B49 /* NodeCreator.swift in Sources */,
 				85C658BC205F5FC500DF7B49 /* ModelAssetType.swift in Sources */,

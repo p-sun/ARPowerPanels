@@ -15,6 +15,8 @@ class SceneViewController: UIViewController {
     // MARK: Variables
     private var sceneView = ARSCNView()
     
+    var foxNode = Model.fox.createNode()
+
     // MARK: View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,11 +28,11 @@ class SceneViewController: UIViewController {
         sceneView.showsStatistics = true
         sceneView.debugOptions  = [.showConstraints, ARSCNDebugOptions.showFeaturePoints]
         
-        let foxNode = Model.fox.createNode()
         sceneView.scene.rootNode.addChildNode(foxNode)
         
-        let rotationInput = SlidingInputView() { value in
+        let rotationInput = SlidingInputView() { [weak self] value in
             print("value did change \(value)")
+            self?.foxNode.rotation.y = Float(value)
         }
         view.addSubview(rotationInput)
 
@@ -55,7 +57,33 @@ class SceneViewController: UIViewController {
     }
 }
 
-extension UIViewController: ARSCNViewDelegate {
+
+extension SceneViewController: ARSCNViewDelegate {
+    func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
+        guard let planeAnchor = anchor as? ARPlaneAnchor else { return }
+        print("didAdd \(node.position)")
+        
+        let planeNode = NodeCreator.bluePlane(anchor: planeAnchor)
+        
+        // ARKit owns the node corresponding to the anchor, so make the plane a child node.
+        node.addChildNode(planeNode)
+    }
+    
+    func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
+        guard let planeAnchor = anchor as? ARPlaneAnchor else { return }
+        
+        // Update size of the geometry associated with Plane nodes
+        if let plane = node.childNodes.first?.geometry as? SCNPlane {
+            plane.updateSize(toMatch: planeAnchor)
+        }
+    }
+    
+    func renderer(_ renderer: SCNSceneRenderer, didRemove node: SCNNode, for anchor: ARAnchor) {//
+        print("didRemove \(node.position)")
+    }
+}
+
+extension SceneViewController {
     
     /*
      // Override to create and configure nodes for anchors added to the view's session.
@@ -66,17 +94,17 @@ extension UIViewController: ARSCNViewDelegate {
      }
      */
     
-    public func session(_ session: ARSession, didFailWithError error: Error) {
+    func session(_ session: ARSession, didFailWithError error: Error) {
         // Present an error message to the user
         
     }
     
-    public func sessionWasInterrupted(_ session: ARSession) {
+    func sessionWasInterrupted(_ session: ARSession) {
         // Inform the user that the session has been interrupted, for example, by presenting an overlay
         
     }
     
-    public func sessionInterruptionEnded(_ session: ARSession) {
+    func sessionInterruptionEnded(_ session: ARSession) {
         // Reset tracking and/or remove existing anchors if consistent tracking is required
         
     }
