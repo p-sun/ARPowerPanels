@@ -10,15 +10,15 @@ import UIKit
 
 class DecimalTextField: UITextField {
     
-    private let decimalPlaces: Int
-    private let maximumDigits = 12
-    
-    var value: Double = 0.0 {
+    var value: CGFloat = 0.0 {
         didSet {
             text = valueString
         }
     }
     
+    private let decimalPlaces: Int
+    private let maximumDigits = 10
+
     private var valueString: String {
         return String(format: "%.\(decimalPlaces)f", value)
     }
@@ -88,7 +88,7 @@ extension DecimalTextField: UITextFieldDelegate {
         
         let editedString = (text! as NSString).replacingCharacters(in: range, with: string)
 
-        if let newValue = editedString.double(decimalPlaces: decimalPlaces, maximumDigits: maximumDigits) {
+        if let newValue = editedString.cgFloat(decimalPlaces: decimalPlaces, maximumDigits: maximumDigits) {
             value = newValue
         }
         return false
@@ -96,7 +96,7 @@ extension DecimalTextField: UITextFieldDelegate {
 }
 
 private extension String {
-    func double(decimalPlaces: Int, maximumDigits: Int) -> Double? {
+    func cgFloat(decimalPlaces: Int, maximumDigits: Int) -> CGFloat? {
         // Remove occurences of "."
         let periodRemovedString = replacingOccurrences(of: ".", with: "")
         guard periodRemovedString.count < maximumDigits else {
@@ -114,9 +114,9 @@ private extension String {
             newValueString = "0." + periodRemovedString
         }
         
-        // Convert the String to Double
-        if let newValue = Double(newValueString) {
-            return newValue
+        // Convert the String to CGFloat
+        if let newFloat = Float(newValueString) {
+            return CGFloat(newFloat)
         }
         return nil
     }

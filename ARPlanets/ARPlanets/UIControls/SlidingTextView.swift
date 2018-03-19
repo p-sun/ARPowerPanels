@@ -12,11 +12,22 @@ class SlidingInputView: UIView {
     
     var value: CGFloat = 0 {
         didSet {
-            // TODO
+            textField.value = value
         }
     }
-    
-    init() {
+    private var originalValue: CGFloat = 0
+
+    private let valueChangePerPanUnit: CGFloat
+    private let textField: DecimalTextField
+
+    /// An view that allows the user to change the input either by typing, or by vertically panning the view.
+    ///
+    /// - Parameters:
+    ///   - valueChangePerPanUnit: How much the value is changed when the user pans the view by one unit.
+    ///   - decimalPlaces: Number of decimal places in the CGFloat value.
+    init(valueChangePerPanUnit: CGFloat = 1, decimalPlaces: Int) {
+        self.valueChangePerPanUnit = valueChangePerPanUnit
+        self.textField = DecimalTextField(decimalPlaces: 2)
         super.init(frame: CGRect.zero)
         setup()
     }
@@ -26,7 +37,6 @@ class SlidingInputView: UIView {
     }
     
     private func setup() {
-        let textField = DecimalTextField(decimalPlaces: 3)
         textField.value = 0
         addSubview(textField)
         textField.constrainEdges(to: self)
@@ -36,6 +46,18 @@ class SlidingInputView: UIView {
     }
     
     @objc private func didPan(_ gestureRecognizer: UIPanGestureRecognizer) {
-        print(gestureRecognizer.translation(in: self))
+        switch gestureRecognizer.state {
+        case .began:
+            originalValue = value
+        case .changed, .possible:
+            let translation = gestureRecognizer.translation(in: self)
+            let yDelta = translation.y * -1.0 * valueChangePerPanUnit
+            value = originalValue + yDelta
+            print(gestureRecognizer.translation(in: self))
+        case .cancelled, .failed:
+            value = originalValue
+        case .ended:
+            break
+        }
     }
 }

@@ -15,7 +15,7 @@ class ComponentsViewController: UIViewController {
         
         view.backgroundColor = .white
         
-        let label = SlidingInputView()
+        let label = SlidingInputView(decimalPlaces: 2)
         view.addSubview(label)
         label.backgroundColor = .green
         label.constrainCenterX(to: view)
