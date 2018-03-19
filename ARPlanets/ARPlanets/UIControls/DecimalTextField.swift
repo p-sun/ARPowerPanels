@@ -8,13 +8,24 @@
 
 import UIKit
 
+protocol DecimalTextFieldDelegate: class {
+    func decimalTextField(valueDidChange value: CGFloat)
+}
+
 class DecimalTextField: UITextField {
     
     var value: CGFloat = 0.0 {
         didSet {
             text = valueString
+            decimalTextFieldDelegate?.decimalTextField(valueDidChange: value)
         }
     }
+    
+    var accessoryBackgroundColor = UIColor.lightGray
+    var accessoryNormalTextColor = UIColor.white
+    var accessoryHighlightedTextColor = UIColor.darkGray
+    
+    weak var decimalTextFieldDelegate: DecimalTextFieldDelegate?
     
     private let decimalPlaces: Int
     private let maximumDigits = 10
@@ -22,9 +33,10 @@ class DecimalTextField: UITextField {
     private var valueString: String {
         return String(format: "%.\(decimalPlaces)f", value)
     }
-    
+
     init(decimalPlaces: Int) {
         self.decimalPlaces = decimalPlaces
+        
         super.init(frame: CGRect.zero)
         keyboardType = .numberPad
         autocorrectionType = .no
@@ -42,7 +54,7 @@ class DecimalTextField: UITextField {
     
     private func minusAndDoneButtons() -> UIView {
         let backgroundView = UIView(frame: CGRect(x: 0, y: 0, width: superview!.frame.size.width, height: 44))
-        backgroundView.backgroundColor = #colorLiteral(red: 0.5580514931, green: 0.9646365219, blue: 0.7657005421, alpha: 1)
+        backgroundView.backgroundColor = accessoryBackgroundColor
         
         let stackView = buttonsStackView()
         backgroundView.addSubview(stackView)
@@ -55,21 +67,23 @@ class DecimalTextField: UITextField {
         let stackView = UIStackView()
         stackView.distribution = .fillEqually
         
-        let minusButton = DecimalTextField.accessoryButton(title: "—")
+        let minusButton = accessoryButton(title: "—")
+        minusButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         minusButton.addTarget(self, action: #selector(minusPressed), for: .touchUpInside)
         stackView.addArrangedSubview(minusButton)
         
-        let doneButton = DecimalTextField.accessoryButton(title: "Done")
+        let doneButton = accessoryButton(title: "Done")
+        doneButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         doneButton.addTarget(self, action: #selector(donePressed), for: .touchUpInside)
         stackView.addArrangedSubview(doneButton)
         
         return stackView
     }
     
-    private static func accessoryButton(title: String) -> UIButton {
+    private func accessoryButton(title: String) -> UIButton {
         let button = UIButton(type: .custom)
-        button.setTitleColor(#colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1), for: .normal)
-        button.setTitleColor(#colorLiteral(red: 0.6307376027, green: 0.8862745166, blue: 0.8431658146, alpha: 1), for: .highlighted)
+        button.setTitleColor(accessoryNormalTextColor, for: .normal)
+        button.setTitleColor(accessoryHighlightedTextColor, for: .highlighted)
         button.setTitle(title, for: .normal)
         return button
     }

@@ -28,6 +28,15 @@ class SceneViewController: UIViewController {
         
         let foxNode = Model.fox.createNode()
         sceneView.scene.rootNode.addChildNode(foxNode)
+        
+        let rotationInput = SlidingInputView() { value in
+            print("value did change \(value)")
+        }
+        view.addSubview(rotationInput)
+
+        rotationInput.constrainCenterX(to: view)
+        rotationInput.constrainCenterY(to: view)
+        rotationInput.constrainWidth(200)
     }
     
     override func viewWillAppear(_ animated: Bool) {

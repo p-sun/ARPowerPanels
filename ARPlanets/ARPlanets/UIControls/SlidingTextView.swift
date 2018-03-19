@@ -8,25 +8,37 @@
 
 import UIKit
 
+typealias SlidingInputViewValueDidChange = (_ value: CGFloat) -> Void
+
 class SlidingInputView: UIView {
-    
+
+    // MARK: - Variables
     var value: CGFloat = 0 {
         didSet {
             textField.value = value
+            valueDidChange(value)
         }
     }
     private var originalValue: CGFloat = 0
 
+    private var valueDidChange: SlidingInputViewValueDidChange
+    
+    // MARK: - Private Constants
+    private let customTintColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
     private let valueChangePerPanUnit: CGFloat
     private let textField: DecimalTextField
 
+    // MARK: - Public
     /// An view that allows the user to change the input either by typing, or by vertically panning the view.
     ///
     /// - Parameters:
     ///   - valueChangePerPanUnit: How much the value is changed when the user pans the view by one unit.
-    init(valueChangePerPanUnit: CGFloat = 1) {
+    init(valueChangePerPanUnit: CGFloat = 1, valueDidChange: @escaping SlidingInputViewValueDidChange) {
+        self.valueDidChange = valueDidChange
         self.valueChangePerPanUnit = valueChangePerPanUnit
+        
         self.textField = DecimalTextField(decimalPlaces: 2)
+        
         super.init(frame: CGRect.zero)
         setup()
     }
@@ -35,10 +47,24 @@ class SlidingInputView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Private
     private func setup() {
+        backgroundColor = .white
+        layer.borderColor = customTintColor.cgColor
+        layer.borderWidth = 4
+        layer.cornerRadius = 8
+        
+        textField.decimalTextFieldDelegate = self
+        
+        textField.tintColor = customTintColor
+        textField.accessoryBackgroundColor = customTintColor
+        textField.accessoryNormalTextColor = #colorLiteral(red: 0.9073373833, green: 1, blue: 0.9944009735, alpha: 1)
+        textField.accessoryHighlightedTextColor = #colorLiteral(red: 0.2576798222, green: 0.6260439845, blue: 0.6919346817, alpha: 1)
+        
+        textField.font = UIFont.boldSystemFont(ofSize: 20)
         textField.value = 0
         addSubview(textField)
-        textField.constrainEdges(to: self)
+        textField.constrainEdges(to: self, insets: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
         
         let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(didPan))
         addGestureRecognizer(panGestureRecognizer)
@@ -52,11 +78,16 @@ class SlidingInputView: UIView {
             let translation = gestureRecognizer.translation(in: self)
             let yDelta = translation.y * -1.0 * valueChangePerPanUnit
             value = originalValue + yDelta
-            print(gestureRecognizer.translation(in: self))
         case .cancelled, .failed:
             value = originalValue
         case .ended:
             break
         }
+    }
+}
+
+extension SlidingInputView: DecimalTextFieldDelegate {
+    func decimalTextField(valueDidChange value: CGFloat) {
+        valueDidChange(value)
     }
 }
