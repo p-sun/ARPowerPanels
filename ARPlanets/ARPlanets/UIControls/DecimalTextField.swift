@@ -43,6 +43,7 @@ class DecimalTextField: UITextField {
         super.init(frame: CGRect.zero)
         keyboardType = .numberPad
         autocorrectionType = .no
+        textAlignment = .right
         delegate = self
     }
     

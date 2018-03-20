@@ -24,7 +24,7 @@ class ComponentsViewController: UIViewController {
 //        inputView.constrainWidth(200)
         
         
-        let inputView = SlidingVector3View()
+        let inputView = SlidingVector3View(labelTexts: ["x:", "  y:", "  z:"])
         view.addSubview(inputView)
         inputView.constrainCenterX(to: view)
         inputView.constrainCenterY(to: view)

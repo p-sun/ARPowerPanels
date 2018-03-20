@@ -83,19 +83,6 @@ class SlidingInputView: UIView {
     }
     
     func setValue(_ value: CGFloat) {
-        func isCurrentValueCloseTo(targetValue: CGFloat, currentValue: CGFloat) -> Bool {
-            let range = valueChangePerPanUnit * 10.0
-            return currentValue >= targetValue - range && currentValue <= targetValue + range
-        }
-        
-        let snapToValues = [minValue, 0, maxValue]
-        for targetValue in snapToValues {
-            if isCurrentValueCloseTo(targetValue: targetValue, currentValue: value) {
-                self.value = targetValue
-                return
-            }
-        }
-        
         if value >= minValue && value <= maxValue {
             self.value = value
         }
@@ -108,7 +95,13 @@ class SlidingInputView: UIView {
         case .changed, .possible:
             let translation = gestureRecognizer.translation(in: self)
             let yDelta = translation.y * -1.0 * valueChangePerPanUnit
-            setValue(originalValue + yDelta)
+            let pannedValue = originalValue + yDelta
+            
+            let snappedValue = pannedValue.snapToValueIfClose(
+                snapToValues: [minValue, 0, maxValue],
+                withinRange: valueChangePerPanUnit * 10.0)
+            
+            setValue(snappedValue)
         case .cancelled, .failed:
             setValue(originalValue)
         case .ended:
@@ -120,5 +113,23 @@ class SlidingInputView: UIView {
 extension SlidingInputView: DecimalTextFieldDelegate {
     func decimalTextField(valueDidChange value: CGFloat) {
         setValue(value)
+    }
+}
+
+private extension CGFloat {
+    func snapToValueIfClose(snapToValues: [CGFloat], withinRange: CGFloat) -> CGFloat {
+        func isCurrentValueCloseTo(targetValue: CGFloat) -> Bool {
+            let min = targetValue - withinRange
+            let max = targetValue + withinRange
+            return self >= min && self <= max
+        }
+        
+        for targetValue in snapToValues {
+            if isCurrentValueCloseTo(targetValue: targetValue) {
+                return targetValue
+            }
+        }
+        
+        return self
     }
 }
