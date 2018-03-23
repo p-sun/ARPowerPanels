@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SceneKit
 
 class ComponentsViewController: UIViewController {
     
@@ -15,19 +16,18 @@ class ComponentsViewController: UIViewController {
         
         view.backgroundColor = .white
         
-//        let inputView = SlidingInputView() { value in
-//            print("value did change \(value)")
-//        }
-//        view.addSubview(inputView)
-//        inputView.constrainCenterX(to: view)
-//        inputView.constrainCenterY(to: view)
-//        inputView.constrainWidth(200)
-        
-        
-        let inputView = SlidingVector3View(labelTexts: ["x:", "  y:", "  z:"])
+        let inputView = SlidingVector3View(minValue: -200, maxValue: 200)
         view.addSubview(inputView)
         inputView.constrainCenterX(to: view)
         inputView.constrainCenterY(to: view)
-        inputView.constrainWidth(400)
+        inputView.constrainWidth(460)
+        
+        inputView.delegate = self
+    }
+}
+
+extension ComponentsViewController: SlidingVector3ViewDelegate {
+    func slidingVector3View(didChangeValues vector: SCNVector3) {
+        print(vector)
     }
 }

@@ -1,7 +1,7 @@
 //
 //    MIT License
 //
-//    Copyright (c) 2017 Robert-Hein Hooijmans <rh.hooijmans@gmail.com>
+//    Copyright (c) 2018 Paige Sun <paige.sun.dev@gmail.com>
 //
 //    Permission is hereby granted, free of charge, to any person obtaining a copy
 //    of this software and associated documentation files (the "Software"), to deal
@@ -23,37 +23,41 @@
 
 import UIKit
 
-extension UIView: Constrainable {
+extension Sequence where Element == NSLayoutConstraint {
     
-    @discardableResult
-    func prepareForAutolayout() -> Self {
-        translatesAutoresizingMaskIntoConstraints = false
+    func activate() {
+        if let constraints = self as? [NSLayoutConstraint] {
+            NSLayoutConstraint.activate(constraints)
+        }
+    }
+    
+    func deActivate() {
+        if let constraints = self as? [NSLayoutConstraint] {
+            NSLayoutConstraint.deactivate(constraints)
+        }
+    }
+}
+
+extension NSLayoutConstraint {
+    
+    func with(_ p: UILayoutPriority) -> Self {
+        priority = p
+        return self
+    }
+    
+    func set(active: Bool) -> Self {
+        isActive = active
         return self
     }
 }
 
-extension UILayoutGuide: Constrainable {
+extension UIView {
     
-    @discardableResult
-    func prepareForAutolayout() -> Self { return self }
+    func setHugging(_ priority: UILayoutPriority, for axis: UILayoutConstraintAxis) {
+        setContentHuggingPriority(priority, for: axis)
+    }
+    
+    func setCompressionResistance(_ priority: UILayoutPriority, for axis: UILayoutConstraintAxis) {
+        setContentCompressionResistancePriority(priority, for: axis)
+    }
 }
-
-protocol Constrainable {
-    
-    var topAnchor: NSLayoutYAxisAnchor { get }
-    var bottomAnchor: NSLayoutYAxisAnchor { get }
-    var leftAnchor: NSLayoutXAxisAnchor { get }
-    var rightAnchor: NSLayoutXAxisAnchor { get }
-    var leadingAnchor: NSLayoutXAxisAnchor { get }
-    var trailingAnchor: NSLayoutXAxisAnchor { get }
-    
-    var centerXAnchor: NSLayoutXAxisAnchor { get }
-    var centerYAnchor: NSLayoutYAxisAnchor { get }
-    
-    var widthAnchor: NSLayoutDimension { get }
-    var heightAnchor: NSLayoutDimension { get }
-
-    @discardableResult
-    func prepareForAutolayout() -> Self
-}
-

@@ -30,15 +30,17 @@ class SceneViewController: UIViewController {
         
         sceneView.scene.rootNode.addChildNode(foxNode)
         
-        let rotationInput = SlidingInputView() { [weak self] value in
-            print("value did change \(value)")
-            self?.foxNode.rotation.y = Float(value)
-        }
-        view.addSubview(rotationInput)
-
-        rotationInput.constrainCenterX(to: view)
-        rotationInput.constrainCenterY(to: view)
-        rotationInput.constrainWidth(200)
+//        SlidingInputsView(axisLabels: <#T##[String]#>, minValue: <#T##Float#>, maxValue: <#T##Float#>)
+//
+//        let rotationInput = SlidingInputsView() { [weak self] value in
+//            print("value did change \(value)")
+//            self?.foxNode.rotation.y = Float(value)
+//        }
+//        view.addSubview(rotationInput)
+//
+//        rotationInput.constrainCenterX(to: view)
+//        rotationInput.constrainCenterY(to: view)
+//        rotationInput.constrainWidth(200)
     }
     
     override func viewWillAppear(_ animated: Bool) {

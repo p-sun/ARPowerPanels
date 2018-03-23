@@ -14,10 +14,6 @@
 		85C6589D205F061500DF7B49 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85C6589C205F061500DF7B49 /* Assets.xcassets */; };
 		85C658A0205F061500DF7B49 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85C6589E205F061500DF7B49 /* LaunchScreen.storyboard */; };
 		85C658A9205F074100DF7B49 /* ComponentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C658A8205F074100DF7B49 /* ComponentsViewController.swift */; };
-		85C658B0205F07FF00DF7B49 /* UIView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C658AC205F07FF00DF7B49 /* UIView+Constraints.swift */; };
-		85C658B1205F07FF00DF7B49 /* Constrainable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C658AD205F07FF00DF7B49 /* Constrainable.swift */; };
-		85C658B2205F07FF00DF7B49 /* Constraints+Activation+Priority.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C658AE205F07FF00DF7B49 /* Constraints+Activation+Priority.swift */; };
-		85C658B3205F07FF00DF7B49 /* NibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C658AF205F07FF00DF7B49 /* NibView.swift */; };
 		85C658B6205F0D9C00DF7B49 /* SlidingTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C658B5205F0D9C00DF7B49 /* SlidingTextView.swift */; };
 		85C658B8205F17F900DF7B49 /* DecimalTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C658B7205F17F900DF7B49 /* DecimalTextField.swift */; };
 		85C658BC205F5FC500DF7B49 /* ModelAssetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C658BB205F5FC500DF7B49 /* ModelAssetType.swift */; };
@@ -26,6 +22,11 @@
 		85C658C4205F643D00DF7B49 /* ARSCNView+HitTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C658C1205F643C00DF7B49 /* ARSCNView+HitTest.swift */; };
 		85C658C5205F643D00DF7B49 /* SCNVector3+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C658C2205F643C00DF7B49 /* SCNVector3+Extensions.swift */; };
 		85C658C8205F7C1E00DF7B49 /* SlidingVector3View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C658C7205F7C1E00DF7B49 /* SlidingVector3View.swift */; };
+		85CCE23F2064861B000560C3 /* Constraints+Activation+Priority.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCE23B2064861B000560C3 /* Constraints+Activation+Priority.swift */; };
+		85CCE2402064861B000560C3 /* Constrainable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCE23C2064861B000560C3 /* Constrainable.swift */; };
+		85CCE2412064861B000560C3 /* UIView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCE23D2064861B000560C3 /* UIView+Constraints.swift */; };
+		85CCE2422064861B000560C3 /* NibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCE23E2064861B000560C3 /* NibView.swift */; };
+		85CCE245206486D4000560C3 /* SlidingInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCE244206486D4000560C3 /* SlidingInputView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,10 +39,6 @@
 		85C6589F205F061500DF7B49 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		85C658A1205F061500DF7B49 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		85C658A8205F074100DF7B49 /* ComponentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentsViewController.swift; sourceTree = "<group>"; };
-		85C658AC205F07FF00DF7B49 /* UIView+Constraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Constraints.swift"; sourceTree = "<group>"; };
-		85C658AD205F07FF00DF7B49 /* Constrainable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constrainable.swift; sourceTree = "<group>"; };
-		85C658AE205F07FF00DF7B49 /* Constraints+Activation+Priority.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Constraints+Activation+Priority.swift"; sourceTree = "<group>"; };
-		85C658AF205F07FF00DF7B49 /* NibView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibView.swift; sourceTree = "<group>"; };
 		85C658B5205F0D9C00DF7B49 /* SlidingTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlidingTextView.swift; sourceTree = "<group>"; };
 		85C658B7205F17F900DF7B49 /* DecimalTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecimalTextField.swift; sourceTree = "<group>"; };
 		85C658BB205F5FC500DF7B49 /* ModelAssetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelAssetType.swift; sourceTree = "<group>"; };
@@ -50,6 +47,11 @@
 		85C658C1205F643C00DF7B49 /* ARSCNView+HitTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ARSCNView+HitTest.swift"; sourceTree = "<group>"; };
 		85C658C2205F643C00DF7B49 /* SCNVector3+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SCNVector3+Extensions.swift"; sourceTree = "<group>"; };
 		85C658C7205F7C1E00DF7B49 /* SlidingVector3View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlidingVector3View.swift; sourceTree = "<group>"; };
+		85CCE23B2064861B000560C3 /* Constraints+Activation+Priority.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Constraints+Activation+Priority.swift"; sourceTree = "<group>"; };
+		85CCE23C2064861B000560C3 /* Constrainable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constrainable.swift; sourceTree = "<group>"; };
+		85CCE23D2064861B000560C3 /* UIView+Constraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Constraints.swift"; sourceTree = "<group>"; };
+		85CCE23E2064861B000560C3 /* NibView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibView.swift; sourceTree = "<group>"; };
+		85CCE244206486D4000560C3 /* SlidingInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlidingInputView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +110,7 @@
 		85C658AA205F07A600DF7B49 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				85CCE23A206485CF000560C3 /* NeatConstraints */,
 				85C658AB205F07DF00DF7B49 /* 2DUtilities */,
 				85C658BF205F643C00DF7B49 /* 3DUtilities */,
 			);
@@ -117,7 +120,6 @@
 		85C658AB205F07DF00DF7B49 /* 2DUtilities */ = {
 			isa = PBXGroup;
 			children = (
-				85C658C6205F66A700DF7B49 /* Autolayout */,
 			);
 			path = 2DUtilities;
 			sourceTree = "<group>";
@@ -125,9 +127,7 @@
 		85C658B4205F0D6000DF7B49 /* UIControls */ = {
 			isa = PBXGroup;
 			children = (
-				85C658C7205F7C1E00DF7B49 /* SlidingVector3View.swift */,
-				85C658B5205F0D9C00DF7B49 /* SlidingTextView.swift */,
-				85C658B7205F17F900DF7B49 /* DecimalTextField.swift */,
+				85CCE243206486BB000560C3 /* SldingVectorViews */,
 			);
 			path = UIControls;
 			sourceTree = "<group>";
@@ -159,15 +159,26 @@
 			path = 3DUtilities;
 			sourceTree = "<group>";
 		};
-		85C658C6205F66A700DF7B49 /* Autolayout */ = {
+		85CCE23A206485CF000560C3 /* NeatConstraints */ = {
 			isa = PBXGroup;
 			children = (
-				85C658AD205F07FF00DF7B49 /* Constrainable.swift */,
-				85C658AE205F07FF00DF7B49 /* Constraints+Activation+Priority.swift */,
-				85C658AC205F07FF00DF7B49 /* UIView+Constraints.swift */,
-				85C658AF205F07FF00DF7B49 /* NibView.swift */,
+				85CCE23C2064861B000560C3 /* Constrainable.swift */,
+				85CCE23B2064861B000560C3 /* Constraints+Activation+Priority.swift */,
+				85CCE23E2064861B000560C3 /* NibView.swift */,
+				85CCE23D2064861B000560C3 /* UIView+Constraints.swift */,
 			);
-			path = Autolayout;
+			path = NeatConstraints;
+			sourceTree = "<group>";
+		};
+		85CCE243206486BB000560C3 /* SldingVectorViews */ = {
+			isa = PBXGroup;
+			children = (
+				85C658C7205F7C1E00DF7B49 /* SlidingVector3View.swift */,
+				85CCE244206486D4000560C3 /* SlidingInputView.swift */,
+				85C658B5205F0D9C00DF7B49 /* SlidingTextView.swift */,
+				85C658B7205F17F900DF7B49 /* DecimalTextField.swift */,
+			);
+			path = SldingVectorViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -249,14 +260,15 @@
 				85C658B6205F0D9C00DF7B49 /* SlidingTextView.swift in Sources */,
 				85C658B8205F17F900DF7B49 /* DecimalTextField.swift in Sources */,
 				85C658C8205F7C1E00DF7B49 /* SlidingVector3View.swift in Sources */,
-				85C658B2205F07FF00DF7B49 /* Constraints+Activation+Priority.swift in Sources */,
+				85CCE245206486D4000560C3 /* SlidingInputView.swift in Sources */,
 				85C658BE205F63E700DF7B49 /* NodeCreator.swift in Sources */,
+				85CCE2402064861B000560C3 /* Constrainable.swift in Sources */,
 				85C658BC205F5FC500DF7B49 /* ModelAssetType.swift in Sources */,
 				85C658C3205F643D00DF7B49 /* 3DUtilities.swift in Sources */,
 				85C65894205F061500DF7B49 /* AppDelegate.swift in Sources */,
-				85C658B0205F07FF00DF7B49 /* UIView+Constraints.swift in Sources */,
-				85C658B1205F07FF00DF7B49 /* Constrainable.swift in Sources */,
-				85C658B3205F07FF00DF7B49 /* NibView.swift in Sources */,
+				85CCE2422064861B000560C3 /* NibView.swift in Sources */,
+				85CCE2412064861B000560C3 /* UIView+Constraints.swift in Sources */,
+				85CCE23F2064861B000560C3 /* Constraints+Activation+Priority.swift in Sources */,
 				85C658C5205F643D00DF7B49 /* SCNVector3+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

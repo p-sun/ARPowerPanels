@@ -8,22 +8,15 @@
 
 import UIKit
 
-typealias SlidingInputViewValueDidChange = (_ value: CGFloat) -> Void
+typealias SlidingTextViewValueDidChange = (_ value: Float) -> Void
 
-class SlidingInputView: UIView {
+/// A view containing a DecimalTextField where the use can type using the keyboard,
+// or pan a finger to scrub through values quickly.
+// Takes a minValue, maxValue, stores the current value, and can notify the caller when the value has changed.
+class SlidingTextView: UIView {
 
     // MARK: - Variables
-    var minValue = CGFloat.leastNormalMagnitude {
-        didSet {
-            textField.minValue = minValue
-        }
-    }
-    var maxValue = CGFloat.greatestFiniteMagnitude {
-        didSet {
-            textField.maxValue = maxValue
-        }
-    }
-    private var value: CGFloat = 0 {
+    private var value: Float = 0 {
         didSet {
             if textField.value != value {
                 textField.value = value
@@ -31,13 +24,14 @@ class SlidingInputView: UIView {
             valueDidChange(value)
         }
     }
-    private var originalValue: CGFloat = 0
+    private var originalValue: Float = 0
+    private var minValue: Float
+    private var maxValue: Float
     
-    private var valueDidChange: SlidingInputViewValueDidChange
+    private var valueDidChange: SlidingTextViewValueDidChange
     
     // MARK: - Private Constants
     private let customTintColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
-    private let valueChangePerPanUnit: CGFloat
     private let textField: DecimalTextField
 
     // MARK: - Public
@@ -45,13 +39,17 @@ class SlidingInputView: UIView {
     ///
     /// - Parameters:
     ///   - valueChangePerPanUnit: How much the value is changed when the user pans the view by one unit.
-    init(valueChangePerPanUnit: CGFloat = 1, valueDidChange: @escaping SlidingInputViewValueDidChange) {
+    init(minValue: Float, maxValue: Float, valueDidChange: @escaping SlidingTextViewValueDidChange) {
+        
+        textField = DecimalTextField(decimalPlaces: 2)
+        textField.minValue = minValue
+        textField.maxValue = maxValue
+        
+        self.minValue = minValue
+        self.maxValue = maxValue
         self.valueDidChange = valueDidChange
-        self.valueChangePerPanUnit = valueChangePerPanUnit
-        
-        self.textField = DecimalTextField(decimalPlaces: 2)
-        
         super.init(frame: CGRect.zero)
+
         setup()
     }
     
@@ -73,7 +71,7 @@ class SlidingInputView: UIView {
         textField.accessoryNormalTextColor = #colorLiteral(red: 0.9073373833, green: 1, blue: 0.9944009735, alpha: 1)
         textField.accessoryHighlightedTextColor = #colorLiteral(red: 0.2576798222, green: 0.6260439845, blue: 0.6919346817, alpha: 1)
         
-        textField.font = UIFont.boldSystemFont(ofSize: 20)
+        textField.font = UIFont.boldSystemFont(ofSize: 19)
         textField.value = 0
         addSubview(textField)
         textField.constrainEdges(to: self, insets: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
@@ -82,7 +80,7 @@ class SlidingInputView: UIView {
         addGestureRecognizer(panGestureRecognizer)
     }
     
-    func setValue(_ value: CGFloat) {
+    func setValue(_ value: Float) {
         if value >= minValue && value <= maxValue {
             self.value = value
         }
@@ -93,13 +91,14 @@ class SlidingInputView: UIView {
         case .began:
             originalValue = value
         case .changed, .possible:
+            let valueChangePerUnitPanned = (maxValue - minValue) / 800
             let translation = gestureRecognizer.translation(in: self)
-            let yDelta = translation.y * -1.0 * valueChangePerPanUnit
+            let yDelta = Float(translation.y) * -1.0 * valueChangePerUnitPanned
             let pannedValue = originalValue + yDelta
             
             let snappedValue = pannedValue.snapToValueIfClose(
                 snapToValues: [minValue, 0, maxValue],
-                withinRange: valueChangePerPanUnit * 10.0)
+                withinRange: valueChangePerUnitPanned * 10.0)
             
             setValue(snappedValue)
         case .cancelled, .failed:
@@ -110,15 +109,15 @@ class SlidingInputView: UIView {
     }
 }
 
-extension SlidingInputView: DecimalTextFieldDelegate {
-    func decimalTextField(valueDidChange value: CGFloat) {
+extension SlidingTextView: DecimalTextFieldDelegate {
+    func decimalTextField(valueDidChange value: Float) {
         setValue(value)
     }
 }
 
-private extension CGFloat {
-    func snapToValueIfClose(snapToValues: [CGFloat], withinRange: CGFloat) -> CGFloat {
-        func isCurrentValueCloseTo(targetValue: CGFloat) -> Bool {
+private extension Float {
+    func snapToValueIfClose(snapToValues: [Float], withinRange: Float) -> Float {
+        func isCurrentValueCloseTo(targetValue: Float) -> Bool {
             let min = targetValue - withinRange
             let max = targetValue + withinRange
             return self >= min && self <= max

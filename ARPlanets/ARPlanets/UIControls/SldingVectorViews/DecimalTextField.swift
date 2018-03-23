@@ -9,20 +9,22 @@
 import UIKit
 
 protocol DecimalTextFieldDelegate: class {
-    func decimalTextField(valueDidChange value: CGFloat)
+    func decimalTextField(valueDidChange value: Float)
 }
 
+/// A text field that displays a Float to the specified number of decimal digits,
+/// and allows the user to enter values with the keyboard.
 class DecimalTextField: UITextField {
     
-    var value: CGFloat = 0.0 {
+    var value: Float = 0.0 {
         didSet {
             text = valueString
             decimalTextFieldDelegate?.decimalTextField(valueDidChange: value)
         }
     }
     
-    var minValue = CGFloat.leastNormalMagnitude
-    var maxValue = CGFloat.greatestFiniteMagnitude
+    var minValue = Float.leastNormalMagnitude
+    var maxValue = Float.greatestFiniteMagnitude
     
     var accessoryBackgroundColor = UIColor.lightGray
     var accessoryNormalTextColor = UIColor.white
@@ -72,12 +74,12 @@ class DecimalTextField: UITextField {
         stackView.distribution = .fillEqually
         
         let minusButton = accessoryButton(title: "—")
-        minusButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        minusButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 19)
         minusButton.addTarget(self, action: #selector(minusPressed), for: .touchUpInside)
         stackView.addArrangedSubview(minusButton)
         
         let doneButton = accessoryButton(title: "Done")
-        doneButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        doneButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 19)
         doneButton.addTarget(self, action: #selector(donePressed), for: .touchUpInside)
         stackView.addArrangedSubview(doneButton)
         
@@ -115,7 +117,7 @@ extension DecimalTextField: UITextFieldDelegate {
 }
 
 private extension String {
-    func cgFloat(decimalPlaces: Int, maximumDigits: Int) -> CGFloat? {
+    func cgFloat(decimalPlaces: Int, maximumDigits: Int) -> Float? {
         // Remove occurences of "."
         let periodRemovedString = replacingOccurrences(of: ".", with: "")
         guard periodRemovedString.count < maximumDigits else {
@@ -133,9 +135,9 @@ private extension String {
             newValueString = "0." + periodRemovedString
         }
         
-        // Convert the String to CGFloat
+        // Convert the String to Float
         if let newFloat = Float(newValueString) {
-            return CGFloat(newFloat)
+            return Float(newFloat)
         }
         return nil
     }
