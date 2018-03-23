@@ -158,27 +158,69 @@ let r2 = SCNMatrix4Mult(r1, MTranslation2)
 node5.transform = r2
 
 // Compare with the Matrix4 we set previously
-print("TRANSFORM 2 ***** ")
+print("\nTRANSFORM NODE 5 ***** ")
 print("OLD postion 2 \(node5.position)") // NOT THE SAME
 print("OLD scale 2 \(node5.scale)") // SAME
-print("rotation 2 \(node5.rotation)") // NOT THE SAME
+print("OLD rotation 2 \(node5.rotation)") // NOT THE SAME
+print(node5.transform)
 // Conclusions:
 // The order of matrix multiplication matters
 
 let node7 = SCNNode()
 node7.position = node5.position
-node7.rotation = node5.rotation
 node7.scale = node5.scale
-print(node7.rotation)
+node7.rotation = node5.rotation
 
+print("\nTRANSFORM NODE 7 ***** ")
+print(node7.transform)
+print("NEW postion 2 \(node7.position)") // NOT THE SAME
+print("NEW scale 2 \(node7.scale)") // SAME
+print("NEW rotation 2 \(node7.rotation)") // NOT THE SAME
 
-extension SCNMatrix4: Equatable {
-    static public func == (lhs: SCNMatrix4, rhs: SCNMatrix4) -> Bool {
-        return SCNMatrix4EqualToMatrix4(lhs, rhs)
+// Looks like you can get back position/scale/rotation BACK from a SCNNode
+// No matter which order you apply them to the node
+extension SCNVector3: Equatable {
+    static public func == (lhs: SCNVector3, rhs: SCNVector3) -> Bool {
+        return lhs.x == rhs.x && lhs.y == rhs.y && lhs.z == rhs.z
     }
 }
-print("Is node7's transform equal to node5's: \(node5.transform == node7.transform)")
 
+extension SCNVector4: Equatable {
+    static public func == (lhs: SCNVector4, rhs: SCNVector4) -> Bool {
+        return lhs.x == rhs.x && lhs.y == rhs.y && lhs.z == rhs.z && lhs.w == rhs.w
+    }
+}
+
+print("\nIs node7's position equal to node5's: \(node5.position == node7.position)")
+print("Is node7's rotation equal to node5's: \(node5.rotation == node7.rotation)")
+print("Is node7's scale equal to node5's: \(node5.scale == node7.scale)")
+
+
+// WEIRD EDGE CASE:
+// HOWEVER, looks like the transform is calculated from the position/scale/rotation
+// SO two nodes with the same position/scale/rotation have different matricies!!!!
+// (but maybe they have the roughly the same location and it's just an rounding error, dunno yet)
+// - you CANNOT get back the original rotation/position/scale from the matrix alone.
+//          (You CAN get back the original rotation/position/scale from an SCNNode)
+extension SCNMatrix4: Equatable {
+    static public func == (lhs: SCNMatrix4, rhs: SCNMatrix4) -> Bool {
+        let left = SCNNode()
+        left.transform = lhs
+        
+        let right = SCNNode()
+        right.transform = rhs
+        
+        print("\nposition \(left.position) \(right.position)")
+        print("rotation \(left.rotation) \(right.rotation)")
+        print("scale \(left.scale) \(right.scale)")
+        return left.position == right.position &&
+            left.rotation == right.rotation &&
+            left.scale == right.scale
+    }
+}
+print("\nIs node7's transform equal to node5's: \(SCNMatrix4EqualToMatrix4(node5.transform, node7.transform))") // FALSE
+
+print("Is node7's transform equal to node5's: \(node5.transform == node7.transform)") // FALSE
 
 node5.rotation = SCNVector4(0, 0, 0, 0)
 print("new position \(node5.position)")
@@ -190,37 +232,6 @@ print("new scale \(node5.scale)")
 var node6 = SCNNode()
 node5.transform = SCNMatrix4MakeRotation(2, 3, 4, 5)
 print(node5.rotation)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -13,6 +13,7 @@ protocol SlidingVector3ViewDelegate: class {
     func slidingVector3View(didChangeValues vector: SCNVector3)
 }
 
+// A SlidingInputsView with 3 values, x, y, and z.
 class SlidingVector3View: SlidingInputsView {
     
     var vector = SCNVector3()

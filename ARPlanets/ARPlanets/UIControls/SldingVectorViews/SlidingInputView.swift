@@ -12,7 +12,7 @@ protocol SlidingInputsViewDelegate: class {
     func slidingInputView(didChange value: Float, at index: Int)
 }
 
-/// A StackView of a number of SlidingTextViews, with a callback when any of the text views have changed.
+/// A StackView of any number of SlidingTextViews, with a delegate callback to pass values back when they've changed.
 class SlidingInputsView: UIView {
 
     weak var viewDelegate: SlidingInputsViewDelegate?

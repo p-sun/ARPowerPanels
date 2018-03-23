@@ -110,7 +110,6 @@
 		85C658AA205F07A600DF7B49 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				85CCE23A206485CF000560C3 /* NeatConstraints */,
 				85C658AB205F07DF00DF7B49 /* 2DUtilities */,
 				85C658BF205F643C00DF7B49 /* 3DUtilities */,
 			);
@@ -120,6 +119,7 @@
 		85C658AB205F07DF00DF7B49 /* 2DUtilities */ = {
 			isa = PBXGroup;
 			children = (
+				85CCE23A206485CF000560C3 /* NeatConstraints */,
 			);
 			path = 2DUtilities;
 			sourceTree = "<group>";
