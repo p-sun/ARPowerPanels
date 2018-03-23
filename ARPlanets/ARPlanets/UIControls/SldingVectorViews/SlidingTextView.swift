@@ -8,7 +8,9 @@
 
 import UIKit
 
-typealias SlidingTextViewValueDidChange = (_ value: Float) -> Void
+protocol SlidingTextViewDelegate: class {
+    func slidingTextView(_ slidingTextView: SlidingTextView, didChange value: Float)
+}
 
 /// A view containing a DecimalTextField where the use can type using the keyboard,
 // or pan a finger to scrub through values quickly.
@@ -21,25 +23,25 @@ class SlidingTextView: UIView {
             if textField.value != value {
                 textField.value = value
             }
-            valueDidChange(value)
+            delegate?.slidingTextView(self, didChange: value)
         }
     }
     private var originalValue: Float = 0
     private var minValue: Float
     private var maxValue: Float
     
-    private var valueDidChange: SlidingTextViewValueDidChange
+    weak var delegate: SlidingTextViewDelegate?
     
     // MARK: - Private Constants
     private let customTintColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
     private let textField: DecimalTextField
-
+    
     // MARK: - Public
     /// An view that allows the user to change the input either by typing, or by vertically panning the view.
     ///
     /// - Parameters:
     ///   - valueChangePerPanUnit: How much the value is changed when the user pans the view by one unit.
-    init(minValue: Float, maxValue: Float, valueDidChange: @escaping SlidingTextViewValueDidChange) {
+    init(minValue: Float, maxValue: Float) {
         
         textField = DecimalTextField(decimalPlaces: 2)
         textField.minValue = minValue
@@ -47,7 +49,6 @@ class SlidingTextView: UIView {
         
         self.minValue = minValue
         self.maxValue = maxValue
-        self.valueDidChange = valueDidChange
         super.init(frame: CGRect.zero)
 
         setup()
@@ -91,7 +92,7 @@ class SlidingTextView: UIView {
         case .began:
             originalValue = value
         case .changed, .possible:
-            let valueChangePerUnitPanned = (maxValue - minValue) / 800
+            let valueChangePerUnitPanned = (maxValue - minValue) / 300
             let translation = gestureRecognizer.translation(in: self)
             let yDelta = Float(translation.y) * -1.0 * valueChangePerUnitPanned
             let pannedValue = originalValue + yDelta

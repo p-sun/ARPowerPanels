@@ -58,11 +58,16 @@ class SlidingInputsView: UIView {
     
     private func makeSlidingTextView(index: Int, minValue: Float, maxValue: Float) -> SlidingTextView {
         
-        let slidingTextView = SlidingTextView(minValue: minValue, maxValue: maxValue) { [weak self] value in
-            guard let strongSelf = self else { return }
-            strongSelf.viewDelegate?.slidingInputView(didChange: value, at: index)
-        }
+        let slidingTextView = SlidingTextView(minValue: minValue, maxValue: maxValue)
+        slidingTextView.tag = index
+        slidingTextView.delegate = self
 
         return slidingTextView
+    }
+}
+
+extension SlidingInputsView: SlidingTextViewDelegate {
+    func slidingTextView(_ slidingTextView: SlidingTextView, didChange value: Float) {
+        viewDelegate?.slidingInputView(didChange: value, at: slidingTextView.tag)
     }
 }
