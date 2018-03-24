@@ -1,20 +1,20 @@
 //
-//  SlidingVector3View.swift
+//  SliderVector3View.swift
 //  ARPlanets
 //
-//  Created by TSD040 on 2018-03-19.
-//  Copyright © 2018 Pei Sun. All rights reserved.
+//  Created by Paige Sun on 2018-03-19.
+//  Copyright © 2018 Paige Sun. All rights reserved.
 //
 
 import UIKit
 import SceneKit
 
-protocol SlidingVector3ViewDelegate: class {
-    func slidingVector3View(_ slidingVector3View: SlidingVector3View, didChangeValues vector: SCNVector3)
+protocol SliderVector3ViewDelegate: class {
+    func sliderVector3View(_ sliderVector3View: SliderVector3View, didChangeValues vector: SCNVector3)
 }
 
-// A SlidingInputsView with 3 values, x, y, and z.
-class SlidingVector3View: SlidingInputsView {
+// A SliderInputsView with 3 values, x, y, and z.
+class SliderVector3View: SliderInputsView {
     
     var vector = SCNVector3() {
         didSet {
@@ -24,7 +24,7 @@ class SlidingVector3View: SlidingInputsView {
         }
     }
     
-    weak var delegate: SlidingVector3ViewDelegate? = nil
+    weak var delegate: SliderVector3ViewDelegate? = nil
     
     init(minValue: Float = -Float.greatestFiniteMagnitude,
          maxValue: Float = Float.greatestFiniteMagnitude) {
@@ -37,8 +37,8 @@ class SlidingVector3View: SlidingInputsView {
     }
 }
 
-extension SlidingVector3View: SlidingInputsViewDelegate {
-    func slidingInputView(didChange value: Float, at index: Int) {
+extension SliderVector3View: SliderInputsViewDelegate {
+    func sliderInputView(didChange value: Float, at index: Int) {
         switch index {
         case 0:
             vector.x = value
@@ -47,7 +47,7 @@ extension SlidingVector3View: SlidingInputsViewDelegate {
         default:
             vector.z = value
         }
-        delegate?.slidingVector3View(self, didChangeValues: vector)
+        delegate?.sliderVector3View(self, didChangeValues: vector)
     }
 }
 

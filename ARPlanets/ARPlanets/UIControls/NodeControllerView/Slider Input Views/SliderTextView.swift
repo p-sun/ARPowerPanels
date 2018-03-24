@@ -1,5 +1,5 @@
 //
-//  SlidingTextView.swift
+//  SliderTextView.swift
 //  ARPlanets
 //
 //  Created by Paige Sun on 2018-03-18.
@@ -8,17 +8,17 @@
 
 import UIKit
 
-protocol SlidingTextViewDelegate: class {
-    func slidingTextView(_ slidingTextView: SlidingTextView, didChange value: Float)
+protocol SliderTextViewDelegate: class {
+    func sliderTextView(_ sliderTextView: SliderTextView, didChange value: Float)
 }
 
 /// A view containing a DecimalTextField where the use can type using the keyboard,
 // or pan a finger to scrub through values quickly.
 // Takes a minValue, maxValue, stores the current value, and can notify the caller when the value has changed.
-class SlidingTextView: UIView {
+class SliderTextView: UIView {
 
     // MARK: - Variables
-    weak var delegate: SlidingTextViewDelegate?
+    weak var delegate: SliderTextViewDelegate?
 
     /// Value change per unit panned
     var panSpeed: Float = 1 {
@@ -33,7 +33,7 @@ class SlidingTextView: UIView {
         }
         set {
             guard newValue >= minValue && newValue <= maxValue && newValue != value else { return }
-            print("SlidingTextView setting new value \(newValue)")
+            print("SliderTextView setting new value \(newValue)")
             textField.value = newValue
         }
     }
@@ -106,11 +106,11 @@ class SlidingTextView: UIView {
             print("snap \(snappedValue) from \(pannedValue) withinRange +-\(panSpeed * 10.0) panspeed \(panSpeed)")
 
             value = snappedValue
-            delegate?.slidingTextView(self, didChange: value)
+            delegate?.sliderTextView(self, didChange: value)
 
         case .cancelled, .failed:
             value = originalValue
-            delegate?.slidingTextView(self, didChange: value)
+            delegate?.sliderTextView(self, didChange: value)
 
         case .ended:
             break
@@ -118,10 +118,10 @@ class SlidingTextView: UIView {
     }
 }
 
-extension SlidingTextView: DecimalTextFieldDelegate {
+extension SliderTextView: DecimalTextFieldDelegate {
     func decimalTextField(valueDidChange value: Float) {
         self.value = value
-        delegate?.slidingTextView(self, didChange: value)
+        delegate?.sliderTextView(self, didChange: value)
     }
 }
 

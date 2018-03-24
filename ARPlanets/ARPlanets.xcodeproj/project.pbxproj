@@ -14,21 +14,21 @@
 		85C6589D205F061500DF7B49 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85C6589C205F061500DF7B49 /* Assets.xcassets */; };
 		85C658A0205F061500DF7B49 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85C6589E205F061500DF7B49 /* LaunchScreen.storyboard */; };
 		85C658A9205F074100DF7B49 /* ComponentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C658A8205F074100DF7B49 /* ComponentsViewController.swift */; };
-		85C658B6205F0D9C00DF7B49 /* SlidingTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C658B5205F0D9C00DF7B49 /* SlidingTextView.swift */; };
+		85C658B6205F0D9C00DF7B49 /* SliderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C658B5205F0D9C00DF7B49 /* SliderTextView.swift */; };
 		85C658B8205F17F900DF7B49 /* DecimalTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C658B7205F17F900DF7B49 /* DecimalTextField.swift */; };
 		85C658BC205F5FC500DF7B49 /* ModelAssetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C658BB205F5FC500DF7B49 /* ModelAssetType.swift */; };
 		85C658BE205F63E700DF7B49 /* NodeCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C658BD205F63E700DF7B49 /* NodeCreator.swift */; };
 		85C658C3205F643D00DF7B49 /* 3DUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C658C0205F643C00DF7B49 /* 3DUtilities.swift */; };
 		85C658C4205F643D00DF7B49 /* ARSCNView+HitTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C658C1205F643C00DF7B49 /* ARSCNView+HitTest.swift */; };
 		85C658C5205F643D00DF7B49 /* SCNVector3+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C658C2205F643C00DF7B49 /* SCNVector3+Extensions.swift */; };
-		85C658C8205F7C1E00DF7B49 /* SlidingVector3View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C658C7205F7C1E00DF7B49 /* SlidingVector3View.swift */; };
+		85C658C8205F7C1E00DF7B49 /* SliderVector3View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C658C7205F7C1E00DF7B49 /* SliderVector3View.swift */; };
 		85CCE23F2064861B000560C3 /* Constraints+Activation+Priority.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCE23B2064861B000560C3 /* Constraints+Activation+Priority.swift */; };
 		85CCE2402064861B000560C3 /* Constrainable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCE23C2064861B000560C3 /* Constrainable.swift */; };
 		85CCE2412064861B000560C3 /* UIView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCE23D2064861B000560C3 /* UIView+Constraints.swift */; };
 		85CCE2422064861B000560C3 /* NibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCE23E2064861B000560C3 /* NibView.swift */; };
-		85CCE245206486D4000560C3 /* SlidingInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCE244206486D4000560C3 /* SlidingInputView.swift */; };
+		85CCE245206486D4000560C3 /* SliderInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCE244206486D4000560C3 /* SliderInputView.swift */; };
 		85CCE2472064A64B000560C3 /* NodeControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCE2462064A64B000560C3 /* NodeControllerView.swift */; };
-		85CCE2492065BBC4000560C3 /* SlidingVector4View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCE2482065BBC4000560C3 /* SlidingVector4View.swift */; };
+		85CCE2492065BBC4000560C3 /* SliderVector4View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCE2482065BBC4000560C3 /* SliderVector4View.swift */; };
 		85CCE24B2065C003000560C3 /* Font+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCE24A2065C003000560C3 /* Font+Extensions.swift */; };
 		85CCE26D2066F04E000560C3 /* NodeControllerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCE26C2066F04E000560C3 /* NodeControllerType.swift */; };
 /* End PBXBuildFile section */
@@ -43,21 +43,21 @@
 		85C6589F205F061500DF7B49 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		85C658A1205F061500DF7B49 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		85C658A8205F074100DF7B49 /* ComponentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentsViewController.swift; sourceTree = "<group>"; };
-		85C658B5205F0D9C00DF7B49 /* SlidingTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlidingTextView.swift; sourceTree = "<group>"; };
+		85C658B5205F0D9C00DF7B49 /* SliderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderTextView.swift; sourceTree = "<group>"; };
 		85C658B7205F17F900DF7B49 /* DecimalTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecimalTextField.swift; sourceTree = "<group>"; };
 		85C658BB205F5FC500DF7B49 /* ModelAssetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelAssetType.swift; sourceTree = "<group>"; };
 		85C658BD205F63E700DF7B49 /* NodeCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeCreator.swift; sourceTree = "<group>"; };
 		85C658C0205F643C00DF7B49 /* 3DUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = 3DUtilities.swift; sourceTree = "<group>"; };
 		85C658C1205F643C00DF7B49 /* ARSCNView+HitTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ARSCNView+HitTest.swift"; sourceTree = "<group>"; };
 		85C658C2205F643C00DF7B49 /* SCNVector3+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SCNVector3+Extensions.swift"; sourceTree = "<group>"; };
-		85C658C7205F7C1E00DF7B49 /* SlidingVector3View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlidingVector3View.swift; sourceTree = "<group>"; };
+		85C658C7205F7C1E00DF7B49 /* SliderVector3View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderVector3View.swift; sourceTree = "<group>"; };
 		85CCE23B2064861B000560C3 /* Constraints+Activation+Priority.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Constraints+Activation+Priority.swift"; sourceTree = "<group>"; };
 		85CCE23C2064861B000560C3 /* Constrainable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constrainable.swift; sourceTree = "<group>"; };
 		85CCE23D2064861B000560C3 /* UIView+Constraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Constraints.swift"; sourceTree = "<group>"; };
 		85CCE23E2064861B000560C3 /* NibView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibView.swift; sourceTree = "<group>"; };
-		85CCE244206486D4000560C3 /* SlidingInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlidingInputView.swift; sourceTree = "<group>"; };
+		85CCE244206486D4000560C3 /* SliderInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderInputView.swift; sourceTree = "<group>"; };
 		85CCE2462064A64B000560C3 /* NodeControllerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeControllerView.swift; sourceTree = "<group>"; };
-		85CCE2482065BBC4000560C3 /* SlidingVector4View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlidingVector4View.swift; sourceTree = "<group>"; };
+		85CCE2482065BBC4000560C3 /* SliderVector4View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderVector4View.swift; sourceTree = "<group>"; };
 		85CCE24A2065C003000560C3 /* Font+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Extensions.swift"; sourceTree = "<group>"; };
 		85CCE26C2066F04E000560C3 /* NodeControllerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeControllerType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -136,7 +136,7 @@
 		85C658B4205F0D6000DF7B49 /* UIControls */ = {
 			isa = PBXGroup;
 			children = (
-				85CCE243206486BB000560C3 /* SldingVectorViews */,
+				85CCE243206486BB000560C3 /* NodeControllerView */,
 			);
 			path = UIControls;
 			sourceTree = "<group>";
@@ -179,18 +179,26 @@
 			path = NeatConstraints;
 			sourceTree = "<group>";
 		};
-		85CCE243206486BB000560C3 /* SldingVectorViews */ = {
+		85CCE243206486BB000560C3 /* NodeControllerView */ = {
 			isa = PBXGroup;
 			children = (
+				85CCE26E206701D9000560C3 /* Slider Input Views */,
 				85CCE26C2066F04E000560C3 /* NodeControllerType.swift */,
 				85CCE2462064A64B000560C3 /* NodeControllerView.swift */,
-				85C658C7205F7C1E00DF7B49 /* SlidingVector3View.swift */,
-				85CCE2482065BBC4000560C3 /* SlidingVector4View.swift */,
-				85CCE244206486D4000560C3 /* SlidingInputView.swift */,
-				85C658B5205F0D9C00DF7B49 /* SlidingTextView.swift */,
+			);
+			path = NodeControllerView;
+			sourceTree = "<group>";
+		};
+		85CCE26E206701D9000560C3 /* Slider Input Views */ = {
+			isa = PBXGroup;
+			children = (
+				85C658C7205F7C1E00DF7B49 /* SliderVector3View.swift */,
+				85CCE2482065BBC4000560C3 /* SliderVector4View.swift */,
+				85CCE244206486D4000560C3 /* SliderInputView.swift */,
+				85C658B5205F0D9C00DF7B49 /* SliderTextView.swift */,
 				85C658B7205F17F900DF7B49 /* DecimalTextField.swift */,
 			);
-			path = SldingVectorViews;
+			path = "Slider Input Views";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -270,11 +278,11 @@
 				85CCE2472064A64B000560C3 /* NodeControllerView.swift in Sources */,
 				85C658A9205F074100DF7B49 /* ComponentsViewController.swift in Sources */,
 				85C65898205F061500DF7B49 /* SceneViewController.swift in Sources */,
-				85C658B6205F0D9C00DF7B49 /* SlidingTextView.swift in Sources */,
+				85C658B6205F0D9C00DF7B49 /* SliderTextView.swift in Sources */,
 				85CCE26D2066F04E000560C3 /* NodeControllerType.swift in Sources */,
 				85C658B8205F17F900DF7B49 /* DecimalTextField.swift in Sources */,
-				85C658C8205F7C1E00DF7B49 /* SlidingVector3View.swift in Sources */,
-				85CCE245206486D4000560C3 /* SlidingInputView.swift in Sources */,
+				85C658C8205F7C1E00DF7B49 /* SliderVector3View.swift in Sources */,
+				85CCE245206486D4000560C3 /* SliderInputView.swift in Sources */,
 				85C658BE205F63E700DF7B49 /* NodeCreator.swift in Sources */,
 				85CCE2402064861B000560C3 /* Constrainable.swift in Sources */,
 				85C658BC205F5FC500DF7B49 /* ModelAssetType.swift in Sources */,
@@ -283,7 +291,7 @@
 				85CCE2422064861B000560C3 /* NibView.swift in Sources */,
 				85CCE2412064861B000560C3 /* UIView+Constraints.swift in Sources */,
 				85CCE24B2065C003000560C3 /* Font+Extensions.swift in Sources */,
-				85CCE2492065BBC4000560C3 /* SlidingVector4View.swift in Sources */,
+				85CCE2492065BBC4000560C3 /* SliderVector4View.swift in Sources */,
 				85CCE23F2064861B000560C3 /* Constraints+Activation+Priority.swift in Sources */,
 				85C658C5205F643D00DF7B49 /* SCNVector3+Extensions.swift in Sources */,
 			);

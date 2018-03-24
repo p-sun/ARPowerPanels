@@ -2,8 +2,8 @@
 //  NodeControllerView.swift
 //  ARPlanets
 //
-//  Created by TSD040 on 2018-03-22.
-//  Copyright © 2018 Pei Sun. All rights reserved.
+//  Created by Paige Sun on 2018-03-22.
+//  Copyright © 2018 Paige Sun. All rights reserved.
 //
 
 import UIKit
@@ -25,10 +25,10 @@ class NodeControllerView: UIStackView {
     private let controlTypes: [NodeControlType]
     
     // MARK: - Variables - Views
-    private lazy var positionInput = SlidingVector3View()
-    private lazy var quaternionRotationInput = SlidingVector4View()
-    private lazy var eulerRotationInput = SlidingVector3View()
-    private lazy var scaleInput = SlidingVector3View(minValue: 0.3)
+    private lazy var positionInput = SliderVector3View()
+    private lazy var quaternionRotationInput = SliderVector4View()
+    private lazy var eulerRotationInput = SliderVector3View()
+    private lazy var scaleInput = SliderVector3View(minValue: 0.3)
     
     // MARK: - Public
     init(controlTypes: [NodeControlType]) {
@@ -105,20 +105,20 @@ class NodeControllerView: UIStackView {
     }
 }
 
-extension NodeControllerView: SlidingVector3ViewDelegate {
-    func slidingVector3View(_ slidingVector3View: SlidingVector3View, didChangeValues vector: SCNVector3) {
+extension NodeControllerView: SliderVector3ViewDelegate {
+    func sliderVector3View(_ sliderVector3View: SliderVector3View, didChangeValues vector: SCNVector3) {
         if controlTypes.contains(.position) &&
-            slidingVector3View == positionInput {
+            sliderVector3View == positionInput {
             transformable?.position = vector
             
         } else if controlTypes.contains(.eulerRotation) &&
-            slidingVector3View == eulerRotationInput {
+            sliderVector3View == eulerRotationInput {
             transformable?.eulerAngles = vector
             
             updateInput(for: .quaterionRotation)
             
         } else if controlTypes.contains(.scale) &&
-            slidingVector3View == scaleInput {
+            sliderVector3View == scaleInput {
             transformable?.scale = vector
             
         } else {
@@ -127,8 +127,8 @@ extension NodeControllerView: SlidingVector3ViewDelegate {
     }
 }
 
-extension NodeControllerView: SlidingVector4ViewDelegate {
-    func slidingVector4View(_ slidingVector4View: SlidingVector4View, didChangeValues vector: SCNVector4) {
+extension NodeControllerView: SliderVector4ViewDelegate {
+    func sliderVector4View(_ sliderVector4View: SliderVector4View, didChangeValues vector: SCNVector4) {
         transformable?.rotation = vector
 
         updateInput(for: .eulerRotation)

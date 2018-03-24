@@ -30,9 +30,9 @@ class SceneViewController: UIViewController {
         
         sceneView.scene.rootNode.addChildNode(foxNode)
         
-//        SlidingInputsView(axisLabels: <#T##[String]#>, minValue: <#T##Float#>, maxValue: <#T##Float#>)
+//        SliderInputsView(axisLabels: <#T##[String]#>, minValue: <#T##Float#>, maxValue: <#T##Float#>)
 //
-//        let rotationInput = SlidingInputsView() { [weak self] value in
+//        let rotationInput = SliderInputsView() { [weak self] value in
 //            print("value did change \(value)")
 //            self?.foxNode.rotation.y = Float(value)
 //        }

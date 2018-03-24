@@ -2,8 +2,8 @@
 //  Font+Extensions.swift
 //  ARPlanets
 //
-//  Created by TSD040 on 2018-03-23.
-//  Copyright © 2018 Pei Sun. All rights reserved.
+//  Created by Paige Sun on 2018-03-23.
+//  Copyright © 2018 Paige Sun. All rights reserved.
 //
 
 import UIKit

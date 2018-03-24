@@ -2,8 +2,8 @@
 //  NodeControlType.swift
 //  ARPlanets
 //
-//  Created by TSD040 on 2018-03-24.
-//  Copyright © 2018 Pei Sun. All rights reserved.
+//  Created by Paige Sun on 2018-03-24.
+//  Copyright © 2018 Paige Sun. All rights reserved.
 //
 
 import Foundation
@@ -14,8 +14,8 @@ enum NodeControlType {
     var displayName: String {
         switch self {
         case .position: return "Postion"
-        case .eulerRotation: return "Euler rotation"
-        case .quaterionRotation: return "Quaterion rotation"
+        case .eulerRotation: return "Euler Rotation"
+        case .quaterionRotation: return "Quaterion Rotation"
         case .scale: return "Scale"
         }
     }
