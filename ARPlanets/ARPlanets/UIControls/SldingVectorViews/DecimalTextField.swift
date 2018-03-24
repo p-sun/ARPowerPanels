@@ -48,7 +48,7 @@ class DecimalTextField: UITextField {
         }
     }
     
-    var minValue = Float.leastNormalMagnitude
+    var minValue = -Float.greatestFiniteMagnitude
     var maxValue = Float.greatestFiniteMagnitude
     
     var accessoryBackgroundColor = UIColor.lightGray

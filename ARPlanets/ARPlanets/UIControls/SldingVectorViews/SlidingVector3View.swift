@@ -26,7 +26,8 @@ class SlidingVector3View: SlidingInputsView {
     
     weak var delegate: SlidingVector3ViewDelegate? = nil
     
-    init(minValue: Float, maxValue: Float) {
+    init(minValue: Float = -Float.greatestFiniteMagnitude,
+         maxValue: Float = Float.greatestFiniteMagnitude) {
         super.init(axisLabels: ["x:", "  y:", "  z:"], minValue: minValue, maxValue: maxValue)
         viewDelegate = self
     }

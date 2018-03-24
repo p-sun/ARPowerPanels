@@ -16,11 +16,19 @@ protocol SlidingVector4ViewDelegate: class {
 // A SlidingInputsView with 3 values, x, y, and z.
 class SlidingVector4View: SlidingInputsView {
     
-    var vector = SCNVector4()
+    var vector = SCNVector4() {
+        didSet {
+            setValue(vector.x, atIndex: 0)
+            setValue(vector.y, atIndex: 1)
+            setValue(vector.z, atIndex: 2)
+            setValue(vector.w, atIndex: 3)
+        }
+    }
     
     weak var delegate: SlidingVector4ViewDelegate? = nil
     
-    init(minValue: Float, maxValue: Float) {
+    init(minValue: Float = -Float.greatestFiniteMagnitude,
+         maxValue: Float = Float.greatestFiniteMagnitude) {
         super.init(axisLabels: ["x:", "  y:", "  z:", " w:"], minValue: minValue, maxValue: maxValue)
         viewDelegate = self
     }

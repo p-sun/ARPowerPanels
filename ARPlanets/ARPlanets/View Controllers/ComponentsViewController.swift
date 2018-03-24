@@ -60,7 +60,7 @@ class ComponentsViewController: UIViewController {
         scene.rootNode.addChildNode(ambientLightNode)
         
         // animate the 3d object
-        foxNode.runAction(SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: 2, z: 0, duration: 1)))
+//        foxNode.runAction(SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: 2, z: 0, duration: 1)))
         foxNode.scale = SCNVector3Make(10, 10, 10)
         scene.rootNode.addChildNode(foxNode)
 

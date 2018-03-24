@@ -20,9 +20,9 @@ extension SCNNode: Transformable { }
 
 class SlidingNodeTransformView: UIStackView {
     
-    private let positionInput = SlidingVector3View(minValue: -20, maxValue: 20)
+    private let positionInput = SlidingVector3View()
     private let rotationInput = SlidingVector4View(minValue: -20, maxValue: 20)
-    private let scaleInput = SlidingVector3View(minValue: 5, maxValue: 20)
+    private let scaleInput = SlidingVector3View()
 
     weak var transformable: Transformable? = nil
     
