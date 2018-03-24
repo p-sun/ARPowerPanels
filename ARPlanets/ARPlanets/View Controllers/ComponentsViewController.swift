@@ -64,25 +64,11 @@ class ComponentsViewController: UIViewController {
         foxNode.scale = SCNVector3Make(10, 10, 10)
         scene.rootNode.addChildNode(foxNode)
 
-        let inputView = SlidingNodeTransformView()
-//        inputView.delegate = self
+        let inputView = NodeControllerView(controlTypes: [.quaterionRotation, .eulerRotation])
         view.addSubview(inputView)
         inputView.constrainCenterX(to: view)
         inputView.constrainCenterY(to: view)
         inputView.constrainEdgesHorizontally(to: view, leftInsets: 40, rightInsets: 40)
-        inputView.configure(for: foxNode)
+        inputView.controlNode(foxNode)
     }
 }
-
-//extension ComponentsViewController: SlidingNodeTransformViewDelegate {
-//    func slidingNodeTransformView(positionDidChange position: SCNVector3) {
-//        foxNode.position = position
-//    }
-//    func slidingNodeTransformView(rotationDidChange rotation: SCNVector4) {
-//        foxNode.rotation = rotation
-//    }
-//    func slidingNodeTransformView(scaleDidChange scale: SCNVector3) {
-//        foxNode.scale = scale
-//    }
-//}
-

@@ -30,7 +30,8 @@ class SlidingInputsView: UIView {
             axisLabel.constrainWidth(40)
             stackView.addArrangedSubview(axisLabel)
             
-            let slidingTextView = makeSlidingTextView(index: i, minValue: minValue, maxValue: maxValue)
+            let slidingTextView: SlidingTextView
+            slidingTextView = makeSlidingTextView(index: i, minValue: minValue, maxValue: maxValue)
             textViews.append(slidingTextView)
             stackView.addArrangedSubview(slidingTextView)
             

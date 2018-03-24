@@ -27,9 +27,10 @@
 		85CCE2412064861B000560C3 /* UIView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCE23D2064861B000560C3 /* UIView+Constraints.swift */; };
 		85CCE2422064861B000560C3 /* NibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCE23E2064861B000560C3 /* NibView.swift */; };
 		85CCE245206486D4000560C3 /* SlidingInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCE244206486D4000560C3 /* SlidingInputView.swift */; };
-		85CCE2472064A64B000560C3 /* SlidingNodeTransformView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCE2462064A64B000560C3 /* SlidingNodeTransformView.swift */; };
+		85CCE2472064A64B000560C3 /* NodeControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCE2462064A64B000560C3 /* NodeControllerView.swift */; };
 		85CCE2492065BBC4000560C3 /* SlidingVector4View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCE2482065BBC4000560C3 /* SlidingVector4View.swift */; };
 		85CCE24B2065C003000560C3 /* Font+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCE24A2065C003000560C3 /* Font+Extensions.swift */; };
+		85CCE26D2066F04E000560C3 /* NodeControllerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCE26C2066F04E000560C3 /* NodeControllerType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,9 +56,10 @@
 		85CCE23D2064861B000560C3 /* UIView+Constraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Constraints.swift"; sourceTree = "<group>"; };
 		85CCE23E2064861B000560C3 /* NibView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibView.swift; sourceTree = "<group>"; };
 		85CCE244206486D4000560C3 /* SlidingInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlidingInputView.swift; sourceTree = "<group>"; };
-		85CCE2462064A64B000560C3 /* SlidingNodeTransformView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlidingNodeTransformView.swift; sourceTree = "<group>"; };
+		85CCE2462064A64B000560C3 /* NodeControllerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeControllerView.swift; sourceTree = "<group>"; };
 		85CCE2482065BBC4000560C3 /* SlidingVector4View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlidingVector4View.swift; sourceTree = "<group>"; };
 		85CCE24A2065C003000560C3 /* Font+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Extensions.swift"; sourceTree = "<group>"; };
+		85CCE26C2066F04E000560C3 /* NodeControllerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeControllerType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,7 +182,8 @@
 		85CCE243206486BB000560C3 /* SldingVectorViews */ = {
 			isa = PBXGroup;
 			children = (
-				85CCE2462064A64B000560C3 /* SlidingNodeTransformView.swift */,
+				85CCE26C2066F04E000560C3 /* NodeControllerType.swift */,
+				85CCE2462064A64B000560C3 /* NodeControllerView.swift */,
 				85C658C7205F7C1E00DF7B49 /* SlidingVector3View.swift */,
 				85CCE2482065BBC4000560C3 /* SlidingVector4View.swift */,
 				85CCE244206486D4000560C3 /* SlidingInputView.swift */,
@@ -264,10 +267,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				85C658C4205F643D00DF7B49 /* ARSCNView+HitTest.swift in Sources */,
-				85CCE2472064A64B000560C3 /* SlidingNodeTransformView.swift in Sources */,
+				85CCE2472064A64B000560C3 /* NodeControllerView.swift in Sources */,
 				85C658A9205F074100DF7B49 /* ComponentsViewController.swift in Sources */,
 				85C65898205F061500DF7B49 /* SceneViewController.swift in Sources */,
 				85C658B6205F0D9C00DF7B49 /* SlidingTextView.swift in Sources */,
+				85CCE26D2066F04E000560C3 /* NodeControllerType.swift in Sources */,
 				85C658B8205F17F900DF7B49 /* DecimalTextField.swift in Sources */,
 				85C658C8205F7C1E00DF7B49 /* SlidingVector3View.swift in Sources */,
 				85CCE245206486D4000560C3 /* SlidingInputView.swift in Sources */,

@@ -34,17 +34,9 @@ class DecimalTextField: UITextField {
         }
         set {
             guard newValue >= minValue && newValue <= maxValue else { return }
-            
-            let valueString = string(from: newValue)
-            
-            if let roundedValue = Float(valueString), roundedValue != newValue {
-                print("rounded value \(roundedValue)")
-                _value = roundedValue
-            } else if newValue != _value {
-                _value = newValue
-            }
-            text = string(from: _value)
-            print("DecimalTextField set textField value \(_value) to string \(string(from: _value))")
+            _value = newValue
+            text = _value.decimalString(decimalPlaces)
+            print("DecimalTextField set textField value \(_value) to string \(_value.decimalString(decimalPlaces))")
         }
     }
     
@@ -67,7 +59,7 @@ class DecimalTextField: UITextField {
         keyboardType = .numberPad
         autocorrectionType = .no
         textAlignment = .right
-        text = string(from: value)
+        text = value.decimalString(decimalPlaces)
         delegate = self
     }
     
@@ -79,11 +71,7 @@ class DecimalTextField: UITextField {
         super.layoutSubviews()
         inputAccessoryView = minusAndDoneButtons()
     }
-    
-    private func string(from value: Float) -> String {
-         return String(format: "%.\(decimalPlaces)f", value)
-    }
-    
+
     private func minusAndDoneButtons() -> UIView {
         let backgroundView = UIView(frame: CGRect(x: 0, y: 0, width: superview!.frame.size.width, height: 44))
         backgroundView.backgroundColor = accessoryBackgroundColor
@@ -149,8 +137,19 @@ extension DecimalTextField: UITextFieldDelegate {
 
         if let newValue = editedString.cgFloat(decimalPlaces: decimalPlaces, maximumDigits: maximumDigits),
             newValue >= minValue, newValue <= maxValue {
-            value = newValue
-            decimalTextFieldDelegate?.decimalTextField(valueDidChange: value)
+            
+//             let newString = newValue.decimalString(decimalPlaces)
+//
+//            // Values set are rounded to the specified number of decimal places.
+//            // This way, when the user types, the integer WILL be rounded
+//            if let roundedValue = Float(newString), roundedValue != newValue {
+//                            print("rounded value \(roundedValue)")
+//                value = roundedValue
+//                decimalTextFieldDelegate?.decimalTextField(valueDidChange: value)
+//            } else if newValue != value {
+                value = newValue
+                decimalTextFieldDelegate?.decimalTextField(valueDidChange: value)
+//            }
         }
         return false
     }
@@ -180,5 +179,11 @@ private extension String {
             return Float(newFloat)
         }
         return nil
+    }
+}
+
+private extension Float {
+    func decimalString(_ decimalPlaces: Int) -> String {
+        return String(format: "%.\(decimalPlaces)f", self)
     }
 }
