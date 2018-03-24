@@ -54,19 +54,19 @@ class SlidingNodeTransformView: UIStackView {
         let positionHeader = header(text: "Position")
         addArrangedSubview(positionHeader)
 
-        positionInput.setPanSpeed(0.1)
+        positionInput.setPanSpeed(0.04)
         positionInput.delegate = self
         addArrangedSubview(positionInput)
         
         let rotationHeader = header(text: "Rotation")
         rotationInput.delegate = self
-        rotationInput.setPanSpeed(0.1)
+        rotationInput.setPanSpeed(0.002)
         addArrangedSubview(rotationHeader)
         addArrangedSubview(rotationInput)
         
         let scaleHeader = header(text: "Scale")
         scaleInput.delegate = self
-        scaleInput.setPanSpeed(0.05)
+        scaleInput.setPanSpeed(0.06)
         addArrangedSubview(scaleHeader)
         addArrangedSubview(scaleInput)
     }
