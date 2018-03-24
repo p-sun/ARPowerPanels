@@ -10,13 +10,19 @@ import UIKit
 import SceneKit
 
 protocol SlidingVector3ViewDelegate: class {
-    func slidingVector3View(didChangeValues vector: SCNVector3)
+    func slidingVector3View(_ slidingVector3View: SlidingVector3View, didChangeValues vector: SCNVector3)
 }
 
 // A SlidingInputsView with 3 values, x, y, and z.
 class SlidingVector3View: SlidingInputsView {
     
-    var vector = SCNVector3()
+    var vector = SCNVector3() {
+        didSet {
+            setValue(vector.x, atIndex: 0)
+            setValue(vector.y, atIndex: 1)
+            setValue(vector.z, atIndex: 2)
+        }
+    }
     
     weak var delegate: SlidingVector3ViewDelegate? = nil
     
@@ -40,7 +46,7 @@ extension SlidingVector3View: SlidingInputsViewDelegate {
         default:
             vector.z = value
         }
-        delegate?.slidingVector3View(didChangeValues: vector)
+        delegate?.slidingVector3View(self, didChangeValues: vector)
     }
 }
 

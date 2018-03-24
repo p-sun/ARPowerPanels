@@ -10,7 +10,7 @@ import UIKit
 import SceneKit
 
 protocol SlidingVector4ViewDelegate: class {
-    func slidingVector4View(didChangeValues vector: SCNVector4)
+    func slidingVector4View(_ slidingVector4View: SlidingVector4View, didChangeValues vector: SCNVector4)
 }
 
 // A SlidingInputsView with 3 values, x, y, and z.
@@ -42,6 +42,6 @@ extension SlidingVector4View: SlidingInputsViewDelegate {
         default:
             vector.w = value
         }
-        delegate?.slidingVector4View(didChangeValues: vector)
+        delegate?.slidingVector4View(self, didChangeValues: vector)
     }
 }

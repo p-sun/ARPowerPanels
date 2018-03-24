@@ -20,9 +20,8 @@ class SlidingTextView: UIView {
     // MARK: - Variables
     private var value: Float = 0 {
         didSet {
-            if textField.value != value {
-                textField.value = value
-            }
+            guard oldValue != value else { return }
+            textField.value = value
             delegate?.slidingTextView(self, didChange: value)
         }
     }
@@ -73,7 +72,6 @@ class SlidingTextView: UIView {
         textField.accessoryHighlightedTextColor = #colorLiteral(red: 0.2576798222, green: 0.6260439845, blue: 0.6919346817, alpha: 1)
         
         textField.font = UIFont.inputSlider
-        textField.value = 0
         addSubview(textField)
         textField.constrainEdges(to: self, insets: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
         

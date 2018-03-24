@@ -17,13 +17,13 @@ class SlidingInputsView: UIView {
 
     weak var viewDelegate: SlidingInputsViewDelegate?
     
+    private var textViews = [SlidingTextView]()
+
     init(axisLabels: [String], minValue: Float, maxValue: Float) {
         super.init(frame: CGRect.zero)
-        
+
         let stackView = UIStackView()
 
-        var firstSlidingInput: SlidingTextView? = nil
-        
         for i in 0..<axisLabels.count {
             
             let axisLabel = labelView(text: axisLabels[i])
@@ -31,12 +31,11 @@ class SlidingInputsView: UIView {
             stackView.addArrangedSubview(axisLabel)
             
             let slidingTextView = makeSlidingTextView(index: i, minValue: minValue, maxValue: maxValue)
+            textViews.append(slidingTextView)
             stackView.addArrangedSubview(slidingTextView)
             
-            if let firstSlidingInput = firstSlidingInput {
+            if let firstSlidingInput = textViews.first {
                 slidingTextView.constrainWidth(to: firstSlidingInput)
-            } else  {
-                firstSlidingInput = slidingTextView
             }
         }
         
@@ -46,6 +45,11 @@ class SlidingInputsView: UIView {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setValue(_ value: Float, atIndex: Int) {
+        print("set value \(value) at index \(atIndex)")
+        textViews[atIndex].setValue(value)
     }
     
     private func labelView(text: String) -> UILabel {

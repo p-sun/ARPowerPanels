@@ -18,6 +18,8 @@ class DecimalTextField: UITextField {
     
     var value: Float = 0.0 {
         didSet {
+            guard oldValue != value else { return }
+            print("textField value \(value) to string \(valueString)")
             text = valueString
             decimalTextFieldDelegate?.decimalTextField(valueDidChange: value)
         }
@@ -46,6 +48,7 @@ class DecimalTextField: UITextField {
         keyboardType = .numberPad
         autocorrectionType = .no
         textAlignment = .right
+        text = valueString
         delegate = self
     }
     
@@ -78,6 +81,11 @@ class DecimalTextField: UITextField {
         minusButton.addTarget(self, action: #selector(minusPressed), for: .touchUpInside)
         stackView.addArrangedSubview(minusButton)
         
+        let zeroButton = accessoryButton(title: "0")
+        zeroButton.titleLabel?.font = UIFont.inputSlider
+        zeroButton.addTarget(self, action: #selector(zeroPressed), for: .touchUpInside)
+        stackView.addArrangedSubview(zeroButton)
+        
         let doneButton = accessoryButton(title: "Done")
         doneButton.titleLabel?.font = UIFont.inputSlider
         doneButton.addTarget(self, action: #selector(donePressed), for: .touchUpInside)
@@ -96,6 +104,11 @@ class DecimalTextField: UITextField {
     
     @objc private func minusPressed(_ sender: UIButton!) {
         value = value * -1.0
+    }
+    
+    @objc private func zeroPressed(_ sender: UIButton!) {
+        value = 0.0
+        resignFirstResponder()
     }
     
     @objc func donePressed() {

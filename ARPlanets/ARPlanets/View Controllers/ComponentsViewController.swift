@@ -17,8 +17,6 @@ class ComponentsViewController: UIViewController {
          super.viewDidLoad()
         
         view.backgroundColor = #colorLiteral(red: 0.7060456284, green: 1, blue: 0.8839808301, alpha: 1)
-        
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -29,7 +27,7 @@ class ComponentsViewController: UIViewController {
         //        let sceneView = view as! SCNView
         sceneView.allowsCameraControl = true // allows the user to manipulate the camera
         sceneView.backgroundColor = #colorLiteral(red: 0.1215686277, green: 0.01176470611, blue: 0.4235294163, alpha: 1)
-        sceneView.showsStatistics = true
+//        sceneView.showsStatistics = true
         
         view.addSubview(sceneView)
         sceneView.constrainEdges(to: view)
@@ -66,19 +64,25 @@ class ComponentsViewController: UIViewController {
         foxNode.scale = SCNVector3Make(10, 10, 10)
         scene.rootNode.addChildNode(foxNode)
 
-//        let inputView = SlidingNodeTransformView()
-//        view.addSubview(inputView)
-//        inputView.constrainCenterX(to: view)
-//        inputView.constrainCenterY(to: view)
-//        inputView.constrainEdgesHorizontally(to: view, leftInsets: 40, rightInsets: 40)
-//
-
+        let inputView = SlidingNodeTransformView()
+//        inputView.delegate = self
+        view.addSubview(inputView)
+        inputView.constrainCenterX(to: view)
+        inputView.constrainCenterY(to: view)
+        inputView.constrainEdgesHorizontally(to: view, leftInsets: 40, rightInsets: 40)
+        inputView.configure(for: foxNode)
     }
 }
 
-//extension ComponentsViewController: SlidingVector3ViewDelegate {
-//    func slidingVector3View(didChangeValues vector: SCNVector3) {
-//        print(vector)
+//extension ComponentsViewController: SlidingNodeTransformViewDelegate {
+//    func slidingNodeTransformView(positionDidChange position: SCNVector3) {
+//        foxNode.position = position
+//    }
+//    func slidingNodeTransformView(rotationDidChange rotation: SCNVector4) {
+//        foxNode.rotation = rotation
+//    }
+//    func slidingNodeTransformView(scaleDidChange scale: SCNVector3) {
+//        foxNode.scale = scale
 //    }
 //}
 
