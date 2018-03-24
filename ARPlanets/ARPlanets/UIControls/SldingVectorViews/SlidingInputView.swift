@@ -21,7 +21,7 @@ class SlidingInputsView: UIView {
         super.init(frame: CGRect.zero)
         
         let stackView = UIStackView()
-        
+
         var firstSlidingInput: SlidingTextView? = nil
         
         for i in 0..<axisLabels.count {
@@ -52,7 +52,7 @@ class SlidingInputsView: UIView {
         let label = UILabel()
         label.textAlignment = .center
         label.text = text
-        label.font = UIFont.boldSystemFont(ofSize: 19)
+        label.font = UIFont.inputSlider
         return label
     }
     

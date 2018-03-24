@@ -72,7 +72,7 @@ class SlidingTextView: UIView {
         textField.accessoryNormalTextColor = #colorLiteral(red: 0.9073373833, green: 1, blue: 0.9944009735, alpha: 1)
         textField.accessoryHighlightedTextColor = #colorLiteral(red: 0.2576798222, green: 0.6260439845, blue: 0.6919346817, alpha: 1)
         
-        textField.font = UIFont.boldSystemFont(ofSize: 19)
+        textField.font = UIFont.inputSlider
         textField.value = 0
         addSubview(textField)
         textField.constrainEdges(to: self, insets: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))

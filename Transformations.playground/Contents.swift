@@ -234,7 +234,8 @@ node5.transform = SCNMatrix4MakeRotation(2, 3, 4, 5)
 print(node5.rotation)
 
 
-
+// TO TEST:
+// Multiplying matricies by an rotation vector -- does scale change?
 
 
 

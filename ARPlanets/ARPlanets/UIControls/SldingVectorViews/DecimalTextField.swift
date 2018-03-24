@@ -74,12 +74,12 @@ class DecimalTextField: UITextField {
         stackView.distribution = .fillEqually
         
         let minusButton = accessoryButton(title: "—")
-        minusButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 19)
+        minusButton.titleLabel?.font = UIFont.inputSlider
         minusButton.addTarget(self, action: #selector(minusPressed), for: .touchUpInside)
         stackView.addArrangedSubview(minusButton)
         
         let doneButton = accessoryButton(title: "Done")
-        doneButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 19)
+        doneButton.titleLabel?.font = UIFont.inputSlider
         doneButton.addTarget(self, action: #selector(donePressed), for: .touchUpInside)
         stackView.addArrangedSubview(doneButton)
         

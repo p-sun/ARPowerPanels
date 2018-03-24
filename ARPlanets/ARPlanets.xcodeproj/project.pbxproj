@@ -27,6 +27,9 @@
 		85CCE2412064861B000560C3 /* UIView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCE23D2064861B000560C3 /* UIView+Constraints.swift */; };
 		85CCE2422064861B000560C3 /* NibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCE23E2064861B000560C3 /* NibView.swift */; };
 		85CCE245206486D4000560C3 /* SlidingInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCE244206486D4000560C3 /* SlidingInputView.swift */; };
+		85CCE2472064A64B000560C3 /* SlidingNodeTransformView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCE2462064A64B000560C3 /* SlidingNodeTransformView.swift */; };
+		85CCE2492065BBC4000560C3 /* SlidingVector4View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCE2482065BBC4000560C3 /* SlidingVector4View.swift */; };
+		85CCE24B2065C003000560C3 /* Font+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCE24A2065C003000560C3 /* Font+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +55,9 @@
 		85CCE23D2064861B000560C3 /* UIView+Constraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Constraints.swift"; sourceTree = "<group>"; };
 		85CCE23E2064861B000560C3 /* NibView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibView.swift; sourceTree = "<group>"; };
 		85CCE244206486D4000560C3 /* SlidingInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlidingInputView.swift; sourceTree = "<group>"; };
+		85CCE2462064A64B000560C3 /* SlidingNodeTransformView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlidingNodeTransformView.swift; sourceTree = "<group>"; };
+		85CCE2482065BBC4000560C3 /* SlidingVector4View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlidingVector4View.swift; sourceTree = "<group>"; };
+		85CCE24A2065C003000560C3 /* Font+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +118,7 @@
 			children = (
 				85C658AB205F07DF00DF7B49 /* 2DUtilities */,
 				85C658BF205F643C00DF7B49 /* 3DUtilities */,
+				85CCE24A2065C003000560C3 /* Font+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -173,7 +180,9 @@
 		85CCE243206486BB000560C3 /* SldingVectorViews */ = {
 			isa = PBXGroup;
 			children = (
+				85CCE2462064A64B000560C3 /* SlidingNodeTransformView.swift */,
 				85C658C7205F7C1E00DF7B49 /* SlidingVector3View.swift */,
+				85CCE2482065BBC4000560C3 /* SlidingVector4View.swift */,
 				85CCE244206486D4000560C3 /* SlidingInputView.swift */,
 				85C658B5205F0D9C00DF7B49 /* SlidingTextView.swift */,
 				85C658B7205F17F900DF7B49 /* DecimalTextField.swift */,
@@ -255,6 +264,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				85C658C4205F643D00DF7B49 /* ARSCNView+HitTest.swift in Sources */,
+				85CCE2472064A64B000560C3 /* SlidingNodeTransformView.swift in Sources */,
 				85C658A9205F074100DF7B49 /* ComponentsViewController.swift in Sources */,
 				85C65898205F061500DF7B49 /* SceneViewController.swift in Sources */,
 				85C658B6205F0D9C00DF7B49 /* SlidingTextView.swift in Sources */,
@@ -268,6 +278,8 @@
 				85C65894205F061500DF7B49 /* AppDelegate.swift in Sources */,
 				85CCE2422064861B000560C3 /* NibView.swift in Sources */,
 				85CCE2412064861B000560C3 /* UIView+Constraints.swift in Sources */,
+				85CCE24B2065C003000560C3 /* Font+Extensions.swift in Sources */,
+				85CCE2492065BBC4000560C3 /* SlidingVector4View.swift in Sources */,
 				85CCE23F2064861B000560C3 /* Constraints+Activation+Priority.swift in Sources */,
 				85C658C5205F643D00DF7B49 /* SCNVector3+Extensions.swift in Sources */,
 			);
