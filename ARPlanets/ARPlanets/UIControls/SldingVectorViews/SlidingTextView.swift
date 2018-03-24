@@ -21,7 +21,7 @@ class SlidingTextView: UIView {
     private var value: Float = 0 {
         didSet {
             guard oldValue != value else { return }
-            textField.value = value
+            textField.setValue(value)
             delegate?.slidingTextView(self, didChange: value)
         }
     }

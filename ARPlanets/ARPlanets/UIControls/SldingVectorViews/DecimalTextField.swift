@@ -14,14 +14,30 @@ protocol DecimalTextFieldDelegate: class {
 
 /// A text field that displays a Float to the specified number of decimal digits,
 /// and allows the user to enter values with the keyboard.
+/// Allows for user to set:
+///       - Color for accessory buttons on the keyboard
+///       - min and max values
+///       - maximum # of digits
+///            - attempts to set or type a value beyond the min or max values will be ignored
+///       - number of decimal places
+///            - values set are rounded to the specified number of decimal places.
+///       - keyboard accessory buttons
+///            - zero sets the text to 0, or the min value
+///            - minus mulplies the value by -1, if min value < 0
 class DecimalTextField: UITextField {
     
-    var value: Float = 0.0 {
+    private var value: Float = 0.0 {
         didSet {
             guard oldValue != value else { return }
             print("textField value \(value) to string \(valueString)")
-            text = valueString
-            decimalTextFieldDelegate?.decimalTextField(valueDidChange: value)
+            
+            if let roundedValue = Float(valueString), roundedValue != value {
+                print("rounded value \(roundedValue)")
+                value = roundedValue
+            } else {
+                text = valueString
+                decimalTextFieldDelegate?.decimalTextField(valueDidChange: value)
+            }
         }
     }
     
@@ -59,6 +75,12 @@ class DecimalTextField: UITextField {
     override func layoutSubviews() {
         super.layoutSubviews()
         inputAccessoryView = minusAndDoneButtons()
+    }
+    
+    func setValue(_ value: Float) {
+        if value >= minValue && value <= maxValue {
+            self.value = value
+        }
     }
     
     private func minusAndDoneButtons() -> UIView {
@@ -103,11 +125,12 @@ class DecimalTextField: UITextField {
     }
     
     @objc private func minusPressed(_ sender: UIButton!) {
+        guard minValue < 0 else { return }
         value = value * -1.0
     }
     
     @objc private func zeroPressed(_ sender: UIButton!) {
-        value = 0.0
+        value = max(0.0, minValue)
         resignFirstResponder()
     }
     
