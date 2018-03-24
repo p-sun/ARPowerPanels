@@ -48,8 +48,14 @@ class SlidingInputsView: UIView {
     }
     
     func setValue(_ value: Float, atIndex: Int) {
-        print("set value \(value) at index \(atIndex)")
-        textViews[atIndex].setValue(value)
+        print("SlidingInputsView set value \(value) at index \(atIndex)")
+        textViews[atIndex].value = value
+    }
+    
+    func setPanSpeed(_ speed: Float) {
+        for textView in textViews {
+            textView.panSpeed = speed
+        }
     }
     
     private func labelView(text: String) -> UILabel {

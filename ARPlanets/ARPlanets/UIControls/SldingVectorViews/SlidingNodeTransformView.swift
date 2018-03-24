@@ -9,12 +9,6 @@
 import UIKit
 import SceneKit
 
-//protocol SlidingNodeTransformViewDelegate: class {
-//    func slidingNodeTransformView(positionDidChange position: SCNVector3)
-//    func slidingNodeTransformView(rotationDidChange rotation: SCNVector4)
-//    func slidingNodeTransformView(scaleDidChange scale: SCNVector3)
-//}
-
 protocol Transformable: class {
     var position: SCNVector3 { get set }
     var rotation: SCNVector4 { get set }
@@ -28,7 +22,7 @@ class SlidingNodeTransformView: UIStackView {
     
     private let positionInput = SlidingVector3View(minValue: -20, maxValue: 20)
     private let rotationInput = SlidingVector4View(minValue: -20, maxValue: 20)
-    private let scaleInput = SlidingVector3View(minValue: 0.5, maxValue: 20)
+    private let scaleInput = SlidingVector3View(minValue: 5, maxValue: 20)
 
     weak var transformable: Transformable? = nil
     
@@ -58,17 +52,21 @@ class SlidingNodeTransformView: UIStackView {
     
     private func setupInputs() {
         let positionHeader = header(text: "Position")
-        positionInput.delegate = self
         addArrangedSubview(positionHeader)
+
+        positionInput.setPanSpeed(0.1)
+        positionInput.delegate = self
         addArrangedSubview(positionInput)
         
         let rotationHeader = header(text: "Rotation")
         rotationInput.delegate = self
+        rotationInput.setPanSpeed(0.1)
         addArrangedSubview(rotationHeader)
         addArrangedSubview(rotationInput)
         
         let scaleHeader = header(text: "Scale")
         scaleInput.delegate = self
+        scaleInput.setPanSpeed(0.05)
         addArrangedSubview(scaleHeader)
         addArrangedSubview(scaleInput)
     }
@@ -78,17 +76,14 @@ extension SlidingNodeTransformView: SlidingVector3ViewDelegate {
     func slidingVector3View(_ slidingVector3View: SlidingVector3View, didChangeValues vector: SCNVector3) {
         if slidingVector3View == positionInput {
             transformable?.position = vector
-//            delegate?.slidingNodeTransformView(positionDidChange: positionInput.vector)
         } else {
             transformable?.scale = vector
-//            delegate?.slidingNodeTransformView(scaleDidChange: scaleInput.vector)
         }
     }
 }
 
 extension SlidingNodeTransformView: SlidingVector4ViewDelegate {
     func slidingVector4View(_ slidingVector4View: SlidingVector4View, didChangeValues vector: SCNVector4) {
-//        delegate?.slidingNodeTransformView(rotationDidChange: vector)
         transformable?.rotation = vector
     }
 }

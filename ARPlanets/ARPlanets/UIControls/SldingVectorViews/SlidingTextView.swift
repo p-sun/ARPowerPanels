@@ -18,18 +18,29 @@ protocol SlidingTextViewDelegate: class {
 class SlidingTextView: UIView {
 
     // MARK: - Variables
-    private var value: Float = 0 {
+    weak var delegate: SlidingTextViewDelegate?
+
+    /// Value change per unit panned
+    var panSpeed: Float = 1 {
         didSet {
-            guard oldValue != value else { return }
-            textField.setValue(value)
-            delegate?.slidingTextView(self, didChange: value)
+            print("set pan speed \(panSpeed)")
         }
     }
+
+    var value: Float {
+        get {
+            return textField.value
+        }
+        set {
+            guard newValue >= minValue && newValue <= maxValue && newValue != value else { return }
+            print("SlidingTextView setting new value \(newValue)")
+            textField.value = newValue
+        }
+    }
+    
     private var originalValue: Float = 0
     private var minValue: Float
     private var maxValue: Float
-    
-    weak var delegate: SlidingTextViewDelegate?
     
     // MARK: - Private Constants
     private let customTintColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
@@ -79,29 +90,28 @@ class SlidingTextView: UIView {
         addGestureRecognizer(panGestureRecognizer)
     }
     
-    func setValue(_ value: Float) {
-        if value >= minValue && value <= maxValue {
-            self.value = value
-        }
-    }
-    
     @objc private func didPan(_ gestureRecognizer: UIPanGestureRecognizer) {
         switch gestureRecognizer.state {
         case .began:
             originalValue = value
         case .changed, .possible:
-            let valueChangePerUnitPanned = (maxValue - minValue) / 300
             let translation = gestureRecognizer.translation(in: self)
-            let yDelta = Float(translation.y) * -1.0 * valueChangePerUnitPanned
+            let yDelta = Float(translation.y) * -1.0 * panSpeed
             let pannedValue = originalValue + yDelta
             
             let snappedValue = pannedValue.snapToValueIfClose(
                 snapToValues: [minValue, 0, maxValue],
-                withinRange: valueChangePerUnitPanned * 10.0)
-            
-            setValue(snappedValue)
+                withinRange: panSpeed * 10.0)
+
+            print("snap \(snappedValue) from \(pannedValue) withinRange +-\(panSpeed * 10.0) panspeed \(panSpeed)")
+
+            value = snappedValue
+            delegate?.slidingTextView(self, didChange: value)
+
         case .cancelled, .failed:
-            setValue(originalValue)
+            value = originalValue
+            delegate?.slidingTextView(self, didChange: value)
+
         case .ended:
             break
         }
@@ -110,7 +120,8 @@ class SlidingTextView: UIView {
 
 extension SlidingTextView: DecimalTextFieldDelegate {
     func decimalTextField(valueDidChange value: Float) {
-        setValue(value)
+        self.value = value
+        delegate?.slidingTextView(self, didChange: value)
     }
 }
 

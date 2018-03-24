@@ -26,18 +26,25 @@ protocol DecimalTextFieldDelegate: class {
 ///            - minus mulplies the value by -1, if min value < 0
 class DecimalTextField: UITextField {
     
-    private var value: Float = 0.0 {
-        didSet {
-            guard oldValue != value else { return }
-            print("textField value \(value) to string \(valueString)")
+    private var _value: Float = 0
+    
+    var value: Float {
+        get {
+            return _value
+        }
+        set {
+            guard newValue >= minValue && newValue <= maxValue else { return }
             
-            if let roundedValue = Float(valueString), roundedValue != value {
+            let valueString = string(from: newValue)
+            
+            if let roundedValue = Float(valueString), roundedValue != newValue {
                 print("rounded value \(roundedValue)")
-                value = roundedValue
-            } else {
-                text = valueString
-                decimalTextFieldDelegate?.decimalTextField(valueDidChange: value)
+                _value = roundedValue
+            } else if newValue != _value {
+                _value = newValue
             }
+            text = string(from: _value)
+            print("DecimalTextField set textField value \(_value) to string \(string(from: _value))")
         }
     }
     
@@ -53,10 +60,6 @@ class DecimalTextField: UITextField {
     private let decimalPlaces: Int
     private let maximumDigits = 10
 
-    private var valueString: String {
-        return String(format: "%.\(decimalPlaces)f", value)
-    }
-
     init(decimalPlaces: Int) {
         self.decimalPlaces = decimalPlaces
         
@@ -64,7 +67,7 @@ class DecimalTextField: UITextField {
         keyboardType = .numberPad
         autocorrectionType = .no
         textAlignment = .right
-        text = valueString
+        text = string(from: value)
         delegate = self
     }
     
@@ -77,10 +80,8 @@ class DecimalTextField: UITextField {
         inputAccessoryView = minusAndDoneButtons()
     }
     
-    func setValue(_ value: Float) {
-        if value >= minValue && value <= maxValue {
-            self.value = value
-        }
+    private func string(from value: Float) -> String {
+         return String(format: "%.\(decimalPlaces)f", value)
     }
     
     private func minusAndDoneButtons() -> UIView {
@@ -127,10 +128,12 @@ class DecimalTextField: UITextField {
     @objc private func minusPressed(_ sender: UIButton!) {
         guard minValue < 0 else { return }
         value = value * -1.0
+        decimalTextFieldDelegate?.decimalTextField(valueDidChange: value)
     }
     
     @objc private func zeroPressed(_ sender: UIButton!) {
         value = max(0.0, minValue)
+        decimalTextFieldDelegate?.decimalTextField(valueDidChange: value)
         resignFirstResponder()
     }
     
@@ -147,6 +150,7 @@ extension DecimalTextField: UITextFieldDelegate {
         if let newValue = editedString.cgFloat(decimalPlaces: decimalPlaces, maximumDigits: maximumDigits),
             newValue >= minValue, newValue <= maxValue {
             value = newValue
+            decimalTextFieldDelegate?.decimalTextField(valueDidChange: value)
         }
         return false
     }
