@@ -11,11 +11,14 @@ import SceneKit
 
 class ComponentsViewController: UIViewController {
     
+    let panelPresentor = RightPanelPresenter()
     var foxNode = Model.fox.createNode()
+    let transformationPanel = TransformationPanel(controlTypes: TransformationType.all)
     
     override func viewDidLoad() {
          super.viewDidLoad()
-        
+        transformationPanel.control(foxNode)
+
         view.backgroundColor = #colorLiteral(red: 0.7060456284, green: 1, blue: 0.8839808301, alpha: 1)
     }
     
@@ -26,7 +29,7 @@ class ComponentsViewController: UIViewController {
         let sceneView = SCNView()
         //        let sceneView = view as! SCNView
         sceneView.allowsCameraControl = true // allows the user to manipulate the camera
-        sceneView.backgroundColor = #colorLiteral(red: 0.1215686277, green: 0.01176470611, blue: 0.4235294163, alpha: 1)
+        sceneView.backgroundColor = #colorLiteral(red: 0.0003343143538, green: 0.03833642512, blue: 0.4235294163, alpha: 1)
 //        sceneView.showsStatistics = true
         
         view.addSubview(sceneView)
@@ -59,16 +62,35 @@ class ComponentsViewController: UIViewController {
         ambientLightNode.light!.color = UIColor.darkGray
         scene.rootNode.addChildNode(ambientLightNode)
         
+        let button = UIButton()
+        button.setTitle("PANEL", for: UIControlState.normal)
+        button.addTarget(self, action: #selector(togglePanel), for: UIControlEvents.touchUpInside)
+        
+        view.addSubview(button)
+        button.constrainLeft(to: view, offset: 30)
+        button.constrainBottom(to: view, offset: -30)
+        
         // animate the 3d object
 //        foxNode.runAction(SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: 2, z: 0, duration: 1)))
         foxNode.scale = SCNVector3Make(10, 10, 10)
         scene.rootNode.addChildNode(foxNode)
 
-        let inputView = TransformationPanel(controlTypes: TransformationType.all)
-        view.addSubview(inputView)
-        inputView.constrainCenterX(to: view)
-        inputView.constrainCenterY(to: view)
-        inputView.constrainEdgesHorizontally(to: view, leftInsets: 40, rightInsets: 40)
-        inputView.control(foxNode)
+
+
+        
+//        view.addSubview(inputView)
+//        inputView.constrainCenterX(to: view)
+//        inputView.constrainCenterY(to: view)
+//        inputView.constrainEdgesHorizontally(to: view, leftInsets: 40, rightInsets: 40)
+    }
+    
+    var isPanelPresented = false
+    @objc func togglePanel() {
+        if isPanelPresented {
+            panelPresentor.dismissPresentedView()
+        } else {
+            panelPresentor.presentFromRight(newPresentedView: transformationPanel, presentingView: view, width: 400, insets: UIEdgeInsets(top: 10, left: 20, bottom: 20, right: 20))
+        }
+        isPanelPresented = !isPanelPresented
     }
 }

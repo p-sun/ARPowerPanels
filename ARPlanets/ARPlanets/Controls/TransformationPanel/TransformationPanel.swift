@@ -19,7 +19,7 @@ class TransformationPanel: UIStackView {
     private lazy var positionInput = SliderVector3View()
     private lazy var quaternionRotationInput = SliderVector4View()
     private lazy var eulerRotationInput = SliderVector3View()
-    private lazy var scaleInput = SliderVector3View(minValue: 0.3)
+    private lazy var scaleInput = SliderVector3View(minValue: 0.2)
     private lazy var opacityInput = SliderInputsView(axisLabels: ["   "], minValue: 0, maxValue: 1)
     private lazy var orientationInput = SliderVector4View()
     
@@ -89,6 +89,7 @@ class TransformationPanel: UIStackView {
         let label = UILabel()
         label.text = type.displayName
         label.font = UIFont.inputSliderHeader
+        label.constrainHeight(34)
         label.textColor = #colorLiteral(red: 0.9819386001, green: 0.9880417428, blue: 1, alpha: 1)
         return label
     }

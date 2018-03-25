@@ -32,6 +32,7 @@
 		85CCE24B2065C003000560C3 /* Font+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCE24A2065C003000560C3 /* Font+Extensions.swift */; };
 		85CCE26D2066F04E000560C3 /* TransformationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCE26C2066F04E000560C3 /* TransformationType.swift */; };
 		85CCE27020671EDB000560C3 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCE26F20671EDB000560C3 /* UIColor+Extensions.swift */; };
+		85CCE272206723DE000560C3 /* RightPanelPresentor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCE271206723DE000560C3 /* RightPanelPresentor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,7 @@
 		85CCE24A2065C003000560C3 /* Font+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Extensions.swift"; sourceTree = "<group>"; };
 		85CCE26C2066F04E000560C3 /* TransformationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformationType.swift; sourceTree = "<group>"; };
 		85CCE26F20671EDB000560C3 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
+		85CCE271206723DE000560C3 /* RightPanelPresentor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightPanelPresentor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,7 +96,7 @@
 		85C65892205F061500DF7B49 /* ARPlanets */ = {
 			isa = PBXGroup;
 			children = (
-				85C658B4205F0D6000DF7B49 /* UIControls */,
+				85C658B4205F0D6000DF7B49 /* Controls */,
 				85C658AA205F07A600DF7B49 /* Extensions */,
 				85C658A7205F072600DF7B49 /* View Controllers */,
 				85C658B9205F5FA500DF7B49 /* Nodes */,
@@ -136,12 +138,13 @@
 			path = 2DUtilities;
 			sourceTree = "<group>";
 		};
-		85C658B4205F0D6000DF7B49 /* UIControls */ = {
+		85C658B4205F0D6000DF7B49 /* Controls */ = {
 			isa = PBXGroup;
 			children = (
 				85CCE243206486BB000560C3 /* TransformationPanel */,
+				85CCE271206723DE000560C3 /* RightPanelPresentor.swift */,
 			);
-			path = UIControls;
+			path = Controls;
 			sourceTree = "<group>";
 		};
 		85C658B9205F5FA500DF7B49 /* Nodes */ = {
@@ -277,6 +280,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85CCE272206723DE000560C3 /* RightPanelPresentor.swift in Sources */,
 				85C658C4205F643D00DF7B49 /* ARSCNView+HitTest.swift in Sources */,
 				85CCE2472064A64B000560C3 /* TransformationPanel.swift in Sources */,
 				85C658A9205F074100DF7B49 /* ComponentsViewController.swift in Sources */,

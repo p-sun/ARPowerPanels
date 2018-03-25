@@ -68,7 +68,7 @@ class SliderTextView: UIView {
     private func setup() {
         backgroundColor = .white
         layer.borderColor = customTintColor.cgColor
-        layer.borderWidth = 4
+        layer.borderWidth = 2
         layer.cornerRadius = 8
         
         textField.decimalTextFieldDelegate = self
@@ -80,7 +80,7 @@ class SliderTextView: UIView {
         
         textField.font = UIFont.inputSlider
         addSubview(textField)
-        textField.constrainEdges(to: self, insets: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
+        textField.constrainEdges(to: self, insets: UIEdgeInsets(top: 6, left: 6, bottom: 6, right: 6))
         
         let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(didPan))
         addGestureRecognizer(panGestureRecognizer)
