@@ -20,7 +20,7 @@ class TransformationPanel: UIStackView {
     private lazy var quaternionRotationInput = SliderVector4View()
     private lazy var eulerRotationInput = SliderVector3View()
     private lazy var scaleInput = SliderVector3View(minValue: 0.3)
-    private lazy var opacityInput = SliderTextView(minValue: 0, maxValue: 1)
+    private lazy var opacityInput = SliderInputsView(axisLabels: ["   "], minValue: 0, maxValue: 1)
     private lazy var orientationInput = SliderVector4View()
     
     // MARK: - Public
@@ -74,8 +74,8 @@ class TransformationPanel: UIStackView {
             addArrangedSubview(scaleInput)
             
         case .opacity:
-            opacityInput.delegate = self
-            opacityInput.panSpeed = 0.01
+            opacityInput.viewDelegate = self
+            opacityInput.setPanSpeed(0.01)
             addArrangedSubview(opacityInput)
             
         case .orientation:
@@ -107,7 +107,7 @@ class TransformationPanel: UIStackView {
         case .scale:
             scaleInput.vector = transformable.scale
         case .opacity:
-            opacityInput.value = Float(transformable.opacity)
+            opacityInput.setValue(Float(transformable.opacity), atIndex: 0)
         case .orientation:
             orientationInput.vector = transformable.orientation
         }
@@ -160,8 +160,8 @@ extension TransformationPanel: SliderVector4ViewDelegate {
     }
 }
 
-extension TransformationPanel: SliderTextViewDelegate {
-    func sliderTextView(_ sliderTextView: SliderTextView, didChange value: Float) {
+extension TransformationPanel: SliderInputsViewDelegate {
+    func sliderInputView(didChange value: Float, at index: Int) {
         transformable?.opacity = CGFloat(value)
     }
 }
