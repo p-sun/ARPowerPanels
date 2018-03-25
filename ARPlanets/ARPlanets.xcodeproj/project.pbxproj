@@ -33,6 +33,8 @@
 		85CCE26D2066F04E000560C3 /* TransformationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCE26C2066F04E000560C3 /* TransformationType.swift */; };
 		85CCE27020671EDB000560C3 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCE26F20671EDB000560C3 /* UIColor+Extensions.swift */; };
 		85CCE272206723DE000560C3 /* RightPanelPresentor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCE271206723DE000560C3 /* RightPanelPresentor.swift */; };
+		85CCE27620673F12000560C3 /* NodeRender.metal in Sources */ = {isa = PBXBuildFile; fileRef = 85CCE27420673F11000560C3 /* NodeRender.metal */; };
+		85CCE27720673F12000560C3 /* NodeTechnique.plist in Resources */ = {isa = PBXBuildFile; fileRef = 85CCE27520673F11000560C3 /* NodeTechnique.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +66,8 @@
 		85CCE26C2066F04E000560C3 /* TransformationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformationType.swift; sourceTree = "<group>"; };
 		85CCE26F20671EDB000560C3 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		85CCE271206723DE000560C3 /* RightPanelPresentor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightPanelPresentor.swift; sourceTree = "<group>"; };
+		85CCE27420673F11000560C3 /* NodeRender.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = NodeRender.metal; sourceTree = "<group>"; };
+		85CCE27520673F11000560C3 /* NodeTechnique.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = NodeTechnique.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +171,7 @@
 		85C658BF205F643C00DF7B49 /* 3DUtilities */ = {
 			isa = PBXGroup;
 			children = (
+				85CCE27320673ED6000560C3 /* Glow */,
 				85C658C0205F643C00DF7B49 /* 3DUtilities.swift */,
 				85C658C1205F643C00DF7B49 /* ARSCNView+HitTest.swift */,
 				85C658C2205F643C00DF7B49 /* SCNVector3+Extensions.swift */,
@@ -205,6 +210,15 @@
 				85C658B7205F17F900DF7B49 /* DecimalTextField.swift */,
 			);
 			path = "Slider Input Views";
+			sourceTree = "<group>";
+		};
+		85CCE27320673ED6000560C3 /* Glow */ = {
+			isa = PBXGroup;
+			children = (
+				85CCE27420673F11000560C3 /* NodeRender.metal */,
+				85CCE27520673F11000560C3 /* NodeTechnique.plist */,
+			);
+			path = Glow;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -266,6 +280,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85CCE27720673F12000560C3 /* NodeTechnique.plist in Resources */,
 				85C65896205F061500DF7B49 /* art.scnassets in Resources */,
 				85C658A0205F061500DF7B49 /* LaunchScreen.storyboard in Resources */,
 				85C6589D205F061500DF7B49 /* Assets.xcassets in Resources */,
@@ -284,6 +299,7 @@
 				85C658C4205F643D00DF7B49 /* ARSCNView+HitTest.swift in Sources */,
 				85CCE2472064A64B000560C3 /* TransformationPanel.swift in Sources */,
 				85C658A9205F074100DF7B49 /* ComponentsViewController.swift in Sources */,
+				85CCE27620673F12000560C3 /* NodeRender.metal in Sources */,
 				85C65898205F061500DF7B49 /* SceneViewController.swift in Sources */,
 				85CCE27020671EDB000560C3 /* UIColor+Extensions.swift in Sources */,
 				85C658B6205F0D9C00DF7B49 /* SliderTextView.swift in Sources */,

@@ -9,7 +9,7 @@
 import UIKit
 import SceneKit
 
-enum Model: String {
+enum Model {
     case wolf, fox, greenBall, lowPolyTree, blueBox
     
     static func assetTypesForMenu() -> [Model] {
@@ -21,7 +21,7 @@ enum Model: String {
         case .fox:
             let scene = SCNScene(named: "art.scnassets/fox/max.scn")!
             let foxNode = scene.rootNode.childNode(withName: "Max_rootNode", recursively: true)!
-            foxNode.scale = SCNVector3Make(0.3, 0.3, 0.3)
+            foxNode.scale = SCNVector3Make(10, 10, 10)
             return foxNode
         case .wolf:
             return nodeFromResource(assetName: "wolf/wolf", extensionName: "dae")
@@ -54,7 +54,7 @@ enum Model: String {
         case .lowPolyTree:
             return #imageLiteral(resourceName: "menuLowPolyTree")
         case .fox:
-            return #imageLiteral(resourceName: "menuLowPolyTree") // TODO
+            return #imageLiteral(resourceName: "menuLowPolyTree") // TODO needs image
         }
     }
 }

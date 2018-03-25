@@ -22,6 +22,10 @@ enum TransformationType {
         }
     }
     
+    static var minimum: [TransformationType] {
+        return [.opacity, .position, .scale, .eulerRotation]
+    }
+    
     static var all: [TransformationType] {
         return [.opacity, .position, .scale, .eulerRotation, .quaternionRotation, .orientation]
     }
