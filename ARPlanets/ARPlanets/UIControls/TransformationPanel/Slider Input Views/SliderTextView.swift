@@ -39,7 +39,7 @@ class SliderTextView: UIView {
     private var maxValue: Float
     
     // MARK: - Private Constants
-    private let customTintColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
+    private let customTintColor = #colorLiteral(red: 0.3895582285, green: 0.8705563482, blue: 0.9778473143, alpha: 1)
     private let textField: DecimalTextField
     
     // MARK: - Public

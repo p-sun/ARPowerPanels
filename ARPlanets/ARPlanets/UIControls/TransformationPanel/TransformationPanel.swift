@@ -89,6 +89,7 @@ class TransformationPanel: UIStackView {
         let label = UILabel()
         label.text = type.displayName
         label.font = UIFont.inputSliderHeader
+        label.textColor = #colorLiteral(red: 0.9819386001, green: 0.9880417428, blue: 1, alpha: 1)
         return label
     }
     

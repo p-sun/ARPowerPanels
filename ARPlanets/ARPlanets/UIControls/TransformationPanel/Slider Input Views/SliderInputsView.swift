@@ -19,6 +19,8 @@ class SliderInputsView: UIView {
     
     private var textViews = [SliderTextView]()
 
+    private let textColors: [UIColor] = [.xAxisColor, .yAxisColor, .zAxisColor, .wAxisColor]
+    
     init(axisLabels: [String], minValue: Float, maxValue: Float) {
         super.init(frame: CGRect.zero)
 
@@ -26,7 +28,7 @@ class SliderInputsView: UIView {
 
         for i in 0..<axisLabels.count {
             
-            let axisLabel = labelView(text: axisLabels[i])
+            let axisLabel = labelView(text: axisLabels[i], color: textColors[i])
             axisLabel.constrainWidth(40)
             stackView.addArrangedSubview(axisLabel)
             
@@ -59,11 +61,12 @@ class SliderInputsView: UIView {
         }
     }
     
-    private func labelView(text: String) -> UILabel {
+    private func labelView(text: String, color: UIColor) -> UILabel {
         let label = UILabel()
         label.textAlignment = .center
         label.text = text
-        label.font = UIFont.inputSlider
+        label.font = UIFont.inputSliderAxisLabel
+        label.textColor = color
         return label
     }
     

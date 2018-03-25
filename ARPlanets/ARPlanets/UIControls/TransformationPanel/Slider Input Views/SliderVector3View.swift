@@ -28,7 +28,7 @@ class SliderVector3View: SliderInputsView {
     
     init(minValue: Float = -Float.greatestFiniteMagnitude,
          maxValue: Float = Float.greatestFiniteMagnitude) {
-        super.init(axisLabels: ["x:", "  y:", "  z:"], minValue: minValue, maxValue: maxValue)
+        super.init(axisLabels: ["X:", "  Y:", "  Z:"], minValue: minValue, maxValue: maxValue)
         viewDelegate = self
     }
     
