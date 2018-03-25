@@ -114,11 +114,22 @@ class RightPanelPresenter {
         
         let panelContainer = isTopContainer ? topPanelContainer! : bottomPanelContainer!
         
+        var middleConstraint: NSLayoutConstraint? = nil
+        
         // Either constrain the center of the bottom & top containers together
         // OR constrain the height of the presented container
         if let topContainer = topPanelContainer, let bottomContainer = bottomPanelContainer {
-            topContainer.container.constrainBottomToTop(of: bottomContainer.container, offset: -20)
             panelContainer.heightConstraint = panelContainer.container.constrainHeight(0, relation: .equalOrGreater, priority: .defaultLow)
+            
+            // Containers' height are constrainted to containerWidth with low priority (see a few lines down)
+            // So, if topContainer has no specified contentHeight (i.e. a sceneView), its height will be containerWidth.
+            // Thus, adding another panel will change the topContainer's height -- we want to animate this.
+            middleConstraint = topContainer.container.constrainBottomToTop(of: bottomContainer.container, offset: -20, isActive: false)
+            let shouldAnimateMiddleConstraint = topContainer.container.frame.height == containerWidth
+            if !shouldAnimateMiddleConstraint {
+                middleConstraint?.isActive = true
+            }
+            
         } else {
             panelContainer.heightConstraint = panelContainer.container.constrainHeight(containerWidth, relation: .equalOrGreater, priority: .defaultLow)
         }
@@ -129,6 +140,7 @@ class RightPanelPresenter {
             let container = panelContainer.container
             container.backgroundColor = UIColor.white.withAlphaComponent(0.4)
             panelContainer.rightConstraint.constant = -container.bounds.width
+            middleConstraint?.isActive = true
             panelContainer.presentingView.layoutIfNeeded()
         })
     }
