@@ -21,11 +21,7 @@ class SliderTextView: UIView {
     weak var delegate: SliderTextViewDelegate?
 
     /// Value change per unit panned
-    var panSpeed: Float = 1 {
-        didSet {
-            print("set pan speed \(panSpeed)")
-        }
-    }
+    var panSpeed: Float = 1
 
     var value: Float {
         get {
@@ -33,7 +29,7 @@ class SliderTextView: UIView {
         }
         set {
             guard newValue >= minValue && newValue <= maxValue && newValue != value else { return }
-            print("SliderTextView setting new value \(newValue)")
+//            print("SliderTextView setting new value \(newValue)")
             textField.value = newValue
         }
     }
@@ -101,9 +97,9 @@ class SliderTextView: UIView {
             
             let snappedValue = pannedValue.snapToValueIfClose(
                 snapToValues: [minValue, 0, maxValue],
-                withinRange: panSpeed * 10.0)
+                withinRange: panSpeed * 8.0)
 
-            print("snap \(snappedValue) from \(pannedValue) withinRange +-\(panSpeed * 10.0) panspeed \(panSpeed)")
+//            print("snap \(snappedValue) from \(pannedValue) withinRange +-\(panSpeed * 10.0) panspeed \(panSpeed)")
 
             value = snappedValue
             delegate?.sliderTextView(self, didChange: value)

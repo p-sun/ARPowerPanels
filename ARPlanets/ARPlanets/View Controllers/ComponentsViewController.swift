@@ -64,11 +64,11 @@ class ComponentsViewController: UIViewController {
         foxNode.scale = SCNVector3Make(10, 10, 10)
         scene.rootNode.addChildNode(foxNode)
 
-        let inputView = NodeControllerView(controlTypes: [.quaterionRotation, .eulerRotation])
+        let inputView = TransformationPanel(controlTypes: TransformationType.all)
         view.addSubview(inputView)
         inputView.constrainCenterX(to: view)
         inputView.constrainCenterY(to: view)
         inputView.constrainEdgesHorizontally(to: view, leftInsets: 40, rightInsets: 40)
-        inputView.controlNode(foxNode)
+        inputView.control(foxNode)
     }
 }

@@ -26,11 +26,11 @@
 		85CCE2402064861B000560C3 /* Constrainable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCE23C2064861B000560C3 /* Constrainable.swift */; };
 		85CCE2412064861B000560C3 /* UIView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCE23D2064861B000560C3 /* UIView+Constraints.swift */; };
 		85CCE2422064861B000560C3 /* NibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCE23E2064861B000560C3 /* NibView.swift */; };
-		85CCE245206486D4000560C3 /* SliderInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCE244206486D4000560C3 /* SliderInputView.swift */; };
-		85CCE2472064A64B000560C3 /* NodeControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCE2462064A64B000560C3 /* NodeControllerView.swift */; };
+		85CCE245206486D4000560C3 /* SliderInputsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCE244206486D4000560C3 /* SliderInputsView.swift */; };
+		85CCE2472064A64B000560C3 /* TransformationPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCE2462064A64B000560C3 /* TransformationPanel.swift */; };
 		85CCE2492065BBC4000560C3 /* SliderVector4View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCE2482065BBC4000560C3 /* SliderVector4View.swift */; };
 		85CCE24B2065C003000560C3 /* Font+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCE24A2065C003000560C3 /* Font+Extensions.swift */; };
-		85CCE26D2066F04E000560C3 /* NodeControllerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCE26C2066F04E000560C3 /* NodeControllerType.swift */; };
+		85CCE26D2066F04E000560C3 /* TransformationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCE26C2066F04E000560C3 /* TransformationType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,11 +55,11 @@
 		85CCE23C2064861B000560C3 /* Constrainable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constrainable.swift; sourceTree = "<group>"; };
 		85CCE23D2064861B000560C3 /* UIView+Constraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Constraints.swift"; sourceTree = "<group>"; };
 		85CCE23E2064861B000560C3 /* NibView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibView.swift; sourceTree = "<group>"; };
-		85CCE244206486D4000560C3 /* SliderInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderInputView.swift; sourceTree = "<group>"; };
-		85CCE2462064A64B000560C3 /* NodeControllerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeControllerView.swift; sourceTree = "<group>"; };
+		85CCE244206486D4000560C3 /* SliderInputsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderInputsView.swift; sourceTree = "<group>"; };
+		85CCE2462064A64B000560C3 /* TransformationPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformationPanel.swift; sourceTree = "<group>"; };
 		85CCE2482065BBC4000560C3 /* SliderVector4View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderVector4View.swift; sourceTree = "<group>"; };
 		85CCE24A2065C003000560C3 /* Font+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Extensions.swift"; sourceTree = "<group>"; };
-		85CCE26C2066F04E000560C3 /* NodeControllerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeControllerType.swift; sourceTree = "<group>"; };
+		85CCE26C2066F04E000560C3 /* TransformationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformationType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,7 +136,7 @@
 		85C658B4205F0D6000DF7B49 /* UIControls */ = {
 			isa = PBXGroup;
 			children = (
-				85CCE243206486BB000560C3 /* NodeControllerView */,
+				85CCE243206486BB000560C3 /* TransformationPanel */,
 			);
 			path = UIControls;
 			sourceTree = "<group>";
@@ -179,14 +179,14 @@
 			path = NeatConstraints;
 			sourceTree = "<group>";
 		};
-		85CCE243206486BB000560C3 /* NodeControllerView */ = {
+		85CCE243206486BB000560C3 /* TransformationPanel */ = {
 			isa = PBXGroup;
 			children = (
 				85CCE26E206701D9000560C3 /* Slider Input Views */,
-				85CCE26C2066F04E000560C3 /* NodeControllerType.swift */,
-				85CCE2462064A64B000560C3 /* NodeControllerView.swift */,
+				85CCE26C2066F04E000560C3 /* TransformationType.swift */,
+				85CCE2462064A64B000560C3 /* TransformationPanel.swift */,
 			);
-			path = NodeControllerView;
+			path = TransformationPanel;
 			sourceTree = "<group>";
 		};
 		85CCE26E206701D9000560C3 /* Slider Input Views */ = {
@@ -194,7 +194,7 @@
 			children = (
 				85C658C7205F7C1E00DF7B49 /* SliderVector3View.swift */,
 				85CCE2482065BBC4000560C3 /* SliderVector4View.swift */,
-				85CCE244206486D4000560C3 /* SliderInputView.swift */,
+				85CCE244206486D4000560C3 /* SliderInputsView.swift */,
 				85C658B5205F0D9C00DF7B49 /* SliderTextView.swift */,
 				85C658B7205F17F900DF7B49 /* DecimalTextField.swift */,
 			);
@@ -275,14 +275,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				85C658C4205F643D00DF7B49 /* ARSCNView+HitTest.swift in Sources */,
-				85CCE2472064A64B000560C3 /* NodeControllerView.swift in Sources */,
+				85CCE2472064A64B000560C3 /* TransformationPanel.swift in Sources */,
 				85C658A9205F074100DF7B49 /* ComponentsViewController.swift in Sources */,
 				85C65898205F061500DF7B49 /* SceneViewController.swift in Sources */,
 				85C658B6205F0D9C00DF7B49 /* SliderTextView.swift in Sources */,
-				85CCE26D2066F04E000560C3 /* NodeControllerType.swift in Sources */,
+				85CCE26D2066F04E000560C3 /* TransformationType.swift in Sources */,
 				85C658B8205F17F900DF7B49 /* DecimalTextField.swift in Sources */,
 				85C658C8205F7C1E00DF7B49 /* SliderVector3View.swift in Sources */,
-				85CCE245206486D4000560C3 /* SliderInputView.swift in Sources */,
+				85CCE245206486D4000560C3 /* SliderInputsView.swift in Sources */,
 				85C658BE205F63E700DF7B49 /* NodeCreator.swift in Sources */,
 				85CCE2402064861B000560C3 /* Constrainable.swift in Sources */,
 				85C658BC205F5FC500DF7B49 /* ModelAssetType.swift in Sources */,

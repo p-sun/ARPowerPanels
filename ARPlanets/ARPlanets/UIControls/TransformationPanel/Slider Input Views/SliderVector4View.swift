@@ -13,7 +13,7 @@ protocol SliderVector4ViewDelegate: class {
     func sliderVector4View(_ sliderVector4View: SliderVector4View, didChangeValues vector: SCNVector4)
 }
 
-// A SliderInputsView with 3 values, x, y, and z.
+// A SliderInputsView with 4 values, x, y, z, and w.
 class SliderVector4View: SliderInputsView {
     
     var vector = SCNVector4() {

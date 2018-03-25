@@ -36,7 +36,7 @@ class DecimalTextField: UITextField {
             guard newValue >= minValue && newValue <= maxValue else { return }
             _value = newValue
             text = _value.decimalString(decimalPlaces)
-            print("DecimalTextField set textField value \(_value) to string \(_value.decimalString(decimalPlaces))")
+//            print("DecimalTextField set textField value \(_value) to string \(_value.decimalString(decimalPlaces))")
         }
     }
     

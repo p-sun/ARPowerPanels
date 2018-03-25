@@ -49,7 +49,7 @@ class SliderInputsView: UIView {
     }
     
     func setValue(_ value: Float, atIndex: Int) {
-        print("SliderInputsView set value \(value) at index \(atIndex)")
+//        print("SliderInputsView set value \(value) at index \(atIndex)")
         textViews[atIndex].value = value
     }
     

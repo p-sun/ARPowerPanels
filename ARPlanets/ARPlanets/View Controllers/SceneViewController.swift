@@ -55,6 +55,7 @@ class SceneViewController: UIViewController {
     
     private func beginSceneView() {
         let configuration = ARWorldTrackingConfiguration()
+        configuration.planeDetection = .horizontal
         sceneView.session.run(configuration)
     }
 }
