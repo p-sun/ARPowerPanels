@@ -24,6 +24,8 @@ class SliderInputsView: UIView {
     init(axisLabels: [String], minValue: Float, maxValue: Float) {
         super.init(frame: CGRect.zero)
 
+        self.constrainHeight(29)
+        
         let stackView = UIStackView()
 
         for i in 0..<axisLabels.count {

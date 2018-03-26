@@ -8,6 +8,7 @@
 
 import UIKit
 
+// This could use some refactoring
 private class Panel {
     /// A container for the viewToPresent
     let view = UIView()
