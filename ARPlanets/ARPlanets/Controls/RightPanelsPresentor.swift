@@ -12,9 +12,6 @@ private class Panel {
     /// A container for the viewToPresent
     let view = UIView()
     
-    // The parent view presenting the panel
-    let presentingView: UIView
-
     /// A priority determined by the user.
     /// When presenting a panel with a heigher height priority than the other panel, the height constraint is animated.
     /// Otherwise, don't animate the height.
@@ -22,45 +19,49 @@ private class Panel {
     
     /// The left constraint on the view, so the panel can be animated.
     var leftConstraint: NSLayoutConstraint!
-    var heightConstraint: NSLayoutConstraint!
     
-    init(presentingView: UIView) {
-        self.presentingView = presentingView
+    var heightConstraint: NSLayoutConstraint
+    
+    var middleConstraint: NSLayoutConstraint? = nil
+    
+    init(width: CGFloat) {
+        view.constrainWidth(width)
+        
+        // Constrain the height of all presented containers to be a square, with low priority
+        // Low priority because we want it to be a square if a height cannot be calculated
+        heightConstraint = view.constrainHeight(width, relation: .equalOrGreater, priority: .defaultLow)
+        
         setupContainer()
     }
-    
+
     /// Constrain a view to the presentingView
     ///
     /// - Parameters:
-    ///   - viewToPresent: A UIView with an optional height.
-    ///   - width: The width of the panel.
-    func constrainPanelToPresentor(viewToPresent: UIView, heightPriority: Int, width: CGFloat) {
+    ///   - viewToPresent: A UIView with an optional height constraint.
+    ///   - heightPriority: Priority of the height constraint. If a 
+    ///   - presentingView: The view containing all the panels (i.e. a viewController.view
+    func constrainToPresenter(viewToPresent: UIView, heightPriority: Int, presentingView: UIView) {
         self.heightPriority = heightPriority
         
-        // Constrain the height of all presented containers to be a square, with low priority
-        // Want low priority because we want whatever height constraint or intrinsic size that a panel.view has to have higher priority
-        heightConstraint = view.constrainHeight(width, relation: .equalOrGreater, priority: .defaultLow)
-        
-        view.constrainWidth(width)
-
         presentingView.addSubview(view)
         leftConstraint = view.constrainLeftToRight(of: presentingView)
         
         view.addSubview(viewToPresent)
         let insets = UIEdgeInsets(top: 10, left: 20, bottom: 20, right: 20)
         viewToPresent.constrainEdges(to: view, insets: insets)
+        
+        //        // Looks nice but is too slow
+        //         let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.light)
+        //         let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        //         view.addSubview(blurEffectView)
+        //         blurEffectView.constrainEdges(to: view)
+
     }
     
     private func setupContainer() {
         view.layer.cornerRadius = 20.0
         view.backgroundColor = UIColor.white.withAlphaComponent(1)
         view.clipsToBounds = true
-        
-        // Looks nice but is too slow
-        // let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.light)
-        // let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        // view.addSubview(blurEffectView)
-        // blurEffectView.constrainEdges(to: view)
     }
 }
 
@@ -73,48 +74,77 @@ class RightPanelsPresenter {
     private var topPanel: Panel?
     private var bottomPanel: Panel?
 
+    // The parent view presenting the panel
+    weak var presentingView: UIView?
+    
+    init(presentingView: UIView) {
+        self.presentingView = presentingView
+    }
+    
     // TODO on the ToolsMenu
     // If we have AR as main, can present the scene
     // If we have scene as main, can present the AR view
     
-    /// If a panel is already presented, dismiss it.
-    /// If there are two panels, replace the bottom panel.
-    /// If we only have top, present the bottom.
-    /// If we only have bottom, present the top.
-    /// If we have none, present the top.
-    func togglePanel(viewToPresent: UIView, heightPriority: Int, presentingView: UIView, width: CGFloat) {
+    func togglePanel(viewToPresent: UIView, heightPriority: Int, width: CGFloat) {
+        guard let presentingView = presentingView else {
+            fatalError("shouldn't happen")
+        }
+        
         let state = presentationState(for: viewToPresent)
         
         switch state {
         case .isHidden:
-            let panel = Panel(presentingView: presentingView)
-            panel.constrainPanelToPresentor(viewToPresent: viewToPresent, heightPriority: heightPriority, width: width)
+            let panel = Panel(width: width)
+            panel.constrainToPresenter(viewToPresent: viewToPresent, heightPriority: heightPriority, presentingView: presentingView)
             
-            if let _ = topPanel, let oldBottomPanel = bottomPanel {
+            // There are two panels, replace the bottom panel.
+            if let topPanel = topPanel, let oldBottomPanel = bottomPanel {
+                let shouldAnimateHeight = oldBottomPanel.heightPriority > topPanel.heightPriority
+                
                 panel.view.constrainBottom(to: presentingView)
                 self.bottomPanel = panel
-                startAnimation(inPanel: panel, outPanel: oldBottomPanel, width: width)
-                
+                startAnimation(inPanel: panel, outPanel: oldBottomPanel, oldBottomPanel: oldBottomPanel, shouldAnimateHeight: shouldAnimateHeight, width: width)
+            
+            // If we have none on top, present the top.
+            // If we have nothing on top, something on the bottom, present the top
             } else if topPanel == nil {
                 panel.view.constrainTop(to: presentingView)
                 topPanel = panel
                 startAnimation(inPanel: panel, outPanel: nil, width: width)
 
-            } else if bottomPanel == nil {
+            // If we have nothing on bottom, something on the top, present the bottom
+            } else {
                 panel.view.constrainBottom(to: presentingView)
                 bottomPanel = panel
                 startAnimation(inPanel: panel, outPanel: nil, width: width)
             }
-            
+        
+        // If a panel is already presented, dismiss it.
         case .onTopPanel:
-            let oldTopPanel = topPanel
+            let oldTopPanel = topPanel!
             topPanel = nil
-            startAnimation(inPanel: nil, outPanel: oldTopPanel, width: width)
+            let shouldAnimateHeight: Bool
+            if let bottomPanel = bottomPanel {
+                shouldAnimateHeight = oldTopPanel.heightPriority > bottomPanel.heightPriority
+            } else {
+                shouldAnimateHeight = false // middleConstraint doesn't exist when there there wasn't two panels
+            }
+            
+            startAnimation(inPanel: nil, outPanel: oldTopPanel, oldBottomPanel: bottomPanel, shouldAnimateHeight: shouldAnimateHeight, width: width)
 
+        // If a panel is already presented, dismiss it.
         case .onBottomPanel:
-            let oldBottomPanel = bottomPanel
+            let oldBottomPanel = bottomPanel!
             bottomPanel = nil
-            startAnimation(inPanel: nil, outPanel: oldBottomPanel, width: width)
+            
+            let shouldAnimateHeight: Bool
+            if let topPanel = topPanel {
+               shouldAnimateHeight = oldBottomPanel.heightPriority > topPanel.heightPriority
+            } else {
+                shouldAnimateHeight = false // middleConstraint doesn't exist when there there wasn't two panels
+            }
+            
+            startAnimation(inPanel: nil, outPanel: oldBottomPanel, oldBottomPanel: oldBottomPanel, shouldAnimateHeight: shouldAnimateHeight, width: width)
         }
     }
     
@@ -128,38 +158,50 @@ class RightPanelsPresenter {
         }
     }
     
-    private func startAnimation(inPanel: Panel?, outPanel: Panel?, width: CGFloat) {
+    private func startAnimation(inPanel: Panel?, outPanel: Panel?, oldBottomPanel: Panel? = nil, shouldAnimateHeight: Bool = false, width: CGFloat) {
         
         var middleConstraint: NSLayoutConstraint? = nil
-
+        
         if let inPanel = inPanel, let topPanel = topPanel, let bottomPanel = bottomPanel {
                 middleConstraint = topPanel.view.constrainBottomToTop(of: bottomPanel.view, offset: -20, isActive: false)
+                bottomPanel.middleConstraint = middleConstraint // Store the middleConstraint in the bottomPanel
+            
                 let animateConstraints = shouldAnimateConstraints(inPanel: inPanel, topPanel: topPanel, bottomPanel: bottomPanel)
                 if !animateConstraints {
                     middleConstraint?.isActive = true
                 }
         }
 
-        inPanel?.presentingView.layoutIfNeeded()
+        presentingView?.layoutIfNeeded()
 
-        UIView.animate(withDuration: 0.5, animations: {
+        UIView.animate(withDuration: 0.5, animations: { [weak self] in
             
-            if let inPanel = inPanel { // weak self?
+            if let inPanel = inPanel {
                 let container = inPanel.view
                 container.backgroundColor = UIColor.white.withAlphaComponent(0.4)
                 inPanel.leftConstraint?.constant = -container.bounds.width
                 middleConstraint?.isActive = true
-                inPanel.presentingView.layoutIfNeeded()
+                self?.presentingView?.layoutIfNeeded()
             }
             
             if let outPanel = outPanel {
                 outPanel.view.backgroundColor = .clear
                 outPanel.leftConstraint?.constant = 0
-                outPanel.presentingView.layoutIfNeeded()
+                
+                if let oldBottomPanel = oldBottomPanel, shouldAnimateHeight {
+                    oldBottomPanel.middleConstraint?.isActive = false
+                }
+                
+                self?.presentingView?.layoutIfNeeded()
             }
             
         }, completion: { _ in
-                outPanel?.view.removeFromSuperview()
+            outPanel?.view.removeFromSuperview()
+
+            if let oldBottomPanel = oldBottomPanel {
+                oldBottomPanel.middleConstraint?.isActive = false
+                oldBottomPanel.middleConstraint = nil
+            }
         })
     }
     

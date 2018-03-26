@@ -13,12 +13,22 @@ class ComponentsViewController: UIViewController {
 
     var foxNode = Model.fox.createNode()
 
-    let panelPresentor = RightPanelsPresenter()
+    var panelPresentor: RightPanelsPresenter!
     let transformationPanel = TransformationPanel(controlTypes: TransformationType.minimum)
     
     let purplePanel = UIView()
     let greenPanel = UIView()
 
+    init() {
+        super.init(nibName: nil, bundle: nil)
+        
+        panelPresentor = RightPanelsPresenter(presentingView: view)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
          super.viewDidLoad()
         transformationPanel.control(foxNode)
@@ -118,14 +128,14 @@ class ComponentsViewController: UIViewController {
         }
     }
     @objc func togglePanel3() {
-        panelPresentor.togglePanel(viewToPresent: greenPanel, heightPriority: 1, presentingView: view, width: 400)
+        panelPresentor.togglePanel(viewToPresent: greenPanel, heightPriority: 1, width: 400)
     }
     
     @objc func togglePanel2() {
-        panelPresentor.togglePanel(viewToPresent: purplePanel, heightPriority: 0, presentingView: view, width: 400)
+        panelPresentor.togglePanel(viewToPresent: purplePanel, heightPriority: 0, width: 400)
     }
     
     @objc func togglePanel() {
-        panelPresentor.togglePanel(viewToPresent: transformationPanel, heightPriority: 2, presentingView: view, width: 400)
+        panelPresentor.togglePanel(viewToPresent: transformationPanel, heightPriority: 2, width: 400)
     }
 }
