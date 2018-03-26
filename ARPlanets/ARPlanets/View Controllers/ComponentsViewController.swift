@@ -126,6 +126,46 @@ class ComponentsViewController: UIViewController {
                 sceneView.technique = technique
             }
         }
+
+        
+        
+        
+//        scene.rootNode.enumerateHierarchy({ (node: SCNNode, _: UnsafeMutablePointer<ObjCBool>) in
+//            print(node.name)
+////            guard let particles = node.particleSystems else { return }
+////            for particle in particles {
+        ////                enemy.addParticleSystem(particle)
+        ////            }
+        //        })
+        
+        
+        let menuItems = [
+            MenuItem(name: "PURPLE", menuTapped: { [weak self] in
+                guard let strongSelf = self else { return }
+                strongSelf.panelPresentor.togglePanel(viewToPresent: strongSelf.purplePanel,
+                                                      heightPriority: 0,
+                                                      width: 400)
+            }),
+            MenuItem(name: "GREEN", menuTapped: { [weak self] in
+                guard let strongSelf = self else { return }
+                strongSelf.panelPresentor.togglePanel(viewToPresent: strongSelf.greenPanel,
+                                                      heightPriority: 1,
+                                                      width: 400)
+                }),
+            MenuItem(name: "TRANSFORMATION", menuTapped: { [weak self] in
+                guard let strongSelf = self else { return }
+                strongSelf.panelPresentor.togglePanel(viewToPresent: strongSelf.transformationPanel,
+                                                      heightPriority: 2,
+                                                      width: 400)
+            })
+        ]
+        
+//        let collectionView = MenuCollection(menuItems: menuItems)
+//        view.addSubview(collectionView)
+//        collectionView.constrainSize(CGSize(width: 200, height: 300))
+//        collectionView.constrainTop(to: view)
+//        collectionView.constrainRight(to: view)
+        
     }
     @objc func togglePanel3() {
         panelPresentor.togglePanel(viewToPresent: greenPanel, heightPriority: 1, width: 400)

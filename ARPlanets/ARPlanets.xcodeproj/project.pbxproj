@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		852D46BE20688A090090EBED /* MenuCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852D46BD20688A090090EBED /* MenuCollection.swift */; };
+		852D46C1206890390090EBED /* MenuCollectionItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852D46C0206890390090EBED /* MenuCollectionItemCell.swift */; };
+		852D46C3206891400090EBED /* UICollection+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852D46C2206891400090EBED /* UICollection+Extensions.swift */; };
 		85C65894205F061500DF7B49 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C65893205F061500DF7B49 /* AppDelegate.swift */; };
 		85C65896205F061500DF7B49 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 85C65895205F061500DF7B49 /* art.scnassets */; };
 		85C65898205F061500DF7B49 /* SceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C65897205F061500DF7B49 /* SceneViewController.swift */; };
@@ -38,6 +41,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		852D46BD20688A090090EBED /* MenuCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollection.swift; sourceTree = "<group>"; };
+		852D46C0206890390090EBED /* MenuCollectionItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionItemCell.swift; sourceTree = "<group>"; };
+		852D46C2206891400090EBED /* UICollection+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollection+Extensions.swift"; sourceTree = "<group>"; };
 		85C65890205F061500DF7B49 /* ARPlanets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARPlanets.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85C65893205F061500DF7B49 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		85C65895205F061500DF7B49 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -81,6 +87,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		852D46BF20688A260090EBED /* Menu Collection */ = {
+			isa = PBXGroup;
+			children = (
+				852D46BD20688A090090EBED /* MenuCollection.swift */,
+				852D46C0206890390090EBED /* MenuCollectionItemCell.swift */,
+			);
+			path = "Menu Collection";
+			sourceTree = "<group>";
+		};
 		85C65887205F061500DF7B49 = {
 			isa = PBXGroup;
 			children = (
@@ -137,6 +152,7 @@
 		85C658AB205F07DF00DF7B49 /* 2DUtilities */ = {
 			isa = PBXGroup;
 			children = (
+				852D46C2206891400090EBED /* UICollection+Extensions.swift */,
 				85CCE23A206485CF000560C3 /* NeatConstraints */,
 			);
 			path = 2DUtilities;
@@ -145,6 +161,7 @@
 		85C658B4205F0D6000DF7B49 /* Controls */ = {
 			isa = PBXGroup;
 			children = (
+				852D46BF20688A260090EBED /* Menu Collection */,
 				85CCE243206486BB000560C3 /* TransformationPanel */,
 				85CCE271206723DE000560C3 /* RightPanelsPresentor.swift */,
 			);
@@ -295,6 +312,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				852D46BE20688A090090EBED /* MenuCollection.swift in Sources */,
 				85CCE272206723DE000560C3 /* RightPanelsPresentor.swift in Sources */,
 				85C658C4205F643D00DF7B49 /* ARSCNView+HitTest.swift in Sources */,
 				85CCE2472064A64B000560C3 /* TransformationPanel.swift in Sources */,
@@ -305,6 +323,7 @@
 				85C658B6205F0D9C00DF7B49 /* SliderTextView.swift in Sources */,
 				85CCE26D2066F04E000560C3 /* TransformationType.swift in Sources */,
 				85C658B8205F17F900DF7B49 /* DecimalTextField.swift in Sources */,
+				852D46C3206891400090EBED /* UICollection+Extensions.swift in Sources */,
 				85C658C8205F7C1E00DF7B49 /* SliderVector3View.swift in Sources */,
 				85CCE245206486D4000560C3 /* SliderInputsView.swift in Sources */,
 				85C658BE205F63E700DF7B49 /* NodeCreator.swift in Sources */,
@@ -318,6 +337,7 @@
 				85CCE2492065BBC4000560C3 /* SliderVector4View.swift in Sources */,
 				85CCE23F2064861B000560C3 /* Constraints+Activation+Priority.swift in Sources */,
 				85C658C5205F643D00DF7B49 /* SCNVector3+Extensions.swift in Sources */,
+				852D46C1206890390090EBED /* MenuCollectionItemCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
