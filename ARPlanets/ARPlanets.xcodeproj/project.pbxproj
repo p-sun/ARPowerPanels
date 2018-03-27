@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		852D46BE20688A090090EBED /* MenuCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852D46BD20688A090090EBED /* MenuCollection.swift */; };
-		852D46C1206890390090EBED /* MenuCollectionItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852D46C0206890390090EBED /* MenuCollectionItemCell.swift */; };
+		851F5AEE206A024500446089 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851F5AEC206A024500446089 /* RoundedButton.swift */; };
+		851F5AEF206A024500446089 /* MenuStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851F5AED206A024500446089 /* MenuStackView.swift */; };
+		851F5AF1206A02A000446089 /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851F5AF0206A02A000446089 /* MenuItem.swift */; };
 		852D46C3206891400090EBED /* UICollection+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852D46C2206891400090EBED /* UICollection+Extensions.swift */; };
 		85C65894205F061500DF7B49 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C65893205F061500DF7B49 /* AppDelegate.swift */; };
 		85C65896205F061500DF7B49 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 85C65895205F061500DF7B49 /* art.scnassets */; };
@@ -41,8 +42,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		852D46BD20688A090090EBED /* MenuCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollection.swift; sourceTree = "<group>"; };
-		852D46C0206890390090EBED /* MenuCollectionItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionItemCell.swift; sourceTree = "<group>"; };
+		851F5AEC206A024500446089 /* RoundedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
+		851F5AED206A024500446089 /* MenuStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuStackView.swift; sourceTree = "<group>"; };
+		851F5AF0206A02A000446089 /* MenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
 		852D46C2206891400090EBED /* UICollection+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollection+Extensions.swift"; sourceTree = "<group>"; };
 		85C65890205F061500DF7B49 /* ARPlanets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARPlanets.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85C65893205F061500DF7B49 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -90,8 +92,9 @@
 		852D46BF20688A260090EBED /* Menu Collection */ = {
 			isa = PBXGroup;
 			children = (
-				852D46BD20688A090090EBED /* MenuCollection.swift */,
-				852D46C0206890390090EBED /* MenuCollectionItemCell.swift */,
+				851F5AED206A024500446089 /* MenuStackView.swift */,
+				851F5AEC206A024500446089 /* RoundedButton.swift */,
+				851F5AF0206A02A000446089 /* MenuItem.swift */,
 			);
 			path = "Menu Collection";
 			sourceTree = "<group>";
@@ -312,7 +315,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				852D46BE20688A090090EBED /* MenuCollection.swift in Sources */,
 				85CCE272206723DE000560C3 /* RightPanelsPresentor.swift in Sources */,
 				85C658C4205F643D00DF7B49 /* ARSCNView+HitTest.swift in Sources */,
 				85CCE2472064A64B000560C3 /* TransformationPanel.swift in Sources */,
@@ -325,6 +327,7 @@
 				85C658B8205F17F900DF7B49 /* DecimalTextField.swift in Sources */,
 				852D46C3206891400090EBED /* UICollection+Extensions.swift in Sources */,
 				85C658C8205F7C1E00DF7B49 /* SliderVector3View.swift in Sources */,
+				851F5AEF206A024500446089 /* MenuStackView.swift in Sources */,
 				85CCE245206486D4000560C3 /* SliderInputsView.swift in Sources */,
 				85C658BE205F63E700DF7B49 /* NodeCreator.swift in Sources */,
 				85CCE2402064861B000560C3 /* Constrainable.swift in Sources */,
@@ -334,10 +337,11 @@
 				85CCE2422064861B000560C3 /* NibView.swift in Sources */,
 				85CCE2412064861B000560C3 /* UIView+Constraints.swift in Sources */,
 				85CCE24B2065C003000560C3 /* Font+Extensions.swift in Sources */,
+				851F5AEE206A024500446089 /* RoundedButton.swift in Sources */,
 				85CCE2492065BBC4000560C3 /* SliderVector4View.swift in Sources */,
+				851F5AF1206A02A000446089 /* MenuItem.swift in Sources */,
 				85CCE23F2064861B000560C3 /* Constraints+Activation+Priority.swift in Sources */,
 				85C658C5205F643D00DF7B49 /* SCNVector3+Extensions.swift in Sources */,
-				852D46C1206890390090EBED /* MenuCollectionItemCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

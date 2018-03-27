@@ -50,13 +50,6 @@ private class Panel {
         view.addSubview(viewToPresent)
         let insets = UIEdgeInsets(top: 10, left: 20, bottom: 20, right: 20)
         viewToPresent.constrainEdges(to: view, insets: insets)
-        
-        //        // Looks nice but is too slow
-        //         let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.light)
-        //         let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        //         view.addSubview(blurEffectView)
-        //         blurEffectView.constrainEdges(to: view)
-
     }
     
     private func setupContainer() {
@@ -64,6 +57,11 @@ private class Panel {
         view.backgroundColor = UIColor.white.withAlphaComponent(1)
         view.clipsToBounds = true
     }
+}
+
+protocol RightPanelsPresenterDelegate: class {
+    func rightPanelsPresenter(didPresent view: UIView)
+    func rightPanelsPresenter(didDismiss view: UIView)
 }
 
 class RightPanelsPresenter {
@@ -77,6 +75,8 @@ class RightPanelsPresenter {
 
     // The parent view presenting the panel
     weak var presentingView: UIView?
+    
+    weak var delegate: RightPanelsPresenterDelegate?
     
     init(presentingView: UIView) {
         self.presentingView = presentingView
@@ -159,7 +159,18 @@ class RightPanelsPresenter {
         }
     }
     
+    private func informDelegates(inPanel: Panel?, outPanel: Panel?) {
+        if let inPanel = inPanel, let subview = inPanel.view.subviews.first {
+            delegate?.rightPanelsPresenter(didPresent: subview)
+        }
+        if let outPanel = outPanel, let subview = outPanel.view.subviews.first {
+            delegate?.rightPanelsPresenter(didDismiss: subview)
+        }
+    }
+    
     private func startAnimation(inPanel: Panel?, outPanel: Panel?, oldBottomPanel: Panel? = nil, shouldAnimateHeight: Bool = false, width: CGFloat) {
+
+        informDelegates(inPanel: inPanel, outPanel: outPanel)
         
         var middleConstraint: NSLayoutConstraint? = nil
         

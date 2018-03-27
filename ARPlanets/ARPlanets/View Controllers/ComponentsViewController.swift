@@ -18,11 +18,73 @@ class ComponentsViewController: UIViewController {
     
     let purplePanel = UIView()
     let greenPanel = UIView()
-
+    var verticalMenuItems = [MenuItem]()
+    let verticalMenu = MenuStack(axis: .vertical)
+    
+    let arPanel = UIView()
+    let gamePanel = UIView()
+    var mainModeMenuItems = [MenuItem]()
+    let mainMenuStack = MenuStack(axis: .horizontal)
+    var isCurrentModeAR = true
+    
     init() {
         super.init(nibName: nil, bundle: nil)
         
         panelPresentor = RightPanelsPresenter(presentingView: view)
+        panelPresentor.delegate = self
+        
+        purplePanel.backgroundColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
+        greenPanel.backgroundColor = #colorLiteral(red: 0.5843137503, green: 0.8235294223, blue: 0.4196078479, alpha: 1)
+        arPanel.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
+        gamePanel.backgroundColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
+        
+        mainModeMenuItems = [
+            MenuItem(name: "AR Mode",
+                     viewToPresent: arPanel,
+                     menuTapped: { [weak self] in
+                        // THIS can be refactored into MenuStack
+                        if let strongSelf = self, !strongSelf.isCurrentModeAR {
+                            strongSelf.isCurrentModeAR = true
+                        }
+                        self?.displayMainMode()
+            }),
+            MenuItem(name: "Game Mode",
+                     viewToPresent: gamePanel,
+                     menuTapped: { [weak self] in
+                        if let strongSelf = self, strongSelf.isCurrentModeAR {
+                            strongSelf.isCurrentModeAR = false
+                        }
+                        self?.displayMainMode()
+            })
+        ]
+
+        verticalMenuItems = [
+            MenuItem(name: "PURPLE",
+                     viewToPresent: purplePanel,
+                     menuTapped: { [weak self] in
+                guard let strongSelf = self else { return }
+                strongSelf.panelPresentor.togglePanel(viewToPresent: strongSelf.purplePanel,
+                                                      heightPriority: 0,
+                                                      width: 400)
+            }),
+            MenuItem(name: "GREEN",
+                     viewToPresent: greenPanel,
+                     menuTapped: { [weak self] in
+                guard let strongSelf = self else { return }
+                strongSelf.panelPresentor.togglePanel(viewToPresent: strongSelf.greenPanel,
+                                                      heightPriority: 1,
+                                                      width: 400)
+            }),
+            MenuItem(name: "TRANSFORMATION",
+                     viewToPresent: transformationPanel,
+                     menuTapped: { [weak self] in
+                guard let strongSelf = self else { return }
+                strongSelf.panelPresentor.togglePanel(viewToPresent: strongSelf.transformationPanel,
+                                                      heightPriority: 2,
+                                                      width: 400)
+            })
+        ]
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -31,10 +93,8 @@ class ComponentsViewController: UIViewController {
     
     override func viewDidLoad() {
          super.viewDidLoad()
+        
         transformationPanel.control(foxNode)
-
-        purplePanel.backgroundColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
-        greenPanel.backgroundColor = #colorLiteral(red: 0.5843137503, green: 0.8235294223, blue: 0.4196078479, alpha: 1)
         
         greenPanel.constrainHeight(600, priority: .init(700))
         
@@ -81,37 +141,11 @@ class ComponentsViewController: UIViewController {
         ambientLightNode.light!.color = UIColor.darkGray
         scene.rootNode.addChildNode(ambientLightNode)
         
-        let button = UIButton()
-        button.setTitle("TRANSFORM", for: UIControlState.normal)
-        button.addTarget(self, action: #selector(togglePanel), for: UIControlEvents.touchUpInside)
-        view.addSubview(button)
-        button.constrainLeft(to: view, offset: 30)
-        button.constrainBottom(to: view, offset: -30)
-        
-        let button2 = UIButton()
-        button2.setTitle("PURPLE", for: UIControlState.normal)
-        button2.addTarget(self, action: #selector(togglePanel2), for: UIControlEvents.touchUpInside)
-        view.addSubview(button2)
-        button2.constrainLeft(to: view, offset: 30)
-        button2.constrainBottom(to: view, offset: -70)
 
-        let button3 = UIButton()
-        button3.setTitle("GREEN", for: UIControlState.normal)
-        button3.addTarget(self, action: #selector(togglePanel3), for: UIControlEvents.touchUpInside)
-        view.addSubview(button3)
-        button3.constrainLeft(to: view, offset: 30)
-        button3.constrainBottom(to: view, offset: -110)
-        
         // animate the 3d object
 //        foxNode.runAction(SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: 2, z: 0, duration: 1)))
         scene.rootNode.addChildNode(foxNode)
         scene.rootNode.updateFocusIfNeeded()
-
-        
-//        view.addSubview(inputView)
-//        inputView.constrainCenterX(to: view)
-//        inputView.constrainCenterY(to: view)
-//        inputView.constrainEdgesHorizontally(to: view, leftInsets: 40, rightInsets: 40)
 
 
         // Add glow effect
@@ -127,9 +161,6 @@ class ComponentsViewController: UIViewController {
             }
         }
 
-        
-        
-        
 //        scene.rootNode.enumerateHierarchy({ (node: SCNNode, _: UnsafeMutablePointer<ObjCBool>) in
 //            print(node.name)
 ////            guard let particles = node.particleSystems else { return }
@@ -137,45 +168,60 @@ class ComponentsViewController: UIViewController {
         ////                enemy.addParticleSystem(particle)
         ////            }
         //        })
+
+        setupMainModeMenu()
+        displayMainMode()
         
-        
-        let menuItems = [
-            MenuItem(name: "PURPLE", menuTapped: { [weak self] in
-                guard let strongSelf = self else { return }
-                strongSelf.panelPresentor.togglePanel(viewToPresent: strongSelf.purplePanel,
-                                                      heightPriority: 0,
-                                                      width: 400)
-            }),
-            MenuItem(name: "GREEN", menuTapped: { [weak self] in
-                guard let strongSelf = self else { return }
-                strongSelf.panelPresentor.togglePanel(viewToPresent: strongSelf.greenPanel,
-                                                      heightPriority: 1,
-                                                      width: 400)
-                }),
-            MenuItem(name: "TRANSFORMATION", menuTapped: { [weak self] in
-                guard let strongSelf = self else { return }
-                strongSelf.panelPresentor.togglePanel(viewToPresent: strongSelf.transformationPanel,
-                                                      heightPriority: 2,
-                                                      width: 400)
-            })
-        ]
-        
-//        let collectionView = MenuCollection(menuItems: menuItems)
-//        view.addSubview(collectionView)
-//        collectionView.constrainSize(CGSize(width: 200, height: 300))
-//        collectionView.constrainTop(to: view)
-//        collectionView.constrainRight(to: view)
-        
-    }
-    @objc func togglePanel3() {
-        panelPresentor.togglePanel(viewToPresent: greenPanel, heightPriority: 1, width: 400)
+        setupVerticalMenuStack()
     }
     
-    @objc func togglePanel2() {
-        panelPresentor.togglePanel(viewToPresent: purplePanel, heightPriority: 0, width: 400)
+    private func displayMainMode() {
+        mainModeMenuItems[0].isSelected = isCurrentModeAR
+        mainModeMenuItems[1].isSelected = !isCurrentModeAR
+        mainMenuStack.configure(menuItems: mainModeMenuItems)
+    }
+}
+
+extension ComponentsViewController: MenuStackDelegate {
+    private func setupMainModeMenu() {
+        mainMenuStack.menuStackDelegate = self
+        mainMenuStack.configure(menuItems: mainModeMenuItems)
+        view.addSubview(mainMenuStack)
+        mainMenuStack.constrainTop(to: view, offset: 40)
+        mainMenuStack.constrainLeading(to: view, offset: 30)
+        mainMenuStack.constrainWidth(260)
+        mainMenuStack.constrainHeight(60)
     }
     
-    @objc func togglePanel() {
-        panelPresentor.togglePanel(viewToPresent: transformationPanel, heightPriority: 2, width: 400)
+    private func setupVerticalMenuStack() {
+        verticalMenu.menuStackDelegate = self
+        verticalMenu.configure(menuItems: verticalMenuItems)
+        view.addSubview(verticalMenu)
+        verticalMenu.constrainTopToBottom(of: mainMenuStack, offset: 20)
+        verticalMenu.constrainLeading(to: view, offset: 30)
+        verticalMenu.constrainBottom(to: view, offset: 30)
+        verticalMenu.constrainWidth(200)
+    }
+    
+    func menuStack(_ menuStack: MenuStack, didSelectAtIndex index: Int) {
+        if menuStack == self.verticalMenu {
+            verticalMenuItems[index].menuTapped()
+        } else {
+            mainModeMenuItems[index].menuTapped()
+        }
+    }
+}
+
+extension ComponentsViewController: RightPanelsPresenterDelegate {
+    func rightPanelsPresenter(didPresent view: UIView) {
+        let menuItemWithPresentedView = verticalMenuItems.first { $0.viewToPresent == view }
+        menuItemWithPresentedView?.isSelected = true
+        verticalMenu.configure(menuItems: verticalMenuItems)
+    }
+    
+    func rightPanelsPresenter(didDismiss view: UIView) {
+        let menuItemWithDismissedView = verticalMenuItems.first { $0.viewToPresent == view }
+        menuItemWithDismissedView?.isSelected = false
+        verticalMenu.configure(menuItems: verticalMenuItems)
     }
 }
