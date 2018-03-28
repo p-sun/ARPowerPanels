@@ -11,6 +11,8 @@
 		851F5AEF206A024500446089 /* MenuStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851F5AED206A024500446089 /* MenuStackView.swift */; };
 		851F5AF1206A02A000446089 /* MenuStakcItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851F5AF0206A02A000446089 /* MenuStakcItem.swift */; };
 		852D46C3206891400090EBED /* UICollection+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852D46C2206891400090EBED /* UICollection+Extensions.swift */; };
+		8565E262206B5BFC0094AC4E /* SudoARView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8565E261206B5BFC0094AC4E /* SudoARView.swift */; };
+		8565E265206B5E630094AC4E /* SceneCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8565E264206B5E630094AC4E /* SceneCreator.swift */; };
 		858A15C9206B438100A63DA2 /* Panel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A15C8206B438100A63DA2 /* Panel.swift */; };
 		85C65894205F061500DF7B49 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C65893205F061500DF7B49 /* AppDelegate.swift */; };
 		85C65896205F061500DF7B49 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 85C65895205F061500DF7B49 /* art.scnassets */; };
@@ -47,6 +49,8 @@
 		851F5AED206A024500446089 /* MenuStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuStackView.swift; sourceTree = "<group>"; };
 		851F5AF0206A02A000446089 /* MenuStakcItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuStakcItem.swift; sourceTree = "<group>"; };
 		852D46C2206891400090EBED /* UICollection+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollection+Extensions.swift"; sourceTree = "<group>"; };
+		8565E261206B5BFC0094AC4E /* SudoARView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudoARView.swift; sourceTree = "<group>"; };
+		8565E264206B5E630094AC4E /* SceneCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCreator.swift; sourceTree = "<group>"; };
 		858A15C8206B438100A63DA2 /* Panel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Panel.swift; sourceTree = "<group>"; };
 		85C65890205F061500DF7B49 /* ARPlanets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARPlanets.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85C65893205F061500DF7B49 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -101,6 +105,14 @@
 			path = "Menu Collection";
 			sourceTree = "<group>";
 		};
+		8565E263206B5E4D0094AC4E /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				8565E264206B5E630094AC4E /* SceneCreator.swift */,
+			);
+			path = Scene;
+			sourceTree = "<group>";
+		};
 		85C65887205F061500DF7B49 = {
 			isa = PBXGroup;
 			children = (
@@ -121,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				85C658B4205F0D6000DF7B49 /* Controls */,
+				8565E263206B5E4D0094AC4E /* Scene */,
 				85C658AA205F07A600DF7B49 /* Extensions */,
 				85C658A7205F072600DF7B49 /* View Controllers */,
 				85C658B9205F5FA500DF7B49 /* Nodes */,
@@ -168,6 +181,7 @@
 			children = (
 				852D46BF20688A260090EBED /* Menu Collection */,
 				85CCE243206486BB000560C3 /* TransformationPanel */,
+				8565E261206B5BFC0094AC4E /* SudoARView.swift */,
 				85CCE271206723DE000560C3 /* RightPanelsPresentor.swift */,
 				858A15C8206B438100A63DA2 /* Panel.swift */,
 			);
@@ -334,6 +348,7 @@
 				85CCE245206486D4000560C3 /* SliderInputsView.swift in Sources */,
 				85C658BE205F63E700DF7B49 /* NodeCreator.swift in Sources */,
 				85CCE2402064861B000560C3 /* Constrainable.swift in Sources */,
+				8565E262206B5BFC0094AC4E /* SudoARView.swift in Sources */,
 				85C658BC205F5FC500DF7B49 /* ModelAssetType.swift in Sources */,
 				85C658C3205F643D00DF7B49 /* 3DUtilities.swift in Sources */,
 				85C65894205F061500DF7B49 /* AppDelegate.swift in Sources */,
@@ -346,6 +361,7 @@
 				851F5AF1206A02A000446089 /* MenuStakcItem.swift in Sources */,
 				85CCE23F2064861B000560C3 /* Constraints+Activation+Priority.swift in Sources */,
 				85C658C5205F643D00DF7B49 /* SCNVector3+Extensions.swift in Sources */,
+				8565E265206B5E630094AC4E /* SceneCreator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -47,7 +47,7 @@ class MenuStack: UIScrollView {
         }
         
         for (index, menuItem) in menuItems.enumerated() {
-            let button = RoundedButton(hasBlurEffect: true)
+            let button = RoundedButton()
             button.tag = index
             button.setTitle(menuItem.name)
             button.isSelected = menuItem.isSelected
