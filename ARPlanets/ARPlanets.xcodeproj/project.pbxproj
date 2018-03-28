@@ -36,6 +36,7 @@
 		8565E297206B72390094AC4E /* UITableView+Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8565E281206B72380094AC4E /* UITableView+Reusable.swift */; };
 		8565E298206B72390094AC4E /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8565E282206B72380094AC4E /* UIView+AutoLayout.swift */; };
 		8565E299206B72390094AC4E /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8565E283206B72380094AC4E /* UIView+Extensions.swift */; };
+		8565E29C206B730D0094AC4E /* HostCell+StateType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8565E29B206B730D0094AC4E /* HostCell+StateType.swift */; };
 		858A15C9206B438100A63DA2 /* Panel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A15C8206B438100A63DA2 /* Panel.swift */; };
 		85C65894205F061500DF7B49 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C65893205F061500DF7B49 /* AppDelegate.swift */; };
 		85C65896205F061500DF7B49 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 85C65895205F061500DF7B49 /* art.scnassets */; };
@@ -97,6 +98,7 @@
 		8565E281206B72380094AC4E /* UITableView+Reusable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Reusable.swift"; sourceTree = "<group>"; };
 		8565E282206B72380094AC4E /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
 		8565E283206B72380094AC4E /* UIView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		8565E29B206B730D0094AC4E /* HostCell+StateType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HostCell+StateType.swift"; sourceTree = "<group>"; };
 		858A15C8206B438100A63DA2 /* Panel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Panel.swift; sourceTree = "<group>"; };
 		85C65890205F061500DF7B49 /* ARPlanets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARPlanets.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85C65893205F061500DF7B49 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -232,6 +234,14 @@
 			path = TableView;
 			sourceTree = "<group>";
 		};
+		8565E29A206B72F70094AC4E /* FTD Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				8565E29B206B730D0094AC4E /* HostCell+StateType.swift */,
+			);
+			path = "FTD Helpers";
+			sourceTree = "<group>";
+		};
 		85C65887205F061500DF7B49 = {
 			isa = PBXGroup;
 			children = (
@@ -289,6 +299,7 @@
 		85C658AB205F07DF00DF7B49 /* 2DUtilities */ = {
 			isa = PBXGroup;
 			children = (
+				8565E29A206B72F70094AC4E /* FTD Helpers */,
 				8565E26A206B72380094AC4E /* FTD Cells */,
 				8565E26C206B72380094AC4E /* FTD Original */,
 				852D46C2206891400090EBED /* UICollection+Extensions.swift */,
@@ -454,6 +465,7 @@
 				8565E28C206B72390094AC4E /* HostCell.swift in Sources */,
 				85CCE27020671EDB000560C3 /* UIColor+Extensions.swift in Sources */,
 				85C658B6205F0D9C00DF7B49 /* SliderTextView.swift in Sources */,
+				8565E29C206B730D0094AC4E /* HostCell+StateType.swift in Sources */,
 				85CCE26D2066F04E000560C3 /* TransformationType.swift in Sources */,
 				85C658B8205F17F900DF7B49 /* DecimalTextField.swift in Sources */,
 				8565E284206B72390094AC4E /* LabelCell.swift in Sources */,
