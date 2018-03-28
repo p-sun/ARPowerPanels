@@ -10,7 +10,8 @@ import UIKit
 
 struct PanelItem {
     let viewToPresent: UIView
-    let heightPriority: Int
+    let heightPriority: UILayoutPriority
+    let preferredHeight: CGFloat? // Leave nil if item has it's own constraints for height. Set the heightPriority to the priority of that view's height constraint manually.
     let width: CGFloat
 }
 
@@ -55,6 +56,10 @@ class RightPanelsPresenter {
         switch state {
         case .isHidden:
             let panel = Panel(width: width)
+            
+            if let preferredHeight = panelItem.preferredHeight {
+                panel.view.constrainHeight(preferredHeight, priority: heightPriority)
+            }
             panel.constrainToPresenter(viewToPresent: viewToPresent, heightPriority: heightPriority, presentingView: presentingView)
             
             // There are two panels, replace the bottom panel.
@@ -169,11 +174,7 @@ class RightPanelsPresenter {
     // Otherwise, activate the middle constraint before the animation, to expand/shrink the current panel before we slide it in.
     private func shouldAnimatePanelHeight(targetPanel: Panel, topPanel: Panel?, bottomPanel: Panel?) -> Bool {
         guard let topPanel = topPanel, let bottomPanel = bottomPanel else { return false }
-        if topPanel.view == targetPanel.view {
-            return topPanel.heightPriority > bottomPanel.heightPriority
-        } else {
-            return topPanel.heightPriority < bottomPanel.heightPriority
-        }
+        let doesTopPanelHaveHigherPriority = (topPanel.heightPriority.rawValue) > (bottomPanel.heightPriority.rawValue)
+        return topPanel.view == targetPanel.view ? doesTopPanelHaveHigherPriority : !doesTopPanelHaveHigherPriority
     }
 }
-

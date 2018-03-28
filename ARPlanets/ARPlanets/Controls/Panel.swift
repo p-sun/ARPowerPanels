@@ -15,7 +15,7 @@ class Panel {
     /// A priority determined by the user.
     /// When presenting a panel with a heigher height priority than the other panel, the height constraint is animated.
     /// Otherwise, don't animate the height.
-    var heightPriority: Int!
+    var heightPriority: UILayoutPriority!
     
     /// The left constraint on the view, so the panel can be animated.
     var leftConstraint: NSLayoutConstraint!    
@@ -38,7 +38,7 @@ class Panel {
     ///   - viewToPresent: A UIView with an optional height constraint.
     ///   - heightPriority: Priority of the height constraint. If a
     ///   - presentingView: The view containing all the panels (i.e. a viewController.view
-    func constrainToPresenter(viewToPresent: UIView, heightPriority: Int, presentingView: UIView) {
+    func constrainToPresenter(viewToPresent: UIView, heightPriority: UILayoutPriority, presentingView: UIView) {
         self.heightPriority = heightPriority
         
         presentingView.addSubview(view)
