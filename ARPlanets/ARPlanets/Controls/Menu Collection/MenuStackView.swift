@@ -8,6 +8,15 @@
 
 import UIKit
 
+class MenuStackItem {
+    let name: String
+    var isSelected: Bool = false
+    
+    init(name: String) {
+        self.name = name
+    }
+}
+
 protocol MenuStackDelegate: class {
     func menuStack(_ menuStack: MenuStack, didSelectAtIndex index: Int)
 }
@@ -32,7 +41,7 @@ class MenuStack: UIScrollView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(menuItems: [MenuItem]) {
+    func configure(menuItems: [MenuStackItem]) {
         for arrangeSubview in stackView.arrangedSubviews {
             arrangeSubview.removeFromSuperview()
         }

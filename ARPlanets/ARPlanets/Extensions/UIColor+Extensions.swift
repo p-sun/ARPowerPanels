@@ -24,4 +24,9 @@ extension UIColor {
     static var wAxisColor: UIColor {
         return #colorLiteral(red: 0.9568627477, green: 0.8279534207, blue: 0.5783434552, alpha: 1)
     }
+    
+    static var uiControlColor: UIColor {
+        return #colorLiteral(red: 0.3789054537, green: 1, blue: 0.9100258617, alpha: 1) 
+    }
+    
 }

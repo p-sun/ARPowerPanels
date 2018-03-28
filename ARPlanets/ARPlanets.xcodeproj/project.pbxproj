@@ -9,8 +9,9 @@
 /* Begin PBXBuildFile section */
 		851F5AEE206A024500446089 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851F5AEC206A024500446089 /* RoundedButton.swift */; };
 		851F5AEF206A024500446089 /* MenuStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851F5AED206A024500446089 /* MenuStackView.swift */; };
-		851F5AF1206A02A000446089 /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851F5AF0206A02A000446089 /* MenuItem.swift */; };
+		851F5AF1206A02A000446089 /* MenuStakcItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851F5AF0206A02A000446089 /* MenuStakcItem.swift */; };
 		852D46C3206891400090EBED /* UICollection+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852D46C2206891400090EBED /* UICollection+Extensions.swift */; };
+		858A15C9206B438100A63DA2 /* Panel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A15C8206B438100A63DA2 /* Panel.swift */; };
 		85C65894205F061500DF7B49 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C65893205F061500DF7B49 /* AppDelegate.swift */; };
 		85C65896205F061500DF7B49 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 85C65895205F061500DF7B49 /* art.scnassets */; };
 		85C65898205F061500DF7B49 /* SceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C65897205F061500DF7B49 /* SceneViewController.swift */; };
@@ -44,8 +45,9 @@
 /* Begin PBXFileReference section */
 		851F5AEC206A024500446089 /* RoundedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		851F5AED206A024500446089 /* MenuStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuStackView.swift; sourceTree = "<group>"; };
-		851F5AF0206A02A000446089 /* MenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
+		851F5AF0206A02A000446089 /* MenuStakcItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuStakcItem.swift; sourceTree = "<group>"; };
 		852D46C2206891400090EBED /* UICollection+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollection+Extensions.swift"; sourceTree = "<group>"; };
+		858A15C8206B438100A63DA2 /* Panel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Panel.swift; sourceTree = "<group>"; };
 		85C65890205F061500DF7B49 /* ARPlanets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARPlanets.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85C65893205F061500DF7B49 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		85C65895205F061500DF7B49 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -94,7 +96,7 @@
 			children = (
 				851F5AED206A024500446089 /* MenuStackView.swift */,
 				851F5AEC206A024500446089 /* RoundedButton.swift */,
-				851F5AF0206A02A000446089 /* MenuItem.swift */,
+				851F5AF0206A02A000446089 /* MenuStakcItem.swift */,
 			);
 			path = "Menu Collection";
 			sourceTree = "<group>";
@@ -167,6 +169,7 @@
 				852D46BF20688A260090EBED /* Menu Collection */,
 				85CCE243206486BB000560C3 /* TransformationPanel */,
 				85CCE271206723DE000560C3 /* RightPanelsPresentor.swift */,
+				858A15C8206B438100A63DA2 /* Panel.swift */,
 			);
 			path = Controls;
 			sourceTree = "<group>";
@@ -337,9 +340,10 @@
 				85CCE2422064861B000560C3 /* NibView.swift in Sources */,
 				85CCE2412064861B000560C3 /* UIView+Constraints.swift in Sources */,
 				85CCE24B2065C003000560C3 /* Font+Extensions.swift in Sources */,
+				858A15C9206B438100A63DA2 /* Panel.swift in Sources */,
 				851F5AEE206A024500446089 /* RoundedButton.swift in Sources */,
 				85CCE2492065BBC4000560C3 /* SliderVector4View.swift in Sources */,
-				851F5AF1206A02A000446089 /* MenuItem.swift in Sources */,
+				851F5AF1206A02A000446089 /* MenuStakcItem.swift in Sources */,
 				85CCE23F2064861B000560C3 /* Constraints+Activation+Priority.swift in Sources */,
 				85C658C5205F643D00DF7B49 /* SCNVector3+Extensions.swift in Sources */,
 			);

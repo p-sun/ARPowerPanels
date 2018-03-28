@@ -9,6 +9,28 @@
 import UIKit
 import SceneKit
 
+class PurpleView: UIView {
+    init() {
+        super.init(frame: CGRect.zero)
+        backgroundColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+class GreenView: UIView {
+    init() {
+        super.init(frame: CGRect.zero)
+        backgroundColor = #colorLiteral(red: 0.5843137503, green: 0.8235294223, blue: 0.4196078479, alpha: 1)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
 class ComponentsViewController: UIViewController {
 
     var foxNode = Model.fox.createNode()
@@ -16,16 +38,13 @@ class ComponentsViewController: UIViewController {
     var panelPresentor: RightPanelsPresenter!
     let transformationPanel = TransformationPanel(controlTypes: TransformationType.minimum)
     
-    let purplePanel = UIView()
-    let greenPanel = UIView()
-    var verticalMenuItems = [MenuItem]()
-    let verticalMenu = MenuStack(axis: .vertical)
+    var menuItems = [MenuItem]()
+    let menuStack = MenuStack(axis: .vertical)
     
     let arPanel = UIView()
     let gamePanel = UIView()
-    var mainModeMenuItems = [MenuItem]()
-    let mainMenuStack = MenuStack(axis: .horizontal)
-    var isCurrentModeAR = true
+    let purplePanel = PurpleView()
+    let greenPanel = GreenView()
     
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -33,58 +52,14 @@ class ComponentsViewController: UIViewController {
         panelPresentor = RightPanelsPresenter(presentingView: view)
         panelPresentor.delegate = self
         
-        purplePanel.backgroundColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
-        greenPanel.backgroundColor = #colorLiteral(red: 0.5843137503, green: 0.8235294223, blue: 0.4196078479, alpha: 1)
         arPanel.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
         gamePanel.backgroundColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
         
-        mainModeMenuItems = [
-            MenuItem(name: "AR Mode",
-                     viewToPresent: arPanel,
-                     menuTapped: { [weak self] in
-                        // THIS can be refactored into MenuStack
-                        if let strongSelf = self, !strongSelf.isCurrentModeAR {
-                            strongSelf.isCurrentModeAR = true
-                        }
-                        self?.displayMainMode()
-            }),
-            MenuItem(name: "Game Mode",
-                     viewToPresent: gamePanel,
-                     menuTapped: { [weak self] in
-                        if let strongSelf = self, strongSelf.isCurrentModeAR {
-                            strongSelf.isCurrentModeAR = false
-                        }
-                        self?.displayMainMode()
-            })
+        menuItems = [
+            MenuItem(name: "PURPLE", panelItem: PanelItem(viewToPresent: purplePanel, heightPriority: 0, width: 400)),
+            MenuItem(name: "GREEN", panelItem: PanelItem(viewToPresent: greenPanel, heightPriority: 1, width: 400)),
+            MenuItem(name: "TRANSFORMATION", panelItem: PanelItem(viewToPresent: transformationPanel, heightPriority: 2, width: 400))
         ]
-
-        verticalMenuItems = [
-            MenuItem(name: "PURPLE",
-                     viewToPresent: purplePanel,
-                     menuTapped: { [weak self] in
-                guard let strongSelf = self else { return }
-                strongSelf.panelPresentor.togglePanel(viewToPresent: strongSelf.purplePanel,
-                                                      heightPriority: 0,
-                                                      width: 400)
-            }),
-            MenuItem(name: "GREEN",
-                     viewToPresent: greenPanel,
-                     menuTapped: { [weak self] in
-                guard let strongSelf = self else { return }
-                strongSelf.panelPresentor.togglePanel(viewToPresent: strongSelf.greenPanel,
-                                                      heightPriority: 1,
-                                                      width: 400)
-            }),
-            MenuItem(name: "TRANSFORMATION",
-                     viewToPresent: transformationPanel,
-                     menuTapped: { [weak self] in
-                guard let strongSelf = self else { return }
-                strongSelf.panelPresentor.togglePanel(viewToPresent: strongSelf.transformationPanel,
-                                                      heightPriority: 2,
-                                                      width: 400)
-            })
-        ]
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -96,7 +71,7 @@ class ComponentsViewController: UIViewController {
         
         transformationPanel.control(foxNode)
         
-        greenPanel.constrainHeight(600, priority: .init(700))
+        greenPanel.constrainHeight(600, priority: .init(300))
         
         view.backgroundColor = #colorLiteral(red: 0.7060456284, green: 1, blue: 0.8839808301, alpha: 1)
     }
@@ -168,60 +143,59 @@ class ComponentsViewController: UIViewController {
         ////                enemy.addParticleSystem(particle)
         ////            }
         //        })
-
-        setupMainModeMenu()
-        displayMainMode()
         
+        setupARGameModeSegmentedControl()
         setupVerticalMenuStack()
     }
+}
+
+extension ComponentsViewController {
+    func setupARGameModeSegmentedControl() {
+        let segmentedControl = UISegmentedControl(items: ["AR", "Game"])
+        segmentedControl.selectedSegmentIndex = 0
+        segmentedControl.setTitleTextAttributes([NSAttributedStringKey.font: UIFont.inputSliderHeader],
+                                                for: .normal)
+        view.addSubview(segmentedControl)
+        segmentedControl.constrainTop(to: view, offset: 40)
+        segmentedControl.constrainLeading(to: view, offset: 30)
+        segmentedControl.constrainSize(CGSize(width: 200, height: 30))
+        segmentedControl.tintColor = .uiControlColor
+        segmentedControl.addTarget(self, action: #selector(segmentSelected), for: .valueChanged)
+    }
     
-    private func displayMainMode() {
-        mainModeMenuItems[0].isSelected = isCurrentModeAR
-        mainModeMenuItems[1].isSelected = !isCurrentModeAR
-        mainMenuStack.configure(menuItems: mainModeMenuItems)
+    @objc private func segmentSelected(_ segmentedControl: UISegmentedControl) {
+        print("segmeted control \(segmentedControl.selectedSegmentIndex)")
     }
 }
 
 extension ComponentsViewController: MenuStackDelegate {
-    private func setupMainModeMenu() {
-        mainMenuStack.menuStackDelegate = self
-        mainMenuStack.configure(menuItems: mainModeMenuItems)
-        view.addSubview(mainMenuStack)
-        mainMenuStack.constrainTop(to: view, offset: 40)
-        mainMenuStack.constrainLeading(to: view, offset: 30)
-        mainMenuStack.constrainWidth(260)
-        mainMenuStack.constrainHeight(60)
-    }
-    
     private func setupVerticalMenuStack() {
-        verticalMenu.menuStackDelegate = self
-        verticalMenu.configure(menuItems: verticalMenuItems)
-        view.addSubview(verticalMenu)
-        verticalMenu.constrainTopToBottom(of: mainMenuStack, offset: 20)
-        verticalMenu.constrainLeading(to: view, offset: 30)
-        verticalMenu.constrainBottom(to: view, offset: 30)
-        verticalMenu.constrainWidth(200)
+        menuStack.menuStackDelegate = self
+        menuStack.configure(menuItems: menuItems.map({ $0.stackItem }))
+        view.addSubview(menuStack)
+        menuStack.constrainTop(to: view, offset: 110)
+        menuStack.constrainLeading(to: view, offset: 30)
+        menuStack.constrainBottom(to: view, offset: 30)
+        menuStack.constrainWidth(200)
     }
     
     func menuStack(_ menuStack: MenuStack, didSelectAtIndex index: Int) {
-        if menuStack == self.verticalMenu {
-            verticalMenuItems[index].menuTapped()
-        } else {
-            mainModeMenuItems[index].menuTapped()
+        if menuStack == self.menuStack {
+            panelPresentor.togglePanel(panelItem: menuItems[index].panelItem)
         }
     }
 }
 
 extension ComponentsViewController: RightPanelsPresenterDelegate {
     func rightPanelsPresenter(didPresent view: UIView) {
-        let menuItemWithPresentedView = verticalMenuItems.first { $0.viewToPresent == view }
-        menuItemWithPresentedView?.isSelected = true
-        verticalMenu.configure(menuItems: verticalMenuItems)
+        let menuItemWithPresentedView = menuItems.first { $0.panelItem.viewToPresent == view }
+        menuItemWithPresentedView?.stackItem.isSelected = true
+        menuStack.configure(menuItems: menuItems.map({ $0.stackItem }))
     }
     
     func rightPanelsPresenter(didDismiss view: UIView) {
-        let menuItemWithDismissedView = verticalMenuItems.first { $0.viewToPresent == view }
-        menuItemWithDismissedView?.isSelected = false
-        verticalMenu.configure(menuItems: verticalMenuItems)
+        let menuItemWithDismissedView = menuItems.first { $0.panelItem.viewToPresent == view }
+        menuItemWithDismissedView?.stackItem.isSelected = false
+        menuStack.configure(menuItems: menuItems.map({ $0.stackItem }))
     }
 }
