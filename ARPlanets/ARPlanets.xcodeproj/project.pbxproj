@@ -13,6 +13,7 @@
 		852D46C3206891400090EBED /* UICollection+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852D46C2206891400090EBED /* UICollection+Extensions.swift */; };
 		8565E262206B5BFC0094AC4E /* SudoARView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8565E261206B5BFC0094AC4E /* SudoARView.swift */; };
 		8565E265206B5E630094AC4E /* SceneCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8565E264206B5E630094AC4E /* SceneCreator.swift */; };
+		8565E269206B6AC10094AC4E /* HierachyPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8565E268206B6AC10094AC4E /* HierachyPanel.swift */; };
 		858A15C9206B438100A63DA2 /* Panel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A15C8206B438100A63DA2 /* Panel.swift */; };
 		85C65894205F061500DF7B49 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C65893205F061500DF7B49 /* AppDelegate.swift */; };
 		85C65896205F061500DF7B49 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 85C65895205F061500DF7B49 /* art.scnassets */; };
@@ -51,6 +52,7 @@
 		852D46C2206891400090EBED /* UICollection+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollection+Extensions.swift"; sourceTree = "<group>"; };
 		8565E261206B5BFC0094AC4E /* SudoARView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudoARView.swift; sourceTree = "<group>"; };
 		8565E264206B5E630094AC4E /* SceneCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCreator.swift; sourceTree = "<group>"; };
+		8565E268206B6AC10094AC4E /* HierachyPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HierachyPanel.swift; sourceTree = "<group>"; };
 		858A15C8206B438100A63DA2 /* Panel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Panel.swift; sourceTree = "<group>"; };
 		85C65890205F061500DF7B49 /* ARPlanets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARPlanets.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85C65893205F061500DF7B49 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -118,11 +120,20 @@
 			children = (
 				852D46BF20688A260090EBED /* Menu Collection */,
 				85CCE243206486BB000560C3 /* TransformationPanel */,
+				8565E267206B6A920094AC4E /* HierachyPanel */,
 				8565E261206B5BFC0094AC4E /* SudoARView.swift */,
 				85CCE271206723DE000560C3 /* RightPanelsPresentor.swift */,
 				858A15C8206B438100A63DA2 /* Panel.swift */,
 			);
 			path = SudoARView;
+			sourceTree = "<group>";
+		};
+		8565E267206B6A920094AC4E /* HierachyPanel */ = {
+			isa = PBXGroup;
+			children = (
+				8565E268206B6AC10094AC4E /* HierachyPanel.swift */,
+			);
+			path = HierachyPanel;
 			sourceTree = "<group>";
 		};
 		85C65887205F061500DF7B49 = {
@@ -360,6 +371,7 @@
 				85C658BC205F5FC500DF7B49 /* ModelAssetType.swift in Sources */,
 				85C658C3205F643D00DF7B49 /* 3DUtilities.swift in Sources */,
 				85C65894205F061500DF7B49 /* AppDelegate.swift in Sources */,
+				8565E269206B6AC10094AC4E /* HierachyPanel.swift in Sources */,
 				85CCE2422064861B000560C3 /* NibView.swift in Sources */,
 				85CCE2412064861B000560C3 /* UIView+Constraints.swift in Sources */,
 				85CCE24B2065C003000560C3 /* Font+Extensions.swift in Sources */,

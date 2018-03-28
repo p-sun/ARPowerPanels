@@ -57,9 +57,9 @@ class ComponentsViewController: UIViewController {
         view.addSubview(sudoARView)
         sudoARView.constrainEdges(to: view)
         
+        HierachyPanel(scene: scene)
+        
 //        transformationPanel.control(foxNode)
-        
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
