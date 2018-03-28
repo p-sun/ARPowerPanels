@@ -52,11 +52,14 @@ class ComponentsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        sudoARView = SudoARView(scene: SceneCreator.createFoxPlaneScene())
+        let scene = SceneCreator.createFoxPlaneScene()
+        sudoARView = SudoARView(scene: scene)
         view.addSubview(sudoARView)
         sudoARView.constrainEdges(to: view)
         
 //        transformationPanel.control(foxNode)
+        
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {

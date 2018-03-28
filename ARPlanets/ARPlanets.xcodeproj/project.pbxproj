@@ -113,6 +113,18 @@
 			path = Scene;
 			sourceTree = "<group>";
 		};
+		8565E266206B6A310094AC4E /* SudoARView */ = {
+			isa = PBXGroup;
+			children = (
+				852D46BF20688A260090EBED /* Menu Collection */,
+				85CCE243206486BB000560C3 /* TransformationPanel */,
+				8565E261206B5BFC0094AC4E /* SudoARView.swift */,
+				85CCE271206723DE000560C3 /* RightPanelsPresentor.swift */,
+				858A15C8206B438100A63DA2 /* Panel.swift */,
+			);
+			path = SudoARView;
+			sourceTree = "<group>";
+		};
 		85C65887205F061500DF7B49 = {
 			isa = PBXGroup;
 			children = (
@@ -132,6 +144,7 @@
 		85C65892205F061500DF7B49 /* ARPlanets */ = {
 			isa = PBXGroup;
 			children = (
+				8565E266206B6A310094AC4E /* SudoARView */,
 				85C658B4205F0D6000DF7B49 /* Controls */,
 				8565E263206B5E4D0094AC4E /* Scene */,
 				85C658AA205F07A600DF7B49 /* Extensions */,
@@ -179,11 +192,6 @@
 		85C658B4205F0D6000DF7B49 /* Controls */ = {
 			isa = PBXGroup;
 			children = (
-				852D46BF20688A260090EBED /* Menu Collection */,
-				85CCE243206486BB000560C3 /* TransformationPanel */,
-				8565E261206B5BFC0094AC4E /* SudoARView.swift */,
-				85CCE271206723DE000560C3 /* RightPanelsPresentor.swift */,
-				858A15C8206B438100A63DA2 /* Panel.swift */,
 			);
 			path = Controls;
 			sourceTree = "<group>";
