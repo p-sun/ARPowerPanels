@@ -22,7 +22,10 @@ enum Model {
             let scene = SCNScene(named: "art.scnassets/fox/max.scn")!
             let foxNode = scene.rootNode.childNode(withName: "Max_rootNode", recursively: true)!
             foxNode.scale = SCNVector3Make(10, 10, 10)
-            return foxNode
+            let parentNode = SCNNode()
+            parentNode.name = "FOX PARENT"
+            parentNode.addChildNode(foxNode)
+            return parentNode
         case .wolf:
             return nodeFromResource(assetName: "wolf/wolf", extensionName: "dae")
         case .blueBox:
@@ -57,4 +60,8 @@ enum Model {
             return #imageLiteral(resourceName: "menuLowPolyTree") // TODO needs image
         }
     }
+}
+
+extension SCNNode {
+//    func getChildNodeToGlow(type)
 }

@@ -7,30 +7,62 @@
 //
 
 import SceneKit
+import UIKit
 
-class HierachyPanel {
+protocol HierachyPanelDelegate: class {
+    func hierachyPanel(didSelectNode node: SCNNode)
+}
+
+class HierachyPanel: UIView {
+    
+    private let tableView = UITableView(frame: CGRect.zero, style: .grouped)
+    private let functionalTableData = FunctionalTableData()
+    
+    private let iterator = HierachyIterator()
+
+    weak var delegate: HierachyPanelDelegate?
     
     init(scene: SCNScene) {
-        iterateThough(node: scene.rootNode, level: 0)
-    }
- 
-    func iterateThough(node: SCNNode, level: Int) {
-        var spaces = ""
-        for _ in 0 ... level {
-            spaces += "-"
-        }
-        let name: String
-        if level == 0 {
-            name = "Root Node"
-        } else {
-            name = node.name ?? "untitled"
-        }
+        super.init(frame: CGRect.zero)
+        iterator.delegate = self
         
-        print("\(spaces) node \(name)")
+        tableView.backgroundColor = .clear
+        addSubview(tableView)
+        tableView.constrainEdges(to: self)
+        functionalTableData.tableView = tableView
         
-        for child in node.childNodes {
-            iterateThough(node: child, level: level + 1)
-        }
+        setScene(scene: scene)
     }
     
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setScene(scene: SCNScene) {
+        iterator.iterateThough(rootNode: scene.rootNode)
+    }
+}
+
+extension HierachyPanel: HierachyIteratorDelegate {
+    func hierachyIterator(didChange hierachyStates: [HierachyState]) {
+        render(nodeHierachies: hierachyStates)
+    }
+    
+    private func render(nodeHierachies: [HierachyState] ) {
+        var cells = [CellConfigType]()
+        for hierachyState in nodeHierachies {
+            let cell = HierachyCell(
+                key: "node \(hierachyState.memoryAddress)",
+                style: CellStyle(topSeparator: .full, bottomSeparator: .full, separatorColor: .white, backgroundColor: .clear),
+                actions: CellActions(selectionAction: { [weak self] _ in
+                    self?.delegate?.hierachyPanel(didSelectNode: hierachyState.node)
+                    return .deselected
+                }),
+                state: hierachyState)
+            cells.append(cell)
+        }
+        
+        let section = TableSection(key: "table section", rows: cells)
+        functionalTableData.renderAndDiff([section])
+    }
 }

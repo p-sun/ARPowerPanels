@@ -57,34 +57,13 @@ class ComponentsViewController: UIViewController {
         view.addSubview(sudoARView)
         sudoARView.constrainEdges(to: view)
         
-        HierachyPanel(scene: scene)
         
 //        transformationPanel.control(foxNode)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        // Add glow effect
-//        if let foxModel = foxNode.childNode(withName: "Max", recursively: true) {
-//            foxModel.categoryBitMask = 2
-//        }
-//
-//        if let path = Bundle.main.path(forResource: "NodeTechnique", ofType: "plist") {
-//            if let dict = NSDictionary(contentsOfFile: path)  {
-//                let dict2 = dict as! [String : AnyObject]
-//                let technique = SCNTechnique(dictionary:dict2)
-//                sceneView.technique = technique
-//            }
-//        }
 
-//        scene.rootNode.enumerateHierarchy({ (node: SCNNode, _: UnsafeMutablePointer<ObjCBool>) in
-//            print(node.name)
-////            guard let particles = node.particleSystems else { return }
-////            for particle in particles {
-        ////                enemy.addParticleSystem(particle)
-        ////            }
-        //        })
-        
 
     }
 }

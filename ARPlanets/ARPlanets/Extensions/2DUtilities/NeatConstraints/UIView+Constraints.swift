@@ -35,13 +35,6 @@ extension UIView {
     
     // MARK: - Compound Constraints
     
-    func addSubviewsForAutolayout(_ views: UIView...) {
-        views.forEach { view in
-            view.translatesAutoresizingMaskIntoConstraints = false
-            addSubview(view)
-        }
-    }
-    
     @discardableResult
     func constrainEdges(to otherview: UIView, insets: UIEdgeInsets = .zero, usingSafeArea: Bool = false) -> [NSLayoutConstraint] {
         var constraints = [NSLayoutConstraint]()

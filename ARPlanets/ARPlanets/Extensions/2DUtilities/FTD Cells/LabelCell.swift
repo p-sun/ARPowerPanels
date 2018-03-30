@@ -3,7 +3,7 @@ import UIKit
 public typealias LabelCell = HostCell<UILabel, LabelState, LayoutMarginsTableItemLayout>
 
 /// A very simple state for a `UILabel` allowing a quick configuration of its text, font, and color values.
-public struct LabelState: Equatable {
+public struct LabelState: StateType {
     public let text: String
     public let font: UIFont
     public let color: UIColor
@@ -30,8 +30,11 @@ public struct LabelState: Equatable {
         view.text = state.text
         view.font = state.font
         view.textColor = state.color
+        view.numberOfLines = 0
     }
-    
+}
+
+extension LabelState: Equatable {
     public static func ==(lhs: LabelState, rhs: LabelState) -> Bool {
         return lhs.text == rhs.text && lhs.font == rhs.font && lhs.color == rhs.color
     }
