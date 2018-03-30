@@ -52,7 +52,8 @@ class ComponentsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let scene = SceneCreator.createFoxPlaneScene()
+        var sceneCreator = SceneCreator()
+        let scene = sceneCreator.createFoxPlaneScene()
         sudoARView = SudoARView(scene: scene)
         view.addSubview(sudoARView)
         sudoARView.constrainEdges(to: view)

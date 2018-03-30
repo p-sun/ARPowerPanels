@@ -38,11 +38,7 @@ struct HierachyState: StateType {
     let font: UIFont
     let color: UIColor
     let expandButtonPressed: () -> Void
-    
-    var memoryAddress: String {
-        return String(format: "%p", unsafeBitCast(node, to: Int.self)) // i.e. 0x1c41f5100
-    }
-    
+
     init(node: SCNNode, level: Int, expandableState: ExpandableState, text: String?, font: UIFont, color: UIColor, expandButtonPressed: @escaping () -> Void) {
         self.node = node
         self.level = level
@@ -113,5 +109,11 @@ extension HierachyState: Equatable {
         isEqual = isEqual && lhs.font == rhs.font
         isEqual = isEqual && lhs.color == rhs.color
         return isEqual
+    }
+}
+
+extension SCNNode {
+    var memoryAddress: String {
+        return String(format: "%p", unsafeBitCast(self, to: Int.self)) // i.e. 0x1c41f5100
     }
 }

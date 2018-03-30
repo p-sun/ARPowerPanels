@@ -9,7 +9,7 @@
 import SceneKit
 import UIKit
 
-protocol HierachyPanelDelegate: class {
+protocol HierachyPanelDelegate: class, HasSelectedNode {
     func hierachyPanel(didSelectNode node: SCNNode)
 }
 
@@ -21,7 +21,7 @@ class HierachyPanel: UIView {
     private let iterator = HierachyIterator()
 
     weak var delegate: HierachyPanelDelegate?
-    
+
     init(scene: SCNScene) {
         super.init(frame: CGRect.zero)
         iterator.delegate = self
@@ -31,29 +31,36 @@ class HierachyPanel: UIView {
         tableView.constrainEdges(to: self)
         functionalTableData.tableView = tableView
         
-        setScene(scene: scene)
+        renderHierachy(for: scene)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setScene(scene: SCNScene) {
-        iterator.iterateThough(rootNode: scene.rootNode)
+    func renderHierachy(for scene: SCNScene) {
+        iterator.createHierachyStates(rootNode: scene.rootNode)
     }
 }
+
+// MARK: Private
 
 extension HierachyPanel: HierachyIteratorDelegate {
     func hierachyIterator(didChange hierachyStates: [HierachyState]) {
         render(nodeHierachies: hierachyStates)
     }
     
-    private func render(nodeHierachies: [HierachyState] ) {
+    private func render(nodeHierachies: [HierachyState]) {
+        
+        let selectedNode = delegate?.selectedSCNNode()
+        
         var cells = [CellConfigType]()
         for hierachyState in nodeHierachies {
+            let isNodeSelected = hierachyState.node == selectedNode
+            let backgroundColor = isNodeSelected ? UIColor.uiControlColor.withAlphaComponent(0.6) : .clear
             let cell = HierachyCell(
-                key: "node \(hierachyState.memoryAddress)",
-                style: CellStyle(topSeparator: .full, bottomSeparator: .full, separatorColor: .white, backgroundColor: .clear),
+                key: "node \(hierachyState.node.memoryAddress)",
+                style: CellStyle(topSeparator: .full, bottomSeparator: .full, separatorColor: .white, backgroundColor: backgroundColor),
                 actions: CellActions(selectionAction: { [weak self] _ in
                     self?.delegate?.hierachyPanel(didSelectNode: hierachyState.node)
                     return .deselected

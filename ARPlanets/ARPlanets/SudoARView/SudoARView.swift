@@ -10,16 +10,24 @@ import UIKit
 import SceneKit
 import ARKit
 
+protocol HasSelectedNode {
+    func selectedSCNNode() -> SCNNode?
+}
+
 class SudoARView: UIView {
     
     var selectedNode: SCNNode? {
         didSet {
-            selectedNode?.categoryBitMask = 2
-//            if let foxModel = anotherFoxModel.childNode(withName: "Max", recursively: true) {
-//                foxModel.categoryBitMask = 2 // Set to 1 to remove the glow
-//            }
+            guard let selectedNode = selectedNode else { return }
+
+            oldValue?.setGlow(false)
+            selectedNode.setGlow(true)
+
+            transformationPanel.control(selectedNode)
+            hierachyPanel.renderHierachy(for: scene)
         }
     }
+    
     
     // MARK: Views for Menu Items
     private let purplePanel = PurpleView()
@@ -33,19 +41,15 @@ class SudoARView: UIView {
     
     // MARK: Other Views
     private let scene: SCNScene
-    private var panelPresentor: RightPanelsPresenter!
+    private var panelPresentor: ARPanelsPresenter!
     private let sceneView = SCNView()
     
-    let anotherFoxModel = Model.fox.createNode()
     
     init(scene: SCNScene) {
         self.scene = scene
         hierachyPanel = HierachyPanel(scene: scene)
 
         super.init(frame: CGRect.zero)
-        
-        self.scene.rootNode.addChildNode(anotherFoxModel)
-        anotherFoxModel.position = SCNVector3Make(1, 1, 1)
         
         menuItems = [
             MenuItem(name: "PURPLE", panelItem: PanelItem(viewToPresent: purplePanel, heightPriority: .init(250), preferredHeight: 400, width: 400)),
@@ -55,16 +59,16 @@ class SudoARView: UIView {
         ]
         
         setupSceneView()
-        setupSceneGlowEffect()
         setupShowHideMenuButton()
         
-        panelPresentor = RightPanelsPresenter(presentingView: self)
+        panelPresentor = ARPanelsPresenter(presentingView: self)
         panelPresentor.delegate = self
         
         setupARGameModeSegmentedControl()
         setupVerticalMenuStack()
         
         hierachyPanel.delegate = self
+        selectedNode = scene.rootNode
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -78,22 +82,11 @@ class SudoARView: UIView {
     private func setupSceneView() {
         sceneView.allowsCameraControl = true // allows the user to manipulate the camera
         sceneView.backgroundColor = #colorLiteral(red: 0.0003343143538, green: 0.03833642512, blue: 0.4235294163, alpha: 1)
+        sceneView.setupGlowEffect()
         //        sceneView.showsStatistics = true
         sceneView.scene = scene
         addSubview(sceneView)
         sceneView.constrainEdges(to: self)
-    }
-
-    private func setupSceneGlowEffect() {
-        // Draw a glow around models with node.categoryBitMask == 2
-        // No glow around models with node.categoryBitMask == 1
-        if let path = Bundle.main.path(forResource: "NodeTechnique", ofType: "plist") {
-            if let dict = NSDictionary(contentsOfFile: path)  {
-                let dict2 = dict as! [String : AnyObject]
-                let technique = SCNTechnique(dictionary:dict2)
-                sceneView.technique = technique
-            }
-        }
     }
 }
 
@@ -153,7 +146,7 @@ extension SudoARView: MenuStackDelegate {
     }
 }
 
-extension SudoARView: RightPanelsPresenterDelegate {
+extension SudoARView: ARPanelsPresenterDelegate {
     func rightPanelsPresenter(didPresent view: UIView) {
         let menuItemWithPresentedView = menuItems.first { $0.panelItem.viewToPresent == view }
         menuItemWithPresentedView?.stackItem.isSelected = true
@@ -170,5 +163,11 @@ extension SudoARView: RightPanelsPresenterDelegate {
 extension SudoARView: HierachyPanelDelegate {
     func hierachyPanel(didSelectNode node: SCNNode) {
         selectedNode = node
+    }
+}
+
+extension SudoARView: HasSelectedNode {
+    func selectedSCNNode() -> SCNNode? {
+        return selectedNode
     }
 }

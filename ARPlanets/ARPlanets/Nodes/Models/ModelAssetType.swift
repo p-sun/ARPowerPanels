@@ -61,7 +61,3 @@ enum Model {
         }
     }
 }
-
-extension SCNNode {
-//    func getChildNodeToGlow(type)
-}

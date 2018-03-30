@@ -21,14 +21,14 @@ class HierachyIterator {
     
     weak var delegate: HierachyIteratorDelegate?
     
-    func iterateThough(rootNode: SCNNode) {
+    func createHierachyStates(rootNode: SCNNode) {
         hierachyStates = []
         self.rootNode = rootNode
-        iterateThough(node: rootNode, level: 0)
+        createHierachyStates(node: rootNode, level: 0)
         delegate?.hierachyIterator(didChange: hierachyStates)
     }
     
-    private func iterateThough(node: SCNNode, level: Int) {
+    private func createHierachyStates(node: SCNNode, level: Int) {
         
         var spaces = ""
         for _ in 0 ... level {
@@ -62,10 +62,10 @@ class HierachyIterator {
                                     switch currentState {
                                     case .isNotExpanded:
                                         strongSelf.expandStateForNode[node] = .isExpanded
-                                        strongSelf.iterateThough(rootNode: rootNode)
+                                        strongSelf.createHierachyStates(rootNode: rootNode)
                                     case .isExpanded:
                                         strongSelf.expandStateForNode[node] = .isNotExpanded
-                                        strongSelf.iterateThough(rootNode: rootNode)
+                                        strongSelf.createHierachyStates(rootNode: rootNode)
                                     case .isNotExpandable:
                                         return
                                     }
@@ -74,7 +74,7 @@ class HierachyIterator {
         
         if expandStateForNode[node] ?? ExpandableState.isExpanded == .isExpanded {
             for child in node.childNodes {
-                iterateThough(node: child, level: level + 1)
+                createHierachyStates(node: child, level: level + 1)
             }
         }
     }

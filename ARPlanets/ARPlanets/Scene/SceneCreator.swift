@@ -8,9 +8,14 @@
 
 import SceneKit
 
+//struct NodeMetaData {
+//    let modelType: Model
+//}
+
 struct SceneCreator {
-    
-    static func createFoxPlaneScene() -> SCNScene {
+//    var nodeMetaDatas = [SCNNode: NodeMetaData]()
+
+    mutating func createFoxPlaneScene() -> SCNScene {
        let scene = SCNScene(named: "art.scnassets/ship.scn")!
 
         //        // create and add a camera to the scene
@@ -35,12 +40,18 @@ struct SceneCreator {
         ambientLightNode.light!.color = UIColor.darkGray
         scene.rootNode.addChildNode(ambientLightNode)
         
-
         let foxNode = Model.fox.createNode()
+        scene.rootNode.addChildNode(foxNode)
+//        nodeMetaDatas[foxNode] = NodeMetaData(modelType: .fox)
 
         // animate the 3d object
         //        foxNode.runAction(SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: 2, z: 0, duration: 1)))
-        scene.rootNode.addChildNode(foxNode)
+        
+        let anotherFoxModel = Model.fox.createNode()
+        scene.rootNode.addChildNode(anotherFoxModel)
+        anotherFoxModel.position = SCNVector3Make(1, 1, 1)
+//        nodeMetaDatas[anotherFoxModel] = NodeMetaData(modelType: .fox)
+        
         scene.rootNode.updateFocusIfNeeded()
 
         return scene
