@@ -37,10 +37,12 @@ class ComponentsViewController: UIViewController {
 
     var sudoARView: SudoARView!
     
+    var sceneCreator = SceneCreator()
+    var scene: SCNScene!
+
     init() {
         super.init(nibName: nil, bundle: nil)
-        view.backgroundColor = #colorLiteral(red: 0.7060456284, green: 1, blue: 0.8839808301, alpha: 1)
-        
+//        view.backgroundColor = #colorLiteral(red: 0.7060456284, green: 1, blue: 0.8839808301, alpha: 1)
 //        arPanel.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
 //        gamePanel.backgroundColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
     }
@@ -52,20 +54,25 @@ class ComponentsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var sceneCreator = SceneCreator()
-        let scene = sceneCreator.createFoxPlaneScene()
+        scene = sceneCreator.createFoxPlaneScene()
         sudoARView = SudoARView(scene: scene)
+        sudoARView.dataSource = self
         view.addSubview(sudoARView)
         sudoARView.constrainEdges(to: view)
-        
-        
-//        transformationPanel.control(foxNode)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+    }
+}
 
-
+extension ComponentsViewController: SudoARViewDataSource {
+    func hierachyPanelScene() -> SCNScene {
+        return scene
+    }
+    
+    func hierachyPanel(shouldDisplay node: SCNNode) -> Bool {
+        return sceneCreator.isNodeParentModel(node: node)
     }
 }
 

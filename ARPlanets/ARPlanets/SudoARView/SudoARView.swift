@@ -14,6 +14,9 @@ protocol HasSelectedNode {
     func selectedSCNNode() -> SCNNode?
 }
 
+protocol SudoARViewDataSource: class, HierachyPanelDataSource {
+}
+
 class SudoARView: UIView {
     
     var selectedNode: SCNNode? {
@@ -24,10 +27,15 @@ class SudoARView: UIView {
             selectedNode.setGlow(true)
 
             transformationPanel.control(selectedNode)
-            hierachyPanel.renderHierachy(for: scene)
+            hierachyPanel.renderHierachy()
         }
     }
     
+    weak var dataSource: SudoARViewDataSource? {
+        didSet {
+            hierachyPanel.dataSource = dataSource
+        }
+    }
     
     // MARK: Views for Menu Items
     private let purplePanel = PurpleView()
@@ -47,7 +55,7 @@ class SudoARView: UIView {
     
     init(scene: SCNScene) {
         self.scene = scene
-        hierachyPanel = HierachyPanel(scene: scene)
+        hierachyPanel = HierachyPanel()
 
         super.init(frame: CGRect.zero)
         

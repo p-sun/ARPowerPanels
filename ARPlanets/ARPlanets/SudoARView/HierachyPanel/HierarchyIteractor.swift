@@ -8,6 +8,10 @@
 
 import SceneKit
 
+protocol HierachyIteratorDataSource: class {
+    func hierachyPanel(shouldDisplay node: SCNNode) -> Bool
+}
+
 protocol HierachyIteratorDelegate: class {
     func hierachyIterator(didChange hierachyStates: [HierachyState])
 }
@@ -20,11 +24,14 @@ class HierachyIterator {
     private var rootNode: SCNNode?
     
     weak var delegate: HierachyIteratorDelegate?
-    
+    weak var dataSource: HierachyIteratorDataSource?
+
     func createHierachyStates(rootNode: SCNNode) {
-        hierachyStates = []
         self.rootNode = rootNode
+
+        hierachyStates = []
         createHierachyStates(node: rootNode, level: 0)
+        
         delegate?.hierachyIterator(didChange: hierachyStates)
     }
     
@@ -42,11 +49,13 @@ class HierachyIterator {
             name = node.name ?? "untitled"
         }
         
+        let visibleChildNodes = visibleChildren(for: node)
+        
         let expandableState: ExpandableState
-        if node.childNodes.count == 0 {
+        if visibleChildNodes.count == 0 {
             expandableState = .isNotExpandable
         } else { // .isExpandable
-            expandableState = expandStateForNode[node] ?? .isExpanded
+            expandableState = expandState(for: node)
         }
                 
         let state = HierachyState(node: node,
@@ -58,7 +67,7 @@ class HierachyIterator {
                                     
                                     guard let strongSelf = self, let rootNode = strongSelf.rootNode else { return }
                                     
-                                    let currentState = strongSelf.expandStateForNode[node] ?? ExpandableState.isExpanded
+                                    let currentState = strongSelf.expandState(for: node)
                                     switch currentState {
                                     case .isNotExpanded:
                                         strongSelf.expandStateForNode[node] = .isExpanded
@@ -72,10 +81,27 @@ class HierachyIterator {
         }
         hierachyStates.append(state)
         
-        if expandStateForNode[node] ?? ExpandableState.isExpanded == .isExpanded {
-            for child in node.childNodes {
+        if expandState(for: node) == .isExpanded {
+            for child in visibleChildNodes {
                 createHierachyStates(node: child, level: level + 1)
             }
         }
+    }
+    
+    private func expandState(for node: SCNNode) -> ExpandableState {
+        return expandStateForNode[node] ?? .isExpanded
+    }
+    
+    private func visibleChildren(for node: SCNNode) -> [SCNNode] {
+        var visibleChildren = [SCNNode]()
+        
+        for child in node.childNodes {
+            let shouldDisplayChild = dataSource?.hierachyPanel(shouldDisplay: child) ?? true
+            if shouldDisplayChild {
+                visibleChildren.append(child)
+            }
+        }
+        
+        return visibleChildren
     }
 }

@@ -8,12 +8,12 @@
 
 import SceneKit
 
-//struct NodeMetaData {
-//    let modelType: Model
-//}
+struct NodeMetaData {
+    let modelType: Model
+}
 
 struct SceneCreator {
-//    var nodeMetaDatas = [SCNNode: NodeMetaData]()
+    private var nodeMetaDatas = [SCNNode: NodeMetaData]()
 
     mutating func createFoxPlaneScene() -> SCNScene {
        let scene = SCNScene(named: "art.scnassets/ship.scn")!
@@ -42,20 +42,23 @@ struct SceneCreator {
         
         let foxNode = Model.fox.createNode()
         scene.rootNode.addChildNode(foxNode)
-//        nodeMetaDatas[foxNode] = NodeMetaData(modelType: .fox)
+        nodeMetaDatas[foxNode] = NodeMetaData(modelType: .fox)
 
-        // animate the 3d object
-        //        foxNode.runAction(SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: 2, z: 0, duration: 1)))
+        // Animate the 3d object
+        // foxNode.runAction(SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: 2, z: 0, duration: 1)))
         
         let anotherFoxModel = Model.fox.createNode()
         scene.rootNode.addChildNode(anotherFoxModel)
         anotherFoxModel.position = SCNVector3Make(1, 1, 1)
-//        nodeMetaDatas[anotherFoxModel] = NodeMetaData(modelType: .fox)
+        nodeMetaDatas[anotherFoxModel] = NodeMetaData(modelType: .fox)
         
         scene.rootNode.updateFocusIfNeeded()
 
         return scene
     }
     
+    func isNodeParentModel(node: SCNNode) -> Bool {
+        return nodeMetaDatas[node] != nil
+    }
 }
 

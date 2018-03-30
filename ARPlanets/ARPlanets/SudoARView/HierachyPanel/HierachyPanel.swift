@@ -9,6 +9,10 @@
 import SceneKit
 import UIKit
 
+protocol HierachyPanelDataSource: HierachyIteratorDataSource {
+    func hierachyPanelScene() -> SCNScene
+}
+
 protocol HierachyPanelDelegate: class, HasSelectedNode {
     func hierachyPanel(didSelectNode node: SCNNode)
 }
@@ -21,8 +25,14 @@ class HierachyPanel: UIView {
     private let iterator = HierachyIterator()
 
     weak var delegate: HierachyPanelDelegate?
-
-    init(scene: SCNScene) {
+    weak var dataSource: HierachyPanelDataSource? {
+        didSet {
+            iterator.dataSource = dataSource
+            renderHierachy()
+        }
+    }
+    
+    init() {
         super.init(frame: CGRect.zero)
         iterator.delegate = self
         
@@ -31,14 +41,15 @@ class HierachyPanel: UIView {
         tableView.constrainEdges(to: self)
         functionalTableData.tableView = tableView
         
-        renderHierachy(for: scene)
+        renderHierachy()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func renderHierachy(for scene: SCNScene) {
+    func renderHierachy() {
+        guard let scene = dataSource?.hierachyPanelScene() else { return }
         iterator.createHierachyStates(rootNode: scene.rootNode)
     }
 }
