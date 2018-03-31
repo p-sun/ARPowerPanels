@@ -1,5 +1,5 @@
 //
-//  SudoARView.swift
+//  ARPowerPanels.swift
 //  ARPlanets
 //
 //  Created by TSD040 on 2018-03-28.
@@ -14,10 +14,10 @@ protocol HasSelectedNode {
     func selectedSCNNode() -> SCNNode?
 }
 
-protocol SudoARViewDataSource: class, HierachyPanelDataSource {
+protocol ARPowerPanelsDataSource: class, HierachyPanelDataSource {
 }
 
-class SudoARView: UIView {
+class ARPowerPanels: UIView {
     
     var selectedNode: SCNNode? {
         didSet {
@@ -32,7 +32,7 @@ class SudoARView: UIView {
         }
     }
     
-    weak var dataSource: SudoARViewDataSource? {
+    weak var dataSource: ARPowerPanelsDataSource? {
         didSet {
             hierachyPanel.dataSource = dataSource
         }
@@ -124,7 +124,7 @@ class SudoARView: UIView {
     }
 }
 
-extension SudoARView {
+extension ARPowerPanels {
     func setupARGameModeSegmentedControl() {
         let segmentedControl = UISegmentedControl(items: ["AR", "Game"])
         segmentedControl.selectedSegmentIndex = 0
@@ -143,7 +143,7 @@ extension SudoARView {
     }
 }
 
-extension SudoARView: RoundedButtonDelegate {
+extension ARPowerPanels: RoundedButtonDelegate {
     private func setupShowHideMenuButton() {
         showHideMenuButton.delegate = self
         showHideMenuButton.isSelected = true
@@ -161,7 +161,7 @@ extension SudoARView: RoundedButtonDelegate {
     }
 }
 
-extension SudoARView: MenuStackDelegate {
+extension ARPowerPanels: MenuStackDelegate {
     private func setupVerticalMenuStack() {
         menuStack.menuStackDelegate = self
         menuStack.configure(menuItems: menuItems.map({ $0.stackItem }))
@@ -179,7 +179,7 @@ extension SudoARView: MenuStackDelegate {
     }
 }
 
-extension SudoARView: ARPanelsPresenterDelegate {
+extension ARPowerPanels: ARPanelsPresenterDelegate {
     func rightPanelsPresenter(didPresent view: UIView) {
         let menuItemWithPresentedView = menuItems.first { $0.panelItem.viewToPresent == view }
         menuItemWithPresentedView?.stackItem.isSelected = true
@@ -193,20 +193,20 @@ extension SudoARView: ARPanelsPresenterDelegate {
     }
 }
 
-extension SudoARView: TransformationPanelDelegate {
+extension ARPowerPanels: TransformationPanelDelegate {
     func transformationPanelDidChangeNodeName() {
         updateSelectedNodeLabel()
         hierachyPanel.renderHierachy()
     }
 }
 
-extension SudoARView: HierachyPanelDelegate {
+extension ARPowerPanels: HierachyPanelDelegate {
     func hierachyPanel(didSelectNode node: SCNNode) {
         selectedNode = node
     }
 }
 
-extension SudoARView: HasSelectedNode {
+extension ARPowerPanels: HasSelectedNode {
     func selectedSCNNode() -> SCNNode? {
         return selectedNode
     }

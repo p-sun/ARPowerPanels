@@ -35,7 +35,7 @@ class ComponentsViewController: UIViewController {
     
 //    let foxNode = SCNNode() // Temporarly
 
-    var sudoARView: SudoARView!
+    var powerPanels: ARPowerPanels!
     
     var sceneCreator = SceneCreator()
     var scene: SCNScene!
@@ -55,12 +55,12 @@ class ComponentsViewController: UIViewController {
         super.viewDidLoad()
         
         scene = sceneCreator.createFoxPlaneScene()
-        sudoARView = SudoARView(scene: scene)
-        sudoARView.dataSource = self
-        view.addSubview(sudoARView)
-        sudoARView.constrainEdges(to: view)
+        powerPanels = ARPowerPanels(scene: scene)
+        powerPanels.dataSource = self
+        view.addSubview(powerPanels)
+        powerPanels.constrainEdges(to: view)
         
-        sudoARView.selectNode(scene.rootNode)
+        powerPanels.selectNode(scene.rootNode)
         
     }
     
@@ -69,7 +69,7 @@ class ComponentsViewController: UIViewController {
     }
 }
 
-extension ComponentsViewController: SudoARViewDataSource {
+extension ComponentsViewController: ARPowerPanelsDataSource {
     func hierachyPanelScene() -> SCNScene {
         return scene
     }
