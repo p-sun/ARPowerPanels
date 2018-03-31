@@ -16,7 +16,7 @@ struct SceneCreator {
     private var nodeMetaDatas = [SCNNode: NodeMetaData]()
 
     mutating func createFoxPlaneScene() -> SCNScene {
-       let scene = PowerPanelScene()//SCNScene(named: "art.scnassets/ship.scn")!
+       let scene = SCNScene()//PowerPanelScene()//SCNScene(named: "art.scnassets/ship.scn")!
         
         // create and add a light to the scene
         let lightNode = SCNNode()

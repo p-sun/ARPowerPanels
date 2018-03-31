@@ -17,10 +17,10 @@ class PowerPanelScene: SCNScene {
     override var background: SCNMaterialProperty {
         get {
             if shouldShowCamera {
-                print("SCENE background \(super.background)")
+//                print("SCENE background \(super.background)")
                 return super.background
             } else {
-                print("SCENE background -- none")
+//                print("SCENE background -- none")
                 return SCNMaterialProperty()
             }
         }
@@ -60,7 +60,8 @@ class ARPowerPanels: UIView {
     private let infoPanel = TransformationPanel(controlTypes: TransformationType.entityInfo)
     private let easyMovePanel = TransformationPanel(controlTypes: TransformationType.easyMove)
     private let advancedMovePanel = TransformationPanel(controlTypes: TransformationType.advancedMove)
-
+    private let allEditsPanel = TransformationPanel(controlTypes: TransformationType.all)
+    
     // MARK: Left hand views
     private let showHideMenuButton = RoundedButton()
     private let selectedNodeLabel = UILabel()
@@ -112,7 +113,7 @@ class ARPowerPanels: UIView {
         sceneViewParent.isHidden = true
         
         
-        // Brakes if the user pans the scene
+        // TODO Fix: Camera control brakes if the user pans the scene
         let cameraParent = SCNNode()
         rootNode.addChildNode(cameraParent)
         cameraParent.position = SCNVector3(x: 0, y: 3, z: 13)
@@ -151,7 +152,8 @@ class ARPowerPanels: UIView {
             MenuItem(name: "SCENE GRAPH", panelItem: PanelItem(viewToPresent: hierachyPanel, heightPriority: .init(400), preferredHeight: 440, width: 400)),
             MenuItem(name: "INFO", panelItem: PanelItem(viewToPresent: infoPanel, heightPriority: .init(1000), preferredHeight: nil, width: 400)),
             MenuItem(name: "EASY MOVES", panelItem: PanelItem(viewToPresent: easyMovePanel, heightPriority: .init(1000), preferredHeight: nil, width: 400)),
-            MenuItem(name: "ADVANCED MOVES", panelItem: PanelItem(viewToPresent: advancedMovePanel, heightPriority: .init(1000), preferredHeight: nil, width: 400)),
+            MenuItem(name: "ALL MOVES", panelItem: PanelItem(viewToPresent: advancedMovePanel, heightPriority: .init(1000), preferredHeight: nil, width: 400)),
+            MenuItem(name: "ALL EDITS", panelItem: PanelItem(viewToPresent: allEditsPanel, heightPriority: .init(1000), preferredHeight: nil, width: 400)),
             MenuItem(name: "PURPLE", panelItem: PanelItem(viewToPresent: purplePanel, heightPriority: .init(250), preferredHeight: 400, width: 400)),
             MenuItem(name: "GREEN", panelItem: PanelItem(viewToPresent: greenPanel, heightPriority: .init(300), preferredHeight: 600, width: 400)),
         ]
@@ -173,9 +175,11 @@ class ARPowerPanels: UIView {
         // Setup right-hand panels
         hierachyPanel.delegate = self
         hierachyPanel.dataSource = self
-        easyMovePanel.transformationDelegate = self
+        
         infoPanel.transformationDelegate = self
+        easyMovePanel.transformationDelegate = self
         advancedMovePanel.transformationDelegate = self
+        allEditsPanel.transformationDelegate = self
         
         // Set the selected node, and update all the panels to control this node
         selectedNode = scene.rootNode
@@ -192,8 +196,10 @@ class ARPowerPanels: UIView {
     private func updatePanels() {
         updateSelectedNodeLabel()
         if let selectedNode = selectedNode { // TODO Display error if no node was selected
+            infoPanel.control(selectedNode) // TODO refactor all these panels
             easyMovePanel.control(selectedNode)
-            infoPanel.control(selectedNode)
+            advancedMovePanel.control(selectedNode)
+            allEditsPanel.control(selectedNode)
         }
         hierachyPanel.renderHierachy()
     }
@@ -272,9 +278,7 @@ extension ARPowerPanels {
 
             print("Current camera node \(sceneView.pointOfView)")
 
-            
 //            arSceneView?.scene = SCNScene()
-            
         }
     }
 }
