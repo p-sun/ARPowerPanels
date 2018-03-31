@@ -14,8 +14,7 @@ protocol HasSelectedNode {
     func selectedSCNNode() -> SCNNode?
 }
 
-protocol ARPowerPanelsDataSource: class, HierachyPanelDataSource {
-}
+protocol ARPowerPanelsDataSource: HierachyPanelDataSource { }
 
 class ARPowerPanels: UIView {
     
@@ -52,10 +51,13 @@ class ARPowerPanels: UIView {
     
     // MARK: Background views
     private let scene: SCNScene
-    private var panelPresentor: ARPanelsPresenter!
+    private var panelPresentor: PanelsPresenter!
     private let sceneView = SCNView()
     
-    init(scene: SCNScene) {
+    private let isARKit: Bool
+    
+    init(scene: SCNScene, isARKit: Bool) {
+        self.isARKit = isARKit
         self.scene = scene
         hierachyPanel = HierachyPanel()
 
@@ -63,20 +65,22 @@ class ARPowerPanels: UIView {
         
         // Init variables
         menuItems = [
+            MenuItem(name: "INFO", panelItem: PanelItem(viewToPresent: transformationPanel, heightPriority: .init(1000), preferredHeight: nil, width: 400)),
+            MenuItem(name: "SCENE GRAPH", panelItem: PanelItem(viewToPresent: hierachyPanel, heightPriority: .init(400), preferredHeight: 500, width: 400)),
             MenuItem(name: "PURPLE", panelItem: PanelItem(viewToPresent: purplePanel, heightPriority: .init(250), preferredHeight: 400, width: 400)),
             MenuItem(name: "GREEN", panelItem: PanelItem(viewToPresent: greenPanel, heightPriority: .init(300), preferredHeight: 600, width: 400)),
-            MenuItem(name: "TRANSFORMATION", panelItem: PanelItem(viewToPresent: transformationPanel, heightPriority: .init(1000), preferredHeight: nil, width: 400)),
-            MenuItem(name: "SCENE GRAPH", panelItem: PanelItem(viewToPresent: hierachyPanel, heightPriority: .init(400), preferredHeight: 500, width: 400)),
         ]
 
         // Setup background
         setupSceneView()
 
-        panelPresentor = ARPanelsPresenter(presentingView: self)
+        panelPresentor = PanelsPresenter(presentingView: self)
         panelPresentor.delegate = self
         
         // Setup left-hand menu
-        setupARGameModeSegmentedControl()
+        if isARKit {
+            setupARGameModeSegmentedControl()
+        }
         setupSelectedNodeLabel()
         setupShowHideMenuButton()
         setupVerticalMenuStack()
@@ -139,7 +143,11 @@ extension ARPowerPanels {
     }
     
     @objc private func segmentSelected(_ segmentedControl: UISegmentedControl) {
-        print("segmeted control \(segmentedControl.selectedSegmentIndex)")
+        if segmentedControl.selectedSegmentIndex == 0 { // AR MODE
+            sceneView.isHidden = true
+        } else { // GAME
+            sceneView.isHidden = false
+        }
     }
 }
 
@@ -179,7 +187,7 @@ extension ARPowerPanels: MenuStackDelegate {
     }
 }
 
-extension ARPowerPanels: ARPanelsPresenterDelegate {
+extension ARPowerPanels: PanelsPresenterDelegate {
     func rightPanelsPresenter(didPresent view: UIView) {
         let menuItemWithPresentedView = menuItems.first { $0.panelItem.viewToPresent == view }
         menuItemWithPresentedView?.stackItem.isSelected = true

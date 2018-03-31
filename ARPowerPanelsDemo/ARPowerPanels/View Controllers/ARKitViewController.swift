@@ -10,14 +10,20 @@ import UIKit
 import SceneKit
 import ARKit
 
-class SceneViewController: UIViewController {
-
-    // MARK: Variables
-    private var sceneView = ARSCNView()
+class ARKitViewController: UIViewController {
     
-    var foxNode = Model.fox.createNode()
+    private var powerPanels: ARPowerPanels!
+    private var sceneCreator = SceneCreator()
+    private var sceneView = ARSCNView()
 
-    // MARK: View Lifecycle
+    init() {
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,19 +34,13 @@ class SceneViewController: UIViewController {
         sceneView.showsStatistics = true
         sceneView.debugOptions  = [.showConstraints, ARSCNDebugOptions.showFeaturePoints]
         
-        sceneView.scene.rootNode.addChildNode(foxNode)
+        sceneView.scene = sceneCreator.createFoxPlaneScene()
         
-//        SliderInputsView(axisLabels: <#T##[String]#>, minValue: <#T##Float#>, maxValue: <#T##Float#>)
-//
-//        let rotationInput = SliderInputsView() { [weak self] value in
-//            print("value did change \(value)")
-//            self?.foxNode.rotation.y = Float(value)
-//        }
-//        view.addSubview(rotationInput)
-//
-//        rotationInput.constrainCenterX(to: view)
-//        rotationInput.constrainCenterY(to: view)
-//        rotationInput.constrainWidth(200)
+        powerPanels = ARPowerPanels(scene: sceneView.scene, isARKit: true)
+        powerPanels.selectNode(sceneView.scene.rootNode)
+        powerPanels.dataSource = self
+        sceneView.addSubview(powerPanels)
+        powerPanels.constrainEdges(to: sceneView)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -60,8 +60,70 @@ class SceneViewController: UIViewController {
     }
 }
 
+extension ARKitViewController: ARPowerPanelsDataSource {
+    func hierachyPanelScene() -> SCNScene {
+        return sceneView.scene
+    }
+    
+    func hierachyPanel(shouldDisplay node: SCNNode) -> Bool {
+        return sceneCreator.isNodeParentModel(node: node)
+    }
+}
 
-extension SceneViewController: ARSCNViewDelegate {
+
+
+//class ARKitViewController: UIViewController {
+//
+//    // MARK: Variables
+//    private var sceneView = ARSCNView()
+//
+//    var foxNode = Model.fox.createNode()
+//
+//    // MARK: View Lifecycle
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//
+//        view.addSubview(sceneView)
+//        sceneView.constrainEdges(to: view)
+//
+//        sceneView.delegate = self
+//        sceneView.showsStatistics = true
+//        sceneView.debugOptions  = [.showConstraints, ARSCNDebugOptions.showFeaturePoints]
+//
+//        sceneView.scene.rootNode.addChildNode(foxNode)
+//
+////        SliderInputsView(axisLabels: <#T##[String]#>, minValue: <#T##Float#>, maxValue: <#T##Float#>)
+////
+////        let rotationInput = SliderInputsView() { [weak self] value in
+////            print("value did change \(value)")
+////            self?.foxNode.rotation.y = Float(value)
+////        }
+////        view.addSubview(rotationInput)
+////
+////        rotationInput.constrainCenterX(to: view)
+////        rotationInput.constrainCenterY(to: view)
+////        rotationInput.constrainWidth(200)
+//    }
+//
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        beginSceneView()
+//    }
+//
+//    override func viewWillDisappear(_ animated: Bool) {
+//        super.viewWillDisappear(animated)
+//        sceneView.session.pause()
+//    }
+//
+//    private func beginSceneView() {
+//        let configuration = ARWorldTrackingConfiguration()
+//        configuration.planeDetection = .horizontal
+//        sceneView.session.run(configuration)
+//    }
+//}
+
+
+extension ARKitViewController: ARSCNViewDelegate {
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
         guard let planeAnchor = anchor as? ARPlaneAnchor else { return }
         print("didAdd \(node.position)")
@@ -86,7 +148,7 @@ extension SceneViewController: ARSCNViewDelegate {
     }
 }
 
-extension SceneViewController {
+extension ARKitViewController {
     
     /*
      // Override to create and configure nodes for anchors added to the view's session.

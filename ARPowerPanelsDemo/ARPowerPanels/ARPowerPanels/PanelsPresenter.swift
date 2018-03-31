@@ -1,5 +1,5 @@
 //
-//  ARPanelsPresenter.swift
+//  PanelsPresenter.swift
 //  ARPlanets
 //
 //  Created by TSD040 on 2018-03-24.
@@ -15,13 +15,13 @@ struct PanelItem {
     let width: CGFloat
 }
 
-protocol ARPanelsPresenterDelegate: class {
+protocol PanelsPresenterDelegate: class {
     func rightPanelsPresenter(didPresent view: UIView)
     func rightPanelsPresenter(didDismiss view: UIView)
 }
 
 // A class
-class ARPanelsPresenter {
+class PanelsPresenter {
     
     private enum PresentationState {
         case isHidden, onTopPanel, onBottomPanel
@@ -33,7 +33,7 @@ class ARPanelsPresenter {
     // The parent view presenting the panel
     weak var presentingView: UIView?
     
-    weak var delegate: ARPanelsPresenterDelegate?
+    weak var delegate: PanelsPresenterDelegate?
     
     init(presentingView: UIView) {
         self.presentingView = presentingView

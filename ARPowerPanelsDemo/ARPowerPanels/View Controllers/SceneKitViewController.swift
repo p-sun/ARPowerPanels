@@ -1,5 +1,5 @@
 //
-//  ComponentsViewController.swift
+//  SceneKitViewController.swift
 //  ARPlanets
 //
 //  Created by Paige Sun on 2018-03-18.
@@ -31,10 +31,8 @@ class GreenView: UIView {
     }
 }
 
-class ComponentsViewController: UIViewController {
+class SceneKitViewController: UIViewController {
     
-//    let foxNode = SCNNode() // Temporarly
-
     var powerPanels: ARPowerPanels!
     
     var sceneCreator = SceneCreator()
@@ -42,9 +40,6 @@ class ComponentsViewController: UIViewController {
 
     init() {
         super.init(nibName: nil, bundle: nil)
-//        view.backgroundColor = #colorLiteral(red: 0.7060456284, green: 1, blue: 0.8839808301, alpha: 1)
-//        arPanel.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
-//        gamePanel.backgroundColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -55,13 +50,11 @@ class ComponentsViewController: UIViewController {
         super.viewDidLoad()
         
         scene = sceneCreator.createFoxPlaneScene()
-        powerPanels = ARPowerPanels(scene: scene)
+        powerPanels = ARPowerPanels(scene: scene, isARKit: false)
+        powerPanels.selectNode(scene.rootNode)
         powerPanels.dataSource = self
         view.addSubview(powerPanels)
         powerPanels.constrainEdges(to: view)
-        
-        powerPanels.selectNode(scene.rootNode)
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -69,7 +62,7 @@ class ComponentsViewController: UIViewController {
     }
 }
 
-extension ComponentsViewController: ARPowerPanelsDataSource {
+extension SceneKitViewController: ARPowerPanelsDataSource {
     func hierachyPanelScene() -> SCNScene {
         return scene
     }

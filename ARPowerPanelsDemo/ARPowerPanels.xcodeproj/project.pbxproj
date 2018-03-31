@@ -44,11 +44,11 @@
 		858A15C9206B438100A63DA2 /* Panel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A15C8206B438100A63DA2 /* Panel.swift */; };
 		85C65894205F061500DF7B49 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C65893205F061500DF7B49 /* AppDelegate.swift */; };
 		85C65896205F061500DF7B49 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 85C65895205F061500DF7B49 /* art.scnassets */; };
-		85C65898205F061500DF7B49 /* SceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C65897205F061500DF7B49 /* SceneViewController.swift */; };
+		85C65898205F061500DF7B49 /* ARKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C65897205F061500DF7B49 /* ARKitViewController.swift */; };
 		85C6589B205F061500DF7B49 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85C65899205F061500DF7B49 /* Main.storyboard */; };
 		85C6589D205F061500DF7B49 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85C6589C205F061500DF7B49 /* Assets.xcassets */; };
 		85C658A0205F061500DF7B49 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85C6589E205F061500DF7B49 /* LaunchScreen.storyboard */; };
-		85C658A9205F074100DF7B49 /* ComponentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C658A8205F074100DF7B49 /* ComponentsViewController.swift */; };
+		85C658A9205F074100DF7B49 /* SceneKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C658A8205F074100DF7B49 /* SceneKitViewController.swift */; };
 		85C658B6205F0D9C00DF7B49 /* SliderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C658B5205F0D9C00DF7B49 /* SliderTextView.swift */; };
 		85C658B8205F17F900DF7B49 /* DecimalTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C658B7205F17F900DF7B49 /* DecimalTextField.swift */; };
 		85C658BC205F5FC500DF7B49 /* ModelAssetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C658BB205F5FC500DF7B49 /* ModelAssetType.swift */; };
@@ -67,7 +67,7 @@
 		85CCE24B2065C003000560C3 /* Font+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCE24A2065C003000560C3 /* Font+Extensions.swift */; };
 		85CCE26D2066F04E000560C3 /* TransformationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCE26C2066F04E000560C3 /* TransformationType.swift */; };
 		85CCE27020671EDB000560C3 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCE26F20671EDB000560C3 /* UIColor+Extensions.swift */; };
-		85CCE272206723DE000560C3 /* ARPanelsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCE271206723DE000560C3 /* ARPanelsPresenter.swift */; };
+		85CCE272206723DE000560C3 /* PanelsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCE271206723DE000560C3 /* PanelsPresenter.swift */; };
 		85CCE27620673F12000560C3 /* NodeRender.metal in Sources */ = {isa = PBXBuildFile; fileRef = 85CCE27420673F11000560C3 /* NodeRender.metal */; };
 		85CCE27720673F12000560C3 /* NodeTechnique.plist in Resources */ = {isa = PBXBuildFile; fileRef = 85CCE27520673F11000560C3 /* NodeTechnique.plist */; };
 /* End PBXBuildFile section */
@@ -111,12 +111,12 @@
 		85C65890205F061500DF7B49 /* ARPowerPanels.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARPowerPanels.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85C65893205F061500DF7B49 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		85C65895205F061500DF7B49 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
-		85C65897205F061500DF7B49 /* SceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneViewController.swift; sourceTree = "<group>"; };
+		85C65897205F061500DF7B49 /* ARKitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARKitViewController.swift; sourceTree = "<group>"; };
 		85C6589A205F061500DF7B49 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		85C6589C205F061500DF7B49 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		85C6589F205F061500DF7B49 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		85C658A1205F061500DF7B49 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		85C658A8205F074100DF7B49 /* ComponentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentsViewController.swift; sourceTree = "<group>"; };
+		85C658A8205F074100DF7B49 /* SceneKitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneKitViewController.swift; sourceTree = "<group>"; };
 		85C658B5205F0D9C00DF7B49 /* SliderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderTextView.swift; sourceTree = "<group>"; };
 		85C658B7205F17F900DF7B49 /* DecimalTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecimalTextField.swift; sourceTree = "<group>"; };
 		85C658BB205F5FC500DF7B49 /* ModelAssetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelAssetType.swift; sourceTree = "<group>"; };
@@ -135,7 +135,7 @@
 		85CCE24A2065C003000560C3 /* Font+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Extensions.swift"; sourceTree = "<group>"; };
 		85CCE26C2066F04E000560C3 /* TransformationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformationType.swift; sourceTree = "<group>"; };
 		85CCE26F20671EDB000560C3 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
-		85CCE271206723DE000560C3 /* ARPanelsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARPanelsPresenter.swift; sourceTree = "<group>"; };
+		85CCE271206723DE000560C3 /* PanelsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelsPresenter.swift; sourceTree = "<group>"; };
 		85CCE27420673F11000560C3 /* NodeRender.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = NodeRender.metal; sourceTree = "<group>"; };
 		85CCE27520673F11000560C3 /* NodeTechnique.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = NodeTechnique.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -185,7 +185,7 @@
 				85CCE243206486BB000560C3 /* TransformationPanel */,
 				8565E267206B6A920094AC4E /* HierachyPanel */,
 				8565E261206B5BFC0094AC4E /* ARPowerPanels.swift */,
-				85CCE271206723DE000560C3 /* ARPanelsPresenter.swift */,
+				85CCE271206723DE000560C3 /* PanelsPresenter.swift */,
 				858A15C8206B438100A63DA2 /* Panel.swift */,
 			);
 			path = ARPowerPanels;
@@ -298,8 +298,8 @@
 		85C658A7205F072600DF7B49 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				85C658A8205F074100DF7B49 /* ComponentsViewController.swift */,
-				85C65897205F061500DF7B49 /* SceneViewController.swift */,
+				85C658A8205F074100DF7B49 /* SceneKitViewController.swift */,
+				85C65897205F061500DF7B49 /* ARKitViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -476,13 +476,13 @@
 				8565E296206B72390094AC4E /* TableItemConfigType.swift in Sources */,
 				8565E298206B72390094AC4E /* UIView+AutoLayout.swift in Sources */,
 				8565E28B206B72390094AC4E /* UICollectionView+Reusable.swift in Sources */,
-				85CCE272206723DE000560C3 /* ARPanelsPresenter.swift in Sources */,
+				85CCE272206723DE000560C3 /* PanelsPresenter.swift in Sources */,
 				85606276206DF89600884858 /* SCNScene+Glow.swift in Sources */,
 				85C658C4205F643D00DF7B49 /* ARSCNView+HitTest.swift in Sources */,
 				85CCE2472064A64B000560C3 /* TransformationPanel.swift in Sources */,
-				85C658A9205F074100DF7B49 /* ComponentsViewController.swift in Sources */,
+				85C658A9205F074100DF7B49 /* SceneKitViewController.swift in Sources */,
 				85CCE27620673F12000560C3 /* NodeRender.metal in Sources */,
-				85C65898205F061500DF7B49 /* SceneViewController.swift in Sources */,
+				85C65898205F061500DF7B49 /* ARKitViewController.swift in Sources */,
 				8565E28C206B72390094AC4E /* HostCell.swift in Sources */,
 				85CCE27020671EDB000560C3 /* UIColor+Extensions.swift in Sources */,
 				85C658B6205F0D9C00DF7B49 /* SliderTextView.swift in Sources */,
