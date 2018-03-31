@@ -10,11 +10,28 @@ import UIKit
 import SceneKit
 import ARKit
 
+class PowerPanelScene: SCNScene {
+
+    var shouldShowCamera: Bool = true
+
+    override var background: SCNMaterialProperty {
+        get {
+            if shouldShowCamera {
+                print("SCENE background \(super.background)")
+                return super.background
+            } else {
+                print("SCENE background -- none")
+                return SCNMaterialProperty()
+            }
+        }
+    }
+}
+
 protocol HasSelectedNode {
     func selectedSCNNode() -> SCNNode?
 }
 
-protocol ARPowerPanelsDataSource: HierachyPanelDataSource { }
+protocol ARPowerPanelsDataSource: HierachyIteratorDataSource { }
 
 class ARPowerPanels: UIView {
     
@@ -25,15 +42,13 @@ class ARPowerPanels: UIView {
             oldValue?.setGlow(false)
             selectedNode.setGlow(true)
 
-            updateSelectedNodeLabel()
-            transformationPanel.control(selectedNode)
-            hierachyPanel.renderHierachy()
+            updatePanels()
         }
     }
     
     weak var dataSource: ARPowerPanelsDataSource? {
         didSet {
-            hierachyPanel.dataSource = dataSource
+            updatePanels()
         }
     }
     
@@ -52,16 +67,82 @@ class ARPowerPanels: UIView {
     // MARK: Background views
     private let scene: SCNScene
     private var panelPresentor: PanelsPresenter!
+    
+    private let sceneViewParent = UIView()
     private let sceneView = SCNView()
     
-    private let isARKit: Bool
+    private var arSceneView: ARSCNView?
+    private let gameModeCameraNode = SCNNode()
+
+    private let rootNode: SCNNode // TODO refactor
     
-    init(scene: SCNScene, isARKit: Bool) {
-        self.isARKit = isARKit
+    convenience init(scene: SCNScene) {
+        self.init(scene: scene, rootNode: scene.rootNode, isARKit: false)
+        sceneView.backgroundColor = #colorLiteral(red: 0.1654644267, green: 0.3628849843, blue: 0.5607843399, alpha: 1) // TODO change color
+    }
+    
+    convenience init(arSceneView: ARSCNView, scene: SCNScene) {
+        
+        
+//        let newScene = SCNScene()
+////        newScene.background = SCNMaterialProperty(UIColor.purple) // GET ONLY
+////        for child in scene.rootNode.childNodes { // TODO move to function
+////            print("adding child \(child)")
+////            newScene.rootNode.addChildNode(child)
+////        }
+//
+//        newScene.rootNode.addChildNode(scene.rootNode)
+//
+//
+//
+//////        for childrenInARScene in scene.rootNode.childNodes {
+////            newScene.rootNode.addChildNode(scene.rootNode)
+//////        }
+//        self.init(scene: newScene, rootNode: newScene.rootNode, isARKit: true) // not sure why i can't do scene.rootnode
+
+
+        self.init(scene: scene, rootNode: scene.rootNode, isARKit: true) // not sure why i can't do scene.rootnode
+
+//        self.arSceneView = arSceneView
+        
+        // Select AR Mode (i.e. hide the GameMode)
+        sceneViewParent.isHidden = true
+        
+        
+        // Seems to only work first time. ugh. Whatever.
+        let cameraParent = SCNNode() // don't know why
+        rootNode.addChildNode(cameraParent)
+        cameraParent.position = SCNVector3(x: 0, y: 3, z: 13)
+
+        gameModeCameraNode.name = "GameMode Camera"
+        gameModeCameraNode.camera = SCNCamera()
+        cameraParent.addChildNode(gameModeCameraNode)
+        
+        print("camera initialized \(cameraParent)")
+        // place the camera
+        sceneView.pointOfView = gameModeCameraNode
+
+        
+        
+        // create and add a camera to the scene
+//        gameModeCameraNode.name = "GameMode Camera"
+//        gameModeCameraNode.camera = SCNCamera()
+//        rootNode.addChildNode(gameModeCameraNode)
+//        gameModeCameraNode.position = SCNVector3(x: 0, y: 3, z: 13)
+//        print("camera initialized \(gameModeCameraNode)")
+//        // place the camera
+//        sceneView.pointOfView = gameModeCameraNode
+
+        sceneView.backgroundColor = #colorLiteral(red: 0.1294117719, green: 0.2156862766, blue: 0.06666667014, alpha: 1)
+    }
+    
+    private init(scene: SCNScene, rootNode: SCNNode, isARKit: Bool) {
         self.scene = scene
+        self.rootNode = rootNode
         hierachyPanel = HierachyPanel()
 
         super.init(frame: CGRect.zero)
+
         
         // Init variables
         menuItems = [
@@ -78,15 +159,16 @@ class ARPowerPanels: UIView {
         panelPresentor.delegate = self
         
         // Setup left-hand menu
-        if isARKit {
+//        if isARKit { //TODO
             setupARGameModeSegmentedControl()
-        }
+//        }
         setupSelectedNodeLabel()
         setupShowHideMenuButton()
         setupVerticalMenuStack()
  
         // Setup right-hand panels
         hierachyPanel.delegate = self
+        hierachyPanel.dataSource = self
         transformationPanel.transformationDelegate = self
 
         // Set the selected node, and update all the panels to control this node
@@ -101,14 +183,25 @@ class ARPowerPanels: UIView {
         self.selectedNode = node
     }
     
+    private func updatePanels() {
+        updateSelectedNodeLabel()
+        if let selectedNode = selectedNode { // TODO Display error if no node was selected
+            transformationPanel.control(selectedNode)
+        }
+        hierachyPanel.renderHierachy()
+    }
+    
     private func setupSceneView() {
+        sceneViewParent.backgroundColor = #colorLiteral(red: 0.0003343143538, green: 0.03833642512, blue: 0.4235294163, alpha: 1)
+        addSubview(sceneViewParent)
+        sceneViewParent.constrainEdges(to: self)
+        
         sceneView.allowsCameraControl = true // allows the user to manipulate the camera
-        sceneView.backgroundColor = #colorLiteral(red: 0.0003343143538, green: 0.03833642512, blue: 0.4235294163, alpha: 1)
         sceneView.setupGlowEffect()
         //        sceneView.showsStatistics = true
         sceneView.scene = scene
-        addSubview(sceneView)
-        sceneView.constrainEdges(to: self)
+        sceneViewParent.addSubview(sceneView)
+        sceneView.constrainEdges(to: sceneViewParent)
     }
     
     private func setupSelectedNodeLabel() {
@@ -144,9 +237,37 @@ extension ARPowerPanels {
     
     @objc private func segmentSelected(_ segmentedControl: UISegmentedControl) {
         if segmentedControl.selectedSegmentIndex == 0 { // AR MODE
-            sceneView.isHidden = true
-        } else { // GAME
-            sceneView.isHidden = false
+            sceneViewParent.isHidden = true
+            if let powerScene = sceneView.scene as? PowerPanelScene {
+                powerScene.shouldShowCamera = true
+//                print("Current power camera node \(powerScene.background)")
+
+            }
+//            arSceneView?.isHidden = false
+        } else { // GAME Mode
+            sceneViewParent.isHidden = false
+//            arSceneView?.isHidden = true
+//            sceneView.pointOfView = gameModeCameraNode
+  
+            
+//            print("Current camera node \(sceneView.scene?.background)")
+
+            if let powerScene = sceneView.scene as? PowerPanelScene {
+                powerScene.shouldShowCamera = false
+//                print("Current power camera node \(powerScene.background)")
+
+            }
+            
+//            <SCNMaterialProperty: 0x1c00da010 | contents=(null)>
+
+//            sceneView.scene?.setb
+//            print("Current camera node \(sceneView.scene?.background)")
+
+            print("Current camera node \(sceneView.pointOfView)")
+
+            
+//            arSceneView?.scene = SCNScene()
+            
         }
     }
 }
@@ -211,6 +332,16 @@ extension ARPowerPanels: TransformationPanelDelegate {
 extension ARPowerPanels: HierachyPanelDelegate {
     func hierachyPanel(didSelectNode node: SCNNode) {
         selectedNode = node
+    }
+}
+
+extension ARPowerPanels: HierachyPanelDataSource {
+    func rootNodeForHierachy() -> SCNNode {
+        return rootNode
+    }
+    
+    func hierachyPanel(shouldDisplayChildrenFor node: SCNNode) -> Bool {
+        return dataSource?.hierachyPanel(shouldDisplayChildrenFor: node) ?? true
     }
 }
 

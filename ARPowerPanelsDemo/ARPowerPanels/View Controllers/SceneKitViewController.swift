@@ -50,7 +50,7 @@ class SceneKitViewController: UIViewController {
         super.viewDidLoad()
         
         scene = sceneCreator.createFoxPlaneScene()
-        powerPanels = ARPowerPanels(scene: scene, isARKit: false)
+        powerPanels = ARPowerPanels(scene: scene)
         powerPanels.selectNode(scene.rootNode)
         powerPanels.dataSource = self
         view.addSubview(powerPanels)
@@ -63,12 +63,8 @@ class SceneKitViewController: UIViewController {
 }
 
 extension SceneKitViewController: ARPowerPanelsDataSource {
-    func hierachyPanelScene() -> SCNScene {
-        return scene
-    }
-    
-    func hierachyPanel(shouldDisplay node: SCNNode) -> Bool {
-        return sceneCreator.isNodeParentModel(node: node)
+    func hierachyPanel(shouldDisplayChildrenFor node: SCNNode) -> Bool {
+        return !sceneCreator.isNodeParentModel(node: node)
     }
 }
 

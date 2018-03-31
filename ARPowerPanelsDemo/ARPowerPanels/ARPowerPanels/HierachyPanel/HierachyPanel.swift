@@ -10,7 +10,7 @@ import SceneKit
 import UIKit
 
 protocol HierachyPanelDataSource: HierachyIteratorDataSource {
-    func hierachyPanelScene() -> SCNScene
+    func rootNodeForHierachy() -> SCNNode
 }
 
 protocol HierachyPanelDelegate: class, HasSelectedNode {
@@ -49,8 +49,8 @@ class HierachyPanel: UIView {
     }
     
     func renderHierachy() {
-        guard let scene = dataSource?.hierachyPanelScene() else { return }
-        iterator.createHierachyStates(rootNode: scene.rootNode)
+        guard let rootNode = dataSource?.rootNodeForHierachy() else { return }
+        iterator.createHierachyStates(rootNode: rootNode)
     }
 }
 

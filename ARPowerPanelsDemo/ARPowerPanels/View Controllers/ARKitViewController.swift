@@ -14,7 +14,8 @@ class ARKitViewController: UIViewController {
     
     private var powerPanels: ARPowerPanels!
     private var sceneCreator = SceneCreator()
-    private var sceneView = ARSCNView()
+    private var arSceneView = ARSCNView()
+    var scene: SCNScene!
 
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -27,46 +28,44 @@ class ARKitViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.addSubview(sceneView)
-        sceneView.constrainEdges(to: view)
+        view.addSubview(arSceneView)
+        arSceneView.constrainEdges(to: view)
         
-        sceneView.delegate = self
-        sceneView.showsStatistics = true
-        sceneView.debugOptions  = [.showConstraints, ARSCNDebugOptions.showFeaturePoints]
+        arSceneView.delegate = self
+//        arSceneView.showsStatistics = true
+        arSceneView.debugOptions  = [.showConstraints, ARSCNDebugOptions.showFeaturePoints]
         
-        sceneView.scene = sceneCreator.createFoxPlaneScene()
+        scene = sceneCreator.createFoxPlaneScene()
+        arSceneView.scene.rootNode.name = "AR Scene Root Node"
+        arSceneView.scene = scene
         
-        powerPanels = ARPowerPanels(scene: sceneView.scene, isARKit: true)
-        powerPanels.selectNode(sceneView.scene.rootNode)
+        powerPanels = ARPowerPanels(arSceneView: arSceneView, scene: scene)
         powerPanels.dataSource = self
-        sceneView.addSubview(powerPanels)
-        powerPanels.constrainEdges(to: sceneView)
+        powerPanels.selectNode(scene.rootNode)
+        view.addSubview(powerPanels)
+        powerPanels.constrainEdges(to: view)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        beginSceneView()
+        beginarSceneView()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        sceneView.session.pause()
+        arSceneView.session.pause()
     }
     
-    private func beginSceneView() {
+    private func beginarSceneView() {
         let configuration = ARWorldTrackingConfiguration()
         configuration.planeDetection = .horizontal
-        sceneView.session.run(configuration)
+        arSceneView.session.run(configuration)
     }
 }
 
 extension ARKitViewController: ARPowerPanelsDataSource {
-    func hierachyPanelScene() -> SCNScene {
-        return sceneView.scene
-    }
-    
-    func hierachyPanel(shouldDisplay node: SCNNode) -> Bool {
-        return sceneCreator.isNodeParentModel(node: node)
+    func hierachyPanel(shouldDisplayChildrenFor node: SCNNode) -> Bool {
+        return !sceneCreator.isNodeParentModel(node: node)
     }
 }
 
@@ -75,7 +74,7 @@ extension ARKitViewController: ARPowerPanelsDataSource {
 //class ARKitViewController: UIViewController {
 //
 //    // MARK: Variables
-//    private var sceneView = ARSCNView()
+//    private var arSceneView = ARSCNView()
 //
 //    var foxNode = Model.fox.createNode()
 //
@@ -83,14 +82,14 @@ extension ARKitViewController: ARPowerPanelsDataSource {
 //    override func viewDidLoad() {
 //        super.viewDidLoad()
 //
-//        view.addSubview(sceneView)
-//        sceneView.constrainEdges(to: view)
+//        view.addSubview(arSceneView)
+//        arSceneView.constrainEdges(to: view)
 //
-//        sceneView.delegate = self
-//        sceneView.showsStatistics = true
-//        sceneView.debugOptions  = [.showConstraints, ARSCNDebugOptions.showFeaturePoints]
+//        arSceneView.delegate = self
+//        arSceneView.showsStatistics = true
+//        arSceneView.debugOptions  = [.showConstraints, ARSCNDebugOptions.showFeaturePoints]
 //
-//        sceneView.scene.rootNode.addChildNode(foxNode)
+//        arSceneView.scene.rootNode.addChildNode(foxNode)
 //
 ////        SliderInputsView(axisLabels: <#T##[String]#>, minValue: <#T##Float#>, maxValue: <#T##Float#>)
 ////
@@ -107,18 +106,18 @@ extension ARKitViewController: ARPowerPanelsDataSource {
 //
 //    override func viewWillAppear(_ animated: Bool) {
 //        super.viewWillAppear(animated)
-//        beginSceneView()
+//        beginarSceneView()
 //    }
 //
 //    override func viewWillDisappear(_ animated: Bool) {
 //        super.viewWillDisappear(animated)
-//        sceneView.session.pause()
+//        arSceneView.session.pause()
 //    }
 //
-//    private func beginSceneView() {
+//    private func beginarSceneView() {
 //        let configuration = ARWorldTrackingConfiguration()
 //        configuration.planeDetection = .horizontal
-//        sceneView.session.run(configuration)
+//        arSceneView.session.run(configuration)
 //    }
 //}
 
@@ -129,6 +128,7 @@ extension ARKitViewController: ARSCNViewDelegate {
         print("didAdd \(node.position)")
         
         let planeNode = NodeCreator.bluePlane(anchor: planeAnchor)
+        planeNode.name = "Blue Plane"
         
         // ARKit owns the node corresponding to the anchor, so make the plane a child node.
         node.addChildNode(planeNode)

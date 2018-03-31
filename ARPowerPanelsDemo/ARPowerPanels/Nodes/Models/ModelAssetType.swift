@@ -19,12 +19,14 @@ enum Model {
     func createNode() -> SCNNode {
         switch self {
         case .fox:
-            let scene = SCNScene(named: "art.scnassets/fox/max.scn")!
-            let foxNode = scene.rootNode.childNode(withName: "Max_rootNode", recursively: true)!
-            foxNode.scale = SCNVector3Make(10, 10, 10)
             let parentNode = SCNNode()
             parentNode.name = "FOX PARENT"
+            
+            let scene = SCNScene(named: "art.scnassets/fox/max.scn")!
+            let foxNode = scene.rootNode.childNode(withName: "Max_rootNode", recursively: true)!
+            foxNode.scale = SCNVector3Make(0.2, 0.2, 0.2)
             parentNode.addChildNode(foxNode)
+            
             return parentNode
         case .wolf:
             return nodeFromResource(assetName: "wolf/wolf", extensionName: "dae")
