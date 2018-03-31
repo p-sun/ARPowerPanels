@@ -42,13 +42,6 @@ class HierachyIterator {
             spaces += "-"
         }
         
-        let name: String
-        if level == 0 {
-            name = "Root Node"
-        } else {
-            name = node.name ?? "untitled"
-        }
-        
         let visibleChildNodes = visibleChildren(for: node)
         
         let expandableState: ExpandableState
@@ -61,7 +54,7 @@ class HierachyIterator {
         let state = HierachyState(node: node,
                                   level: level,
                                   expandableState: expandableState,
-                                  text: name,
+                                  text: node.displayName,
                                   font: UIFont.gameModelLabel,
                                   color: .white) { [weak self] in
                                     
@@ -93,15 +86,8 @@ class HierachyIterator {
     }
     
     private func visibleChildren(for node: SCNNode) -> [SCNNode] {
-        var visibleChildren = [SCNNode]()
-        
-        for child in node.childNodes {
-            let shouldDisplayChild = dataSource?.hierachyPanel(shouldDisplay: child) ?? true
-            if shouldDisplayChild {
-                visibleChildren.append(child)
-            }
+        return node.childNodes.filter {
+            dataSource?.hierachyPanel(shouldDisplay: $0) ?? true
         }
-        
-        return visibleChildren
     }
 }

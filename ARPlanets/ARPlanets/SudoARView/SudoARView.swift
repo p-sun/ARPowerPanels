@@ -26,6 +26,7 @@ class SudoARView: UIView {
             oldValue?.setGlow(false)
             selectedNode.setGlow(true)
 
+            selectedNodeLabel.text = "Selected node: \(selectedNode.displayName)"
             transformationPanel.control(selectedNode)
             hierachyPanel.renderHierachy()
         }
@@ -37,21 +38,22 @@ class SudoARView: UIView {
         }
     }
     
-    // MARK: Views for Menu Items
+    // MARK: Right-hand panels
     private let purplePanel = PurpleView()
     private let greenPanel = GreenView()
-    private let transformationPanel = TransformationPanel(controlTypes: TransformationType.minimum)
+    private let transformationPanel = TransformationPanel(controlTypes: TransformationType.all)
     private let hierachyPanel: HierachyPanel
     
-    // MARK: The Menu Itself
+    // MARK: Left hand views
+    private let showHideMenuButton = RoundedButton()
+    private let selectedNodeLabel = UILabel()
     private var menuItems = [MenuItem]()
     private let menuStack = MenuStack(axis: .vertical)
     
-    // MARK: Other Views
+    // MARK: Background views
     private let scene: SCNScene
     private var panelPresentor: ARPanelsPresenter!
     private let sceneView = SCNView()
-    
     
     init(scene: SCNScene) {
         self.scene = scene
@@ -59,23 +61,30 @@ class SudoARView: UIView {
 
         super.init(frame: CGRect.zero)
         
+        // Init variables
         menuItems = [
             MenuItem(name: "PURPLE", panelItem: PanelItem(viewToPresent: purplePanel, heightPriority: .init(250), preferredHeight: 400, width: 400)),
             MenuItem(name: "GREEN", panelItem: PanelItem(viewToPresent: greenPanel, heightPriority: .init(300), preferredHeight: 600, width: 400)),
             MenuItem(name: "TRANSFORMATION", panelItem: PanelItem(viewToPresent: transformationPanel, heightPriority: .init(1000), preferredHeight: nil, width: 400)),
             MenuItem(name: "SCENE GRAPH", panelItem: PanelItem(viewToPresent: hierachyPanel, heightPriority: .init(400), preferredHeight: 500, width: 400)),
         ]
-        
+
+        // Setup background
         setupSceneView()
-        setupShowHideMenuButton()
-        
+
         panelPresentor = ARPanelsPresenter(presentingView: self)
         panelPresentor.delegate = self
         
+        // Setup left-hand menu
         setupARGameModeSegmentedControl()
+        setupSelectedNodeLabel()
+        setupShowHideMenuButton()
         setupVerticalMenuStack()
-        
+ 
+        // Setup right-hand panels
         hierachyPanel.delegate = self
+        
+        // Set the selected node, and update all the panels to control this node
         selectedNode = scene.rootNode
     }
 
@@ -95,6 +104,14 @@ class SudoARView: UIView {
         sceneView.scene = scene
         addSubview(sceneView)
         sceneView.constrainEdges(to: self)
+    }
+    
+    private func setupSelectedNodeLabel() {
+        selectedNodeLabel.font = UIFont.gameModelLabel
+        selectedNodeLabel.textColor = UIColor.uiControlColor
+        addSubview(selectedNodeLabel)
+        selectedNodeLabel.constrainTop(to: self, offset: 100)
+        selectedNodeLabel.constrainLeft(to: self, offset: 30)
     }
 }
 
@@ -119,12 +136,11 @@ extension SudoARView {
 
 extension SudoARView: RoundedButtonDelegate {
     private func setupShowHideMenuButton() {
-        let showHideMenuButton = RoundedButton()
         showHideMenuButton.delegate = self
         showHideMenuButton.isSelected = true
         showHideMenuButton.setTitle("☰")
         addSubview(showHideMenuButton)
-        showHideMenuButton.constrainTop(to: self, offset: 110)
+        showHideMenuButton.constrainTopToBottom(of: selectedNodeLabel, offset: 20)
         showHideMenuButton.constrainLeading(to: self, offset: 30)
         showHideMenuButton.constrainSize(CGSize(width: 44, height: 44))
     }
@@ -141,7 +157,7 @@ extension SudoARView: MenuStackDelegate {
         menuStack.menuStackDelegate = self
         menuStack.configure(menuItems: menuItems.map({ $0.stackItem }))
         self.addSubview(menuStack)
-        menuStack.constrainTop(to: self, offset: 180)
+        menuStack.constrainTopToBottom(of: showHideMenuButton, offset: 10)
         menuStack.constrainLeading(to: self, offset: 30)
         menuStack.constrainBottom(to: self, offset: 30)
         menuStack.constrainWidth(200)

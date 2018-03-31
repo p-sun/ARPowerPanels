@@ -59,6 +59,9 @@ class ComponentsViewController: UIViewController {
         sudoARView.dataSource = self
         view.addSubview(sudoARView)
         sudoARView.constrainEdges(to: view)
+        
+        sudoARView.selectNode(scene.rootNode)
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {

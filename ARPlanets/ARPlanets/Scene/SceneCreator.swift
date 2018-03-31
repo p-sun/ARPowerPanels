@@ -45,12 +45,12 @@ struct SceneCreator {
         nodeMetaDatas[foxNode] = NodeMetaData(modelType: .fox)
 
         // Animate the 3d object
-        // foxNode.runAction(SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: 2, z: 0, duration: 1)))
+         foxNode.runAction(SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: 2, z: 0, duration: 1)))
         
-        let anotherFoxModel = Model.fox.createNode()
-        scene.rootNode.addChildNode(anotherFoxModel)
-        anotherFoxModel.position = SCNVector3Make(1, 1, 1)
-        nodeMetaDatas[anotherFoxModel] = NodeMetaData(modelType: .fox)
+//        let anotherFoxModel = Model.fox.createNode()
+//        scene.rootNode.addChildNode(anotherFoxModel)
+//        anotherFoxModel.position = SCNVector3Make(1, 1, 1)
+//        nodeMetaDatas[anotherFoxModel] = NodeMetaData(modelType: .fox)
         
         scene.rootNode.updateFocusIfNeeded()
 

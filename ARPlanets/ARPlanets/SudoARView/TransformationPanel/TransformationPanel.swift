@@ -42,7 +42,11 @@ class TransformationPanel: UIStackView {
     
     func control(_ transformable: Transformable) {
         self.transformable = transformable
-        
+        updateInputs()
+        Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(updateInputs), userInfo: nil, repeats: true)
+    }
+    
+    @objc private func updateInputs() {
         for controlType in controlTypes {
             updateInput(for: controlType)
         }
@@ -125,8 +129,8 @@ extension TransformationPanel: SliderVector3ViewDelegate {
             sliderVector3View == eulerRotationInput {
             transformable?.eulerAngles = vector
             
-            updateInput(for: .quaternionRotation)
-            updateInput(for: .orientation)
+//            updateInput(for: .quaternionRotation)
+//            updateInput(for: .orientation)
 
         } else if controlTypes.contains(.scale) &&
             sliderVector3View == scaleInput {
@@ -140,21 +144,23 @@ extension TransformationPanel: SliderVector3ViewDelegate {
 
 extension TransformationPanel: SliderVector4ViewDelegate {
     func sliderVector4View(_ sliderVector4View: SliderVector4View, didChangeValues vector: SCNVector4) {
+        // There are two Vector 4 inputs -- quaternion and orientation
+        // If the values in either of these are updated by the user, update the others
         if controlTypes.contains(.quaternionRotation) &&
             sliderVector4View == quaternionRotationInput {
             transformable?.rotation = vector
 
-            updateInput(for: .eulerRotation)
-            updateInput(for: .orientation)
+//            updateInput(for: .eulerRotation)
+//            updateInput(for: .orientation)
 
         } else if controlTypes.contains(.orientation) &&
             sliderVector4View == orientationInput {
 
             transformable?.orientation = vector
-            
-            updateInput(for: .quaternionRotation)
-            updateInput(for: .eulerRotation)
-            
+
+//            updateInput(for: .quaternionRotation)
+//            updateInput(for: .eulerRotation)
+
         } else {
             fatalError("Not implemented")
         }
