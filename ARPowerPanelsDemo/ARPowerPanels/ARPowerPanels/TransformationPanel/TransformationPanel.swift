@@ -72,39 +72,65 @@ class TransformationPanel: UIStackView {
         
         switch controlType {
         case .name:
+            let stackView = UIStackView()
+            let spacer = UIView()
+            spacer.constrainWidth(40)
+            stackView.addArrangedSubview(spacer)
+            
             nameTextField.delegate = self
-            addArrangedSubview(nameTextField)
+            stackView.addArrangedSubview(nameTextField)
+            stackView.constrainHeight(29)
+            addArrangedSubview(stackView)
             
         case .boundingBox:
+            let stackView = UIStackView()
+            let spacer = UIView()
+            spacer.constrainWidth(40)
+            stackView.addArrangedSubview(spacer)
+            
             boundingBoxLabel.textColor = .uiControlColor
-            addArrangedSubview(boundingBoxLabel)
+            stackView.addArrangedSubview(boundingBoxLabel)
+            stackView.constrainHeight(29)
+            addArrangedSubview(stackView)
             
         case .position:
+            positionInput.constrainHeight(29)
+
             positionInput.setPanSpeed(0.04)
             positionInput.delegate = self
             addArrangedSubview(positionInput)
             
         case .quaternionRotation:
+            quaternionRotationInput.constrainHeight(29)
+
             quaternionRotationInput.delegate = self
             quaternionRotationInput.setPanSpeed(0.007)
             addArrangedSubview(quaternionRotationInput)
             
         case .eulerRotation:
+            eulerRotationInput.constrainHeight(29)
+
             eulerRotationInput.delegate = self
             eulerRotationInput.setPanSpeed(0.007)
             addArrangedSubview(eulerRotationInput)
             
         case .scale:
+            scaleInput.constrainHeight(29)
+
             scaleInput.delegate = self
             scaleInput.setPanSpeed(0.06)
             addArrangedSubview(scaleInput)
             
         case .opacity:
+            opacityInput.constrainHeight(29)
+
             opacityInput.viewDelegate = self
             opacityInput.setPanSpeed(0.01)
             addArrangedSubview(opacityInput)
             
         case .orientation:
+            orientationInput.constrainHeight(29)
+
             orientationInput.delegate = self
             orientationInput.setPanSpeed(0.007)
             addArrangedSubview(orientationInput)
@@ -117,6 +143,7 @@ class TransformationPanel: UIStackView {
         label.font = UIFont.inputSliderHeader
         label.constrainHeight(34)
         label.textColor = #colorLiteral(red: 0.9819386001, green: 0.9880417428, blue: 1, alpha: 1)
+        label.constrainHeight(34)
         return label
     }
     

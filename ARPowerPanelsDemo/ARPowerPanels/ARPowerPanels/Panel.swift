@@ -45,6 +45,10 @@ class Panel {
         leftConstraint = view.constrainLeftToRight(of: presentingView)
         
         view.addSubview(viewToPresent)
+//        viewToPresent.constrainEdgesHorizontally(to: view, leftInsets: 20, rightInsets: 20)
+//        viewToPresent.constrainTop(to: view, offset: 10)
+//        viewToPresent.constrainBottom(to: view, offset: -20, relation: .equalOrGreater, priority: .init(999))
+        
         let insets = UIEdgeInsets(top: 10, left: 20, bottom: 20, right: 20)
         viewToPresent.constrainEdges(to: view, insets: insets)
     }

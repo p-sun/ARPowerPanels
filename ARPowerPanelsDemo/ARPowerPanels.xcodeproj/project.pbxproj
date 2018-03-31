@@ -9,8 +9,11 @@
 /* Begin PBXBuildFile section */
 		851F5AEE206A024500446089 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851F5AEC206A024500446089 /* RoundedButton.swift */; };
 		851F5AEF206A024500446089 /* MenuStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851F5AED206A024500446089 /* MenuStackView.swift */; };
-		851F5AF1206A02A000446089 /* MenuStakcItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851F5AF0206A02A000446089 /* MenuStakcItem.swift */; };
+		851F5AF1206A02A000446089 /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851F5AF0206A02A000446089 /* MenuItem.swift */; };
 		852D46C3206891400090EBED /* UICollection+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852D46C2206891400090EBED /* UICollection+Extensions.swift */; };
+		8556A6012070039200C14E52 /* PowerPanelCheckmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8556A6002070039200C14E52 /* PowerPanelCheckmarkView.swift */; };
+		8556A603207003F600C14E52 /* UIView+BorderedInputBoxes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8556A602207003F600C14E52 /* UIView+BorderedInputBoxes.swift */; };
+		8556A606207008FF00C14E52 /* PowerPanelCheckmarkInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8556A605207008FF00C14E52 /* PowerPanelCheckmarkInput.swift */; };
 		855E7074206F2829003751A8 /* PowerPanelTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855E7073206F2829003751A8 /* PowerPanelTextField.swift */; };
 		85606271206C630000884858 /* HierachyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85606270206C630000884858 /* HierachyCell.swift */; };
 		85606273206DE08200884858 /* HierarchyIteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85606272206DE08200884858 /* HierarchyIteractor.swift */; };
@@ -75,8 +78,11 @@
 /* Begin PBXFileReference section */
 		851F5AEC206A024500446089 /* RoundedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		851F5AED206A024500446089 /* MenuStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuStackView.swift; sourceTree = "<group>"; };
-		851F5AF0206A02A000446089 /* MenuStakcItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuStakcItem.swift; sourceTree = "<group>"; };
+		851F5AF0206A02A000446089 /* MenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
 		852D46C2206891400090EBED /* UICollection+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollection+Extensions.swift"; sourceTree = "<group>"; };
+		8556A6002070039200C14E52 /* PowerPanelCheckmarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerPanelCheckmarkView.swift; sourceTree = "<group>"; };
+		8556A602207003F600C14E52 /* UIView+BorderedInputBoxes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+BorderedInputBoxes.swift"; sourceTree = "<group>"; };
+		8556A605207008FF00C14E52 /* PowerPanelCheckmarkInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerPanelCheckmarkInput.swift; sourceTree = "<group>"; };
 		855E7073206F2829003751A8 /* PowerPanelTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerPanelTextField.swift; sourceTree = "<group>"; };
 		85606270206C630000884858 /* HierachyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HierachyCell.swift; sourceTree = "<group>"; };
 		85606272206DE08200884858 /* HierarchyIteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HierarchyIteractor.swift; sourceTree = "<group>"; };
@@ -156,17 +162,28 @@
 			children = (
 				851F5AED206A024500446089 /* MenuStackView.swift */,
 				851F5AEC206A024500446089 /* RoundedButton.swift */,
-				851F5AF0206A02A000446089 /* MenuStakcItem.swift */,
+				851F5AF0206A02A000446089 /* MenuItem.swift */,
 			);
 			path = "Menu Collection";
 			sourceTree = "<group>";
 		};
-		85606274206DF87900884858 /* Utilities */ = {
+		8556A604207008D900C14E52 /* Checkmark Input View */ = {
+			isa = PBXGroup;
+			children = (
+				8556A605207008FF00C14E52 /* PowerPanelCheckmarkInput.swift */,
+				8556A6002070039200C14E52 /* PowerPanelCheckmarkView.swift */,
+			);
+			path = "Checkmark Input View";
+			sourceTree = "<group>";
+		};
+		85606274206DF87900884858 /* PowerPanelExtensions */ = {
 			isa = PBXGroup;
 			children = (
 				85606275206DF89600884858 /* SCNScene+Glow.swift */,
+				8556A602207003F600C14E52 /* UIView+BorderedInputBoxes.swift */,
+				85CCE26F20671EDB000560C3 /* UIColor+Extensions.swift */,
 			);
-			path = Utilities;
+			path = PowerPanelExtensions;
 			sourceTree = "<group>";
 		};
 		8565E263206B5E4D0094AC4E /* Scene */ = {
@@ -180,7 +197,7 @@
 		8565E266206B6A310094AC4E /* ARPowerPanels */ = {
 			isa = PBXGroup;
 			children = (
-				85606274206DF87900884858 /* Utilities */,
+				85606274206DF87900884858 /* PowerPanelExtensions */,
 				852D46BF20688A260090EBED /* Menu Collection */,
 				85CCE243206486BB000560C3 /* TransformationPanel */,
 				8565E267206B6A920094AC4E /* HierachyPanel */,
@@ -310,7 +327,6 @@
 				85C658AB205F07DF00DF7B49 /* 2DUtilities */,
 				85C658BF205F643C00DF7B49 /* 3DUtilities */,
 				85CCE24A2065C003000560C3 /* Font+Extensions.swift */,
-				85CCE26F20671EDB000560C3 /* UIColor+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -369,6 +385,7 @@
 		85CCE243206486BB000560C3 /* TransformationPanel */ = {
 			isa = PBXGroup;
 			children = (
+				8556A604207008D900C14E52 /* Checkmark Input View */,
 				85CCE26E206701D9000560C3 /* Slider Input Views */,
 				85CCE26C2066F04E000560C3 /* TransformationType.swift */,
 				85CCE2462064A64B000560C3 /* TransformationPanel.swift */,
@@ -498,6 +515,7 @@
 				8565E28F206B72390094AC4E /* Separator.swift in Sources */,
 				8565E295206B72390094AC4E /* TableCell.swift in Sources */,
 				851F5AEF206A024500446089 /* MenuStackView.swift in Sources */,
+				8556A6012070039200C14E52 /* PowerPanelCheckmarkView.swift in Sources */,
 				8565E28A206B72390094AC4E /* FunctionalCollectionData.swift in Sources */,
 				8565E294206B72390094AC4E /* FunctionalTableData.swift in Sources */,
 				8565E285206B72390094AC4E /* CellActions.swift in Sources */,
@@ -506,6 +524,7 @@
 				85C658BE205F63E700DF7B49 /* NodeCreator.swift in Sources */,
 				85CCE2402064861B000560C3 /* Constrainable.swift in Sources */,
 				8565E290206B72390094AC4E /* TableItemLayout.swift in Sources */,
+				8556A603207003F600C14E52 /* UIView+BorderedInputBoxes.swift in Sources */,
 				8565E262206B5BFC0094AC4E /* ARPowerPanels.swift in Sources */,
 				8565E297206B72390094AC4E /* UITableView+Reusable.swift in Sources */,
 				85C658BC205F5FC500DF7B49 /* ModelAssetType.swift in Sources */,
@@ -518,6 +537,7 @@
 				855E7074206F2829003751A8 /* PowerPanelTextField.swift in Sources */,
 				85606271206C630000884858 /* HierachyCell.swift in Sources */,
 				85CCE2412064861B000560C3 /* UIView+Constraints.swift in Sources */,
+				8556A606207008FF00C14E52 /* PowerPanelCheckmarkInput.swift in Sources */,
 				85CCE24B2065C003000560C3 /* Font+Extensions.swift in Sources */,
 				8565E291206B72390094AC4E /* TableSection.swift in Sources */,
 				858A15C9206B438100A63DA2 /* Panel.swift in Sources */,
@@ -525,7 +545,7 @@
 				85CCE2492065BBC4000560C3 /* SliderVector4View.swift in Sources */,
 				8565E28E206B72390094AC4E /* Reusable.swift in Sources */,
 				8565E292206B72390094AC4E /* TableSectionChangeSet.swift in Sources */,
-				851F5AF1206A02A000446089 /* MenuStakcItem.swift in Sources */,
+				851F5AF1206A02A000446089 /* MenuItem.swift in Sources */,
 				85CCE23F2064861B000560C3 /* Constraints+Activation+Priority.swift in Sources */,
 				8565E287206B72390094AC4E /* CellStyle.swift in Sources */,
 				85C658C5205F643D00DF7B49 /* SCNVector3+Extensions.swift in Sources */,

@@ -55,8 +55,9 @@ class ARPowerPanels: UIView {
     // MARK: Right-hand panels
     private let purplePanel = PurpleView()
     private let greenPanel = GreenView()
-    private let transformationPanel = TransformationPanel(controlTypes: TransformationType.all)
+    private let transformationPanel = TransformationPanel(controlTypes: TransformationType.transformations)
     private let hierachyPanel: HierachyPanel
+    private let infoPanel =  TransformationPanel(controlTypes: TransformationType.entityInfo)
     
     // MARK: Left hand views
     private let showHideMenuButton = RoundedButton()
@@ -109,8 +110,8 @@ class ARPowerPanels: UIView {
         sceneViewParent.isHidden = true
         
         
-        // Seems to only work first time. ugh. Whatever.
-        let cameraParent = SCNNode() // don't know why
+        // Brakes if the user pans the scene
+        let cameraParent = SCNNode()
         rootNode.addChildNode(cameraParent)
         cameraParent.position = SCNVector3(x: 0, y: 3, z: 13)
 
@@ -146,8 +147,10 @@ class ARPowerPanels: UIView {
         
         // Init variables
         menuItems = [
-            MenuItem(name: "INFO", panelItem: PanelItem(viewToPresent: transformationPanel, heightPriority: .init(1000), preferredHeight: nil, width: 400)),
-            MenuItem(name: "SCENE GRAPH", panelItem: PanelItem(viewToPresent: hierachyPanel, heightPriority: .init(400), preferredHeight: 500, width: 400)),
+            MenuItem(name: "SCENE GRAPH", panelItem: PanelItem(viewToPresent: hierachyPanel, heightPriority: .init(400), preferredHeight: 440, width: 400)),
+            MenuItem(name: "INFO", panelItem: PanelItem(viewToPresent: infoPanel, heightPriority: .init(1000), preferredHeight: nil, width: 400)),
+            MenuItem(name: "TRANSFORMATION", panelItem: PanelItem(viewToPresent: transformationPanel, heightPriority: .init(1000), preferredHeight: nil, width: 400)),
+
             MenuItem(name: "PURPLE", panelItem: PanelItem(viewToPresent: purplePanel, heightPriority: .init(250), preferredHeight: 400, width: 400)),
             MenuItem(name: "GREEN", panelItem: PanelItem(viewToPresent: greenPanel, heightPriority: .init(300), preferredHeight: 600, width: 400)),
         ]
@@ -170,7 +173,8 @@ class ARPowerPanels: UIView {
         hierachyPanel.delegate = self
         hierachyPanel.dataSource = self
         transformationPanel.transformationDelegate = self
-
+        infoPanel.transformationDelegate = self
+        
         // Set the selected node, and update all the panels to control this node
         selectedNode = scene.rootNode
     }
@@ -187,6 +191,7 @@ class ARPowerPanels: UIView {
         updateSelectedNodeLabel()
         if let selectedNode = selectedNode { // TODO Display error if no node was selected
             transformationPanel.control(selectedNode)
+            infoPanel.control(selectedNode)
         }
         hierachyPanel.renderHierachy()
     }

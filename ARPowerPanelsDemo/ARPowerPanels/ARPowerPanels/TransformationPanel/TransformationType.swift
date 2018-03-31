@@ -30,11 +30,11 @@ enum TransformationType {
     }
 
     static var entityInfo: [TransformationType] {
-        return [.name, .boundingBox]
+        return [.name, .opacity, .boundingBox]
     }
     
     static var transformations: [TransformationType] {
-        return [.opacity, .position, .scale, .eulerRotation]
+        return [.position, .scale, .eulerRotation]
     }
     
     static var all: [TransformationType] {

@@ -44,17 +44,3 @@ extension PowerPanelTextField: UITextFieldDelegate {
         return true
     }
 }
-
-extension UIView {
-    func setupPowerPanelTextField(_ textField: UITextField, tintColor: UIColor) {
-        backgroundColor = .white
-        layer.borderColor = tintColor.cgColor
-        layer.borderWidth = 2
-        layer.cornerRadius = 8
-        
-        textField.tintColor = tintColor
-        textField.font = UIFont.inputSlider
-        addSubview(textField)
-        textField.constrainEdges(to: self, insets: UIEdgeInsets(top: 6, left: 6, bottom: 6, right: 6))
-    }
-}

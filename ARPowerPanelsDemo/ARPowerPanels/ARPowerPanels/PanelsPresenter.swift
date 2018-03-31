@@ -126,7 +126,7 @@ class PanelsPresenter {
         var middleConstraint: NSLayoutConstraint? = nil
         
         if let inPanel = inPanel, let topPanel = topPanel, let bottomPanel = bottomPanel {
-            middleConstraint = topPanel.view.constrainBottomToTop(of: bottomPanel.view, offset: -20, isActive: false)
+            middleConstraint = topPanel.view.constrainBottomToTop(of: bottomPanel.view, offset: -20, priority: UILayoutPriority.defaultHigh, isActive: false)
             bottomPanel.middleConstraint = middleConstraint // Store the middleConstraint in the bottomPanel
 
             let animateConstraints = shouldAnimatePanelHeight(targetPanel: inPanel, topPanel: topPanel, bottomPanel: bottomPanel)
