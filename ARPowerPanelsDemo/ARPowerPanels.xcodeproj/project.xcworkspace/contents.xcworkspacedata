@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:ARPlanets.xcodeproj">
+      location = "self:/Users/tsd040/Documents/paige/ARKit-Playground/ARPlanets/ARPowerPanels.xcodeproj">
    </FileRef>
 </Workspace>
