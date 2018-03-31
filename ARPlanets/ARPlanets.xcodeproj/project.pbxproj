@@ -11,7 +11,7 @@
 		851F5AEF206A024500446089 /* MenuStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851F5AED206A024500446089 /* MenuStackView.swift */; };
 		851F5AF1206A02A000446089 /* MenuStakcItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851F5AF0206A02A000446089 /* MenuStakcItem.swift */; };
 		852D46C3206891400090EBED /* UICollection+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852D46C2206891400090EBED /* UICollection+Extensions.swift */; };
-		855E7072206EDFA8003751A8 /* SCNNode+Display.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855E7071206EDFA8003751A8 /* SCNNode+Display.swift */; };
+		855E7074206F2829003751A8 /* PowerPanelTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855E7073206F2829003751A8 /* PowerPanelTextField.swift */; };
 		85606271206C630000884858 /* HierachyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85606270206C630000884858 /* HierachyCell.swift */; };
 		85606273206DE08200884858 /* HierarchyIteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85606272206DE08200884858 /* HierarchyIteractor.swift */; };
 		85606276206DF89600884858 /* SCNScene+Glow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85606275206DF89600884858 /* SCNScene+Glow.swift */; };
@@ -77,7 +77,7 @@
 		851F5AED206A024500446089 /* MenuStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuStackView.swift; sourceTree = "<group>"; };
 		851F5AF0206A02A000446089 /* MenuStakcItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuStakcItem.swift; sourceTree = "<group>"; };
 		852D46C2206891400090EBED /* UICollection+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollection+Extensions.swift"; sourceTree = "<group>"; };
-		855E7071206EDFA8003751A8 /* SCNNode+Display.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SCNNode+Display.swift"; sourceTree = "<group>"; };
+		855E7073206F2829003751A8 /* PowerPanelTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerPanelTextField.swift; sourceTree = "<group>"; };
 		85606270206C630000884858 /* HierachyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HierachyCell.swift; sourceTree = "<group>"; };
 		85606272206DE08200884858 /* HierarchyIteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HierarchyIteractor.swift; sourceTree = "<group>"; };
 		85606275206DF89600884858 /* SCNScene+Glow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SCNScene+Glow.swift"; sourceTree = "<group>"; };
@@ -165,7 +165,6 @@
 			isa = PBXGroup;
 			children = (
 				85606275206DF89600884858 /* SCNScene+Glow.swift */,
-				855E7071206EDFA8003751A8 /* SCNNode+Display.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -373,6 +372,7 @@
 				85CCE26E206701D9000560C3 /* Slider Input Views */,
 				85CCE26C2066F04E000560C3 /* TransformationType.swift */,
 				85CCE2462064A64B000560C3 /* TransformationPanel.swift */,
+				855E7073206F2829003751A8 /* PowerPanelTextField.swift */,
 			);
 			path = TransformationPanel;
 			sourceTree = "<group>";
@@ -481,7 +481,6 @@
 				85C658C4205F643D00DF7B49 /* ARSCNView+HitTest.swift in Sources */,
 				85CCE2472064A64B000560C3 /* TransformationPanel.swift in Sources */,
 				85C658A9205F074100DF7B49 /* ComponentsViewController.swift in Sources */,
-				855E7072206EDFA8003751A8 /* SCNNode+Display.swift in Sources */,
 				85CCE27620673F12000560C3 /* NodeRender.metal in Sources */,
 				85C65898205F061500DF7B49 /* SceneViewController.swift in Sources */,
 				8565E28C206B72390094AC4E /* HostCell.swift in Sources */,
@@ -516,6 +515,7 @@
 				8565E293206B72390094AC4E /* TableSectionHeaderFooter.swift in Sources */,
 				8565E269206B6AC10094AC4E /* HierachyPanel.swift in Sources */,
 				85CCE2422064861B000560C3 /* NibView.swift in Sources */,
+				855E7074206F2829003751A8 /* PowerPanelTextField.swift in Sources */,
 				85606271206C630000884858 /* HierachyCell.swift in Sources */,
 				85CCE2412064861B000560C3 /* UIView+Constraints.swift in Sources */,
 				85CCE24B2065C003000560C3 /* Font+Extensions.swift in Sources */,

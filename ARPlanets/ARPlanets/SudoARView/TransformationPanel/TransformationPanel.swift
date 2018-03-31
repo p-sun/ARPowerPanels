@@ -9,13 +9,22 @@
 import UIKit
 import SceneKit
 
+protocol TransformationPanelDelegate: class {
+    func transformationPanelDidChangeNodeName()
+}
+
 class TransformationPanel: UIStackView {
     
     // MARK: - Variables - Initialized externally
+    weak var transformationDelegate: TransformationPanelDelegate?
     weak private var transformable: Transformable? = nil
+    
     private let controlTypes: [TransformationType]
     
     // MARK: - Variables - Views
+    private lazy var nameTextField = PowerPanelTextField()
+    private lazy var boundingBoxLabel = header(for: .name)
+
     private lazy var positionInput = SliderVector3View()
     private lazy var quaternionRotationInput = SliderVector4View()
     private lazy var eulerRotationInput = SliderVector3View()
@@ -42,6 +51,11 @@ class TransformationPanel: UIStackView {
     
     func control(_ transformable: Transformable) {
         self.transformable = transformable
+        
+        if controlTypes.contains(.name) {
+            nameTextField.text = transformable.displayName
+        }
+        
         updateInputs()
         Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(updateInputs), userInfo: nil, repeats: true)
     }
@@ -57,6 +71,14 @@ class TransformationPanel: UIStackView {
         addArrangedSubview(header(for: controlType))
         
         switch controlType {
+        case .name:
+            nameTextField.delegate = self
+            addArrangedSubview(nameTextField)
+            
+        case .boundingBox:
+            boundingBoxLabel.textColor = .uiControlColor
+            addArrangedSubview(boundingBoxLabel)
+            
         case .position:
             positionInput.setPanSpeed(0.04)
             positionInput.delegate = self
@@ -103,6 +125,10 @@ class TransformationPanel: UIStackView {
         guard let transformable = transformable, controlTypes.contains(controlType) else { return }
         
         switch controlType {
+        case .name:
+            break
+        case .boundingBox:
+            boundingBoxLabel.text = boundingBoxText(for: transformable)
         case .position:
             positionInput.vector = transformable.position
         case .quaternionRotation:
@@ -116,6 +142,22 @@ class TransformationPanel: UIStackView {
         case .orientation:
             orientationInput.vector = transformable.orientation
         }
+    }
+
+    private func boundingBoxText(for transformable: Transformable) -> String {
+        let box = transformable.boundingBox
+        let diffBox = box.max - box.min
+        let diffBoxX = diffBox.x.decimalString(2)
+        let diffBoxY = diffBox.y.decimalString(2)
+        let diffBoxZ = diffBox.z.decimalString(2)
+        return "Width: \(diffBoxX), Depth: \(diffBoxY), Height: \(diffBoxZ)"
+    }
+}
+
+extension TransformationPanel: PowerPanelTextFieldDelegate {
+    func powerPanelTextField(didChangeText text: String?) {
+        transformable?.displayName = text ?? ""
+        transformationDelegate?.transformationPanelDidChangeNodeName()
     }
 }
 

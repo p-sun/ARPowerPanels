@@ -182,7 +182,7 @@ private extension String {
     }
 }
 
-private extension Float {
+extension Float {
     func decimalString(_ decimalPlaces: Int) -> String {
         return String(format: "%.\(decimalPlaces)f", self)
     }

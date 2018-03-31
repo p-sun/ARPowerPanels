@@ -26,7 +26,7 @@ class SudoARView: UIView {
             oldValue?.setGlow(false)
             selectedNode.setGlow(true)
 
-            selectedNodeLabel.text = "Selected node: \(selectedNode.displayName)"
+            updateSelectedNodeLabel()
             transformationPanel.control(selectedNode)
             hierachyPanel.renderHierachy()
         }
@@ -83,7 +83,8 @@ class SudoARView: UIView {
  
         // Setup right-hand panels
         hierachyPanel.delegate = self
-        
+        transformationPanel.transformationDelegate = self
+
         // Set the selected node, and update all the panels to control this node
         selectedNode = scene.rootNode
     }
@@ -112,6 +113,14 @@ class SudoARView: UIView {
         addSubview(selectedNodeLabel)
         selectedNodeLabel.constrainTop(to: self, offset: 100)
         selectedNodeLabel.constrainLeft(to: self, offset: 30)
+    }
+    
+    private func updateSelectedNodeLabel() {
+        if let selectedNode = selectedNode {
+            selectedNodeLabel.text = "Selected node: \(selectedNode.displayName)"
+        } else {
+            selectedNodeLabel.text = nil
+        }
     }
 }
 
@@ -181,6 +190,13 @@ extension SudoARView: ARPanelsPresenterDelegate {
         let menuItemWithDismissedView = menuItems.first { $0.panelItem.viewToPresent == view }
         menuItemWithDismissedView?.stackItem.isSelected = false
         menuStack.configure(menuItems: menuItems.map({ $0.stackItem }))
+    }
+}
+
+extension SudoARView: TransformationPanelDelegate {
+    func transformationPanelDidChangeNodeName() {
+        updateSelectedNodeLabel()
+        hierachyPanel.renderHierachy()
     }
 }
 

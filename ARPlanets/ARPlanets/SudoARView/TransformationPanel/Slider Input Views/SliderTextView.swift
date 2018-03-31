@@ -66,21 +66,13 @@ class SliderTextView: UIView {
     
     // MARK: - Private
     private func setup() {
-        backgroundColor = .white
-        layer.borderColor = customTintColor.cgColor
-        layer.borderWidth = 2
-        layer.cornerRadius = 8
         
         textField.decimalTextFieldDelegate = self
-        
-        textField.tintColor = customTintColor
         textField.accessoryBackgroundColor = customTintColor
         textField.accessoryNormalTextColor = #colorLiteral(red: 0.9073373833, green: 1, blue: 0.9944009735, alpha: 1)
         textField.accessoryHighlightedTextColor = #colorLiteral(red: 0.2576798222, green: 0.6260439845, blue: 0.6919346817, alpha: 1)
-        
-        textField.font = UIFont.inputSlider
-        addSubview(textField)
-        textField.constrainEdges(to: self, insets: UIEdgeInsets(top: 6, left: 6, bottom: 6, right: 6))
+
+        setupPowerPanelTextField(textField, tintColor: customTintColor)
         
         let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(didPan))
         addGestureRecognizer(panGestureRecognizer)
