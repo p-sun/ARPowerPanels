@@ -15,17 +15,15 @@ enum TransformationType {
         switch self {
         case .name: return "Name"
         case .boundingBox: return "Bounding Box"
+        case .opacity: return "Opacity"
             
         case .position: return "Position"
-
+            
+        case .scale: return "Scale"
+            
         case .eulerRotation: return "Euler Rotation"
         case .quaternionRotation: return "Quaternion Rotation"
         case .orientation: return "Orientation"
-
-        case .scale: return "Scale"
-
-        case .opacity: return "Opacity"
-
         }
     }
 
@@ -33,8 +31,12 @@ enum TransformationType {
         return [.name, .opacity, .boundingBox]
     }
     
-    static var transformations: [TransformationType] {
+    static var easyMove: [TransformationType] {
         return [.position, .scale, .eulerRotation]
+    }
+
+    static var advancedMove: [TransformationType] {
+        return [.position, .scale, .eulerRotation, .quaternionRotation, .orientation]
     }
     
     static var all: [TransformationType] {

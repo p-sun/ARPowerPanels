@@ -55,10 +55,12 @@ class ARPowerPanels: UIView {
     // MARK: Right-hand panels
     private let purplePanel = PurpleView()
     private let greenPanel = GreenView()
-    private let transformationPanel = TransformationPanel(controlTypes: TransformationType.transformations)
     private let hierachyPanel: HierachyPanel
-    private let infoPanel =  TransformationPanel(controlTypes: TransformationType.entityInfo)
     
+    private let infoPanel = TransformationPanel(controlTypes: TransformationType.entityInfo)
+    private let easyMovePanel = TransformationPanel(controlTypes: TransformationType.easyMove)
+    private let advancedMovePanel = TransformationPanel(controlTypes: TransformationType.advancedMove)
+
     // MARK: Left hand views
     private let showHideMenuButton = RoundedButton()
     private let selectedNodeLabel = UILabel()
@@ -149,8 +151,8 @@ class ARPowerPanels: UIView {
         menuItems = [
             MenuItem(name: "SCENE GRAPH", panelItem: PanelItem(viewToPresent: hierachyPanel, heightPriority: .init(400), preferredHeight: 440, width: 400)),
             MenuItem(name: "INFO", panelItem: PanelItem(viewToPresent: infoPanel, heightPriority: .init(1000), preferredHeight: nil, width: 400)),
-            MenuItem(name: "TRANSFORMATION", panelItem: PanelItem(viewToPresent: transformationPanel, heightPriority: .init(1000), preferredHeight: nil, width: 400)),
-
+            MenuItem(name: "EASY MOVES", panelItem: PanelItem(viewToPresent: easyMovePanel, heightPriority: .init(1000), preferredHeight: nil, width: 400)),
+            MenuItem(name: "ADVANCED MOVES", panelItem: PanelItem(viewToPresent: advancedMovePanel, heightPriority: .init(1000), preferredHeight: nil, width: 400)),
             MenuItem(name: "PURPLE", panelItem: PanelItem(viewToPresent: purplePanel, heightPriority: .init(250), preferredHeight: 400, width: 400)),
             MenuItem(name: "GREEN", panelItem: PanelItem(viewToPresent: greenPanel, heightPriority: .init(300), preferredHeight: 600, width: 400)),
         ]
@@ -172,8 +174,9 @@ class ARPowerPanels: UIView {
         // Setup right-hand panels
         hierachyPanel.delegate = self
         hierachyPanel.dataSource = self
-        transformationPanel.transformationDelegate = self
+        easyMovePanel.transformationDelegate = self
         infoPanel.transformationDelegate = self
+        advancedMovePanel.transformationDelegate = self
         
         // Set the selected node, and update all the panels to control this node
         selectedNode = scene.rootNode
@@ -190,7 +193,7 @@ class ARPowerPanels: UIView {
     private func updatePanels() {
         updateSelectedNodeLabel()
         if let selectedNode = selectedNode { // TODO Display error if no node was selected
-            transformationPanel.control(selectedNode)
+            easyMovePanel.control(selectedNode)
             infoPanel.control(selectedNode)
         }
         hierachyPanel.renderHierachy()
