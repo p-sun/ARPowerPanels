@@ -145,7 +145,6 @@ class ARPowerPanels: UIView {
         hierachyPanel = HierachyPanel()
 
         super.init(frame: CGRect.zero)
-
         
         // Init variables
         menuItems = [

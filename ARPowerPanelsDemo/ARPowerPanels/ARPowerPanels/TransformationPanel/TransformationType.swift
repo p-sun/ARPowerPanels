@@ -68,12 +68,29 @@ protocol Transformable: class {
 extension SCNNode: Transformable {
     var displayName: String {
         get {
+            var icons = ""
+            if parent == nil {
+                icons += "🌎"
+            }
+            if light != nil {
+                icons += "☀️"
+            }
+            if camera != nil {
+                icons += "🎥"
+            }
+            if geometry != nil {
+                icons += "📦"
+            }
+            if icons != "" {
+                icons = "   " + icons
+            }
+            
             if let name = self.name {
-                return name
+                return name + icons
             } else if parent == nil {
-                return "Root Node"
+                return "Root Node" + icons
             } else {
-                return "Untitled"
+                return "Untitled" + icons
             }
         }
         set {
