@@ -129,6 +129,7 @@ class ARPowerPanels: UIView {
         
         self.init(rootNode: arSceneView.scene.rootNode, isARKit: true)
         self.arSceneView = arSceneView
+        arSceneView.setupGlowTechnique()
 //        sceneView.scene = SCNScene()
         
 //        self.arSceneView = arSceneView

@@ -16,8 +16,8 @@ extension SCNNode {
     }
 }
 
-extension SCNView {
-    func setupGlowEffect() {
+extension SCNTechniqueSupport {
+    func setupGlowTechnique() {
         if let path = Bundle.main.path(forResource: "NodeTechnique", ofType: "plist") {
             if let dict = NSDictionary(contentsOfFile: path)  {
                 let dict2 = dict as! [String : AnyObject]
