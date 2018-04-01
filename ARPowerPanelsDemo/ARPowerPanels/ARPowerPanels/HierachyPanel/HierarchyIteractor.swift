@@ -86,9 +86,6 @@ class HierachyIterator {
     }
     
     private func visibleChildren(for node: SCNNode) -> [SCNNode] {
-        if node.name == "FOX PARENT" {
-            print("******found fox parent")
-        }
         guard dataSource?.hierachyIteractor(shouldDisplayChildrenFor: node) ?? true else { // Refactor
             return []
         }

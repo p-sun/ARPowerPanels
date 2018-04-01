@@ -76,10 +76,6 @@ extension HierachyPanel: HierachyIteratorDelegate {
         for hierachyState in nodeHierachies {
             let isNodeSelected = selectedNode == hierachyState.node
 
-            if isNodeSelected {
-                print("*** RENDERING NODE \(selectedNode)")
-            }
-            
             let backgroundColor = isNodeSelected ? UIColor.uiControlColor.withAlphaComponent(0.6) : .clear
             let cell = HierachyCell(
                 key: "node \(hierachyState.node.memoryAddress)",

@@ -20,9 +20,13 @@ class ARPowerPanels: UIView {
         didSet {
             guard let selectedNode = selectedNode else { return }
 
-            print("*** updating panels with new node \(selectedNode.displayName) \(selectedNode)")
             oldValue?.setGlow(false)
-            selectedNode.setGlow(true)
+            
+            // Don't glow ARSCNView.rootNode, because it doesn't work well with
+            // debug feature points and planes don't work well.
+            if selectedNode.name?.contains("World Origin") == false {
+                selectedNode.setGlow(true)
+            }
 
             updatePanels()
         }
@@ -209,7 +213,6 @@ extension ARPowerPanels {
                 for child in rootNode.childNodes {
                     let newChild = child
                     child.removeFromParentNode()
-                    print("adding child from sceneView to ARView \(child.displayName)")
                     newScene.rootNode.addChildNode(newChild)
                 }
                 arSceneView.scene = newScene
@@ -252,7 +255,6 @@ extension ARPowerPanels {
         gameModeCameraNode.camera = SCNCamera()
         cameraParent.addChildNode(gameModeCameraNode)
         
-        print("camera initialized \(cameraParent)")
         // place the camera
         sceneView.pointOfView = gameModeCameraNode
         
@@ -334,7 +336,6 @@ extension ARPowerPanels: HierachyPanelDelegate {
 
 extension ARPowerPanels: HierachyPanelDataSource {
     func rootNodeForHierachy() -> SCNNode {
-        print("root node for hierachy \(rootNode.displayName)")
         return rootNode
     }
     
