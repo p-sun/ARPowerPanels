@@ -76,9 +76,10 @@ class HierachyView: UIView {
 
         let stackView = UIStackView()
         addSubview(stackView)
-        stackView.constrainEdgesVertically(to: self)
+        stackView.constrainTop(to: self)
+        stackView.constrainBottom(to: self, priority: .init(998))
         leftConstraint = stackView.constrainLeft(to: self)
-        stackView.constrainRight(to: self)
+        stackView.constrainRight(to: self, priority: .init(998))
         
         arrowButton.setTitleColor(.white, for: .normal)
         arrowButton.setTitleColor(UIColor.white.withAlphaComponent(0.3), for: .highlighted)

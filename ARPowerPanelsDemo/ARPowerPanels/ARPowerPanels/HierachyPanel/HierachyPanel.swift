@@ -40,7 +40,10 @@ class HierachyPanel: UIView {
         
         tableView.backgroundColor = .clear
         addSubview(tableView)
-        tableView.constrainEdges(to: self)
+        tableView.constrainTop(to: self)
+        tableView.constrainBottom(to: self, priority: .defaultHigh)
+        tableView.constrainLeft(to: self)
+        tableView.constrainRight(to: self, priority: .defaultHigh)
         functionalTableData.tableView = tableView
         
         renderHierachy()
@@ -70,8 +73,8 @@ extension HierachyPanel: HierachyIteratorDelegate {
     }
     
     private func render(nodeHierachies: [HierachyState]) {
-        if bounds.width <= 0  {
-            bounds.size = CGSize(width: 400, height: 400) // Arbitary size so that FTD won't crash
+        guard bounds.width > 0 else {
+            return
         }
         
         var cells = [CellConfigType]()

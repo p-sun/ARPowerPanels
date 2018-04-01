@@ -302,7 +302,12 @@ extension ARPowerPanels: MenuStackDelegate {
     
     func menuStack(_ menuStack: MenuStack, didSelectAtIndex index: Int) {
         if menuStack == self.menuStack {
-            panelPresentor.togglePanel(panelItem: menuItems[index].panelItem)
+            let panelItem = menuItems[index].panelItem
+            panelPresentor.togglePanel(panelItem: panelItem)
+
+            if panelItem.viewToPresent == hierachyPanel {
+                hierachyPanel.renderHierachy()
+            }
         }
     }
 }
