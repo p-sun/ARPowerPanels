@@ -175,7 +175,7 @@
 			path = "Left Menu";
 			sourceTree = "<group>";
 		};
-		853ACF762071705300BF01CA /* Source */ = {
+		853ACF762071705300BF01CA /* Sources */ = {
 			isa = PBXGroup;
 			children = (
 				8565E266206B6A310094AC4E /* PowerPanels */,
@@ -184,7 +184,7 @@
 				85C658A7205F072600DF7B49 /* View Controllers */,
 				85C658B9205F5FA500DF7B49 /* Nodes */,
 			);
-			path = Source;
+			path = Sources;
 			sourceTree = "<group>";
 		};
 		8556A604207008D900C14E52 /* Checkmark Input View */ = {
@@ -327,7 +327,7 @@
 		85C65892205F061500DF7B49 /* ARPowerPanelsDemo */ = {
 			isa = PBXGroup;
 			children = (
-				853ACF762071705300BF01CA /* Source */,
+				853ACF762071705300BF01CA /* Sources */,
 				85C65893205F061500DF7B49 /* AppDelegate.swift */,
 				85C65895205F061500DF7B49 /* art.scnassets */,
 				85C65899205F061500DF7B49 /* Main.storyboard */,
