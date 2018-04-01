@@ -10,10 +10,6 @@ import UIKit
 import SceneKit
 import ARKit
 
-protocol ARPowerPanelsDataSource: class {
-    func powerPanel(shouldDisplayChildrenFor node: SCNNode) -> Bool
-}
-
 enum ARPowerPanelsType {
     case sceneGraph, info, easyMoves, allMoves, allEdits
     
@@ -36,12 +32,6 @@ class ARPowerPanels: UIView {
                 selectedNode.setGlow(true)
             }
 
-            updatePanels()
-        }
-    }
-    
-    weak var dataSource: ARPowerPanelsDataSource? {
-        didSet {
             updatePanels()
         }
     }
@@ -371,11 +361,7 @@ extension ARPowerPanels: HierachyPanelDataSource {
     func rootNodeForHierachy() -> SCNNode {
         return rootNode
     }
-    
-    func hierachyPanel(shouldDisplayChildrenFor node: SCNNode) -> Bool {
-        return dataSource?.powerPanel(shouldDisplayChildrenFor: node) ?? true
-    }
-    
+
     func selectedForHierachyPanel() -> SCNNode? {
         return selectedNode
     }

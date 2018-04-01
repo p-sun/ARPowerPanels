@@ -12,7 +12,6 @@ import UIKit
 protocol HierachyPanelDataSource: class {
     func rootNodeForHierachy() -> SCNNode
     func selectedForHierachyPanel() -> SCNNode?
-    func hierachyPanel(shouldDisplayChildrenFor: SCNNode) -> Bool
 }
 
 protocol HierachyPanelDelegate: class {
@@ -36,7 +35,6 @@ class HierachyPanel: UIView {
     init() {
         super.init(frame: CGRect.zero)
         iterator.delegate = self
-        iterator.dataSource = self
         
         let addRemoveButtonStack = UIStackView()
         addRemoveButtonStack.backgroundColor = UIColor.green
@@ -47,17 +45,25 @@ class HierachyPanel: UIView {
         addRemoveButtonStack.constrainLeft(to: self)
         addRemoveButtonStack.constrainBottom(to: self)
         addRemoveButtonStack.constrainHeight(44)
-        addRemoveButtonStack.constrainWidth(210)
+        addRemoveButtonStack.constrainEdgesHorizontally(to: self)
         
         let addModelButton = RoundedButton()
+        addModelButton.isSelected = true
         addModelButton.addTarget(self, action: #selector(addModelPressed), for: .touchUpInside)
         addModelButton.setTitle("+ Model")
         addRemoveButtonStack.addArrangedSubview(addModelButton)
         
         let addShapeButton = RoundedButton()
+        addShapeButton.isSelected = true
         addShapeButton.addTarget(self, action: #selector(addShapePressed), for: .touchUpInside)
         addShapeButton.setTitle("+ Shape")
         addRemoveButtonStack.addArrangedSubview(addShapeButton)
+        
+        let removeModelButton = RoundedButton()
+        removeModelButton.isSelected = true
+        removeModelButton.addTarget(self, action: #selector(removeModelPressed), for: .touchUpInside)
+        removeModelButton.setTitle("Delete")
+        addRemoveButtonStack.addArrangedSubview(removeModelButton)
         
         tableView.addCornerRadius()
         tableView.backgroundColor = .clear
@@ -81,29 +87,41 @@ class HierachyPanel: UIView {
     }
     
     @objc private func addModelPressed(_ button: UIButton) {
-        let modelPicker = ModelCollectionView(frame: bounds, models: Model.allTypes)
+        let modelPicker = ModelCollectionView(frame: bounds, nodeMakers: Model.allTypes)
+        modelPicker.delegate = self
         modelPicker.backgroundColor = #colorLiteral(red: 0.01086046056, green: 0.06186843822, blue: 0.400000006, alpha: 1)
         modelPicker.addCornerRadius()
         addSubview(modelPicker)
         modelPicker.constrainEdges(to: self)
-        button.isSelected = false
+        button.isSelected = true
     }
     
     @objc private func addShapePressed(_ button: UIButton) {
-        let shapePicker = ModelCollectionView(frame: bounds, models: Shapes.allTypes)
+        let shapePicker = ModelCollectionView(frame: bounds, nodeMakers: Shapes.allTypes)
+        shapePicker.delegate = self
         shapePicker.backgroundColor = #colorLiteral(red: 0.3594371684, green: 0.06657016599, blue: 0.2541848027, alpha: 1)
         shapePicker.addCornerRadius()
         addSubview(shapePicker)
         shapePicker.constrainEdges(to: self)
-        button.isSelected = false
+        button.isSelected = true
+    }
+    
+    @objc private func removeModelPressed(_ button: UIButton) {
+        let selectedNode = dataSource?.selectedForHierachyPanel()
+        SceneCreator.shared.removeNode(selectedNode)
+        renderHierachy()
+        button.isSelected = true
     }
 }
 
 // MARK: Private
 
-extension HierachyPanel: HierachyIteratorDataSource {
-    func hierachyIteractor(shouldDisplayChildrenFor node: SCNNode) -> Bool {
-        return dataSource?.hierachyPanel(shouldDisplayChildrenFor: node) ?? true
+extension HierachyPanel: ModelCollectionViewDelegate {
+    func modelCollectionView(_ modelCollectionView: ModelCollectionView, didSelectModel nodeMaker: NodeMaker) {
+        guard let selectedNode = dataSource?.selectedForHierachyPanel() else { return }
+        let newNode = nodeMaker.createNode()
+        SceneCreator.shared.addNode(newNode, to: selectedNode)
+        delegate?.hierachyPanel(didSelectNode: newNode)
     }
 }
 

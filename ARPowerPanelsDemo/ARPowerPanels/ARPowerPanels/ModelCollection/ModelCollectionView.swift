@@ -9,7 +9,7 @@
 import UIKit
 
 protocol ModelCollectionViewDelegate: class {
-    func modelCollectionView(_ modelCollectionView: ModelCollectionView, didSelectIndex: Int)
+    func modelCollectionView(_ modelCollectionView: ModelCollectionView, didSelectModel nodeMaker: NodeMaker)
 }
 
 class ModelCollectionView: UIView {
@@ -18,8 +18,12 @@ class ModelCollectionView: UIView {
     
     private let imageCollectionView: ImageCollectionView
 
-    init(frame: CGRect, models: [NodeMaker]) {
-        let images = models.map { $0.menuImage }
+    private let nodeMakers: [NodeMaker]
+    
+    init(frame: CGRect, nodeMakers: [NodeMaker]) {
+        self.nodeMakers = nodeMakers
+        
+        let images = nodeMakers.map { $0.menuImage }
         imageCollectionView = ImageCollectionView(images: images, frame: frame)
         
         super.init(frame: frame)
@@ -51,6 +55,7 @@ class ModelCollectionView: UIView {
 
 extension ModelCollectionView: ImageCollectionViewDelegate {
     func imageCollection(didSelectItemAt index: Int) {
-        print("did select index \(index)")
+        delegate?.modelCollectionView(self, didSelectModel: nodeMakers[index])
+        removeFromSuperview()
     }
 }

@@ -47,9 +47,18 @@ enum Shapes: NodeMaker {
     }
     
     func createNode() -> SCNNode {
-        let node = SCNNode()
-        node.geometry = geometry(for: self)
-        return node
+        
+        let basicGeometry = geometry(for: self)
+        basicGeometry.firstMaterial?.diffuse.contents = UIColor.randomColor()
+        
+        let childNode = SCNNode()
+        childNode.geometry = basicGeometry
+        childNode.scale = SCNVector3Make(0.03, 0.03, 0.03)
+        
+        let parentNode = SCNNode()
+        parentNode.name = "\(self)"
+        parentNode.addChildNode(childNode)
+        return parentNode
     }
     
     private func geometry(for type: Shapes) -> SCNGeometry {
@@ -77,7 +86,7 @@ enum Shapes: NodeMaker {
 }
 
 enum Model: NodeMaker {
-    case axis, wolf, fox, lowPolyTree, camera
+    case axis, wolf, fox, lowPolyTree, camera, custom
     
     static var allTypes: [NodeMaker] {
         return [Model.axis, Model.wolf, Model.fox, Model.lowPolyTree]
@@ -86,24 +95,26 @@ enum Model: NodeMaker {
     func createNode() -> SCNNode {
         switch self {
         case .axis:
-             return NodeCreator.createAxesNode(quiverLength: 0.5, quiverThickness: 0.2)
+            return NodeCreator.createAxesNode(quiverLength: 0.15, quiverThickness: 1.0)
         case .fox:
             let parentNode = SCNNode()
             parentNode.name = "Fox 🦊"
             
             let scene = SCNScene(named: "art.scnassets/fox/max.scn")!
-            let foxNode = scene.rootNode.childNode(withName: "Max_rootNode", recursively: true)!
+            let foxNode = scene.rootNode.childNode(withName: "Max_rootNode", recursively: true)!.clone()
             foxNode.scale = SCNVector3Make(0.2, 0.2, 0.2)
             parentNode.addChildNode(foxNode)
             
             return parentNode
         case .wolf:
-            return nodeFromResource(assetName: "wolf/wolf", extensionName: "dae")
+            return nodeFromResource(assetName: "wolf/wolf", extensionName: "dae").clone()
         case .lowPolyTree:
-            return nodeFromResource(assetName: "lowPolyTree", extensionName: "dae")
+            return nodeFromResource(assetName: "lowPolyTree", extensionName: "dae").clone()
         case .camera:
             let rootCamera = nodeFromResource(assetName: "camera", extensionName: "scn")
             return rootCamera.childNode(withName: "Camera Shape", recursively: true)!
+        case .custom:
+            return SCNNode()
         }
     }
     
@@ -128,6 +139,8 @@ enum Model: NodeMaker {
             return #imageLiteral(resourceName: "fox_squareLQ")
         case .camera:
            return #imageLiteral(resourceName: "menuLowPolyTree")
+        case .custom:
+             return #imageLiteral(resourceName: "menuLowPolyTree")
         }
     }
 }

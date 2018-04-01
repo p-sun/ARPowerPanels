@@ -85,7 +85,6 @@ extension ImageCollectionView : UICollectionViewDelegateFlowLayout {
         let numberOfItemsPerRow: CGFloat = 3
         let itemsWithoutSpacing = bounds.width - CGFloat(numberOfItemsPerRow - 1) * cellMinInteritemSpacing - 20 // TODO make insets custom too
         let widthPerItem = itemsWithoutSpacing / numberOfItemsPerRow
-        print("width \(widthPerItem)")
         return CGSize(width: widthPerItem, height: widthPerItem)
     }
     

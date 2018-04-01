@@ -13,7 +13,6 @@ import ARKit
 class ARKitViewController: UIViewController {
     
     private var powerPanels: ARPowerPanels!
-    private var sceneCreator = SceneCreator()
     private var arSceneView = ARSCNView()
     var scene: SCNScene!
 
@@ -33,14 +32,13 @@ class ARKitViewController: UIViewController {
         
         arSceneView.delegate = self
 //        arSceneView.showsStatistics = true
-        arSceneView.debugOptions  = [.showConstraints, ARSCNDebugOptions.showFeaturePoints, ARSCNDebugOptions.showWorldOrigin]
+        arSceneView.debugOptions  = [.showConstraints, ARSCNDebugOptions.showFeaturePoints]//, ARSCNDebugOptions.showWorldOrigin]
         
-        scene = sceneCreator.createFoxPlaneScene()
+        scene = SceneCreator.shared.createFoxPlaneScene()
         arSceneView.scene = scene
         scene.rootNode.name = "AR World Origin   🌎"
 
         powerPanels = ARPowerPanels(arSceneView: arSceneView, panelTypes: ARPowerPanelsType.allTypes)
-        powerPanels.dataSource = self
         powerPanels.selectNode(scene.rootNode)
         view.addSubview(powerPanels)
         powerPanels.constrainEdges(to: view)
@@ -61,12 +59,6 @@ class ARKitViewController: UIViewController {
         configuration.planeDetection = .horizontal
         
         arSceneView.session.run(configuration)
-    }
-}
-
-extension ARKitViewController: ARPowerPanelsDataSource {
-    func powerPanel(shouldDisplayChildrenFor node: SCNNode) -> Bool {
-        return !sceneCreator.isNodeParentModel(node: node)
     }
 }
 

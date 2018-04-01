@@ -35,7 +35,6 @@ class SceneKitViewController: UIViewController {
     
     var powerPanels: ARPowerPanels!
     
-    var sceneCreator = SceneCreator()
     var scene: SCNScene!
 
     init() {
@@ -49,10 +48,9 @@ class SceneKitViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        scene = sceneCreator.createFoxPlaneScene()
+        scene = SceneCreator.shared.createFoxPlaneScene()
         powerPanels = ARPowerPanels(scene: scene, panelTypes: [.info, .easyMoves, .sceneGraph])
         powerPanels.selectNode(scene.rootNode)
-        powerPanels.dataSource = self
         view.addSubview(powerPanels)
         powerPanels.constrainEdges(to: view)
     }
@@ -61,10 +59,3 @@ class SceneKitViewController: UIViewController {
         super.viewDidAppear(animated)
     }
 }
-
-extension SceneKitViewController: ARPowerPanelsDataSource {
-    func powerPanel(shouldDisplayChildrenFor node: SCNNode) -> Bool {
-        return !sceneCreator.isNodeParentModel(node: node)
-    }
-}
-

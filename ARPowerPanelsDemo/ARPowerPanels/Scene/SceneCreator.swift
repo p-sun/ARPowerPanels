@@ -9,14 +9,21 @@
 import SceneKit
 
 struct NodeMetaData {
-    let modelType: Model
+    let displayInHierachy: Bool
+    
+    init(displayInHierachy: Bool) {
+        self.displayInHierachy = displayInHierachy
+    }
 }
 
-struct SceneCreator {
+class SceneCreator {
+    
+    static let shared = SceneCreator()
+    
     private var nodeMetaDatas = [SCNNode: NodeMetaData]()
 
-    mutating func createFoxPlaneScene() -> SCNScene {
-       let scene = SCNScene()//PowerPanelScene()//SCNScene(named: "art.scnassets/ship.scn")!
+    func createFoxPlaneScene() -> SCNScene {
+       let scene = SCNScene()
         
         // create and add a light to the scene
         let lightNode = SCNNode()
@@ -35,8 +42,7 @@ struct SceneCreator {
         scene.rootNode.addChildNode(ambientLightNode)
         
         let foxNode = Model.fox.createNode()
-        scene.rootNode.addChildNode(foxNode)
-        nodeMetaDatas[foxNode] = NodeMetaData(modelType: .fox)
+        addNode(foxNode, to: scene.rootNode)
 
         // Animate the 3d object
          // foxNode.runAction(SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: 2, z: 0, duration: 1)))
@@ -46,13 +52,35 @@ struct SceneCreator {
 //        anotherFoxModel.position = SCNVector3Make(1, 1, 1)
 //        nodeMetaDatas[anotherFoxModel] = NodeMetaData(modelType: .fox)
         
+        let axisNode = Model.axis.createNode()
+        addNode(axisNode, to: scene.rootNode)
+        
         scene.rootNode.updateFocusIfNeeded()
 
         return scene
     }
     
-    func isNodeParentModel(node: SCNNode) -> Bool {
-        return nodeMetaDatas[node] != nil
+    func addNode(_ node: SCNNode, to parentNode: SCNNode) {
+        parentNode.addChildNode(node)
+        
+        nodeMetaDatas[node] = NodeMetaData(displayInHierachy: true)
+        node.enumerateChildNodes { (child, _) in
+            nodeMetaDatas[child] = NodeMetaData(displayInHierachy: false)
+        }
+        
+        nodeMetaDatas[parentNode] = NodeMetaData(displayInHierachy: true)
+    }
+    
+    func removeNode(_ node: SCNNode?) {
+        guard let node = node else { return }
+        node.removeFromParentNode()
+        node.enumerateHierarchy { (node, _) in
+            nodeMetaDatas[node] = nil
+        }
+    }
+    
+    func displayInHierachy(node: SCNNode) -> Bool {
+        let metadata = nodeMetaDatas[node]
+        return metadata?.displayInHierachy ?? true
     }
 }
-

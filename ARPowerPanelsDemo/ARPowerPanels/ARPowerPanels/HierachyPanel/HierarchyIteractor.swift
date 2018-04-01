@@ -8,10 +8,6 @@
 
 import SceneKit
 
-protocol HierachyIteratorDataSource: class {
-    func hierachyIteractor(shouldDisplayChildrenFor node: SCNNode) -> Bool
-}
-
 protocol HierachyIteratorDelegate: class {
     func hierachyIterator(didChange hierachyStates: [HierachyState])
 }
@@ -24,7 +20,6 @@ class HierachyIterator {
     private var rootNode: SCNNode?
     
     weak var delegate: HierachyIteratorDelegate?
-    weak var dataSource: HierachyIteratorDataSource?
 
     func createHierachyStates(rootNode: SCNNode) {
         self.rootNode = rootNode
@@ -86,10 +81,10 @@ class HierachyIterator {
     }
     
     private func visibleChildren(for node: SCNNode) -> [SCNNode] {
-        guard dataSource?.hierachyIteractor(shouldDisplayChildrenFor: node) ?? true else { // Refactor
-            return []
+        let visible = node.childNodes.filter { child in
+            return SceneCreator.shared.displayInHierachy(node: child)
         }
         
-        return node.childNodes
+        return visible
     }
 }
