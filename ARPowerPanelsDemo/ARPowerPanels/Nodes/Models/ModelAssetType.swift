@@ -20,7 +20,7 @@ enum Model {
         switch self {
         case .fox:
             let parentNode = SCNNode()
-            parentNode.name = "FOX PARENT"
+            parentNode.name = "Fox 🦊"
             
             let scene = SCNScene(named: "art.scnassets/fox/max.scn")!
             let foxNode = scene.rootNode.childNode(withName: "Max_rootNode", recursively: true)!

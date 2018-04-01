@@ -29,7 +29,6 @@ class SliderTextView: UIView {
         }
         set {
             guard newValue >= minValue && newValue <= maxValue && newValue != value else { return }
-//            print("SliderTextView setting new value \(newValue)")
             textField.value = newValue
         }
     }
@@ -39,7 +38,7 @@ class SliderTextView: UIView {
     private var maxValue: Float
     
     // MARK: - Private Constants
-    private let customTintColor = #colorLiteral(red: 0.09950500764, green: 0.8582663296, blue: 0.8312631615, alpha: 1)
+    private let customTintColor = UIColor.uiControlColor
     private let textField: DecimalTextField
     
     // MARK: - Public
@@ -90,8 +89,6 @@ class SliderTextView: UIView {
             let snappedValue = pannedValue.snapToValueIfClose(
                 snapToValues: [minValue, 0, maxValue],
                 withinRange: panSpeed * 8.0)
-
-//            print("snap \(snappedValue) from \(pannedValue) withinRange +-\(panSpeed * 10.0) panspeed \(panSpeed)")
 
             value = snappedValue
             delegate?.sliderTextView(self, didChange: value)
