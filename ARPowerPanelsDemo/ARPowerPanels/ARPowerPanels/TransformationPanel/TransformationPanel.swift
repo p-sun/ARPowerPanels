@@ -242,7 +242,7 @@ extension TransformationPanel: SliderInputsViewDelegate {
     }
 }
 
-private extension SCNVector3 {
+extension SCNVector3 {
     var degreesToRadians: SCNVector3 {
         return SCNVector3Make(x.degreesToRadians,
                               y.degreesToRadians,

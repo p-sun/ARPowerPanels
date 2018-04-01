@@ -23,7 +23,7 @@ class ARPowerPanels: UIView {
             oldValue?.setGlow(false)
             
             // Don't glow ARSCNView.rootNode, because it doesn't work well with
-            // debug feature points and planes don't work well.
+            // debug feature points or planes
             if selectedNode.name?.contains("World Origin") == false {
                 selectedNode.setGlow(true)
             }
@@ -62,8 +62,7 @@ class ARPowerPanels: UIView {
     
     private var arSceneView: ARSCNView?
     
-    private let cameraParent = SCNNode()
-    private let gameModeCameraNode = SCNNode()
+    private let gameModeCameraNode = gameModeCameraMake()
 
     private var rootNode: SCNNode { // TODO refactor
         didSet {
@@ -158,6 +157,7 @@ class ARPowerPanels: UIView {
         addSubview(sceneViewParent)
         sceneViewParent.constrainEdges(to: self)
         
+        sceneView.backgroundColor = #colorLiteral(red: 0.0003343143538, green: 0.03833642512, blue: 0.4235294163, alpha: 1)
         sceneView.allowsCameraControl = true // allows the user to manipulate the camera
         sceneView.setupGlowTechnique()
         //        sceneView.showsStatistics = true
@@ -196,15 +196,19 @@ extension ARPowerPanels {
         segmentedControl.addTarget(self, action: #selector(segmentSelected), for: .valueChanged)
     }
     
-    @objc private func segmentSelected(_ segmentedControl: UISegmentedControl) {
-        if segmentedControl.selectedSegmentIndex == 0 { // AR MODE
+    @objc private func segmentSelected(_ segmentedControl: UISegmentedControl) { // TODO refactor
+        
+        // AR MODE *********************
+        
+        if segmentedControl.selectedSegmentIndex == 0 {
             sceneViewParent.isHidden = true
-            // If the user drags the screen, then another invisible camera will be the new pointOfView
-            // If that happened, save the new camera's transform. TODO
-            //            if let currentCamera = sceneView.pointOfView {
-            //                print("current camera position \(currentCamera.position) \(currentCamera.rotation)")
-            //                gameModeCameraNode.transform = currentCamera.transform
-            //            }
+            
+            // When we enter game mode, the user can tap the "Game Mode Camera" and adjust its position.
+            // If the user drags the screen, then another invisible camera will be the new pointOfView.
+            // To allow the "Game Mode Camera" to adjust the pointOfView again, exit to AR Mode, save the invisible camera's transform, and then come back to Game Mode.
+            if let currentCamera = sceneView.pointOfView {
+                gameModeCameraNode.transform = currentCamera.transform
+            }
             
             if let arSceneView = arSceneView {
                 let newScene = SCNScene()
@@ -213,7 +217,9 @@ extension ARPowerPanels {
                 for child in rootNode.childNodes {
                     let newChild = child
                     child.removeFromParentNode()
-                    newScene.rootNode.addChildNode(newChild)
+                    if child.name != "Game Mode Camera" {
+                        newScene.rootNode.addChildNode(newChild)
+                    }
                 }
                 arSceneView.scene = newScene
                 rootNode = newScene.rootNode
@@ -225,7 +231,9 @@ extension ARPowerPanels {
                 sceneView.scene = nil
             }
 
-        } else { // GAME Mode
+        // GAME MODE *********************
+            
+        } else {
             sceneViewParent.isHidden = false
             
             if let  arSceneView = arSceneView {
@@ -233,41 +241,46 @@ extension ARPowerPanels {
                 sceneView.scene = newScene
                 newScene.rootNode.name = "SceneView World Origin   🌎"
                 
-                // Doing this will break the ARSCNView, that's why we have to
-                // create a new scene when we switch back to AR mode
+                // Create a new scene when we switch back to AR mode
+                // And move our nodes into the new scene
                 let arSceneRootNode = arSceneView.scene.rootNode
-                newScene.rootNode.addChildNode(arSceneRootNode)
+                for child in arSceneRootNode.childNodes {
+                    if let _ = child.camera {
+                        if child.name == nil {
+                            // Add a camera model to the AR Camera
+                            child.addChildNode(Model.camera.createNode())
+                            child.name = "AR Camera"
+
+                            // Create Add gameModeCameraNode
+                            addCamera(to: sceneView)
+
+                            // Setup gameModeCameraNode
+                            gameModeCameraNode.position = SCNVector3(x: -0.15, y: 0.31, z: 0.54) * 2
+                            gameModeCameraNode.look(at: SCNVector3Make(0, 0, 0))
+
+                        } else if child.name == "AR Camera" {
+                            addCamera(to: sceneView)
+                        }
+                    }
+                    newScene.rootNode.addChildNode(child) // Suprisingly, feature points still work
+                }
                 
-                setupSceneView(sceneView: sceneView)
-                rootNode = arSceneRootNode
+                rootNode = newScene.rootNode
             }
         }
     }
     
-    private func setupSceneView(sceneView: SCNView) {
-        
-        // TODO Fix: Camera control is broken when the user pans the scene
-        // Need to give control back to the ARScene
-        sceneView.scene!.rootNode.addChildNode(cameraParent)
-        cameraParent.position = SCNVector3(x: 0, y: 3, z: 13)
-        
-        gameModeCameraNode.name = "GameMode Camera"
-        gameModeCameraNode.camera = SCNCamera()
-        cameraParent.addChildNode(gameModeCameraNode)
-        
-        // place the camera
+    private static func gameModeCameraMake() -> SCNNode {
+        let node = SCNNode()
+        node.camera = SCNCamera()
+        node.camera?.zNear = 0.0001
+        return node
+    }
+    
+    private func addCamera(to sceneView: SCNView) {
+        gameModeCameraNode.name = "Game Mode Camera"
+        sceneView.scene!.rootNode.addChildNode(gameModeCameraNode)
         sceneView.pointOfView = gameModeCameraNode
-        
-        // create and add a camera to the scene
-        //        gameModeCameraNode.name = "GameMode Camera"
-        //        gameModeCameraNode.camera = SCNCamera()
-        //        rootNode.addChildNode(gameModeCameraNode)
-        //        gameModeCameraNode.position = SCNVector3(x: 0, y: 3, z: 13)
-        //        print("camera initialized \(gameModeCameraNode)")
-        //        // place the camera
-        //        sceneView.pointOfView = gameModeCameraNode
-        
-        sceneView.backgroundColor = #colorLiteral(red: 0.1294117719, green: 0.2156862766, blue: 0.06666667014, alpha: 1)
     }
 }
 

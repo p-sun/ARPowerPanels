@@ -10,10 +10,10 @@ import UIKit
 import SceneKit
 
 enum Model {
-    case wolf, fox, greenBall, lowPolyTree, blueBox
+    case wolf, fox, lowPolyTree, camera
     
     static func assetTypesForMenu() -> [Model] {
-        return [.wolf, .fox, .greenBall, .lowPolyTree, .blueBox]
+        return [.wolf, .fox, .lowPolyTree]
     }
     
     func createNode() -> SCNNode {
@@ -30,12 +30,11 @@ enum Model {
             return parentNode
         case .wolf:
             return nodeFromResource(assetName: "wolf/wolf", extensionName: "dae")
-        case .blueBox:
-            return NodeCreator.blueBox()
-        case .greenBall:
-            return nodeFromResource(assetName: "greenBall", extensionName: "dae")
         case .lowPolyTree:
             return nodeFromResource(assetName: "lowPolyTree", extensionName: "dae")
+        case .camera:
+            let rootCamera = nodeFromResource(assetName: "camera", extensionName: "scn")
+            return rootCamera.childNode(withName: "Camera Shape", recursively: true)!
         }
     }
     
@@ -52,14 +51,12 @@ enum Model {
         switch self {
         case .wolf:
             return #imageLiteral(resourceName: "menuWolf") // TODO? Remove this? This is a really big file compared to the fox
-        case .blueBox:
-            return #imageLiteral(resourceName: "menuBlueBox")
-        case .greenBall:
-            return #imageLiteral(resourceName: "menuGreenBall")
         case .lowPolyTree:
             return #imageLiteral(resourceName: "menuLowPolyTree")
         case .fox:
             return #imageLiteral(resourceName: "menuLowPolyTree") // TODO needs image
+        case .camera:
+           return #imageLiteral(resourceName: "menuLowPolyTree")
         }
     }
 }
