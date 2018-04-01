@@ -63,7 +63,7 @@ class SceneKitViewController: UIViewController {
 }
 
 extension SceneKitViewController: ARPowerPanelsDataSource {
-    func hierachyPanel(shouldDisplayChildrenFor node: SCNNode) -> Bool {
+    func powerPanel(shouldDisplayChildrenFor node: SCNNode) -> Bool {
         return !sceneCreator.isNodeParentModel(node: node)
     }
 }

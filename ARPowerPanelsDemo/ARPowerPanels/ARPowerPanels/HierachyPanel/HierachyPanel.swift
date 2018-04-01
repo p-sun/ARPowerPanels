@@ -9,11 +9,13 @@
 import SceneKit
 import UIKit
 
-protocol HierachyPanelDataSource: HierachyIteratorDataSource {
+protocol HierachyPanelDataSource: class {
     func rootNodeForHierachy() -> SCNNode
+    func selectedForHierachyPanel() -> SCNNode?
+    func hierachyPanel(shouldDisplayChildrenFor: SCNNode) -> Bool
 }
 
-protocol HierachyPanelDelegate: class, HasSelectedNode {
+protocol HierachyPanelDelegate: class {
     func hierachyPanel(didSelectNode node: SCNNode)
 }
 
@@ -27,7 +29,6 @@ class HierachyPanel: UIView {
     weak var delegate: HierachyPanelDelegate?
     weak var dataSource: HierachyPanelDataSource? {
         didSet {
-            iterator.dataSource = dataSource
             renderHierachy()
         }
     }
@@ -35,6 +36,7 @@ class HierachyPanel: UIView {
     init() {
         super.init(frame: CGRect.zero)
         iterator.delegate = self
+        iterator.dataSource = self
         
         tableView.backgroundColor = .clear
         addSubview(tableView)
@@ -56,6 +58,12 @@ class HierachyPanel: UIView {
 
 // MARK: Private
 
+extension HierachyPanel: HierachyIteratorDataSource {
+    func hierachyIteractor(shouldDisplayChildrenFor node: SCNNode) -> Bool {
+        return dataSource?.hierachyPanel(shouldDisplayChildrenFor: node) ?? true
+    }
+}
+
 extension HierachyPanel: HierachyIteratorDelegate {
     func hierachyIterator(didChange hierachyStates: [HierachyState]) {
         render(nodeHierachies: hierachyStates)
@@ -63,11 +71,15 @@ extension HierachyPanel: HierachyIteratorDelegate {
     
     private func render(nodeHierachies: [HierachyState]) {
         
-        let selectedNode = delegate?.selectedSCNNode()
-        
         var cells = [CellConfigType]()
+        let selectedNode = dataSource?.selectedForHierachyPanel()
         for hierachyState in nodeHierachies {
-            let isNodeSelected = hierachyState.node == selectedNode
+            let isNodeSelected = selectedNode == hierachyState.node
+
+            if isNodeSelected {
+                print("*** RENDERING NODE \(selectedNode)")
+            }
+            
             let backgroundColor = isNodeSelected ? UIColor.uiControlColor.withAlphaComponent(0.6) : .clear
             let cell = HierachyCell(
                 key: "node \(hierachyState.node.memoryAddress)",

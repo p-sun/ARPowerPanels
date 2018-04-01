@@ -26,12 +26,14 @@ class PowerPanelScene: SCNScene {
         }
     }
 }
+//
+//protocol HasSelectedNode {
+//    func selectedSCNNode() -> SCNNode?
+//}
 
-protocol HasSelectedNode {
-    func selectedSCNNode() -> SCNNode?
+protocol ARPowerPanelsDataSource: class {
+    func powerPanel(shouldDisplayChildrenFor node: SCNNode) -> Bool
 }
-
-protocol ARPowerPanelsDataSource: HierachyIteratorDataSource { }
 
 class ARPowerPanels: UIView {
     
@@ -39,6 +41,7 @@ class ARPowerPanels: UIView {
         didSet {
             guard let selectedNode = selectedNode else { return }
 
+            print("*** updating panels with new node \(selectedNode.displayName) \(selectedNode)")
             oldValue?.setGlow(false)
             selectedNode.setGlow(true)
 
@@ -69,20 +72,31 @@ class ARPowerPanels: UIView {
     private let menuStack = MenuStack(axis: .vertical)
     
     // MARK: Background views
-    private let scene: SCNScene
+//    private let scene: SCNScene
     private var panelPresentor: PanelsPresenter!
     
     private let sceneViewParent = UIView()
     private let sceneView = SCNView()
     
     private var arSceneView: ARSCNView?
+    
+    private let cameraParent = SCNNode()
     private let gameModeCameraNode = SCNNode()
 
-    private let rootNode: SCNNode // TODO refactor
-    
+    private var rootNode: SCNNode { // TODO refactor
+        didSet {
+            updatePanels()
+        }
+    }
     convenience init(scene: SCNScene) {
-        self.init(scene: scene, rootNode: scene.rootNode, isARKit: false)
+        self.init(rootNode: scene.rootNode, isARKit: false)
         sceneView.backgroundColor = #colorLiteral(red: 0.1654644267, green: 0.3628849843, blue: 0.5607843399, alpha: 1) // TODO change color
+        
+        sceneView.scene = scene
+
+        
+        // Set the selected node, and update all the panels to control this node
+        selectedNode = scene.rootNode
     }
     
     convenience init(arSceneView: ARSCNView, scene: SCNScene) {
@@ -105,43 +119,34 @@ class ARPowerPanels: UIView {
 //        self.init(scene: newScene, rootNode: newScene.rootNode, isARKit: true) // not sure why i can't do scene.rootnode
 
 
-        self.init(scene: scene, rootNode: scene.rootNode, isARKit: true) // not sure why i can't do scene.rootnode
+//        // Works to allow us to control camera, but background of the scene is the video
+//        self.init(scene: scene, rootNode: scene.rootNode, isARKit: true)
 
+        
+        // Works to allow us to control camera, but background of the scene is the video
+//        sceneView.scene = scene
+
+        
+        self.init(rootNode: arSceneView.scene.rootNode, isARKit: true)
+        self.arSceneView = arSceneView
+//        sceneView.scene = SCNScene()
+        
 //        self.arSceneView = arSceneView
+
+        
+        
         
         // Select AR Mode (i.e. hide the GameMode)
         sceneViewParent.isHidden = true
         
-        
-        // TODO Fix: Camera control brakes if the user pans the scene
-        let cameraParent = SCNNode()
-        rootNode.addChildNode(cameraParent)
-        cameraParent.position = SCNVector3(x: 0, y: 3, z: 13)
+        // Set the selected node, and update all the panels to control this node
+//        selectedNode = scene.rootNode
+        selectedNode = arSceneView.scene.rootNode // this is the parent of the actual arkitroot node
 
-        gameModeCameraNode.name = "GameMode Camera"
-        gameModeCameraNode.camera = SCNCamera()
-        cameraParent.addChildNode(gameModeCameraNode)
-        
-        print("camera initialized \(cameraParent)")
-        // place the camera
-        sceneView.pointOfView = gameModeCameraNode
-
-        
-        
-        // create and add a camera to the scene
-//        gameModeCameraNode.name = "GameMode Camera"
-//        gameModeCameraNode.camera = SCNCamera()
-//        rootNode.addChildNode(gameModeCameraNode)
-//        gameModeCameraNode.position = SCNVector3(x: 0, y: 3, z: 13)
-//        print("camera initialized \(gameModeCameraNode)")
-//        // place the camera
-//        sceneView.pointOfView = gameModeCameraNode
-
-        sceneView.backgroundColor = #colorLiteral(red: 0.1294117719, green: 0.2156862766, blue: 0.06666667014, alpha: 1)
     }
     
-    private init(scene: SCNScene, rootNode: SCNNode, isARKit: Bool) {
-        self.scene = scene
+    private init(rootNode: SCNNode, isARKit: Bool) {
+//        self.scene = scene
         self.rootNode = rootNode
         hierachyPanel = HierachyPanel()
 
@@ -159,7 +164,7 @@ class ARPowerPanels: UIView {
         ]
 
         // Setup background
-        setupSceneView()
+        constrainSceneView()
 
         panelPresentor = PanelsPresenter(presentingView: self)
         panelPresentor.delegate = self
@@ -181,8 +186,7 @@ class ARPowerPanels: UIView {
         advancedMovePanel.transformationDelegate = self
         allEditsPanel.transformationDelegate = self
         
-        // Set the selected node, and update all the panels to control this node
-        selectedNode = scene.rootNode
+
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -196,7 +200,7 @@ class ARPowerPanels: UIView {
     private func updatePanels() {
         updateSelectedNodeLabel()
         if let selectedNode = selectedNode { // TODO Display error if no node was selected
-            infoPanel.control(selectedNode) // TODO refactor all these panels
+            infoPanel.control(selectedNode) // TODO refactor all these Transformation panels
             easyMovePanel.control(selectedNode)
             advancedMovePanel.control(selectedNode)
             allEditsPanel.control(selectedNode)
@@ -204,15 +208,14 @@ class ARPowerPanels: UIView {
         hierachyPanel.renderHierachy()
     }
     
-    private func setupSceneView() {
+    private func constrainSceneView() {
         sceneViewParent.backgroundColor = #colorLiteral(red: 0.0003343143538, green: 0.03833642512, blue: 0.4235294163, alpha: 1)
         addSubview(sceneViewParent)
         sceneViewParent.constrainEdges(to: self)
         
         sceneView.allowsCameraControl = true // allows the user to manipulate the camera
-        sceneView.setupGlowEffect()
+        sceneView.setupGlowTechnique()
         //        sceneView.showsStatistics = true
-        sceneView.scene = scene
         sceneViewParent.addSubview(sceneView)
         sceneView.constrainEdges(to: sceneViewParent)
     }
@@ -251,12 +254,62 @@ extension ARPowerPanels {
     @objc private func segmentSelected(_ segmentedControl: UISegmentedControl) {
         if segmentedControl.selectedSegmentIndex == 0 { // AR MODE
             sceneViewParent.isHidden = true
-            if let powerScene = sceneView.scene as? PowerPanelScene {
-                powerScene.shouldShowCamera = true
-//                print("Current power camera node \(powerScene.background)")
-
-            }
+//            if let powerScene = sceneView.scene as? PowerPanelScene {
+//                powerScene.shouldShowCamera = true
+////                print("Current power camera node \(powerScene.background)")
+//
+//            }
 //            arSceneView?.isHidden = false
+            
+            // If the user drags the screen, then another invisible camera will be the new pointOfView
+            // If that happened, save the new camera's transform
+            if let currentCamera = sceneView.pointOfView {
+                print("current camera position \(currentCamera.position) \(currentCamera.rotation)")
+                gameModeCameraNode.transform = currentCamera.transform
+            }
+            
+            if let arSceneView = arSceneView {
+                let newScene = SCNScene()
+                newScene.rootNode.name = "AR World Origin   🌎"
+
+                // force unwrap everything so it'd crash sooner if there's something wrong. TODO remove
+//                let lastARRootNode = sceneView.scene!.rootNode.childNodes.first!
+                let lastARRootNode = rootNode
+
+                for child in lastARRootNode.childNodes {
+                    let newChild = child
+                    child.removeFromParentNode()
+                    print("adding child from sceneView to ARView \(child.displayName)")
+                    newScene.rootNode.addChildNode(newChild)
+                }
+                arSceneView.scene = newScene
+                rootNode = newScene.rootNode
+
+                if selectedNode?.parent == sceneView.scene?.rootNode {
+                    selectedNode = newScene.rootNode
+                }
+
+                sceneView.scene = nil
+            }
+
+            
+            // LESSON: ARSCNEVIEW Ignores attempts to change the camera
+            //            arSceneView?.scene = sceneView.scene!
+            //            arSceneView?.allowsCameraControl = true
+            //            sceneView.scene = nil
+            //            arSceneView?.scene.rootNode.addChildNode(cameraParent)
+            //            arSceneView?.pointOfView = cameraParent
+            //            selectedNode = sceneView.scene?.rootNode
+            
+            // LESSON: This doesn't give control of the camera back to the arscnview
+            //            if let arSceneView = arSceneView {
+            //                if let children = sceneView.scene?.rootNode.childNodes {
+            //                    for child in children {
+            //                        child.removeFromParentNode()
+            //                    }
+            //                }
+            //            }
+            
         } else { // GAME Mode
             sceneViewParent.isHidden = false
 //            arSceneView?.isHidden = true
@@ -265,11 +318,11 @@ extension ARPowerPanels {
             
 //            print("Current camera node \(sceneView.scene?.background)")
 
-            if let powerScene = sceneView.scene as? PowerPanelScene {
-                powerScene.shouldShowCamera = false
-//                print("Current power camera node \(powerScene.background)")
-
-            }
+//            if let powerScene = sceneView.scene as? PowerPanelScene {
+//                powerScene.shouldShowCamera = false
+////                print("Current power camera node \(powerScene.background)")
+//
+//            }
             
 //            <SCNMaterialProperty: 0x1c00da010 | contents=(null)>
 
@@ -279,7 +332,56 @@ extension ARPowerPanels {
             print("Current camera node \(sceneView.pointOfView)")
 
 //            arSceneView?.scene = SCNScene()
+            
+            if let  arSceneView = arSceneView {
+                let newScene = SCNScene()
+                sceneView.scene = newScene
+                newScene.rootNode.name = "SceneView World Origin   🌎"
+                
+                // This line screws up the ARKit after it's done. How do I reset this?
+                let arSceneRootNode = arSceneView.scene.rootNode
+                newScene.rootNode.addChildNode(arSceneRootNode)
+                
+                setupSceneView(sceneView: sceneView)
+                //                selectedNode = sceneView.scene?.rootNode
+                //                selectedNode = arSceneView.scene.rootNode
+                //                updatePanels()
+                
+                rootNode = arSceneRootNode
+//                
+//                if selectedNode?.parent == nil {
+//                    selectedNode = newScene.rootNode
+//                }
+            }
         }
+    }
+    
+    private func setupSceneView(sceneView: SCNView) {
+        
+        
+        // TODO Fix: Camera control is broken when the user pans the scene
+        // Need to give control back to the ARScene
+        sceneView.scene!.rootNode.addChildNode(cameraParent)
+        cameraParent.position = SCNVector3(x: 0, y: 3, z: 13)
+        
+        gameModeCameraNode.name = "GameMode Camera"
+        gameModeCameraNode.camera = SCNCamera()
+        cameraParent.addChildNode(gameModeCameraNode)
+        
+        print("camera initialized \(cameraParent)")
+        // place the camera
+        sceneView.pointOfView = gameModeCameraNode
+        
+        // create and add a camera to the scene
+        //        gameModeCameraNode.name = "GameMode Camera"
+        //        gameModeCameraNode.camera = SCNCamera()
+        //        rootNode.addChildNode(gameModeCameraNode)
+        //        gameModeCameraNode.position = SCNVector3(x: 0, y: 3, z: 13)
+        //        print("camera initialized \(gameModeCameraNode)")
+        //        // place the camera
+        //        sceneView.pointOfView = gameModeCameraNode
+        
+        sceneView.backgroundColor = #colorLiteral(red: 0.1294117719, green: 0.2156862766, blue: 0.06666667014, alpha: 1)
     }
 }
 
@@ -348,16 +450,15 @@ extension ARPowerPanels: HierachyPanelDelegate {
 
 extension ARPowerPanels: HierachyPanelDataSource {
     func rootNodeForHierachy() -> SCNNode {
+        print("root node for hierachy \(rootNode.displayName)")
         return rootNode
     }
     
     func hierachyPanel(shouldDisplayChildrenFor node: SCNNode) -> Bool {
-        return dataSource?.hierachyPanel(shouldDisplayChildrenFor: node) ?? true
+        return dataSource?.powerPanel(shouldDisplayChildrenFor: node) ?? true
     }
-}
-
-extension ARPowerPanels: HasSelectedNode {
-    func selectedSCNNode() -> SCNNode? {
+    
+    func selectedForHierachyPanel() -> SCNNode? {
         return selectedNode
     }
 }

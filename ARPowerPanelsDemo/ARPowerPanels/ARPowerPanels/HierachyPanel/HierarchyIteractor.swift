@@ -9,7 +9,7 @@
 import SceneKit
 
 protocol HierachyIteratorDataSource: class {
-    func hierachyPanel(shouldDisplayChildrenFor node: SCNNode) -> Bool
+    func hierachyIteractor(shouldDisplayChildrenFor node: SCNNode) -> Bool
 }
 
 protocol HierachyIteratorDelegate: class {
@@ -89,7 +89,7 @@ class HierachyIterator {
         if node.name == "FOX PARENT" {
             print("******found fox parent")
         }
-        guard dataSource?.hierachyPanel(shouldDisplayChildrenFor: node) ?? true else { // Refactor
+        guard dataSource?.hierachyIteractor(shouldDisplayChildrenFor: node) ?? true else { // Refactor
             return []
         }
         

@@ -36,9 +36,9 @@ class ARKitViewController: UIViewController {
         arSceneView.debugOptions  = [.showConstraints, ARSCNDebugOptions.showFeaturePoints, ARSCNDebugOptions.showWorldOrigin]
         
         scene = sceneCreator.createFoxPlaneScene()
-        arSceneView.scene.rootNode.name = "AR World Origin"
         arSceneView.scene = scene
-        
+        scene.rootNode.name = "AR World Origin   🌎"
+
         powerPanels = ARPowerPanels(arSceneView: arSceneView, scene: scene)
         powerPanels.dataSource = self
         powerPanels.selectNode(scene.rootNode)
@@ -65,61 +65,10 @@ class ARKitViewController: UIViewController {
 }
 
 extension ARKitViewController: ARPowerPanelsDataSource {
-    func hierachyPanel(shouldDisplayChildrenFor node: SCNNode) -> Bool {
+    func powerPanel(shouldDisplayChildrenFor node: SCNNode) -> Bool {
         return !sceneCreator.isNodeParentModel(node: node)
     }
 }
-
-//class ARKitViewController: UIViewController {
-//
-//    // MARK: Variables
-//    private var arSceneView = ARSCNView()
-//
-//    var foxNode = Model.fox.createNode()
-//
-//    // MARK: View Lifecycle
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//
-//        view.addSubview(arSceneView)
-//        arSceneView.constrainEdges(to: view)
-//
-//        arSceneView.delegate = self
-//        arSceneView.showsStatistics = true
-//        arSceneView.debugOptions  = [.showConstraints, ARSCNDebugOptions.showFeaturePoints]
-//
-//        arSceneView.scene.rootNode.addChildNode(foxNode)
-//
-////        SliderInputsView(axisLabels: <#T##[String]#>, minValue: <#T##Float#>, maxValue: <#T##Float#>)
-////
-////        let rotationInput = SliderInputsView() { [weak self] value in
-////            print("value did change \(value)")
-////            self?.foxNode.rotation.y = Float(value)
-////        }
-////        view.addSubview(rotationInput)
-////
-////        rotationInput.constrainCenterX(to: view)
-////        rotationInput.constrainCenterY(to: view)
-////        rotationInput.constrainWidth(200)
-//    }
-//
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        beginarSceneView()
-//    }
-//
-//    override func viewWillDisappear(_ animated: Bool) {
-//        super.viewWillDisappear(animated)
-//        arSceneView.session.pause()
-//    }
-//
-//    private func beginarSceneView() {
-//        let configuration = ARWorldTrackingConfiguration()
-//        configuration.planeDetection = .horizontal
-//        arSceneView.session.run(configuration)
-//    }
-//}
-
 
 extension ARKitViewController: ARSCNViewDelegate {
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {

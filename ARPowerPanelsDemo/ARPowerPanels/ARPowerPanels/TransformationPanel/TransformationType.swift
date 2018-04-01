@@ -69,9 +69,6 @@ extension SCNNode: Transformable {
     var displayName: String {
         get {
             var icons = ""
-            if parent == nil {
-                icons += "🌎"
-            }
             if light != nil {
                 icons += "☀️"
             }
