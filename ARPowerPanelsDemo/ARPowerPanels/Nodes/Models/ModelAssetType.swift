@@ -10,13 +10,19 @@ import UIKit
 import SceneKit
 
 protocol NodeMaker {
+    static var allTypes: [NodeMaker] { get }
     var menuImage: UIImage { get }
     func createNode() -> SCNNode
 }
 
 enum Shapes: NodeMaker {
+    
     case sphere, plane, box, pyramid, cylinder, cone, torus, tube, capsule
-
+    
+    static var allTypes: [NodeMaker] {
+        return [Shapes.sphere, Shapes.plane, Shapes.box, Shapes.pyramid, Shapes.cylinder, Shapes.cone, Shapes.torus, Shapes.tube, Shapes.capsule]
+    }
+    
     var menuImage: UIImage {
         switch self {
         case .sphere:
@@ -73,8 +79,8 @@ enum Shapes: NodeMaker {
 enum Model: NodeMaker {
     case axis, wolf, fox, lowPolyTree, camera
     
-    static var allTypes: [Model] {
-        return [.axis, .wolf, .fox, .lowPolyTree]
+    static var allTypes: [NodeMaker] {
+        return [Model.axis, Model.wolf, Model.fox, Model.lowPolyTree]
     }
     
     func createNode() -> SCNNode {
@@ -119,7 +125,7 @@ enum Model: NodeMaker {
         case .lowPolyTree:
             return #imageLiteral(resourceName: "menuLowPolyTree")
         case .fox:
-            return #imageLiteral(resourceName: "menuLowPolyTree") // TODO needs image
+            return #imageLiteral(resourceName: "fox_squareLQ")
         case .camera:
            return #imageLiteral(resourceName: "menuLowPolyTree")
         }

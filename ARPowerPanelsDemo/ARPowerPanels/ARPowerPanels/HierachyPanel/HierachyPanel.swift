@@ -59,6 +59,7 @@ class HierachyPanel: UIView {
         addShapeButton.setTitle("+ Shape")
         addRemoveButtonStack.addArrangedSubview(addShapeButton)
         
+        tableView.addCornerRadius()
         tableView.backgroundColor = .clear
         addSubview(tableView)
         tableView.constrainTop(to: self)
@@ -80,7 +81,7 @@ class HierachyPanel: UIView {
     }
     
     @objc private func addModelPressed(_ button: UIButton) {
-        let modelPicker = ModelCollectionView(frame: bounds)
+        let modelPicker = ModelCollectionView(frame: bounds, models: Model.allTypes)
         modelPicker.backgroundColor = #colorLiteral(red: 0.01086046056, green: 0.06186843822, blue: 0.400000006, alpha: 1)
         modelPicker.addCornerRadius()
         addSubview(modelPicker)
@@ -89,7 +90,7 @@ class HierachyPanel: UIView {
     }
     
     @objc private func addShapePressed(_ button: UIButton) {
-        let shapePicker = ModelCollectionView(frame: bounds)
+        let shapePicker = ModelCollectionView(frame: bounds, models: Shapes.allTypes)
         shapePicker.backgroundColor = #colorLiteral(red: 0.3594371684, green: 0.06657016599, blue: 0.2541848027, alpha: 1)
         shapePicker.addCornerRadius()
         addSubview(shapePicker)

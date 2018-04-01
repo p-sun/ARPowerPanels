@@ -18,8 +18,7 @@ class ModelCollectionView: UIView {
     
     private let imageCollectionView: ImageCollectionView
 
-    override init(frame: CGRect) {
-        let models = Model.allTypes
+    init(frame: CGRect, models: [NodeMaker]) {
         let images = models.map { $0.menuImage }
         imageCollectionView = ImageCollectionView(images: images, frame: frame)
         
@@ -31,12 +30,12 @@ class ModelCollectionView: UIView {
         closeButton.addTarget(self, action: #selector(closeButtonPressed), for: .touchUpInside)
         closeButton.constrainTop(to: self)
         closeButton.constrainLeft(to: self)
-        closeButton.constrainSize(CGSize(width: 44, height: 44))
+        closeButton.constrainSize(CGSize(width: 40, height: 40))
 
         imageCollectionView.imageCollectionDelegate = self
         
         addSubview(imageCollectionView)
-        imageCollectionView.constrainTop(to: self)
+        imageCollectionView.constrainTopToBottom(of: closeButton)
         imageCollectionView.constrainEdgesHorizontally(to: self)
         imageCollectionView.constrainBottom(to: self, priority: .defaultLow)
     }

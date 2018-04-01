@@ -70,7 +70,7 @@ extension ImageCollectionView: UICollectionViewDataSource {
 
 extension ImageCollectionView : UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 25)
+        return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -82,7 +82,11 @@ extension ImageCollectionView : UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 100, height: 100)
+        let numberOfItemsPerRow: CGFloat = 3
+        let itemsWithoutSpacing = bounds.width - CGFloat(numberOfItemsPerRow - 1) * cellMinInteritemSpacing - 20 // TODO make insets custom too
+        let widthPerItem = itemsWithoutSpacing / numberOfItemsPerRow
+        print("width \(widthPerItem)")
+        return CGSize(width: widthPerItem, height: widthPerItem)
     }
     
     private func calculateCellSize(content : NSString) -> CGSize {
