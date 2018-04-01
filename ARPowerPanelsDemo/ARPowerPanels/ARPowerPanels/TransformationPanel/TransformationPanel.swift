@@ -96,7 +96,7 @@ class TransformationPanel: UIStackView {
         case .position:
             positionInput.constrainHeight(29)
 
-            positionInput.setPanSpeed(0.0006)
+            positionInput.setPanSpeed(0.0005)
             positionInput.delegate = self
             addArrangedSubview(positionInput)
             
@@ -118,7 +118,7 @@ class TransformationPanel: UIStackView {
             scaleInput.constrainHeight(29)
 
             scaleInput.delegate = self
-            scaleInput.setPanSpeed(0.002)
+            scaleInput.setPanSpeed(0.003)
             addArrangedSubview(scaleInput)
             
         case .opacity:

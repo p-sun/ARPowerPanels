@@ -71,7 +71,7 @@ extension HierachyPanel: HierachyIteratorDelegate {
     
     private func render(nodeHierachies: [HierachyState]) {
         if bounds.width <= 0  {
-            bounds.size = CGSize(width: 400, height: 400)
+            bounds.size = CGSize(width: 400, height: 400) // Arbitary size so that FTD won't crash
         }
         
         var cells = [CellConfigType]()
