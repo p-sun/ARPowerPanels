@@ -16,7 +16,10 @@ class ARKitViewController: UIViewController {
     private var arSceneView = ARSCNView()
     var scene: SCNScene!
 
-    init() {
+    let panelTypes: [ARPowerPanelsType]
+    
+    init(panelTypes: [ARPowerPanelsType]) {
+        self.panelTypes = panelTypes
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -38,7 +41,7 @@ class ARKitViewController: UIViewController {
         arSceneView.scene = scene
         scene.rootNode.name = "AR World Origin   🌎"
 
-        powerPanels = ARPowerPanels(arSceneView: arSceneView, panelTypes: ARPowerPanelsType.allTypes)
+        powerPanels = ARPowerPanels(arSceneView: arSceneView, panelTypes: panelTypes)
         powerPanels.selectNode(scene.rootNode)
         view.addSubview(powerPanels)
         powerPanels.constrainEdges(to: view)

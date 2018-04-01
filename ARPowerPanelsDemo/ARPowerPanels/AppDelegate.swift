@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow(frame: UIScreen.main.bounds)
 
-        let rootViewController = ARKitViewController()
+        let rootViewController = ARKitViewController(panelTypes: ARPowerPanelsType.allTypes)
 //        let rootViewController = SceneKitViewController()
         window?.rootViewController = rootViewController
         window?.makeKeyAndVisible()
