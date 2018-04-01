@@ -70,6 +70,9 @@ extension HierachyPanel: HierachyIteratorDelegate {
     }
     
     private func render(nodeHierachies: [HierachyState]) {
+        if bounds.width <= 0  {
+            bounds.size = CGSize(width: 400, height: 400)
+        }
         
         var cells = [CellConfigType]()
         let selectedNode = dataSource?.selectedForHierachyPanel()
