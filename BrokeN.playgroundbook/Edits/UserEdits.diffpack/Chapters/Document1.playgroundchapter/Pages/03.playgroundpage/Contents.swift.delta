@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Diff</key>
+	<array>
+		<dict>
+			<key>ModifiedContent</key>
+			<string>    playSound(Sound.electricity)
+</string>
+			<key>ModifiedRange</key>
+			<string>{1910, 33}</string>
+			<key>OriginalContent</key>
+			<string>    //#-copy-destination("02.playgroundpage", id1)
+    playSound(.boing)
+    //#-end-copy-destination
+</string>
+			<key>OriginalRange</key>
+			<string>{1910, 102}</string>
+		</dict>
+		<dict>
+			<key>ModifiedContent</key>
+			<string>    let hopper = Character(name: CharacterName.hopper)
+    let newPosition = Point(x: 1, z: 2)
+    plane.place(character: hopper, at: newPosition)
+</string>
+			<key>ModifiedRange</key>
+			<string>{1995, 147}</string>
+			<key>OriginalContent</key>
+			<string>    
+</string>
+			<key>OriginalRange</key>
+			<string>{2064, 5}</string>
+		</dict>
+	</array>
+	<key>File</key>
+	<string>Chapters/Document1.playgroundchapter/Pages/03.playgroundpage/Contents.swift</string>
+</dict>
+</plist>

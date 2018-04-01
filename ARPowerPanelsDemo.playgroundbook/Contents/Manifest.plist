@@ -11,7 +11,7 @@
 	<key>ContentVersion</key>
 	<string>3.0.1</string>
 	<key>DeploymentTarget</key>
-	<string>ios10.0</string>
+	<string>ios11.2</string>
 	<key>DevelopmentRegion</key>
 	<string>en</string>
 	<key>ImageReference</key>

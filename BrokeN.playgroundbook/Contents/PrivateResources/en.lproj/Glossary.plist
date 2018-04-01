@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Terms</key>
+	<dict>
+		<key>augment</key>
+		<dict>
+			<key>FirstUse</key>
+			<dict>
+				<key>PageReference</key>
+				<string>Document1.playgroundchapter/01.playgroundpage</string>
+				<key>_LOCALIZABLE_</key>
+				<dict>
+					<key>Title</key>
+					<string>How the Camera Sees</string>
+				</dict>
+			</dict>
+			<key>_LOCALIZABLE_</key>
+			<dict>
+				<key>Definition</key>
+				<string>To enhance or add to. *Augmented reality* presents a real-life scene to which you’ve added digital objects and images.</string>
+				<key>Title</key>
+				<string>augment</string>
+			</dict>
+		</dict>
+        <key>axis</key>
+        <dict>
+            <key>FirstUse</key>
+            <dict>
+                <key>PageReference</key>
+                <string>Document1.playgroundchapter/01.playgroundpage</string>
+                <key>_LOCALIZABLE_</key>
+                <dict>
+                    <key>Title</key>
+                    <string>How the Camera Sees</string>
+                </dict>
+            </dict>
+            <key>_LOCALIZABLE_</key>
+            <dict>
+                <key>Definition</key>
+                <string>An imaginary line used to indicate directions in a coordinate space. You might have seen graphs before that use *X* and *Y* to label the axes. When dealing with 3D space, you have *X*, *Y*, and *Z*. In this case, *X* and *Z* represent right and left, and forward and back. *Y* represents up and down.
+                </string>
+                <key>Title</key>
+                <string>axis</string>
+            </dict>
+        </dict>
+		<key>plane</key>
+		<dict>
+			<key>FirstUse</key>
+			<dict>
+				<key>PageReference</key>
+				<string>Document1.playgroundchapter/02.playgroundpage</string>
+				<key>_LOCALIZABLE_</key>
+				<dict>
+					<key>Title</key>
+					<string>Plane-ing Around</string>
+				</dict>
+			</dict>
+			<key>_LOCALIZABLE_</key>
+			<dict>
+				<key>Definition</key>
+				<string>A flat digital surface to set things on.</string>
+				<key>Title</key>
+				<string>plane</string>
+			</dict>
+		</dict>
+		<key>point</key>
+		<dict>
+			<key>FirstUse</key>
+			<dict>
+				<key>PageReference</key>
+				<string>Document1.playgroundchapter/03.playgroundpage</string>
+				<key>_LOCALIZABLE_</key>
+				<dict>
+					<key>Title</key>
+					<string>A Character is Born!</string>
+				</dict>
+			</dict>
+			<key>_LOCALIZABLE_</key>
+			<dict>
+				<key>Definition</key>
+				<string>In mathematics, a specific point in space. A point is typically represented using an *x* value and a *y* value for the horizontal and vertical axes, respectively.</string>
+				<key>Title</key>
+				<string>point</string>
+			</dict>
+		</dict>
+		<key>texture</key>
+		<dict>
+			<key>FirstUse</key>
+			<dict>
+				<key>PageReference</key>
+				<string>Document1.playgroundchapter/05.playgroundpage</string>
+				<key>_LOCALIZABLE_</key>
+				<dict>
+					<key>Title</key>
+					<string>Playtime!</string>
+				</dict>
+			</dict>
+			<key>_LOCALIZABLE_</key>
+			<dict>
+				<key>Definition</key>
+				<string>A “skin” or wrapping that goes over a digital object in a computer-generated scene. For example, Hopper’s body is made up of a green and pinkish-red texture.</string>
+				<key>Title</key>
+				<string>texture</string>
+			</dict>
+		</dict>
+		<key>algorithm</key>
+		<dict>
+			<key>FirstUse</key>
+			<dict>
+				<key>PageReference</key>
+				<string>Document1.playgroundchapter/01.playgroundpage</string>
+				<key>_LOCALIZABLE_</key>
+				<dict>
+					<key>Title</key>
+					<string>How the Camera Sees</string>
+				</dict>
+			</dict>
+			<key>_LOCALIZABLE_</key>
+			<dict>
+				<key>Definition</key>
+				<string>A step-by-step set of instructions or rules for solving a problem. For example, a list of steps used to make a cup of tea can be considered an algorithm.</string>
+				<key>Title</key>
+				<string>algorithm</string>
+			</dict>
+		</dict>
+		<key>feature point</key>
+		<dict>
+			<key>FirstUse</key>
+			<dict>
+				<key>PageReference</key>
+				<string>Document1.playgroundchapter/01.playgroundpage</string>
+				<key>_LOCALIZABLE_</key>
+				<dict>
+					<key>Title</key>
+					<string>How the Camera Sees</string>
+				</dict>
+			</dict>
+			<key>_LOCALIZABLE_</key>
+			<dict>
+				<key>Definition</key>
+				<string>One of several small white dots you see throughout an AR scene, representing a *feature* that your iPad identifies as important to how it visualizes the scene. Feature points represent your iPad’s model of what it “sees” through the camera lens.</string>
+				<key>Title</key>
+				<string>feature point</string>
+			</dict>
+		</dict>
+	</dict>
+</dict>
+</plist>

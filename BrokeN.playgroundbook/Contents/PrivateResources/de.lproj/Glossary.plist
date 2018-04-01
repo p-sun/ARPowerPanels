@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Terms</key>
+	<dict>
+		<key>algorithm</key>
+		<dict>
+			<key>FirstUse</key>
+			<dict>
+				<key>PageReference</key>
+				<string>Document1.playgroundchapter/01.playgroundpage</string>
+				<key>_LOCALIZABLE_</key>
+				<dict>
+					<key>Title</key>
+					<string>Wie die Kamera sehen kann</string>
+				</dict>
+			</dict>
+			<key>_LOCALIZABLE_</key>
+			<dict>
+				<key>Definition</key>
+				<string>Eine Reihe von Schritt-für-Schritt-Anleitungen oder Regeln zur Lösung eines Problems. Eine schrittweise Anleitung zum Zubereiten von Tee kann z. B. als Algorithmus angesehen werden.</string>
+				<key>Title</key>
+				<string>Algorithmus</string>
+			</dict>
+		</dict>
+		<key>augment</key>
+		<dict>
+			<key>FirstUse</key>
+			<dict>
+				<key>PageReference</key>
+				<string>Document1.playgroundchapter/01.playgroundpage</string>
+				<key>_LOCALIZABLE_</key>
+				<dict>
+					<key>Title</key>
+					<string>Wie die Kamera sehen kann</string>
+				</dict>
+			</dict>
+			<key>_LOCALIZABLE_</key>
+			<dict>
+				<key>Definition</key>
+				<string>*Erweiterte Realität (Augmented Reality)* steht für eine Szene aus der Realität, der du digitale Objekte und Bilder hinzugefügt hast.</string>
+				<key>Title</key>
+				<string>Erweitern</string>
+			</dict>
+		</dict>
+		<key>axis</key>
+		<dict>
+			<key>FirstUse</key>
+			<dict>
+				<key>PageReference</key>
+				<string>Document1.playgroundchapter/01.playgroundpage</string>
+				<key>_LOCALIZABLE_</key>
+				<dict>
+					<key>Title</key>
+					<string>Wie die Kamera sehen kann</string>
+				</dict>
+			</dict>
+			<key>_LOCALIZABLE_</key>
+			<dict>
+				<key>Definition</key>
+				<string>Eine gedachte Linie, die Richtungen im Koordinatenraum anzeigt. Du hast vielleicht schon Diagramme gesehen, bei denen die Achsen mit *X* und *Y* beschriftet sind. Im dreidimensionalen Raum werden *X*, *Y* und *Z* verwendet. In diesem Fall stehen *X* und *Z* für links und rechts bzw. vor und zurück und *Y* für oben und unten.
+                </string>
+				<key>Title</key>
+				<string>Achse</string>
+			</dict>
+		</dict>
+		<key>feature point</key>
+		<dict>
+			<key>FirstUse</key>
+			<dict>
+				<key>PageReference</key>
+				<string>Document1.playgroundchapter/01.playgroundpage</string>
+				<key>_LOCALIZABLE_</key>
+				<dict>
+					<key>Title</key>
+					<string>Wie die Kamera sehen kann</string>
+				</dict>
+			</dict>
+			<key>_LOCALIZABLE_</key>
+			<dict>
+				<key>Definition</key>
+				<string>Einer von mehreren kleinen weißen Punkten, die du in der AR-Szene siehst und die für eine *Eigenschaft* stehen, die dein iPad als wichtig zum Visualisieren der Szene identifiziert. Eigenschaftspunkte stehen für das Modell, das bestimmt, was dein iPad durch das Objektiv der Kamera sieht.</string>
+				<key>Title</key>
+				<string>Eigenschaftspunkt</string>
+			</dict>
+		</dict>
+		<key>plane</key>
+		<dict>
+			<key>FirstUse</key>
+			<dict>
+				<key>PageReference</key>
+				<string>Document1.playgroundchapter/02.playgroundpage</string>
+				<key>_LOCALIZABLE_</key>
+				<dict>
+					<key>Title</key>
+					<string>Spaß mit Ebenen</string>
+				</dict>
+			</dict>
+			<key>_LOCALIZABLE_</key>
+			<dict>
+				<key>Definition</key>
+				<string>Eine flache, digitale Oberfläche, auf der Dinge platziert werden können.</string>
+				<key>Title</key>
+				<string>Ebene</string>
+			</dict>
+		</dict>
+		<key>point</key>
+		<dict>
+			<key>FirstUse</key>
+			<dict>
+				<key>PageReference</key>
+				<string>Document1.playgroundchapter/03.playgroundpage</string>
+				<key>_LOCALIZABLE_</key>
+				<dict>
+					<key>Title</key>
+					<string>Ein Charakter wird geboren!</string>
+				</dict>
+			</dict>
+			<key>_LOCALIZABLE_</key>
+			<dict>
+				<key>Definition</key>
+				<string>In der Mathematik ein bestimmter Punkt im Raum. Ein Punkt wird in der Regel durch einen *x*-Wert und einen *y*-Wert für die horizontale bzw. die vertikale Achse dargestellt.</string>
+				<key>Title</key>
+				<string>Punkt</string>
+			</dict>
+		</dict>
+		<key>texture</key>
+		<dict>
+			<key>FirstUse</key>
+			<dict>
+				<key>PageReference</key>
+				<string>Document1.playgroundchapter/05.playgroundpage</string>
+				<key>_LOCALIZABLE_</key>
+				<dict>
+					<key>Title</key>
+					<string>Spielstunde!</string>
+				</dict>
+			</dict>
+			<key>_LOCALIZABLE_</key>
+			<dict>
+				<key>Definition</key>
+				<string>Eine „Haut“ oder eine Verpackung, die über ein digitales Objekt in einer computergenerierten Szene gelegt wird. Zum Beispiel besteht der Körper von Hopper aus einer grünen und pink-roten Textur.</string>
+				<key>Title</key>
+				<string>Textur</string>
+			</dict>
+		</dict>
+	</dict>
+</dict>
+</plist>

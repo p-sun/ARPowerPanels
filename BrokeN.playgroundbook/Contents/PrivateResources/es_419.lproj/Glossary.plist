@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Terms</key>
+	<dict>
+		<key>algorithm</key>
+		<dict>
+			<key>FirstUse</key>
+			<dict>
+				<key>PageReference</key>
+				<string>Document1.playgroundchapter/01.playgroundpage</string>
+				<key>_LOCALIZABLE_</key>
+				<dict>
+					<key>Title</key>
+					<string>La visión de la cámara</string>
+				</dict>
+			</dict>
+			<key>_LOCALIZABLE_</key>
+			<dict>
+				<key>Definition</key>
+				<string>Un conjunto de instrucciones o reglas detalladas para resolver un problema. Por ejemplo, una lista de los pasos necesarios para hacer una taza de café se puede considerar un algoritmo.</string>
+				<key>Title</key>
+				<string>algoritmo</string>
+			</dict>
+		</dict>
+		<key>augment</key>
+		<dict>
+			<key>FirstUse</key>
+			<dict>
+				<key>PageReference</key>
+				<string>Document1.playgroundchapter/01.playgroundpage</string>
+				<key>_LOCALIZABLE_</key>
+				<dict>
+					<key>Title</key>
+					<string>La visión de la cámara</string>
+				</dict>
+			</dict>
+			<key>_LOCALIZABLE_</key>
+			<dict>
+				<key>Definition</key>
+				<string>Mejorar o agregar. La *realidad aumentada* presenta un escenario de la vida real al que se le ha agregado objetos e imágenes digitales.</string>
+				<key>Title</key>
+				<string>aumentar</string>
+			</dict>
+		</dict>
+		<key>axis</key>
+		<dict>
+			<key>FirstUse</key>
+			<dict>
+				<key>PageReference</key>
+				<string>Document1.playgroundchapter/01.playgroundpage</string>
+				<key>_LOCALIZABLE_</key>
+				<dict>
+					<key>Title</key>
+					<string>La visión de la cámara</string>
+				</dict>
+			</dict>
+			<key>_LOCALIZABLE_</key>
+			<dict>
+				<key>Definition</key>
+				<string>Una línea imaginaria usada para indicar direcciones en un espacio de coordenadas. Es posible que ya hayas visto gráficas que usan las etiquetas *X* y *Y* para los ejes. En un espacio 3D, se usan *X*, *Y* y *Z*. En este caso, *X y *Z* representan la izquierda y derecha, y adelante y atrás; mientras que *Y* representa arriba y abajo.
+                </string>
+				<key>Title</key>
+				<string>eje</string>
+			</dict>
+		</dict>
+		<key>feature point</key>
+		<dict>
+			<key>FirstUse</key>
+			<dict>
+				<key>PageReference</key>
+				<string>Document1.playgroundchapter/01.playgroundpage</string>
+				<key>_LOCALIZABLE_</key>
+				<dict>
+					<key>Title</key>
+					<string>La visión de la cámara</string>
+				</dict>
+			</dict>
+			<key>_LOCALIZABLE_</key>
+			<dict>
+				<key>Definition</key>
+				<string>Uno de los puntos blancos pequeños que se ven a lo largo del escenario de realidad aumentada que representan una *característica* que tu iPad identifica como importante para la forma en la que visualiza el escenario. Los puntos característicos representan el modelo de lo que tu iPad *ve* a través del lente de la cámara.</string>
+				<key>Title</key>
+				<string>punto característico</string>
+			</dict>
+		</dict>
+		<key>plane</key>
+		<dict>
+			<key>FirstUse</key>
+			<dict>
+				<key>PageReference</key>
+				<string>Document1.playgroundchapter/02.playgroundpage</string>
+				<key>_LOCALIZABLE_</key>
+				<dict>
+					<key>Title</key>
+					<string>Jugando con planos</string>
+				</dict>
+			</dict>
+			<key>_LOCALIZABLE_</key>
+			<dict>
+				<key>Definition</key>
+				<string>Una superficie plana digital en la que se colocan las cosas.</string>
+				<key>Title</key>
+				<string>plano</string>
+			</dict>
+		</dict>
+		<key>point</key>
+		<dict>
+			<key>FirstUse</key>
+			<dict>
+				<key>PageReference</key>
+				<string>Document1.playgroundchapter/03.playgroundpage</string>
+				<key>_LOCALIZABLE_</key>
+				<dict>
+					<key>Title</key>
+					<string>¡Un personaje llega al mundo!</string>
+				</dict>
+			</dict>
+			<key>_LOCALIZABLE_</key>
+			<dict>
+				<key>Definition</key>
+				<string>En matemáticas, un punto específico en el espacio. Este punto se representa comúnmente usando valores *x* y *y* para los ejes horizontal y vertical respectivamente.</string>
+				<key>Title</key>
+				<string>punto</string>
+			</dict>
+		</dict>
+		<key>texture</key>
+		<dict>
+			<key>FirstUse</key>
+			<dict>
+				<key>PageReference</key>
+				<string>Document1.playgroundchapter/05.playgroundpage</string>
+				<key>_LOCALIZABLE_</key>
+				<dict>
+					<key>Title</key>
+					<string>¡Hora de jugar!</string>
+				</dict>
+			</dict>
+			<key>_LOCALIZABLE_</key>
+			<dict>
+				<key>Definition</key>
+				<string>Una "piel" o envoltura que se coloca sobre un objeto digital en un escenario generado por computadora. Por ejemplo, el cuerpo de Hopper’s está hecho de una textura de color verde y rojo con rosa.</string>
+				<key>Title</key>
+				<string>textura</string>
+			</dict>
+		</dict>
+	</dict>
+</dict>
+</plist>

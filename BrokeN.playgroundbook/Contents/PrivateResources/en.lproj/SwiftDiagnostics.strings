@@ -1,0 +1,224 @@
+bplist00ßm	
+ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~€‚ƒ„…†‡ˆ‰Š‹Œ‘’“”•–—˜™š›œŸ ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏĞÑÒÓÔÕÖ×ØÙÚ_,expected initialization in a 'for' statement_.expected Sequence expression for for-each loop_&expected '}' at end of brace statement_use of undeclared type %0_-expected a digit after integer literal prefix_'value of tuple type %0 has no member %1_Fextraneous argument label%select{|s}0 '%1' in %select{call|subscript}2_:operator with postfix spacing cannot start a subexpression_0extraneous whitespace after '.' is not permitted_unexpected '%0' separator_invalid redeclaration of %0_5expected expression, var, or let in 'while' condition__instance member %1 cannot be used on type %0; did you mean to use a value of this type instead?_expected '%0' separator_Creference to member %0 cannot be resolved without a contextual type_1cannot force unwrap value of non-optional type %0_6unexpected 'else' immediately following 'if' condition_(missing condition in a 'while' statement_@%0 is not a %select{binary|prefix unary|postfix unary}1 operator_3use of '=' in a boolean context, did you mean '=='?_'expected parameter name followed by ':'_:unnamed parameters must be written with the empty name '_'_ambiguous use of operator %0_(expected identifier after '.' expression_)cannot assign value of type %0 to type %1_type %0 has no member %1_[incorrect argument label%select{|s}0 in %select{call|subscript}3 (have '%1', expected '%2')_%expected parameter type following ':'_expected ')' in expression list_5argument type %0 does not conform to expected type %1_expected expression_3unary operator cannot be separated from its operand_,single-quoted string literal found, use '\"'_extra argument in call_"expected member name following '.'_$expected 'in' after for-each pattern_/use of local variable %0 before its declaration_!editor placeholder in source file_2%1 is not %select{convertible to|a subtype of}0 %2_1keyword '%0' cannot be used as an identifier here_%0 is unavailable: %1_1'=' must have consistent whitespace on both sides_.expected '{' after 'switch' subject expression_¤partial application of %select{function with 'inout' parameters|'mutating' method|'super.init' initializer chain|'self.init' initializer delegation}0 is not allowed_Qcurried function declaration syntax has been removed; use a single parameter list_extraneous '}' at top level_:top-level statement cannot begin with a closure expression_Dcannot invoke %select{|initializer for type }1'%0' with no arguments_/argument passed to call that takes no arguments_)missing argument for parameter %0 in call_0left side of mutating operator isn't mutable: %0_"expected expression after operator_expected '{' after 'else'_)expression resolves to an unused function_*variable used within its own initial value_Dbinary operator '%0' cannot be applied to operands of type %1 and %2_8expected member name or constructor call after type name_<cannot subscript a value of type %0 with an index of type %1_"type annotation missing in pattern_expected ';' in 'for' statement_(expected expression after unary operator_*expected expression in list of expressions_assigning a variable to itself_9argument labels '%0' do not match any available overloads_)cannot call value of non-function type %0]expected type_closure expression is unused_9consecutive statements on a line must be separated by ';'_(expression resolves to an unused l-value_&missing condition in an 'if' statement_ambiguous use of %0_0cannot assign to immutable expression of type %0_2empty collection literal requires an explicit type_#parameter requires an explicit type_ ambiguous reference to member %0_1expected 'while' after body of 'repeat' statement_H'switch' statement body must have at least one 'case' or 'default' block_$expected '{' after 'while' condition_Cmissing argument label%select{|s}0 '%1' in %select{call|subscript}2_%expected condition in 'for' statement_=adjacent operators are in non-associative precedence group %0_5expected '(' in argument list of function declaration_/expected '{' to start the body of for-each loop_4type of expression is ambiguous without more context_!expected expression in assignment_<cannot convert value of type %0 to expected argument type %1_,expected '{' in body of function declaration_'type %0 does not conform to protocol %1_!expected '{' after 'if' condition_expected '}' at end of closure_!value of type %0 has no member %1_)expected expression in 'switch' statement_expected '{' after 'repeat'_ expected initial value after '='_cannot assign to value: %0_unterminated string literal_N'%select{var|let}0' cannot appear nested inside another 'var' or 'let' pattern_*missing argument for parameter #%0 in call_2use of unresolved %select{identifier|operator}1 %0_9binary operator '%0' cannot be applied to two %1 operands_expected pattern_Vfound an unexpected second identifier in %0 declaration; is there an accidental break?_%expected identifier in %0 declaration_Ucannot invoke %select{|initializer for type }2'%0' with an argument list of type '%1'_';' statements are not allowed_2expected expression, var, or let in 'if' condition_ invalid character in source file_m%0 initializer is inaccessible due to '%select{private|fileprivate|internal|%error|%error}1' protection level_expected '{' in 'for' statement_Oops, you have an error. Check your code around this line to try and fix it.
+
+Error: Expected initialization in a 'for' statement_‚Oops, you have an error. Check your code around this line to try and fix it.
+
+Error: Expected Sequence expression in for-each loop_{Oops, you have an error. Check your code around this line to try and fix it.
+
+Error: Expected '}' at end of brace statement_nOops, you have an error. Check your code around this line to try and fix it.
+
+Error: Use of undeclared type %0_‚Oops, you have an error. Check your code around this line to try and fix it.
+
+Error: Expected a digit after integer literal prefix_|Oops, you have an error. Check your code around this line to try and fix it.
+
+Error: Value of tuple type %0 has no member %1_›Oops, you have an error. Check your code around this line to try and fix it.
+
+Error: Extraneous argument label%select{|s}0 '%1' in %select{call|subscript}2_Oops, you have an error. Check your code around this line to try and fix it.
+
+Error: Operator with postfix spacing cannot start a subexpression_yOops, you have an error. Check your code around this line to try and fix it.
+
+Error: You cannot have whitespace after '.'_nOops, you have an error. Check your code around this line to try and fix it.
+
+Error: unexpected '%0' separator_pOops, you have an error. Check your code around this line to try and fix it.
+
+Error: Invalid redeclaration of %0_ŠOops, you have an error. Check your code around this line to try and fix it.
+
+Error: Expected expression, var, or let in 'while' condition_´Oops, you have an error. Check your code around this line to try and fix it.
+
+Error: Instance member %1 cannot be used on type %0; did you mean to use a value of this type instead?_lOops, you have an error. Check your code around this line to try and fix it.
+
+Error: Expected '%0' separator_˜Oops, you have an error. Check your code around this line to try and fix it.
+
+Error: Reference to member %0 cannot be resolved without a contextual type_ŠOops, you have an error. Check your code around this line to try and fix it.
+
+Error: You cannot force unwrap value of non-optional type %0_‹Oops, you have an error. Check your code around this line to try and fix it.
+
+Error: Unexpected 'else' immediately following 'if' condition_ŠOops, you have an error. Check your code around this line to try and fix it.
+
+Error: You need to add a condition to your 'while' statement_•Oops, you have an error. Check your code around this line to try and fix it.
+
+Error: %0 is not a %select{binary|prefix unary|postfix unary}1 operator_·Oops, you have an error. Check your code around this line to try and fix it.
+
+Error: You used '=', which is an assignment operator, in a boolean comparison context, did you mean '=='?_|Oops, you have an error. Check your code around this line to try and fix it.
+
+Error: Expected parameter name followed by ':'_Oops, you have an error. Check your code around this line to try and fix it.
+
+Error: Unnamed parameters must be written with the empty name '_'_qOops, you have an error. Check your code around this line to try and fix it.
+
+Error: Ambiguous use of operator %0_yOops, you have an error. Check your code around this line to try and fix it.
+
+Error: Expected an identifier after the '.'_~Oops, you have an error. Check your code around this line to try and fix it.
+
+Error: Cannot assign value of type %0 to type %1_mOops, you have an error. Check your code around this line to try and fix it.
+
+Error: type %0 has no member %1_°Oops, you have an error. Check your code around this line to try and fix it.
+
+Error: Incorrect argument label%select{|s}0 in %select{call|subscript}3 (have '%1', expected '%2')_zOops, you have an error. Check your code around this line to try and fix it.
+
+Error: Expected parameter type following ':'_}Oops, you have an error. Check your code around this line to try and fix it.
+
+Error: You are missing a ')' in your expression_ŠOops, you have an error. Check your code around this line to try and fix it.
+
+Error: Argument type %0 does not conform to expected type %1_hOops, you have an error. Check your code around this line to try and fix it.
+
+Error: Expected expression_ˆOops, you have an error. Check your code around this line to try and fix it.
+
+Error: Unary operator cannot be separated from its operand_Oops, you have an error. Check your code around this line to try and fix it.
+
+Error: Single-quoted string literal found, use '\"'_kOops, you have an error. Check your code around this line to try and fix it.
+
+Error: Extra argument in call_sOops, you have an error. Check your code around this line to try and fix it.
+
+Error: Expected member name after '.'_~Oops, you have an error. Check your code around this line to try and fix it.
+
+Error: You need an 'in' after a for-each pattern_ŠOops, you have an error. Check your code around this line to try and fix it.
+
+Error: You need to declare the variable %0 before you use it_yOops, you have an error. Check your code around this line to try and fix it.
+
+Error: You need to fill in this placeholder_‡Oops, you have an error. Check your code around this line to try and fix it.
+
+Error: %1 is not %select{convertible to|a subtype of}0 %2_†Oops, you have an error. Check your code around this line to try and fix it.
+
+Error: Keyword '%0' cannot be used as an identifier here_jOops, you have an error. Check your code around this line to try and fix it.
+
+Error: %0 is unavailable: %1_Oops, you have an error. Check your code around this line to try and fix it.
+
+Error: '=' must have the same amount of whitespace on both sides_ƒOops, you have an error. Check your code around this line to try and fix it.
+
+Error: Expected '{' after 'switch' subject expression_ùOops, you have an error. Check your code around this line to try and fix it.
+
+Error: Partial application of %select{function with 'inout' parameters|'mutating' method|'super.init' initializer chain|'self.init' initializer delegation}0 is not allowed_¦Oops, you have an error. Check your code around this line to try and fix it.
+
+Error: Curried function declaration syntax has been removed; use a single parameter list_kOops, you have an error. Check your code around this line to try and fix it.
+
+Error: Extra '}' at top level_Oops, you have an error. Check your code around this line to try and fix it.
+
+Error: Top-level statement cannot begin with a closure expression_™Oops, you have an error. Check your code around this line to try and fix it.
+
+Error: Cannot invoke %select{|initializer for type }1'%0' with no arguments_„Oops, you have an error. Check your code around this line to try and fix it.
+
+Error: Argument passed to call that takes no arguments_~Oops, you have an error. Check your code around this line to try and fix it.
+
+Error: Missing argument for parameter %0 in call_…Oops, you have an error. Check your code around this line to try and fix it.
+
+Error: Left side of mutating operator isn't mutable: %0_wOops, you have an error. Check your code around this line to try and fix it.
+
+Error: Expected expression after operator_}Oops, you have an error. Check your code around this line to try and fix it.
+
+Error: You need a '{' after an 'else' statement_~Oops, you have an error. Check your code around this line to try and fix it.
+
+Error: Expression resolves to an unused function_Oops, you have an error. Check your code around this line to try and fix it.
+
+Error: You can't use the same variable to set it's initial value_™Oops, you have an error. Check your code around this line to try and fix it.
+
+Error: Binary operator '%0' cannot be applied to operands of type %1 and %2_Oops, you have an error. Check your code around this line to try and fix it.
+
+Error: Expected member name or constructor call after type name_‘Oops, you have an error. Check your code around this line to try and fix it.
+
+Error: Cannot subscript a value of type %0 with an index of type %1_wOops, you have an error. Check your code around this line to try and fix it.
+
+Error: Type annotation missing in pattern_tOops, you have an error. Check your code around this line to try and fix it.
+
+Error: Expected ';' in 'for' statement_}Oops, you have an error. Check your code around this line to try and fix it.
+
+Error: Expected expression after unary operator_Oops, you have an error. Check your code around this line to try and fix it.
+
+Error: Expected expression in list of expressions_sOops, you have an error. Check your code around this line to try and fix it.
+
+Error: Assigning a variable to itself_Oops, you have an error. Check your code around this line to try and fix it.
+
+Error: The argument labels '%0' you are using don't match anything that's available. Check the function or initializer you are trying to call and make sure to use arguments that match._~Oops, you have an error. Check your code around this line to try and fix it.
+
+Error: Cannot call value of non-function type %0_bOops, you have an error. Check your code around this line to try and fix it.
+
+Error: Expected type_qOops, you have an error. Check your code around this line to try and fix it.
+
+Error: Closure expression is unused_Oops, you have an error. Check your code around this line to try and fix it.
+
+Error: Consecutive statements on a line must be separated by ';'_}Oops, you have an error. Check your code around this line to try and fix it.
+
+Error: Expression resolves to an unused l-value_~Oops, you have an error. Check your code around this line to try and fix it.
+
+Error: You need a condition in an 'if' statement_hOops, you have an error. Check your code around this line to try and fix it.
+
+Error: Ambiguous use of %0_ÄOops, you have an error. Check your code around this line to try and fix it.
+
+Error: The expression of type %0 is immutable (it can't ever be changed), and so you cannot give it a different value._‡Oops, you have an error. Check your code around this line to try and fix it.
+
+Error: Empty collection literal requires an explicit type_xOops, you have an error. Check your code around this line to try and fix it.
+
+Error: Parameter requires an explicit type_uOops, you have an error. Check your code around this line to try and fix it.
+
+Error: Ambiguous reference to member %0_‚Oops, you have an error. Check your code around this line to try and fix it.
+
+Error: You need a 'while' after a 'repeat' statement_Oops, you have an error. Check your code around this line to try and fix it.
+
+Error: 'switch' statement body must have at least one 'case' or 'default' block_}Oops, you have an error. Check your code around this line to try and fix it.
+
+Error: You need a '{' after a 'while' condition_˜Oops, you have an error. Check your code around this line to try and fix it.
+
+Error: Missing argument label%select{|s}0 '%1' in %select{call|subscript}2_€Oops, you have an error. Check your code around this line to try and fix it.
+
+Error: You need a condition in the 'for' statement_’Oops, you have an error. Check your code around this line to try and fix it.
+
+Error: Adjacent operators are in non-associative precedence group %0_ŠOops, you have an error. Check your code around this line to try and fix it.
+
+Error: Expected '(' in argument list of function declaration_ˆOops, you have an error. Check your code around this line to try and fix it.
+
+Error: You need a '{' to start the body of a for-each loop_‰Oops, you have an error. Check your code around this line to try and fix it.
+
+Error: Type of expression is ambiguous without more context_vOops, you have an error. Check your code around this line to try and fix it.
+
+Error: Expected expression in assignment_‘Oops, you have an error. Check your code around this line to try and fix it.
+
+Error: Cannot convert value of type %0 to expected argument type %1_Oops, you have an error. Check your code around this line to try and fix it.
+
+Error: Expected '{' in body of function declaration_|Oops, you have an error. Check your code around this line to try and fix it.
+
+Error: type %0 does not conform to protocol %1_vOops, you have an error. Check your code around this line to try and fix it.
+
+Error: Expected '{' after 'if' condition_sOops, you have an error. Check your code around this line to try and fix it.
+
+Error: Expected '}' at end of closure_vOops, you have an error. Check your code around this line to try and fix it.
+
+Error: Value of type %0 has no member %1_†Oops, you have an error. Check your code around this line to try and fix it.
+
+Error: You need an expression in your 'switch' statement_rOops, you have an error. Check your code around this line to try and fix it.
+
+Error: You need a '{' after 'repeat'_sOops, you have an error. Check your code around this line to try and fix it.
+
+Error: You need a value after the '='_oOops, you have an error. Check your code around this line to try and fix it.
+
+Error: Cannot assign to value: %0_pOops, you have an error. Check your code around this line to try and fix it.
+
+Error: Unterminated string literal_£Oops, you have an error. Check your code around this line to try and fix it.
+
+Error: '%select{var|let}0' cannot appear nested inside another 'var' or 'let' pattern_Oops, you have an error. Check your code around this line to try and fix it.
+
+Error: Missing argument for parameter #%0 in call_‡Oops, you have an error. Check your code around this line to try and fix it.
+
+Error: Use of unresolved %select{identifier|operator}1 %0_Oops, you have an error. Check your code around this line to try and fix it.
+
+Error: Binary operator '%0' cannot be applied to two %1 operands_eOops, you have an error. Check your code around this line to try and fix it.
+
+Error: Expected pattern_«Oops, you have an error. Check your code around this line to try and fix it.
+
+Error: Found an unexpected second identifier in %0 declaration; is there an accidental break?_zOops, you have an error. Check your code around this line to try and fix it.
+
+Error: Expected identifier in %0 declaration_ªOops, you have an error. Check your code around this line to try and fix it.
+
+Error: Cannot invoke %select{|initializer for type }2'%0' with an argument list of type '%1'_sOops, you have an error. Check your code around this line to try and fix it.
+
+Error: ';' statements are not allowed_‡Oops, you have an error. Check your code around this line to try and fix it.
+
+Error: Expected expression, var, or let in 'if' condition_uOops, you have an error. Check your code around this line to try and fix it.
+
+Error: Invalid character in source file_ÂOops, you have an error. Check your code around this line to try and fix it.
+
+Error: %0 initializer is inaccessible due to '%select{private|fileprivate|internal|%error|%error}1' protection level_tOops, you have an error. Check your code around this line to try and fix it.
+
+Error: Expected '{' in 'for' statement  åEnŠºä-j¹×q‹Ñ>i¬âIh“¿Ú8`‚ºĞ5NsšÌğ%Yq¥Ö	}	Ñ	ï
+,
+s
+¥
+Ñ)Eqå _„¦Ñş[‡•´ğDZÂè?Š±÷_—É $c’¼à%Qo’¯ÍK€¼Ï(P¨Éş!‘³7¼:«0¯Mß[Ì?Ìƒò¨5Í ‡!!˜""ˆ#	#y$,$©%)%¶&!&¬'0'((•)")*(*±++¯,5-1-Ú.H.Ú/v/ı0~11€2 233®4>4Ò5L5Ã6C6Å7;8E8Æ9+9Ÿ:0:°;1;œ<c<í=h=à>e??…@ @£A8AÅBPBÜCUCéDmDìEeEÛFTFİGRGÈH:H­ISIÕJ_JğKXLLƒM0M¦N0N¨Om             Û              Oä

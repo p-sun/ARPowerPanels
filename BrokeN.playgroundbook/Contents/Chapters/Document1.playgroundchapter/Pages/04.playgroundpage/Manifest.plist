@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Name</key>
+	<string>Name</string>
+	<key>LiveViewMode</key>
+	<string>VisibleByDefault</string>
+    <key>CodeCopySetup</key>
+    <dict>
+        <key>CopyCommandButtonTitle</key>
+        <string>Bring Over My Code</string>
+        <key>DefaultCommandButtonTitle</key>
+        <string>Start Coding on This Page</string>
+        <key>NavigateCommandButtonTitle</key>
+        <string>Return to Previous Page</string>
+        <key>NotReadyToCopyInstructions</key>
+        <string>Go back and personalize your code before continuing?</string>
+        <key>ReadyToCopyInstructions</key>
+        <string>You can bring over your personalized code from the previous page to continue improving it.</string>
+    </dict>
+	<key>LiveViewEdgeToEdge</key>
+	<true/>
+	<key>PlaygroundLoggingMode</key>
+	<string>Off</string>
+</dict>
+</plist>
