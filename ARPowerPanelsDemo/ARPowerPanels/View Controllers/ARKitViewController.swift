@@ -39,7 +39,7 @@ class ARKitViewController: UIViewController {
         arSceneView.scene = scene
         scene.rootNode.name = "AR World Origin   🌎"
 
-        powerPanels = ARPowerPanels(arSceneView: arSceneView, scene: scene)
+        powerPanels = ARPowerPanels(arSceneView: arSceneView, panelTypes: ARPowerPanelsType.allTypes)
         powerPanels.dataSource = self
         powerPanels.selectNode(scene.rootNode)
         view.addSubview(powerPanels)

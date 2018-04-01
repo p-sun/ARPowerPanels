@@ -14,6 +14,14 @@ protocol ARPowerPanelsDataSource: class {
     func powerPanel(shouldDisplayChildrenFor node: SCNNode) -> Bool
 }
 
+enum ARPowerPanelsType {
+    case sceneGraph, info, easyMoves, allMoves, allEdits
+    
+    static var allTypes: [ARPowerPanelsType] {
+        return [.sceneGraph, .info, .easyMoves, .allMoves, .allEdits]
+    }
+}
+
 class ARPowerPanels: UIView {
     
     var selectedNode: SCNNode? {
@@ -39,8 +47,8 @@ class ARPowerPanels: UIView {
     }
     
     // MARK: Right-hand panels
-    private let purplePanel = PurpleView()
-    private let greenPanel = GreenView()
+//    private let purplePanel = PurpleView()
+//    private let greenPanel = GreenView()
     private let hierachyPanel: HierachyPanel
     
     private let infoPanel = TransformationPanel(controlTypes: TransformationType.entityInfo)
@@ -70,8 +78,8 @@ class ARPowerPanels: UIView {
         }
     }
     
-    convenience init(scene: SCNScene) { //TODO
-        self.init(rootNode: scene.rootNode, isARKit: false)
+    convenience init(scene: SCNScene, panelTypes: [ARPowerPanelsType]) { //TODO
+        self.init(rootNode: scene.rootNode, isARKit: false, panelTypes: panelTypes)
         sceneView.backgroundColor = #colorLiteral(red: 0.1654644267, green: 0.3628849843, blue: 0.5607843399, alpha: 1) // TODO change color
         
         sceneView.scene = scene
@@ -80,8 +88,8 @@ class ARPowerPanels: UIView {
         selectedNode = scene.rootNode
     }
     
-    convenience init(arSceneView: ARSCNView, scene: SCNScene) {
-        self.init(rootNode: arSceneView.scene.rootNode, isARKit: true)
+    convenience init(arSceneView: ARSCNView, panelTypes: [ARPowerPanelsType]) {
+        self.init(rootNode: arSceneView.scene.rootNode, isARKit: true, panelTypes: panelTypes)
         self.arSceneView = arSceneView
         arSceneView.setupGlowTechnique()
         
@@ -92,22 +100,14 @@ class ARPowerPanels: UIView {
         selectedNode = arSceneView.scene.rootNode
     }
     
-    private init(rootNode: SCNNode, isARKit: Bool) {
+    private init(rootNode: SCNNode, isARKit: Bool, panelTypes: [ARPowerPanelsType]) {
         self.rootNode = rootNode
         hierachyPanel = HierachyPanel()
 
         super.init(frame: CGRect.zero)
         
         // Init variables
-        menuItems = [
-            MenuItem(name: "SCENE GRAPH", panelItem: PanelItem(viewToPresent: hierachyPanel, heightPriority: .init(400), preferredHeight: 440, width: 400)),
-            MenuItem(name: "INFO", panelItem: PanelItem(viewToPresent: infoPanel, heightPriority: .init(1000), preferredHeight: nil, width: 400)),
-            MenuItem(name: "EASY MOVES", panelItem: PanelItem(viewToPresent: easyMovePanel, heightPriority: .init(999), preferredHeight: nil, width: 400)),
-            MenuItem(name: "ALL MOVES", panelItem: PanelItem(viewToPresent: advancedMovePanel, heightPriority: .init(998), preferredHeight: nil, width: 400)),
-            MenuItem(name: "ALL EDITS", panelItem: PanelItem(viewToPresent: allEditsPanel, heightPriority: .init(997), preferredHeight: nil, width: 400)),
-            MenuItem(name: "PURPLE", panelItem: PanelItem(viewToPresent: purplePanel, heightPriority: .init(250), preferredHeight: 400, width: 400)),
-            MenuItem(name: "GREEN", panelItem: PanelItem(viewToPresent: greenPanel, heightPriority: .init(300), preferredHeight: 600, width: 400)),
-        ]
+        menuItems = panelTypes.map { menuForPanelType($0) }
 
         // Setup background
         constrainSceneView()
@@ -139,6 +139,23 @@ class ARPowerPanels: UIView {
     
     func selectNode(_ node: SCNNode) {
         self.selectedNode = node
+    }
+    
+    private func menuForPanelType(_ panelType: ARPowerPanelsType) -> MenuItem {
+            switch panelType {
+            case .sceneGraph:
+                return MenuItem(name: "SCENE GRAPH", panelItem: PanelItem(viewToPresent: hierachyPanel, heightPriority: .init(400), preferredHeight: 440, width: 400))
+            case .info:
+                return MenuItem(name: "INFO", panelItem: PanelItem(viewToPresent: infoPanel, heightPriority: .init(1000), preferredHeight: nil, width: 400))
+            case .easyMoves:
+                return MenuItem(name: "EASY MOVES", panelItem: PanelItem(viewToPresent: easyMovePanel, heightPriority: .init(999), preferredHeight: nil, width: 400))
+            case .allMoves:
+                return MenuItem(name: "ALL MOVES", panelItem: PanelItem(viewToPresent: advancedMovePanel, heightPriority: .init(998), preferredHeight: nil, width: 400))
+            case .allEdits:
+                return MenuItem(name: "ALL EDITS", panelItem: PanelItem(viewToPresent: allEditsPanel, heightPriority: .init(997), preferredHeight: nil, width: 400))
+            }
+            //            MenuItem(name: "PURPLE", panelItem: PanelItem(viewToPresent: purplePanel, heightPriority: .init(250), preferredHeight: 400, width: 400)),
+            //            MenuItem(name: "GREEN", panelItem: PanelItem(viewToPresent: greenPanel, heightPriority: .init(300), preferredHeight: 600, width: 400)),
     }
     
     private func updatePanels() {

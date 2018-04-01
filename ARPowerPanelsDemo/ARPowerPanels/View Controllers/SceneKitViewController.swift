@@ -50,7 +50,7 @@ class SceneKitViewController: UIViewController {
         super.viewDidLoad()
         
         scene = sceneCreator.createFoxPlaneScene()
-        powerPanels = ARPowerPanels(scene: scene)
+        powerPanels = ARPowerPanels(scene: scene, panelTypes: [.info, .easyMoves, .sceneGraph])
         powerPanels.selectNode(scene.rootNode)
         powerPanels.dataSource = self
         view.addSubview(powerPanels)
