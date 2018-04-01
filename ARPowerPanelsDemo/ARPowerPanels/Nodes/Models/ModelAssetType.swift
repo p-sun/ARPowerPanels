@@ -9,15 +9,78 @@
 import UIKit
 import SceneKit
 
-enum Model {
-    case wolf, fox, lowPolyTree, camera
+protocol NodeMaker {
+    var menuImage: UIImage { get }
+    func createNode() -> SCNNode
+}
+
+enum Shapes: NodeMaker {
+    case sphere, plane, box, pyramid, cylinder, cone, torus, tube, capsule
+
+    var menuImage: UIImage {
+        switch self {
+        case .sphere:
+            return #imageLiteral(resourceName: "sphere")
+        case .plane:
+            return #imageLiteral(resourceName: "plane")
+        case .box:
+            return #imageLiteral(resourceName: "box")
+        case .pyramid:
+            return #imageLiteral(resourceName: "pyramid")
+        case .cylinder:
+            return #imageLiteral(resourceName: "cylinder")
+        case .cone:
+            return #imageLiteral(resourceName: "cone")
+        case .torus:
+            return #imageLiteral(resourceName: "torus")
+        case .tube:
+            return #imageLiteral(resourceName: "tube")
+        case .capsule:
+            return #imageLiteral(resourceName: "capsule")
+        }
+    }
+    
+    func createNode() -> SCNNode {
+        let node = SCNNode()
+        node.geometry = geometry(for: self)
+        return node
+    }
+    
+    private func geometry(for type: Shapes) -> SCNGeometry {
+        switch self {
+        case .sphere:
+            return SCNSphere(radius: 1.0)
+        case .plane:
+            return SCNPlane(width: 1.0, height: 1.5)
+        case .box:
+            return SCNBox(width: 1.0, height: 1.5, length: 2.0, chamferRadius: 0.0)
+        case .pyramid:
+            return SCNPyramid(width: 2.0, height: 1.5, length: 1.0)
+        case .cylinder:
+            return SCNCylinder(radius: 1.0, height: 1.5)
+        case .cone:
+            return SCNCone(topRadius: 0.5, bottomRadius: 1.0, height: 1.5)
+        case .torus:
+            return SCNTorus(ringRadius: 1.0, pipeRadius: 0.2)
+        case .tube:
+            return SCNTube(innerRadius: 0.5, outerRadius: 1.0, height: 1.5)
+        case .capsule:
+            return SCNCapsule(capRadius: 0.5, height: 2.0)
+        }
+    }
+}
+
+enum Model: NodeMaker {
+    case axis, wolf, fox, lowPolyTree, camera
     
     static func assetTypesForMenu() -> [Model] {
-        return [.wolf, .fox, .lowPolyTree]
+        return [.axis, .wolf, .fox, .lowPolyTree]
     }
     
     func createNode() -> SCNNode {
         switch self {
+        case .axis:
+             return NodeCreator.createAxesNode(quiverLength: 0.5, quiverThickness: 0.2)
         case .fox:
             let parentNode = SCNNode()
             parentNode.name = "Fox 🦊"
@@ -47,8 +110,10 @@ enum Model {
         return node
     }
     
-    func menuImage() -> UIImage {
+    var menuImage: UIImage {
         switch self {
+        case .axis:
+            return #imageLiteral(resourceName: "menuAxis")
         case .wolf:
             return #imageLiteral(resourceName: "menuWolf") // TODO? Remove this? This is a really big file compared to the fox
         case .lowPolyTree:

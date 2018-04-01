@@ -16,17 +16,17 @@ struct NodeCreator {
         let chamferRadius = quiverThickness / 2.0
         
         let xQuiverBox = SCNBox(width: quiverLength, height: quiverThickness, length: quiverThickness, chamferRadius: chamferRadius)
-        xQuiverBox.materials = [SCNMaterial.material(withDiffuse: UIColor.red, respondsToLighting: false)]
+        xQuiverBox.materials = [SCNMaterial.material(withDiffuse: UIColor.xAxisColor, respondsToLighting: false)]
         let xQuiverNode = SCNNode(geometry: xQuiverBox)
         xQuiverNode.position = SCNVector3Make(Float(quiverLength / 2.0), 0.0, 0.0)
         
         let yQuiverBox = SCNBox(width: quiverThickness, height: quiverLength, length: quiverThickness, chamferRadius: chamferRadius)
-        yQuiverBox.materials = [SCNMaterial.material(withDiffuse: UIColor.green, respondsToLighting: false)]
+        yQuiverBox.materials = [SCNMaterial.material(withDiffuse: UIColor.yAxisColor, respondsToLighting: false)]
         let yQuiverNode = SCNNode(geometry: yQuiverBox)
         yQuiverNode.position = SCNVector3Make(0.0, Float(quiverLength / 2.0), 0.0)
         
         let zQuiverBox = SCNBox(width: quiverThickness, height: quiverThickness, length: quiverLength, chamferRadius: chamferRadius)
-        zQuiverBox.materials = [SCNMaterial.material(withDiffuse: UIColor.blue, respondsToLighting: false)]
+        zQuiverBox.materials = [SCNMaterial.material(withDiffuse: UIColor.zAxisColor, respondsToLighting: false)]
         let zQuiverNode = SCNNode(geometry: zQuiverBox)
         zQuiverNode.position = SCNVector3Make(0.0, 0.0, Float(quiverLength / 2.0))
         
