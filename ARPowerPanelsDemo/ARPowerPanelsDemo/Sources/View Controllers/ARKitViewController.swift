@@ -10,24 +10,24 @@ import UIKit
 import SceneKit
 import ARKit
 
-class ARKitViewController: UIViewController {
+public class ARKitViewController: UIViewController {
     
     private var powerPanels: ARPowerPanels!
     private var arSceneView = ARSCNView()
-    var scene: SCNScene!
+    var scene = SCNScene()
 
-    let panelTypes: [ARPowerPanelsType]
-    
-    init(panelTypes: [ARPowerPanelsType]) {
-        self.panelTypes = panelTypes
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func viewDidLoad() {
+    let panelTypes: [ARPowerPanelsType] = ARPowerPanelsType.allTypes
+//
+//    init(panelTypes: [ARPowerPanelsType]) {
+//        self.panelTypes = panelTypes
+//        super.init(nibName: nil, bundle: nil)
+//    }
+//
+//    required init?(coder aDecoder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
+//
+    override public func viewDidLoad() {
         super.viewDidLoad()
         
         view.addSubview(arSceneView)
@@ -47,12 +47,12 @@ class ARKitViewController: UIViewController {
         powerPanels.constrainEdges(to: view)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         beginarSceneView()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
+    override public func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         arSceneView.session.pause()
     }
@@ -66,7 +66,7 @@ class ARKitViewController: UIViewController {
 }
 
 extension ARKitViewController: ARSCNViewDelegate {
-    func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
+    public func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
         guard let planeAnchor = anchor as? ARPlaneAnchor else { return }
         print("didAdd \(node.position)")
         
@@ -77,7 +77,7 @@ extension ARKitViewController: ARSCNViewDelegate {
         node.addChildNode(planeNode)
     }
     
-    func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
+    public func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
         guard let planeAnchor = anchor as? ARPlaneAnchor else { return }
         
         // Update size of the geometry associated with Plane nodes
@@ -86,7 +86,7 @@ extension ARKitViewController: ARSCNViewDelegate {
         }
     }
     
-    func renderer(_ renderer: SCNSceneRenderer, didRemove node: SCNNode, for anchor: ARAnchor) {//
+    public func renderer(_ renderer: SCNSceneRenderer, didRemove node: SCNNode, for anchor: ARAnchor) {//
         print("didRemove \(node.position)")
     }
 }
@@ -102,17 +102,17 @@ extension ARKitViewController {
      }
      */
     
-    func session(_ session: ARSession, didFailWithError error: Error) {
+    public func session(_ session: ARSession, didFailWithError error: Error) {
         // Present an error message to the user
         
     }
     
-    func sessionWasInterrupted(_ session: ARSession) {
+    public func sessionWasInterrupted(_ session: ARSession) {
         // Inform the user that the session has been interrupted, for example, by presenting an overlay
         
     }
     
-    func sessionInterruptionEnded(_ session: ARSession) {
+    public func sessionInterruptionEnded(_ session: ARSession) {
         // Reset tracking and/or remove existing anchors if consistent tracking is required
         
     }
