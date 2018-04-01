@@ -44,6 +44,9 @@
 		8565E298206B72390094AC4E /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8565E282206B72380094AC4E /* UIView+AutoLayout.swift */; };
 		8565E299206B72390094AC4E /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8565E283206B72380094AC4E /* UIView+Extensions.swift */; };
 		8565E29C206B730D0094AC4E /* HostCell+StateType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8565E29B206B730D0094AC4E /* HostCell+StateType.swift */; };
+		857BC60620712F9E0006B42D /* ImageCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857BC60520712F9E0006B42D /* ImageCollectionView.swift */; };
+		857BC6082071313E0006B42D /* ImageCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857BC6072071313E0006B42D /* ImageCollectionCell.swift */; };
+		857BC60A207134AB0006B42D /* ModelCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857BC609207134AB0006B42D /* ModelCollectionView.swift */; };
 		858A15C9206B438100A63DA2 /* Panel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A15C8206B438100A63DA2 /* Panel.swift */; };
 		85C65894205F061500DF7B49 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C65893205F061500DF7B49 /* AppDelegate.swift */; };
 		85C65896205F061500DF7B49 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 85C65895205F061500DF7B49 /* art.scnassets */; };
@@ -113,6 +116,9 @@
 		8565E282206B72380094AC4E /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
 		8565E283206B72380094AC4E /* UIView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		8565E29B206B730D0094AC4E /* HostCell+StateType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HostCell+StateType.swift"; sourceTree = "<group>"; };
+		857BC60520712F9E0006B42D /* ImageCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionView.swift; sourceTree = "<group>"; };
+		857BC6072071313E0006B42D /* ImageCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionCell.swift; sourceTree = "<group>"; };
+		857BC609207134AB0006B42D /* ModelCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelCollectionView.swift; sourceTree = "<group>"; };
 		858A15C8206B438100A63DA2 /* Panel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Panel.swift; sourceTree = "<group>"; };
 		85C65890205F061500DF7B49 /* ARPowerPanels.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARPowerPanels.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85C65893205F061500DF7B49 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -157,14 +163,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		852D46BF20688A260090EBED /* Menu Collection */ = {
+		852D46BF20688A260090EBED /* Left Menu */ = {
 			isa = PBXGroup;
 			children = (
 				851F5AED206A024500446089 /* MenuStackView.swift */,
 				851F5AEC206A024500446089 /* RoundedButton.swift */,
 				851F5AF0206A02A000446089 /* MenuItem.swift */,
 			);
-			path = "Menu Collection";
+			path = "Left Menu";
 			sourceTree = "<group>";
 		};
 		8556A604207008D900C14E52 /* Checkmark Input View */ = {
@@ -197,8 +203,8 @@
 		8565E266206B6A310094AC4E /* ARPowerPanels */ = {
 			isa = PBXGroup;
 			children = (
-				85606274206DF87900884858 /* PowerPanelExtensions */,
-				852D46BF20688A260090EBED /* Menu Collection */,
+				857BC60420712F7C0006B42D /* ModelCollection */,
+				852D46BF20688A260090EBED /* Left Menu */,
 				85CCE243206486BB000560C3 /* TransformationPanel */,
 				8565E267206B6A920094AC4E /* HierachyPanel */,
 				8565E261206B5BFC0094AC4E /* ARPowerPanels.swift */,
@@ -278,6 +284,16 @@
 			path = "FTD Helpers";
 			sourceTree = "<group>";
 		};
+		857BC60420712F7C0006B42D /* ModelCollection */ = {
+			isa = PBXGroup;
+			children = (
+				857BC609207134AB0006B42D /* ModelCollectionView.swift */,
+				857BC60520712F9E0006B42D /* ImageCollectionView.swift */,
+				857BC6072071313E0006B42D /* ImageCollectionCell.swift */,
+			);
+			path = ModelCollection;
+			sourceTree = "<group>";
+		};
 		85C65887205F061500DF7B49 = {
 			isa = PBXGroup;
 			children = (
@@ -334,6 +350,7 @@
 		85C658AB205F07DF00DF7B49 /* 2DUtilities */ = {
 			isa = PBXGroup;
 			children = (
+				85606274206DF87900884858 /* PowerPanelExtensions */,
 				8565E29A206B72F70094AC4E /* FTD Helpers */,
 				8565E26A206B72380094AC4E /* FTD Cells */,
 				8565E26C206B72380094AC4E /* FTD Original */,
@@ -501,6 +518,7 @@
 				85CCE27620673F12000560C3 /* NodeRender.metal in Sources */,
 				85C65898205F061500DF7B49 /* ARKitViewController.swift in Sources */,
 				8565E28C206B72390094AC4E /* HostCell.swift in Sources */,
+				857BC60A207134AB0006B42D /* ModelCollectionView.swift in Sources */,
 				85CCE27020671EDB000560C3 /* UIColor+Extensions.swift in Sources */,
 				85C658B6205F0D9C00DF7B49 /* SliderTextView.swift in Sources */,
 				8565E29C206B730D0094AC4E /* HostCell+StateType.swift in Sources */,
@@ -527,6 +545,7 @@
 				8556A603207003F600C14E52 /* UIView+BorderedInputBoxes.swift in Sources */,
 				8565E262206B5BFC0094AC4E /* ARPowerPanels.swift in Sources */,
 				8565E297206B72390094AC4E /* UITableView+Reusable.swift in Sources */,
+				857BC60620712F9E0006B42D /* ImageCollectionView.swift in Sources */,
 				85C658BC205F5FC500DF7B49 /* ModelAssetType.swift in Sources */,
 				85C658C3205F643D00DF7B49 /* 3DUtilities.swift in Sources */,
 				85606273206DE08200884858 /* HierarchyIteractor.swift in Sources */,
@@ -549,6 +568,7 @@
 				85CCE23F2064861B000560C3 /* Constraints+Activation+Priority.swift in Sources */,
 				8565E287206B72390094AC4E /* CellStyle.swift in Sources */,
 				85C658C5205F643D00DF7B49 /* SCNVector3+Extensions.swift in Sources */,
+				857BC6082071313E0006B42D /* ImageCollectionCell.swift in Sources */,
 				8565E265206B5E630094AC4E /* SceneCreator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

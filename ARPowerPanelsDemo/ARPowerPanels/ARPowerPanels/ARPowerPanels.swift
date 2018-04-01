@@ -47,8 +47,6 @@ class ARPowerPanels: UIView {
     }
     
     // MARK: Right-hand panels
-//    private let purplePanel = PurpleView()
-//    private let greenPanel = GreenView()
     private let hierachyPanel: HierachyPanel
     
     private let infoPanel = TransformationPanel(controlTypes: TransformationType.entityInfo)

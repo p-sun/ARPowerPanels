@@ -9,6 +9,13 @@
 import UIKit
 
 extension UIView {
+    static var cornerRadius: CGFloat = 20.0
+    
+    func addCornerRadius() {
+        self.layer.cornerRadius = UIView.cornerRadius
+        self.layer.masksToBounds = true
+    }
+    
     func setupPowerPanelTextField(_ textField: UITextField, tintColor: UIColor) {
         setupPowerPanelBorder(tintColor: tintColor)
         

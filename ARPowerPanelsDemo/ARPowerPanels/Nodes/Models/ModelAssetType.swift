@@ -73,7 +73,7 @@ enum Shapes: NodeMaker {
 enum Model: NodeMaker {
     case axis, wolf, fox, lowPolyTree, camera
     
-    static func assetTypesForMenu() -> [Model] {
+    static var allTypes: [Model] {
         return [.axis, .wolf, .fox, .lowPolyTree]
     }
     

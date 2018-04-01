@@ -54,8 +54,7 @@ class Panel {
     }
     
     private func setupContainer() {
-        view.layer.cornerRadius = 20.0
+        view.addCornerRadius()
         view.backgroundColor = UIColor.white.withAlphaComponent(1)
-        view.clipsToBounds = true
     }
 }
