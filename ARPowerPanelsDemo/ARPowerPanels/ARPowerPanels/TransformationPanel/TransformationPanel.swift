@@ -96,7 +96,7 @@ class TransformationPanel: UIStackView {
         case .position:
             positionInput.constrainHeight(29)
 
-            positionInput.setPanSpeed(0.04)
+            positionInput.setPanSpeed(0.0006)
             positionInput.delegate = self
             addArrangedSubview(positionInput)
             
@@ -111,14 +111,14 @@ class TransformationPanel: UIStackView {
             eulerRotationInput.constrainHeight(29)
 
             eulerRotationInput.delegate = self
-            eulerRotationInput.setPanSpeed(0.007)
+            eulerRotationInput.setPanSpeed(1)
             addArrangedSubview(eulerRotationInput)
             
         case .scale:
             scaleInput.constrainHeight(29)
 
             scaleInput.delegate = self
-            scaleInput.setPanSpeed(0.06)
+            scaleInput.setPanSpeed(0.002)
             addArrangedSubview(scaleInput)
             
         case .opacity:
@@ -132,7 +132,7 @@ class TransformationPanel: UIStackView {
             orientationInput.constrainHeight(29)
 
             orientationInput.delegate = self
-            orientationInput.setPanSpeed(0.007)
+            orientationInput.setPanSpeed(0.005)
             addArrangedSubview(orientationInput)
         }
     }
@@ -141,9 +141,8 @@ class TransformationPanel: UIStackView {
         let label = UILabel()
         label.text = type.displayName
         label.font = UIFont.inputSliderHeader
-        label.constrainHeight(34)
+        label.constrainHeight(34, priority: .init(998))
         label.textColor = #colorLiteral(red: 0.9819386001, green: 0.9880417428, blue: 1, alpha: 1)
-        label.constrainHeight(34)
         return label
     }
     
@@ -161,7 +160,8 @@ class TransformationPanel: UIStackView {
         case .quaternionRotation:
             quaternionRotationInput.vector = transformable.rotation
         case .eulerRotation:
-            eulerRotationInput.vector = transformable.eulerAngles
+            let radiansVector = transformable.eulerAngles
+            eulerRotationInput.vector = radiansVector.radiansToDegrees
         case .scale:
             scaleInput.vector = transformable.scale
         case .opacity:
@@ -196,7 +196,7 @@ extension TransformationPanel: SliderVector3ViewDelegate {
             
         } else if controlTypes.contains(.eulerRotation) &&
             sliderVector3View == eulerRotationInput {
-            transformable?.eulerAngles = vector
+            transformable?.eulerAngles = vector.degreesToRadians
             
 //            updateInput(for: .quaternionRotation)
 //            updateInput(for: .orientation)
@@ -240,4 +240,22 @@ extension TransformationPanel: SliderInputsViewDelegate {
     func sliderInputView(didChange value: Float, at index: Int) {
         transformable?.opacity = CGFloat(value)
     }
+}
+
+private extension SCNVector3 {
+    var degreesToRadians: SCNVector3 {
+        return SCNVector3Make(x.degreesToRadians,
+                              y.degreesToRadians,
+                              z.degreesToRadians)
+    }
+    var radiansToDegrees: SCNVector3 {
+        return SCNVector3Make(x.radiansToDegrees,
+                              y.radiansToDegrees,
+                              z.radiansToDegrees)
+    }
+}
+
+private extension FloatingPoint {
+    var degreesToRadians: Self { return self * .pi / 180 }
+    var radiansToDegrees: Self { return self * 180 / .pi }
 }
