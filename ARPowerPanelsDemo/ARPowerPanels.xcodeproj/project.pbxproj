@@ -11,6 +11,7 @@
 		851F5AEF206A024500446089 /* MenuStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851F5AED206A024500446089 /* MenuStackView.swift */; };
 		851F5AF1206A02A000446089 /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851F5AF0206A02A000446089 /* MenuItem.swift */; };
 		852D46C3206891400090EBED /* UICollection+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852D46C2206891400090EBED /* UICollection+Extensions.swift */; };
+		853ACF7520716B4D00BF01CA /* GlobalPlayground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853ACF7420716B4D00BF01CA /* GlobalPlayground.swift */; };
 		8556A6012070039200C14E52 /* PowerPanelCheckmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8556A6002070039200C14E52 /* PowerPanelCheckmarkView.swift */; };
 		8556A603207003F600C14E52 /* UIView+BorderedInputBoxes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8556A602207003F600C14E52 /* UIView+BorderedInputBoxes.swift */; };
 		8556A606207008FF00C14E52 /* PowerPanelCheckmarkInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8556A605207008FF00C14E52 /* PowerPanelCheckmarkInput.swift */; };
@@ -83,6 +84,7 @@
 		851F5AED206A024500446089 /* MenuStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuStackView.swift; sourceTree = "<group>"; };
 		851F5AF0206A02A000446089 /* MenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
 		852D46C2206891400090EBED /* UICollection+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollection+Extensions.swift"; sourceTree = "<group>"; };
+		853ACF7420716B4D00BF01CA /* GlobalPlayground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalPlayground.swift; sourceTree = "<group>"; };
 		8556A6002070039200C14E52 /* PowerPanelCheckmarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerPanelCheckmarkView.swift; sourceTree = "<group>"; };
 		8556A602207003F600C14E52 /* UIView+BorderedInputBoxes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+BorderedInputBoxes.swift"; sourceTree = "<group>"; };
 		8556A605207008FF00C14E52 /* PowerPanelCheckmarkInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerPanelCheckmarkInput.swift; sourceTree = "<group>"; };
@@ -173,6 +175,18 @@
 			path = "Left Menu";
 			sourceTree = "<group>";
 		};
+		853ACF762071705300BF01CA /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				8565E266206B6A310094AC4E /* PowerPanels */,
+				8565E263206B5E4D0094AC4E /* Scene */,
+				85C658AA205F07A600DF7B49 /* Extensions */,
+				85C658A7205F072600DF7B49 /* View Controllers */,
+				85C658B9205F5FA500DF7B49 /* Nodes */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
 		8556A604207008D900C14E52 /* Checkmark Input View */ = {
 			isa = PBXGroup;
 			children = (
@@ -200,7 +214,7 @@
 			path = Scene;
 			sourceTree = "<group>";
 		};
-		8565E266206B6A310094AC4E /* ARPowerPanels */ = {
+		8565E266206B6A310094AC4E /* PowerPanels */ = {
 			isa = PBXGroup;
 			children = (
 				857BC60420712F7C0006B42D /* ModelCollection */,
@@ -211,7 +225,7 @@
 				85CCE271206723DE000560C3 /* PanelsPresenter.swift */,
 				858A15C8206B438100A63DA2 /* Panel.swift */,
 			);
-			path = ARPowerPanels;
+			path = PowerPanels;
 			sourceTree = "<group>";
 		};
 		8565E267206B6A920094AC4E /* HierachyPanel */ = {
@@ -297,7 +311,7 @@
 		85C65887205F061500DF7B49 = {
 			isa = PBXGroup;
 			children = (
-				85C65892205F061500DF7B49 /* ARPowerPanels */,
+				85C65892205F061500DF7B49 /* ARPowerPanelsDemo */,
 				85C65891205F061500DF7B49 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -310,14 +324,10 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		85C65892205F061500DF7B49 /* ARPowerPanels */ = {
+		85C65892205F061500DF7B49 /* ARPowerPanelsDemo */ = {
 			isa = PBXGroup;
 			children = (
-				8565E266206B6A310094AC4E /* ARPowerPanels */,
-				8565E263206B5E4D0094AC4E /* Scene */,
-				85C658AA205F07A600DF7B49 /* Extensions */,
-				85C658A7205F072600DF7B49 /* View Controllers */,
-				85C658B9205F5FA500DF7B49 /* Nodes */,
+				853ACF762071705300BF01CA /* Source */,
 				85C65893205F061500DF7B49 /* AppDelegate.swift */,
 				85C65895205F061500DF7B49 /* art.scnassets */,
 				85C65899205F061500DF7B49 /* Main.storyboard */,
@@ -325,7 +335,7 @@
 				85C6589E205F061500DF7B49 /* LaunchScreen.storyboard */,
 				85C658A1205F061500DF7B49 /* Info.plist */,
 			);
-			path = ARPowerPanels;
+			path = ARPowerPanelsDemo;
 			sourceTree = "<group>";
 		};
 		85C658A7205F072600DF7B49 /* View Controllers */ = {
@@ -333,6 +343,7 @@
 			children = (
 				85C658A8205F074100DF7B49 /* SceneKitViewController.swift */,
 				85C65897205F061500DF7B49 /* ARKitViewController.swift */,
+				853ACF7420716B4D00BF01CA /* GlobalPlayground.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -546,6 +557,7 @@
 				8565E262206B5BFC0094AC4E /* ARPowerPanels.swift in Sources */,
 				8565E297206B72390094AC4E /* UITableView+Reusable.swift in Sources */,
 				857BC60620712F9E0006B42D /* ImageCollectionView.swift in Sources */,
+				853ACF7520716B4D00BF01CA /* GlobalPlayground.swift in Sources */,
 				85C658BC205F5FC500DF7B49 /* ModelAssetType.swift in Sources */,
 				85C658C3205F643D00DF7B49 /* 3DUtilities.swift in Sources */,
 				85606273206DE08200884858 /* HierarchyIteractor.swift in Sources */,
@@ -709,7 +721,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 66T4X4PK9Q;
-				INFOPLIST_FILE = ARPowerPanels/Info.plist;
+				INFOPLIST_FILE = ARPowerPanelsDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.peisun.ARPowerPanelsDemo;
@@ -727,7 +739,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 66T4X4PK9Q;
-				INFOPLIST_FILE = ARPowerPanels/Info.plist;
+				INFOPLIST_FILE = ARPowerPanelsDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.peisun.ARPowerPanelsDemo;
