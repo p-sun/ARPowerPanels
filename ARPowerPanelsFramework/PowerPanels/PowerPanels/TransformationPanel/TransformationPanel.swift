@@ -242,20 +242,20 @@ extension TransformationPanel: SliderInputsViewDelegate {
     }
 }
 
-extension SCNVector3 {
-    var degreesToRadians: SCNVector3 {
+public extension SCNVector3 {
+    public var degreesToRadians: SCNVector3 {
         return SCNVector3Make(x.degreesToRadians,
                               y.degreesToRadians,
                               z.degreesToRadians)
     }
-    var radiansToDegrees: SCNVector3 {
+    public var radiansToDegrees: SCNVector3 {
         return SCNVector3Make(x.radiansToDegrees,
                               y.radiansToDegrees,
                               z.radiansToDegrees)
     }
 }
 
-private extension FloatingPoint {
-    var degreesToRadians: Self { return self * .pi / 180 }
-    var radiansToDegrees: Self { return self * 180 / .pi }
+public extension FloatingPoint {
+    public var degreesToRadians: Self { return self * .pi / 180 }
+    public var radiansToDegrees: Self { return self * 180 / .pi }
 }

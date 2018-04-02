@@ -1,15 +1,6 @@
-//
-//  ViewController.swift
-//  ARPowerPanelsDemo
-//
-//  Created by TSD040 on 2018-04-01.
-//  Copyright © 2018 Paige Sun. All rights reserved.
-//
-
 import UIKit
 import SceneKit
 import ARKit
-import PowerPanels
 
 public class ARKitViewController: UIViewController {
     

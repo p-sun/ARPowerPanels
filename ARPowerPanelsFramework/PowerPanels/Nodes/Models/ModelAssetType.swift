@@ -15,7 +15,7 @@ protocol NodeMaker {
     func createNode() -> SCNNode?
 }
 
-enum Shapes: NodeMaker {
+public enum Shapes: NodeMaker {
 
     case sphere, plane, box, pyramid, cylinder, cone, torus, tube, capsule
     
@@ -74,7 +74,7 @@ enum Shapes: NodeMaker {
 //        }
 //    }
     
-    func createNode() -> SCNNode? {
+    public func createNode() -> SCNNode? {
         
         let basicGeometry = geometry(for: self)
         basicGeometry.firstMaterial?.diffuse.contents = UIColor.randomColor()
@@ -120,7 +120,7 @@ public enum Model: NodeMaker {
         return [Model.axis, Model.wolf, Model.fox, Model.lowPolyTree]
     }
     
-    func createNode() -> SCNNode? {
+    public func createNode() -> SCNNode? {
         switch self {
         case .axis:
             return NodeCreator.createAxesNode(quiverLength: 0.15, quiverThickness: 1.0)
@@ -163,15 +163,13 @@ public enum Model: NodeMaker {
                 
             }
         } else {
-            NSLog("PAIGE LOG: COULD NOT LOAD FROM RESOURCE \(assetName) \(extensionName) | BUNDLE PATH \(bundle.bundlePath) | \(bundle.resourcePath) ")
+            NSLog("PAIGE LOG: COULD NOT LOAD FROM RESOURCE")
         }
         return nil
     }
     
     var menuImage: UIImage? {
-        
-        var fileName: String?
-        
+                
 //            switch self {
 //            case .axis:
 //            return #imageLiteral(resourceName: "menuAxis")

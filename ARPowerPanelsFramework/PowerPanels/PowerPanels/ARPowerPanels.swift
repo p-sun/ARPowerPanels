@@ -232,7 +232,6 @@ extension ARPowerPanels {
                 rootNode = newScene.rootNode
 
                 if selectedNode?.parent == sceneView.scene?.rootNode {
-                    NSLog("PAIGE selectedNode \(sceneView.scene?.rootNode)")
 
                     selectedNode = newScene.rootNode
                 }

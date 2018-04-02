@@ -123,7 +123,7 @@ extension HierachyPanel: ModelCollectionViewDelegate {
             SceneCreator.shared.addNode(newNode, to: selectedNode)
             delegate?.hierachyPanel(didSelectNode: newNode)
         } else {
-            NSLog("PAIGE LOG: could not get model for node \(nodeMaker.menuImage)")
+            NSLog("PAIGE LOG: could not get model for node \(String(describing: nodeMaker.menuImage))")
         }
     }
 }

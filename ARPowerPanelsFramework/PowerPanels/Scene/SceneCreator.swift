@@ -17,7 +17,6 @@ public struct NodeMetaData {
     }
 }
 
-
 public class SceneCreator {
     
     public static let shared = SceneCreator()
@@ -25,50 +24,74 @@ public class SceneCreator {
     private var nodeMetaDatas = [SCNNode: NodeMetaData]()
     
     public func createFoxPlaneScene() -> SCNScene {
+
+        //#-hidden-code
+//        import UIKit
+//        import SceneKit
+//        import ARKit
+//        import PlaygroundSupport
+        //#-end-hidden-code
+        
+        //#-editable-code Tap to enter code
+        
+        //: ## Create a scene
         let scene = SCNScene()
         
-        // create and add a light to the scene
+        //: ## Add a light to the scene
         let lightNode = SCNNode()
         lightNode.name = "Light node"
         lightNode.light = SCNLight()
         lightNode.light!.type = .omni
         lightNode.position = SCNVector3(x: 0, y: 10, z: 10)
-        scene.rootNode.addChildNode(lightNode)
-        
-        // create and add an ambient light to the scene
+        addNode(lightNode, to: scene.rootNode)
+
+        //: ## Add an ambient light to the scene
         let ambientLightNode = SCNNode()
         ambientLightNode.name = "Ambient Light Node"
         ambientLightNode.light = SCNLight()
         ambientLightNode.light!.type = .ambient
         ambientLightNode.light!.color = UIColor.darkGray
-        scene.rootNode.addChildNode(ambientLightNode)
+        addNode(ambientLightNode, to: scene.rootNode)
         
+        //: ## Add an axis at (0, 0, 0). this is the world origin.
+        if let xyzAxis = Model.axis.createNode() {
+            xyzAxis.name = "World Origin Axis"
+            addNode(xyzAxis, to: scene.rootNode)
+        }
+        
+        //: ## Add a fox at (0, 0, 0)
         if let foxNode = Model.fox.createNode() {
+            foxNode.name = "Sparky 🦊"
             addNode(foxNode, to: scene.rootNode)
-        } else {
-            NSLog("PAIGE LOG could not get model for fox node")
+        }
+
+        //: ## Add another fox, and move it around
+        if let anotherFox = Model.fox.createNode() {
+            
+            anotherFox.name = "Mythos 🦊"
+            anotherFox.position = SCNVector3Make(-0.03, 0, 0)
+            anotherFox.scale = SCNVector3Make(0.8, 0.8, 0.8)
+            anotherFox.eulerAngles = SCNVector3Make(0, 17, 45).degreesToRadians
+            addNode(anotherFox, to: scene.rootNode)
+            
+            //: ## Animate the second fox
+            anotherFox.runAction(
+                SCNAction.repeatForever(
+                    SCNAction.rotateBy(x: 0, y: 1, z: 0, duration: 1)))
         }
         
-        // Animate the 3d object
-        // foxNode.runAction(SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: 2, z: 0, duration: 1)))
+//        scene.rootNode.addChildNode(node)
+        //#-end-editable-code
         
-        //        let anotherFoxModel = Model.fox.createNode()
-        //        scene.rootNode.addChildNode(anotherFoxModel)
-        //        anotherFoxModel.position = SCNVector3Make(1, 1, 1)
-        //        nodeMetaDatas[anotherFoxModel] = NodeMetaData(modelType: .fox)
+        //#-hidden-code
         
-        if let newAxisNode = Model.axis.createNode() {
-            addNode(newAxisNode, to: scene.rootNode)
-        } else {
-            NSLog("PAIGE LOG could not get model for axis node")
-        }
-        
+
         scene.rootNode.updateFocusIfNeeded()
         
         return scene
     }
     
-    func addNode(_ node: SCNNode, to parentNode: SCNNode) {
+    public func addNode(_ node: SCNNode, to parentNode: SCNNode) {
         parentNode.addChildNode(node)
         
         nodeMetaDatas[node] = NodeMetaData(displayInHierachy: true)
@@ -79,7 +102,7 @@ public class SceneCreator {
         nodeMetaDatas[parentNode] = NodeMetaData(displayInHierachy: true)
     }
     
-    func removeNode(_ node: SCNNode?) {
+    public func removeNode(_ node: SCNNode?) {
         guard let node = node else { return }
         node.removeFromParentNode()
         node.enumerateHierarchy { (node, _) in
@@ -87,7 +110,7 @@ public class SceneCreator {
         }
     }
     
-    func displayInHierachy(node: SCNNode) -> Bool {
+    public func displayInHierachy(node: SCNNode) -> Bool {
         let metadata = nodeMetaDatas[node]
         return metadata?.displayInHierachy ?? true
     }

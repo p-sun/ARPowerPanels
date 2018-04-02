@@ -1,189 +1,148 @@
-//: This is a line of comments
-//: # HI comments
-
 /*:
- # How to Use Markup to Format Playgrounds
-
- ### Setup
- * To view the formatted text and links, go to Editor -> Show Rendered Markup.
- * To make it easier to switch between Raw-Markup and Rendered-Markup, go to Xcode -> Preferences -> Key Bindings -> filter "Markup" -> Assign Option-R as the key binding.
- * \//: This is how to write a single line of markup.
- * \/\*: This is how to write multiples lines of markup. *\/
- ---
- ### Text Formatting
- 
- Regular text
- 
- *Italicized text*
- 
- **Bolded text**
- 
- Numbered List:
- 1. Cat (Note only the first number in the list matters.)
- 333. Dog
- 5. Golden Retriever
- 232. Llama
- 
- ---
- ### Links
- [Apple Documentation on markups](https://developer.apple.com/library/content/documentation/Xcode/Reference/xcode_markup_formatting_ref/MarkupFunctionality.html#//apple_ref/doc/uid/TP40016497-CH54-SW1)
- 
- [Next Playground page](@next)
- 
- [Previous Playground page](@previous)
- 
- [Specific Playground page by name](How%20to%20use%20HackerRank%20helpers)
- ---
- ### Callouts
- 
- - Note:
- "There is nothing either good or bad, but thinking makes it so."
- \
- \
- Hamlet in (*Hamlet, 2.2*) by William Shakespeare
- This is yellow.
- 
- - Callout(Llama Spotting Tips):
- Pack warm clothes with your binoculars.
- This is cyan on XCode, Gray in Playgrounds.
+ # Welcome to ARPowerPanels!
  
  * Experiment:
- Change the third case statement to work only with consonants
- This is pink
+ Today is a good day for experimentation.
+ \
+ \
+ "Control is for Beginners. Iteration is truly the mother of invention."
  
- Block Code Samples are indented and sandwiched by empty lines:
  
-    for character in "Aesop" {
-        print(character)}
-    }
+ Hello, fellow traveller.
  
- In-line code samples are in single quotes: `print("Pizza")`.
+ Whereever you are in your journey of learning or developing, I want to be of use to you. For people still developing their 3D intuition, this can be a playground within a playground. Once you start developing, you can use this framework to help you view and debug your scenes live, without having to pause your app.
+ 
+ *"How far is 30 units?"*
+ 
+ *"What does a quaternion look like?"*
+ 
+ *"I dropped an model into my AR app -- but where did it go?"* <--- I feel you. This happens a lot to me.
+ 
+ ARPowerPanels will help you answer that. Here are a few things to try.
+ 
+ - Open the `Easy Moves` menu on the lefthand menu. You can scrub your finger up and down to change the numbers, or you can tap into a text field to manually type any number. (The keyboard has a button to make the number negative, and another button to make it zero.)
+
+ - Open the `Scene Graph`. This will show you the current hierachy of nodes in the scene. The emojis tell you whether there are any light, geometry, or camera attached to that node. You can tap the triangle to the left of a parent node to hide or show its children.
+
+ - Tap on any row in the `Scene Graph` to select it. You can now edit it with any of the transform actions. Try to find the camera node that represents your iPad!
+ 
+ - On the top left, tap "Game". That's what your scene looks like from another point of view! Move your iPad around to see how feature points near where you are pointing your camera. That camera object represents your device! Tap the camera in the scene graph to move your POV around numerically. Drag your fingers across to rotate, pinch, or pan the camera.
+ 
+ - See the spinning fox named Paige? See if you can guess how the rotational numbers will change in  `Easy Moves`, and then tap `Paige` on the Scene Graph, and tap `Easy Moves` to view the animation live.
+ 
+ - There can be up to two menu panels on the right side. Tap an menu item will show or dismiss it. Do you want the `Scene Graph` on top, and `Easy Moves` on the bottom? Dismiss all your panels, and then show them by tapping `Scene Graph` first, then `Easy Moves`
+ 
+ - The `info` tab lets you change the name of any node, and it also gives you the size of the smallest box that can contain that node and all its children. You can hide any node by changing the opacity to 0.
+
+ - On the `Scene Graph` there are 3D models that you can place into your scene! The life sized wolf is my favourite -- I can stare at it all day. Selecting a model will place that model as a child of your selected node with no position or rotational values. If nothing happened, check that you have a node selected.
+ 
+ - On the `Scene Graph` panel, you can also drop in some Geometric shapes. Try to create a rocket with the panels, and write down the numbers, and then recreate it in code~
+ 
+ - The fox nodes has a lot of child nodes! If you want to how many pieces make up a tiny fox, simply replace
+ `addNode(foxNode, to: scene.rootNode)`
+     with
+ `scene.rootNode.addChild(foxNode)`
+
+ - Want to play with this on a phone, or use the whole thing, or bits and pieces on your app?
+ Come grab the Universal iOS app, and [available on my Github](https://github.com/p-sun/ARPowerPanels). There's some code I've commentd out highlights the currently selected node in yellow with a Metal shader. It doesn't play well in a playground.
+
+ - After you're done experimenting around, feel free to take the project and drop it into any ARKit app to help you debug and understand it in real time. The `ARPowerPanel` class is just a view that takes an ARSCNView as a parameter -- it's easy to use.
+ 
+ - Of course, try to create your own world here!
+ 
+ Thank you so much for visiting! We could definitely use more features and some code clean up. I'd be super happy if you would like to be involved. Make a PR or contact me anytime!
+ 
+ Yours Truely,
+ 
+ -- Paige Sun
+ 
+ - Note:
+ GitHub [@p-sun](https://github.com/p-sun)
+ Email [paige.sun.dev@gmail.com](paige.sun.dev@gmail.com)
+ LinkedIn [https://www.linkedin.com/in/paigesun/](https://www.linkedin.com/in/paigesun/)
+ Toronto, ON, Canada
  */
 
-//: [Next Page](@next)
+// ## Let's get started! 🚀
 
 //#-hidden-code
-//#-end-hidden-code
-
-//#-editable-code Tap to enter code
-
 import UIKit
 import SceneKit
 import ARKit
 import PlaygroundSupport
 
-class ARKitViewController: UIViewController {
-    
-    private var powerPanels: ARPowerPanels!
-    private var arSceneView = ARSCNView()
-    var scene = SCNScene()
-    
-    let panelTypes: [ARPowerPanelsType] //= ARPowerPanelsType.allTypes
-    
-    init(panelTypes: [ARPowerPanelsType]) {
-        self.panelTypes = panelTypes
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    override public func viewDidLoad() {
-        super.viewDidLoad()
-        
-        view.addSubview(arSceneView)
-        arSceneView.constrainEdges(to: view)
-        
-        arSceneView.delegate = self
-        //        arSceneView.showsStatistics = true
-        arSceneView.debugOptions  = [.showConstraints, ARSCNDebugOptions.showFeaturePoints]//, ARSCNDebugOptions.showWorldOrigin]
-        
-        scene = SceneCreator.shared.createFoxPlaneScene()
-        arSceneView.scene = scene
-        scene.rootNode.name = "AR World Origin   🌎"
-        
-        powerPanels = ARPowerPanels(arSceneView: arSceneView, panelTypes: panelTypes)
-        powerPanels.selectNode(scene.rootNode)
-        view.addSubview(powerPanels)
-        powerPanels.constrainEdges(to: view)
-    }
-    
-    override public func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        beginarSceneView()
-    }
-    
-    override public func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        arSceneView.session.pause()
-    }
-    
-    private func beginarSceneView() {
-        let configuration = ARWorldTrackingConfiguration()
-        configuration.planeDetection = .horizontal
-        
-        arSceneView.session.run(configuration)
-    }
+func addNode(_ node: SCNNode, to parentNode: SCNNode) {
+    SceneCreator.shared.addNode(node, to: parentNode)
 }
 
-extension ARKitViewController: ARSCNViewDelegate {
-    public func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
-        guard let planeAnchor = anchor as? ARPlaneAnchor else { return }
-        print("didAdd \(node.position)")
-        
-        let planeNode = NodeCreator.bluePlane(anchor: planeAnchor)
-        planeNode.name = "Blue Plane"
-        
-        // ARKit owns the node corresponding to the anchor, so make the plane a child node.
-        node.addChildNode(planeNode)
-    }
-    
-    public func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
-        guard let planeAnchor = anchor as? ARPlaneAnchor else { return }
-        
-        // Update size of the geometry associated with Plane nodes
-        if let plane = node.childNodes.first?.geometry as? SCNPlane {
-            plane.updateSize(toMatch: planeAnchor)
-        }
-    }
-    
-    public func renderer(_ renderer: SCNSceneRenderer, didRemove node: SCNNode, for anchor: ARAnchor) {//
-        print("didRemove \(node.position)")
-    }
+func removeNode(_ node: SCNNode?) {
+    SceneCreator.shared.removeNode(node)
+}
+//#-end-hidden-code
+
+//#-editable-code Tap to enter code
+//: ## Create a scene
+let scene = SCNScene()
+
+//: ## Add a light to the scene
+let lightNode = SCNNode()
+lightNode.name = "Light node"
+lightNode.light = SCNLight()
+lightNode.light!.type = .omni
+lightNode.position = SCNVector3(x: 0, y: 10, z: 10)
+addNode(lightNode, to: scene.rootNode)
+
+//: ## Add an ambient light to the scene
+let ambientLightNode = SCNNode()
+ambientLightNode.name = "Ambient Light Node"
+ambientLightNode.light = SCNLight()
+ambientLightNode.light!.type = .ambient
+ambientLightNode.light!.color = UIColor.darkGray
+addNode(ambientLightNode, to: scene.rootNode)
+
+//: ## Add an axis at (0, 0, 0). this is the world origin.
+if let xyzAxis = Model.axis.createNode() {
+    xyzAxis.name = "World Origin Axis"
+    addNode(xyzAxis, to: scene.rootNode)
 }
 
-extension ARKitViewController {
-    
-    /*
-     // Override to create and configure nodes for anchors added to the view's session.
-     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
-     let node = SCNNode()
-     
-     return node
-     }
-     */
-    
-    public func session(_ session: ARSession, didFailWithError error: Error) {
-        // Present an error message to the user
-        
-    }
-    
-    public func sessionWasInterrupted(_ session: ARSession) {
-        // Inform the user that the session has been interrupted, for example, by presenting an overlay
-        
-    }
-    
-    public func sessionInterruptionEnded(_ session: ARSession) {
-        // Reset tracking and/or remove existing anchors if consistent tracking is required
-        
-    }
+//: ## Add a fox at (0, 0, 0)
+if let foxNode = Model.fox.createNode() {
+    foxNode.name = "Sparky 🦊"
+    addNode(foxNode, to: scene.rootNode)
 }
 
-// Present the view controller in the Live View window
-//let liveController = UINavigationController(rootViewController: ExampleViewController())
-//liveController.preferredContentSize = CGSize(width: 320, height: 420)
-PlaygroundPage.current.liveView = ARKitViewController(panelTypes: ARPowerPanelsType.allTypes)
+//: ## Add another fox, and move it around
+if let anotherFox = Model.fox.createNode() {
+    
+    anotherFox.name = "Paige 🦊"
+    anotherFox.position = SCNVector3Make(-0.03, 0, 0)
+    anotherFox.scale = SCNVector3Make(0.8, 0.8, 0.8)
+    anotherFox.eulerAngles = SCNVector3Make(0, 17, 45).degreesToRadians
+    addNode(anotherFox, to: scene.rootNode)
+    
+//: ## Animate the second fox
+    anotherFox.runAction(
+        SCNAction.repeatForever(
+            SCNAction.rotateBy(x: 0, y: 1, z: 0, duration: 1)))
+}
+
+//: ## Your turn! 😁
+
+
+
+
+
+
+
+
 
 //#-end-editable-code
-
+//#-editable-code
+//: #### Tip: You customize the buttons on the left hand menu in any order, remove some if you'd like!
+let menuPanels: [ARPowerPanelsType] = [.sceneGraph, .info, .easyMoves, .allMoves, .allEdits]
+//#-end-editable-code
+//#-hidden-code
+let rootViewController = ARKitViewController(scene: scene, panelTypes: menuPanels)
+PlaygroundPage.current.liveView = rootViewController
+//#-end-hidden-code
