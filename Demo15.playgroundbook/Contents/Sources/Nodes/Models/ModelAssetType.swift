@@ -16,63 +16,35 @@ protocol NodeMaker {
 }
 
 enum Shapes: NodeMaker {
-
+    
     case sphere, plane, box, pyramid, cylinder, cone, torus, tube, capsule
     
     static var allTypes: [NodeMaker] {
         return [Shapes.sphere, Shapes.plane, Shapes.box, Shapes.pyramid, Shapes.cylinder, Shapes.cone, Shapes.torus, Shapes.tube, Shapes.capsule]
     }
-
-    // THIS IS FOR XCODE
-        var menuImage: UIImage? {
-            switch self {
-            case .sphere:
-                return #imageLiteral(resourceName: "sphere")
-            case .plane:
-                return #imageLiteral(resourceName: "plane")
-            case .box:
-                return #imageLiteral(resourceName: "box")
-            case .pyramid:
-                return #imageLiteral(resourceName: "pyramid")
-            case .cylinder:
-                return #imageLiteral(resourceName: "cylinder")
-            case .cone:
-                return #imageLiteral(resourceName: "cone")
-            case .torus:
-                return #imageLiteral(resourceName: "torus")
-            case .tube:
-                return #imageLiteral(resourceName: "tube")
-            case .capsule:
-                return #imageLiteral(resourceName: "capsule")
-            }
+    
+    var menuImage: UIImage? {
+        switch self {
+        case .sphere:
+            return #imageLiteral(resourceName: "shapeSphere.png")
+        case .plane:
+            return #imageLiteral(resourceName: "shapePlane.png")
+        case .box:
+            return #imageLiteral(resourceName: "shapeBox.png")
+        case .pyramid:
+            return #imageLiteral(resourceName: "shapePyramid.png")
+        case .cylinder:
+            return #imageLiteral(resourceName: "shapeCylinder.png")
+        case .cone:
+            return #imageLiteral(resourceName: "shapeCone.png")
+        case .torus:
+            return #imageLiteral(resourceName: "shapeTorus.png")
+        case .tube:
+            return #imageLiteral(resourceName: "shapeTube.png")
+        case .capsule:
+            return #imageLiteral(resourceName: "shapeCapsule.png")
         }
-    
-    // THIS IS FOR THE PLAYGROUND, because the images have to
-    // go in the 'private resources` folder. Not in the Assets.xcassets folder
-    // AND they must be referred to by their image extension
-    
-//    var menuImage: UIImage? {
-//        switch self {
-//        case .sphere:
-//            return #imageLiteral(resourceName: "shapeSphere.png")
-//        case .plane:
-//            return #imageLiteral(resourceName: "shapePlane.png")
-//        case .box:
-//            return #imageLiteral(resourceName: "shapeBox.png")
-//        case .pyramid:
-//            return #imageLiteral(resourceName: "shapePyramid.png")
-//        case .cylinder:
-//            return #imageLiteral(resourceName: "shapeCylinder.png")
-//        case .cone:
-//            return #imageLiteral(resourceName: "shapeCone.png")
-//        case .torus:
-//            return #imageLiteral(resourceName: "shapeTorus.png")
-//        case .tube:
-//            return #imageLiteral(resourceName: "shapeTube.png")
-//        case .capsule:
-//            return #imageLiteral(resourceName: "shapeCapsule.png")
-//        }
-//    }
+    }
     
     func createNode() -> SCNNode? {
         
@@ -152,7 +124,7 @@ public enum Model: NodeMaker {
     
     func nodeFromResource(assetName: String, extensionName: String) -> SCNNode? {
         let bundle = Bundle(for: ModelCollectionView.self)
-
+        
         if let url = bundle.url(forResource: "art.scnassets/\(assetName)", withExtension: extensionName) {
             NSLog("PAIGE LOG url \(url)")
             
@@ -172,21 +144,21 @@ public enum Model: NodeMaker {
         
         var fileName: String?
         
-//            switch self {
-//            case .axis:
-//            return #imageLiteral(resourceName: "menuAxis")
-//            case .wolf:
-//            return #imageLiteral(resourceName: "menuWolf")
-//            case .lowPolyTree:
-//            return #imageLiteral(resourceName: "menuLowPolyTree")
-//            case .fox:
-//            return #imageLiteral(resourceName: "fox_squareLQ")
-//            case .camera:
-//            return #imageLiteral(resourceName: "menuLowPolyTree")
-//            case .custom:
-//            return #imageLiteral(resourceName: "menuLowPolyTree")
-//            }
-//        Bundle.main.url
+        //            switch self {
+        //            case .axis:
+        //            return #imageLiteral(resourceName: "menuAxis")
+        //            case .wolf:
+        //            return #imageLiteral(resourceName: "menuWolf")
+        //            case .lowPolyTree:
+        //            return #imageLiteral(resourceName: "menuLowPolyTree")
+        //            case .fox:
+        //            return #imageLiteral(resourceName: "fox_squareLQ")
+        //            case .camera:
+        //            return #imageLiteral(resourceName: "menuLowPolyTree")
+        //            case .custom:
+        //            return #imageLiteral(resourceName: "menuLowPolyTree")
+        //            }
+        //        Bundle.main.url
         //.url(forResource: "images", withExtension: "jpg")
         
         switch self {
@@ -205,26 +177,27 @@ public enum Model: NodeMaker {
         }
         
         
-//        func assetName() -> String {
-//            switch self {
-//            case .axis:
-//                return "menuAxis"
-//            case .wolf:
-//                return "menuWolf"
-//            case .lowPolyTree:
-//                return "menuLowPolyTree"
-//            case .fox:
-//                return "fox_squareLQ"
-//            case .camera:
-//                return "menuLowPolyTree"
-//            case .custom:
-//                return "menuLowPolyTree"
-//            }
-//        }
-//
-//        let bundle = Bundle(for: ModelCollectionView.self)
-//        let image = UIImage(named: assetName(), in: bundle, compatibleWith: nil)
-//        NSLog("PAIGE LOG LOADING \(assetName()) \(String(describing: image))")
-//        return image
+        //        func assetName() -> String {
+        //            switch self {
+        //            case .axis:
+        //                return "menuAxis"
+        //            case .wolf:
+        //                return "menuWolf"
+        //            case .lowPolyTree:
+        //                return "menuLowPolyTree"
+        //            case .fox:
+        //                return "fox_squareLQ"
+        //            case .camera:
+        //                return "menuLowPolyTree"
+        //            case .custom:
+        //                return "menuLowPolyTree"
+        //            }
+        //        }
+        //
+        //        let bundle = Bundle(for: ModelCollectionView.self)
+        //        let image = UIImage(named: assetName(), in: bundle, compatibleWith: nil)
+        //        NSLog("PAIGE LOG LOADING \(assetName()) \(String(describing: image))")
+        //        return image
     }
 }
+

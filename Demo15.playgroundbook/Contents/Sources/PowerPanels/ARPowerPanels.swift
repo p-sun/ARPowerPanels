@@ -174,7 +174,7 @@ public class ARPowerPanels: UIView {
         selectedNodeLabel.font = UIFont.gameModelLabel
         selectedNodeLabel.textColor = UIColor.uiControlColor
         addSubview(selectedNodeLabel)
-        selectedNodeLabel.constrainTop(to: self, offset: 140)
+        selectedNodeLabel.constrainTop(to: self, offset: 100)
         selectedNodeLabel.constrainLeft(to: self, offset: 30)
     }
     
@@ -194,7 +194,7 @@ extension ARPowerPanels {
         segmentedControl.setTitleTextAttributes([NSAttributedStringKey.font: UIFont.inputSliderHeader],
                                                 for: .normal)
         self.addSubview(segmentedControl)
-        segmentedControl.constrainTop(to: self, offset: 80)
+        segmentedControl.constrainTop(to: self, offset: 40)
         segmentedControl.constrainLeading(to: self, offset: 30)
         segmentedControl.constrainSize(CGSize(width: 200, height: 30))
         segmentedControl.tintColor = .uiControlColor
@@ -311,7 +311,7 @@ extension ARPowerPanels: RoundedButtonDelegate {
         showHideMenuButton.isSelected = true
         showHideMenuButton.setTitle("☰")
         addSubview(showHideMenuButton)
-        showHideMenuButton.constrainTopToBottom(of: selectedNodeLabel, offset: 60)
+        showHideMenuButton.constrainTopToBottom(of: selectedNodeLabel, offset: 20)
         showHideMenuButton.constrainLeading(to: self, offset: 30)
         showHideMenuButton.constrainSize(CGSize(width: 44, height: 44))
     }

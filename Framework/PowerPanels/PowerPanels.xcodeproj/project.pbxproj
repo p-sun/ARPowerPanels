@@ -83,6 +83,64 @@
 		853AD0A62071B88D00BF01CA /* PowerPanels.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 853ACFDE2071B2A000BF01CA /* PowerPanels.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		853AD0AB2071BC5900BF01CA /* ARKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853AD0AA2071BC5900BF01CA /* ARKitViewController.swift */; };
 		853AD0AE2071BF6900BF01CA /* SceneCreator2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853AD0AC2071BEF200BF01CA /* SceneCreator2.swift */; };
+		853AD0B12071EF5500BF01CA /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853AD0B02071EF5500BF01CA /* Assets.swift */; };
+		853AD0DF2071F22D00BF01CA /* Skull.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD0B52071F22800BF01CA /* Skull.png */; };
+		853AD0E02071F22D00BF01CA /* Pick.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD0B62071F22800BF01CA /* Pick.png */; };
+		853AD0E12071F22D00BF01CA /* Emeraid.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD0B72071F22900BF01CA /* Emeraid.png */; };
+		853AD0E22071F22D00BF01CA /* Stone_10.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD0B82071F22900BF01CA /* Stone_10.png */; };
+		853AD0E32071F22D00BF01CA /* Stone_17.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD0B92071F22900BF01CA /* Stone_17.png */; };
+		853AD0E42071F22D00BF01CA /* Arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD0BA2071F22900BF01CA /* Arrow.png */; };
+		853AD0E52071F22D00BF01CA /* Key.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD0BB2071F22900BF01CA /* Key.png */; };
+		853AD0E62071F22D00BF01CA /* Stone_13.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD0BC2071F22900BF01CA /* Stone_13.png */; };
+		853AD0E72071F22D00BF01CA /* Stone_16.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD0BD2071F22900BF01CA /* Stone_16.png */; };
+		853AD0E82071F22D00BF01CA /* Exlir_Of_.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD0BE2071F22A00BF01CA /* Exlir_Of_.png */; };
+		853AD0E92071F22D00BF01CA /* Stone_7.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD0BF2071F22A00BF01CA /* Stone_7.png */; };
+		853AD0EA2071F22D00BF01CA /* Stone_14.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD0C02071F22A00BF01CA /* Stone_14.png */; };
+		853AD0EB2071F22D00BF01CA /* Chest_Open.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD0C12071F22A00BF01CA /* Chest_Open.png */; };
+		853AD0EC2071F22D00BF01CA /* Crystal_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD0C22071F22A00BF01CA /* Crystal_4.png */; };
+		853AD0ED2071F22D00BF01CA /* Rocks_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD0C32071F22A00BF01CA /* Rocks_2.png */; };
+		853AD0EE2071F22D00BF01CA /* Stone_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD0C42071F22A00BF01CA /* Stone_4.png */; };
+		853AD0EF2071F22D00BF01CA /* Rocks_And0.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD0C52071F22A00BF01CA /* Rocks_And0.png */; };
+		853AD0F02071F22D00BF01CA /* Stone_5.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD0C62071F22A00BF01CA /* Stone_5.png */; };
+		853AD0F12071F22D00BF01CA /* Stone_8.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD0C72071F22A00BF01CA /* Stone_8.png */; };
+		853AD0F22071F22D00BF01CA /* Stone_15.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD0C82071F22A00BF01CA /* Stone_15.png */; };
+		853AD0F32071F22D00BF01CA /* Exlir_Of0.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD0C92071F22A00BF01CA /* Exlir_Of0.png */; };
+		853AD0F42071F22D00BF01CA /* Crown.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD0CA2071F22A00BF01CA /* Crown.png */; };
+		853AD0F52071F22D00BF01CA /* Barrel_Clo.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD0CB2071F22B00BF01CA /* Barrel_Clo.png */; };
+		853AD0F62071F22D00BF01CA /* Shield.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD0CC2071F22B00BF01CA /* Shield.png */; };
+		853AD0F72071F22D00BF01CA /* Stone_11.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD0CD2071F22B00BF01CA /* Stone_11.png */; };
+		853AD0F82071F22D00BF01CA /* Stone_12.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD0CE2071F22B00BF01CA /* Stone_12.png */; };
+		853AD0F92071F22D00BF01CA /* Stone_18.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD0CF2071F22B00BF01CA /* Stone_18.png */; };
+		853AD0FA2071F22D00BF01CA /* Chest_Clos.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD0D02071F22B00BF01CA /* Chest_Clos.png */; };
+		853AD0FB2071F22D00BF01CA /* Rocks_And.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD0D12071F22B00BF01CA /* Rocks_And.png */; };
+		853AD0FC2071F22D00BF01CA /* Crystal_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD0D22071F22B00BF01CA /* Crystal_2.png */; };
+		853AD0FD2071F22D00BF01CA /* Barrel_Open.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD0D32071F22B00BF01CA /* Barrel_Open.png */; };
+		853AD0FE2071F22D00BF01CA /* Stone_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD0D42071F22B00BF01CA /* Stone_3.png */; };
+		853AD0FF2071F22D00BF01CA /* Crystal_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD0D52071F22B00BF01CA /* Crystal_3.png */; };
+		853AD1002071F22D00BF01CA /* Tree.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD0D62071F22C00BF01CA /* Tree.png */; };
+		853AD1012071F22D00BF01CA /* Bullion.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD0D72071F22C00BF01CA /* Bullion.png */; };
+		853AD1022071F22D00BF01CA /* Crystal_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD0D82071F22C00BF01CA /* Crystal_1.png */; };
+		853AD1032071F22D00BF01CA /* Stone_6.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD0D92071F22C00BF01CA /* Stone_6.png */; };
+		853AD1042071F22D00BF01CA /* Sword.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD0DA2071F22C00BF01CA /* Sword.png */; };
+		853AD1052071F22D00BF01CA /* Stone_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD0DB2071F22C00BF01CA /* Stone_1.png */; };
+		853AD1062071F22D00BF01CA /* Ruby.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD0DC2071F22C00BF01CA /* Ruby.png */; };
+		853AD1072071F22D00BF01CA /* Coin.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD0DD2071F22C00BF01CA /* Coin.png */; };
+		853AD1082071F22D00BF01CA /* Box.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD0DE2071F22C00BF01CA /* Box.png */; };
+		853AD10F2071F23E00BF01CA /* menuLowPolyTree.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD1092071F23E00BF01CA /* menuLowPolyTree.png */; };
+		853AD1102071F23E00BF01CA /* checkmarkWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD10A2071F23E00BF01CA /* checkmarkWhite.png */; };
+		853AD1112071F23E00BF01CA /* closeWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD10B2071F23E00BF01CA /* closeWhite.png */; };
+		853AD1132071F23E00BF01CA /* fox_squareLQ.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 853AD10D2071F23E00BF01CA /* fox_squareLQ.jpeg */; };
+		853AD1302071F5DC00BF01CA /* shapeCone.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD1272071F5DB00BF01CA /* shapeCone.png */; };
+		853AD1312071F5DC00BF01CA /* shapeCylinder.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD1282071F5DB00BF01CA /* shapeCylinder.png */; };
+		853AD1322071F5DC00BF01CA /* shapeTube.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD1292071F5DB00BF01CA /* shapeTube.png */; };
+		853AD1332071F5DC00BF01CA /* shapePlane.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD12A2071F5DB00BF01CA /* shapePlane.png */; };
+		853AD1342071F5DC00BF01CA /* shapeCapsule.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD12B2071F5DB00BF01CA /* shapeCapsule.png */; };
+		853AD1352071F5DC00BF01CA /* shapeSphere.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD12C2071F5DB00BF01CA /* shapeSphere.png */; };
+		853AD1362071F5DC00BF01CA /* shapeTorus.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD12D2071F5DC00BF01CA /* shapeTorus.png */; };
+		853AD1372071F5DC00BF01CA /* shapeBox.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD12E2071F5DC00BF01CA /* shapeBox.png */; };
+		853AD1382071F5DC00BF01CA /* shapePyramid.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD12F2071F5DC00BF01CA /* shapePyramid.png */; };
+		853AD13A2071F83F00BF01CA /* menuWolf.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD1392071F83F00BF01CA /* menuWolf.png */; };
+		853AD13C2071F84500BF01CA /* menuAxis.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD13B2071F84500BF01CA /* menuAxis.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -188,6 +246,64 @@
 		853AD09A2071B56A00BF01CA /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 		853AD0AA2071BC5900BF01CA /* ARKitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARKitViewController.swift; sourceTree = "<group>"; };
 		853AD0AC2071BEF200BF01CA /* SceneCreator2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCreator2.swift; sourceTree = "<group>"; };
+		853AD0B02071EF5500BF01CA /* Assets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
+		853AD0B52071F22800BF01CA /* Skull.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Skull.png; sourceTree = "<group>"; };
+		853AD0B62071F22800BF01CA /* Pick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Pick.png; sourceTree = "<group>"; };
+		853AD0B72071F22900BF01CA /* Emeraid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Emeraid.png; sourceTree = "<group>"; };
+		853AD0B82071F22900BF01CA /* Stone_10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Stone_10.png; sourceTree = "<group>"; };
+		853AD0B92071F22900BF01CA /* Stone_17.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Stone_17.png; sourceTree = "<group>"; };
+		853AD0BA2071F22900BF01CA /* Arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Arrow.png; sourceTree = "<group>"; };
+		853AD0BB2071F22900BF01CA /* Key.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Key.png; sourceTree = "<group>"; };
+		853AD0BC2071F22900BF01CA /* Stone_13.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Stone_13.png; sourceTree = "<group>"; };
+		853AD0BD2071F22900BF01CA /* Stone_16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Stone_16.png; sourceTree = "<group>"; };
+		853AD0BE2071F22A00BF01CA /* Exlir_Of_.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Exlir_Of_.png; sourceTree = "<group>"; };
+		853AD0BF2071F22A00BF01CA /* Stone_7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Stone_7.png; sourceTree = "<group>"; };
+		853AD0C02071F22A00BF01CA /* Stone_14.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Stone_14.png; sourceTree = "<group>"; };
+		853AD0C12071F22A00BF01CA /* Chest_Open.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Chest_Open.png; sourceTree = "<group>"; };
+		853AD0C22071F22A00BF01CA /* Crystal_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Crystal_4.png; sourceTree = "<group>"; };
+		853AD0C32071F22A00BF01CA /* Rocks_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Rocks_2.png; sourceTree = "<group>"; };
+		853AD0C42071F22A00BF01CA /* Stone_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Stone_4.png; sourceTree = "<group>"; };
+		853AD0C52071F22A00BF01CA /* Rocks_And0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Rocks_And0.png; sourceTree = "<group>"; };
+		853AD0C62071F22A00BF01CA /* Stone_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Stone_5.png; sourceTree = "<group>"; };
+		853AD0C72071F22A00BF01CA /* Stone_8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Stone_8.png; sourceTree = "<group>"; };
+		853AD0C82071F22A00BF01CA /* Stone_15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Stone_15.png; sourceTree = "<group>"; };
+		853AD0C92071F22A00BF01CA /* Exlir_Of0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Exlir_Of0.png; sourceTree = "<group>"; };
+		853AD0CA2071F22A00BF01CA /* Crown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Crown.png; sourceTree = "<group>"; };
+		853AD0CB2071F22B00BF01CA /* Barrel_Clo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Barrel_Clo.png; sourceTree = "<group>"; };
+		853AD0CC2071F22B00BF01CA /* Shield.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Shield.png; sourceTree = "<group>"; };
+		853AD0CD2071F22B00BF01CA /* Stone_11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Stone_11.png; sourceTree = "<group>"; };
+		853AD0CE2071F22B00BF01CA /* Stone_12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Stone_12.png; sourceTree = "<group>"; };
+		853AD0CF2071F22B00BF01CA /* Stone_18.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Stone_18.png; sourceTree = "<group>"; };
+		853AD0D02071F22B00BF01CA /* Chest_Clos.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Chest_Clos.png; sourceTree = "<group>"; };
+		853AD0D12071F22B00BF01CA /* Rocks_And.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Rocks_And.png; sourceTree = "<group>"; };
+		853AD0D22071F22B00BF01CA /* Crystal_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Crystal_2.png; sourceTree = "<group>"; };
+		853AD0D32071F22B00BF01CA /* Barrel_Open.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Barrel_Open.png; sourceTree = "<group>"; };
+		853AD0D42071F22B00BF01CA /* Stone_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Stone_3.png; sourceTree = "<group>"; };
+		853AD0D52071F22B00BF01CA /* Crystal_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Crystal_3.png; sourceTree = "<group>"; };
+		853AD0D62071F22C00BF01CA /* Tree.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Tree.png; sourceTree = "<group>"; };
+		853AD0D72071F22C00BF01CA /* Bullion.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Bullion.png; sourceTree = "<group>"; };
+		853AD0D82071F22C00BF01CA /* Crystal_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Crystal_1.png; sourceTree = "<group>"; };
+		853AD0D92071F22C00BF01CA /* Stone_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Stone_6.png; sourceTree = "<group>"; };
+		853AD0DA2071F22C00BF01CA /* Sword.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Sword.png; sourceTree = "<group>"; };
+		853AD0DB2071F22C00BF01CA /* Stone_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Stone_1.png; sourceTree = "<group>"; };
+		853AD0DC2071F22C00BF01CA /* Ruby.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Ruby.png; sourceTree = "<group>"; };
+		853AD0DD2071F22C00BF01CA /* Coin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Coin.png; sourceTree = "<group>"; };
+		853AD0DE2071F22C00BF01CA /* Box.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Box.png; sourceTree = "<group>"; };
+		853AD1092071F23E00BF01CA /* menuLowPolyTree.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = menuLowPolyTree.png; path = PowerPanels/Resources/imagesMenu/menuLowPolyTree.png; sourceTree = SOURCE_ROOT; };
+		853AD10A2071F23E00BF01CA /* checkmarkWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = checkmarkWhite.png; path = PowerPanels/Resources/imagesMenu/checkmarkWhite.png; sourceTree = SOURCE_ROOT; };
+		853AD10B2071F23E00BF01CA /* closeWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = closeWhite.png; path = PowerPanels/Resources/imagesMenu/closeWhite.png; sourceTree = SOURCE_ROOT; };
+		853AD10D2071F23E00BF01CA /* fox_squareLQ.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = fox_squareLQ.jpeg; path = PowerPanels/Resources/imagesMenu/fox_squareLQ.jpeg; sourceTree = SOURCE_ROOT; };
+		853AD1272071F5DB00BF01CA /* shapeCone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shapeCone.png; sourceTree = "<group>"; };
+		853AD1282071F5DB00BF01CA /* shapeCylinder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shapeCylinder.png; sourceTree = "<group>"; };
+		853AD1292071F5DB00BF01CA /* shapeTube.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shapeTube.png; sourceTree = "<group>"; };
+		853AD12A2071F5DB00BF01CA /* shapePlane.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shapePlane.png; sourceTree = "<group>"; };
+		853AD12B2071F5DB00BF01CA /* shapeCapsule.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shapeCapsule.png; sourceTree = "<group>"; };
+		853AD12C2071F5DB00BF01CA /* shapeSphere.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shapeSphere.png; sourceTree = "<group>"; };
+		853AD12D2071F5DC00BF01CA /* shapeTorus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shapeTorus.png; sourceTree = "<group>"; };
+		853AD12E2071F5DC00BF01CA /* shapeBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shapeBox.png; sourceTree = "<group>"; };
+		853AD12F2071F5DC00BF01CA /* shapePyramid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shapePyramid.png; sourceTree = "<group>"; };
+		853AD1392071F83F00BF01CA /* menuWolf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = menuWolf.png; path = PowerPanels/Resources/imagesMenu/menuWolf.png; sourceTree = SOURCE_ROOT; };
+		853AD13B2071F84500BF01CA /* menuAxis.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = menuAxis.png; path = PowerPanels/Resources/imagesMenu/menuAxis.png; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -232,8 +348,6 @@
 			isa = PBXGroup;
 			children = (
 				853AD0AF2071EDA700BF01CA /* Resources */,
-				853AD09A2071B56A00BF01CA /* art.scnassets */,
-				853AD0992071B56A00BF01CA /* Assets.xcassets */,
 				853AD07A2071B30600BF01CA /* View Controllers */,
 				853AD0492071B2FF00BF01CA /* PowerPanels */,
 				853AD0462071B2F300BF01CA /* Scene */,
@@ -382,6 +496,7 @@
 			isa = PBXGroup;
 			children = (
 				853AD0422071B2E900BF01CA /* ModelAssetType.swift */,
+				853AD0B02071EF5500BF01CA /* Assets.swift */,
 				853AD0432071B2E900BF01CA /* NodeCreator.swift */,
 			);
 			path = Models;
@@ -505,8 +620,91 @@
 		853AD0AF2071EDA700BF01CA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				853AD0B22071F17C00BF01CA /* imagesAdventure */,
+				853AD0B32071F17C00BF01CA /* imagesModels */,
+				853AD0B42071F17C00BF01CA /* imagesShapes */,
+				853AD0992071B56A00BF01CA /* Assets.xcassets */,
+				853AD09A2071B56A00BF01CA /* art.scnassets */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		853AD0B22071F17C00BF01CA /* imagesAdventure */ = {
+			isa = PBXGroup;
+			children = (
+				853AD0BA2071F22900BF01CA /* Arrow.png */,
+				853AD0CB2071F22B00BF01CA /* Barrel_Clo.png */,
+				853AD0D32071F22B00BF01CA /* Barrel_Open.png */,
+				853AD0DE2071F22C00BF01CA /* Box.png */,
+				853AD0D72071F22C00BF01CA /* Bullion.png */,
+				853AD0D02071F22B00BF01CA /* Chest_Clos.png */,
+				853AD0C12071F22A00BF01CA /* Chest_Open.png */,
+				853AD0DD2071F22C00BF01CA /* Coin.png */,
+				853AD0CA2071F22A00BF01CA /* Crown.png */,
+				853AD0D82071F22C00BF01CA /* Crystal_1.png */,
+				853AD0D22071F22B00BF01CA /* Crystal_2.png */,
+				853AD0D52071F22B00BF01CA /* Crystal_3.png */,
+				853AD0C22071F22A00BF01CA /* Crystal_4.png */,
+				853AD0B72071F22900BF01CA /* Emeraid.png */,
+				853AD0BE2071F22A00BF01CA /* Exlir_Of_.png */,
+				853AD0C92071F22A00BF01CA /* Exlir_Of0.png */,
+				853AD0BB2071F22900BF01CA /* Key.png */,
+				853AD0B62071F22800BF01CA /* Pick.png */,
+				853AD0C32071F22A00BF01CA /* Rocks_2.png */,
+				853AD0D12071F22B00BF01CA /* Rocks_And.png */,
+				853AD0C52071F22A00BF01CA /* Rocks_And0.png */,
+				853AD0DC2071F22C00BF01CA /* Ruby.png */,
+				853AD0CC2071F22B00BF01CA /* Shield.png */,
+				853AD0B52071F22800BF01CA /* Skull.png */,
+				853AD0DB2071F22C00BF01CA /* Stone_1.png */,
+				853AD0D42071F22B00BF01CA /* Stone_3.png */,
+				853AD0C42071F22A00BF01CA /* Stone_4.png */,
+				853AD0C62071F22A00BF01CA /* Stone_5.png */,
+				853AD0D92071F22C00BF01CA /* Stone_6.png */,
+				853AD0BF2071F22A00BF01CA /* Stone_7.png */,
+				853AD0C72071F22A00BF01CA /* Stone_8.png */,
+				853AD0B82071F22900BF01CA /* Stone_10.png */,
+				853AD0CD2071F22B00BF01CA /* Stone_11.png */,
+				853AD0CE2071F22B00BF01CA /* Stone_12.png */,
+				853AD0BC2071F22900BF01CA /* Stone_13.png */,
+				853AD0C02071F22A00BF01CA /* Stone_14.png */,
+				853AD0C82071F22A00BF01CA /* Stone_15.png */,
+				853AD0BD2071F22900BF01CA /* Stone_16.png */,
+				853AD0B92071F22900BF01CA /* Stone_17.png */,
+				853AD0CF2071F22B00BF01CA /* Stone_18.png */,
+				853AD0DA2071F22C00BF01CA /* Sword.png */,
+				853AD0D62071F22C00BF01CA /* Tree.png */,
+			);
+			path = imagesAdventure;
+			sourceTree = "<group>";
+		};
+		853AD0B32071F17C00BF01CA /* imagesModels */ = {
+			isa = PBXGroup;
+			children = (
+				853AD13B2071F84500BF01CA /* menuAxis.png */,
+				853AD1392071F83F00BF01CA /* menuWolf.png */,
+				853AD10A2071F23E00BF01CA /* checkmarkWhite.png */,
+				853AD10B2071F23E00BF01CA /* closeWhite.png */,
+				853AD10D2071F23E00BF01CA /* fox_squareLQ.jpeg */,
+				853AD1092071F23E00BF01CA /* menuLowPolyTree.png */,
+			);
+			path = imagesModels;
+			sourceTree = "<group>";
+		};
+		853AD0B42071F17C00BF01CA /* imagesShapes */ = {
+			isa = PBXGroup;
+			children = (
+				853AD12E2071F5DC00BF01CA /* shapeBox.png */,
+				853AD12B2071F5DB00BF01CA /* shapeCapsule.png */,
+				853AD1272071F5DB00BF01CA /* shapeCone.png */,
+				853AD1282071F5DB00BF01CA /* shapeCylinder.png */,
+				853AD12A2071F5DB00BF01CA /* shapePlane.png */,
+				853AD12F2071F5DC00BF01CA /* shapePyramid.png */,
+				853AD12C2071F5DB00BF01CA /* shapeSphere.png */,
+				853AD12D2071F5DC00BF01CA /* shapeTorus.png */,
+				853AD1292071F5DB00BF01CA /* shapeTube.png */,
+			);
+			path = imagesShapes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -602,10 +800,67 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				853AD1352071F5DC00BF01CA /* shapeSphere.png in Resources */,
+				853AD1012071F22D00BF01CA /* Bullion.png in Resources */,
+				853AD1382071F5DC00BF01CA /* shapePyramid.png in Resources */,
+				853AD0EB2071F22D00BF01CA /* Chest_Open.png in Resources */,
+				853AD0F72071F22D00BF01CA /* Stone_11.png in Resources */,
+				853AD0E92071F22D00BF01CA /* Stone_7.png in Resources */,
+				853AD0FF2071F22D00BF01CA /* Crystal_3.png in Resources */,
+				853AD1062071F22D00BF01CA /* Ruby.png in Resources */,
+				853AD0ED2071F22D00BF01CA /* Rocks_2.png in Resources */,
+				853AD1082071F22D00BF01CA /* Box.png in Resources */,
+				853AD0E22071F22D00BF01CA /* Stone_10.png in Resources */,
+				853AD0E52071F22D00BF01CA /* Key.png in Resources */,
+				853AD0E02071F22D00BF01CA /* Pick.png in Resources */,
+				853AD0EF2071F22D00BF01CA /* Rocks_And0.png in Resources */,
+				853AD0FA2071F22D00BF01CA /* Chest_Clos.png in Resources */,
+				853AD0FD2071F22D00BF01CA /* Barrel_Open.png in Resources */,
+				853AD0DF2071F22D00BF01CA /* Skull.png in Resources */,
 				853AD0252071B2E400BF01CA /* Info.plist in Resources */,
+				853AD1052071F22D00BF01CA /* Stone_1.png in Resources */,
+				853AD0E82071F22D00BF01CA /* Exlir_Of_.png in Resources */,
+				853AD0F12071F22D00BF01CA /* Stone_8.png in Resources */,
+				853AD1312071F5DC00BF01CA /* shapeCylinder.png in Resources */,
+				853AD0E12071F22D00BF01CA /* Emeraid.png in Resources */,
+				853AD0E42071F22D00BF01CA /* Arrow.png in Resources */,
+				853AD0F22071F22D00BF01CA /* Stone_15.png in Resources */,
+				853AD1032071F22D00BF01CA /* Stone_6.png in Resources */,
+				853AD1332071F5DC00BF01CA /* shapePlane.png in Resources */,
+				853AD0E62071F22D00BF01CA /* Stone_13.png in Resources */,
+				853AD0F42071F22D00BF01CA /* Crown.png in Resources */,
 				853AD09C2071B56A00BF01CA /* art.scnassets in Resources */,
 				853AD09B2071B56A00BF01CA /* Assets.xcassets in Resources */,
+				853AD10F2071F23E00BF01CA /* menuLowPolyTree.png in Resources */,
+				853AD0FE2071F22D00BF01CA /* Stone_3.png in Resources */,
+				853AD1072071F22D00BF01CA /* Coin.png in Resources */,
+				853AD0EA2071F22D00BF01CA /* Stone_14.png in Resources */,
+				853AD0E32071F22D00BF01CA /* Stone_17.png in Resources */,
+				853AD1372071F5DC00BF01CA /* shapeBox.png in Resources */,
+				853AD1022071F22D00BF01CA /* Crystal_1.png in Resources */,
+				853AD0F32071F22D00BF01CA /* Exlir_Of0.png in Resources */,
+				853AD1362071F5DC00BF01CA /* shapeTorus.png in Resources */,
+				853AD0F02071F22D00BF01CA /* Stone_5.png in Resources */,
+				853AD1132071F23E00BF01CA /* fox_squareLQ.jpeg in Resources */,
+				853AD0F62071F22D00BF01CA /* Shield.png in Resources */,
+				853AD0FC2071F22D00BF01CA /* Crystal_2.png in Resources */,
+				853AD1302071F5DC00BF01CA /* shapeCone.png in Resources */,
+				853AD1342071F5DC00BF01CA /* shapeCapsule.png in Resources */,
+				853AD1002071F22D00BF01CA /* Tree.png in Resources */,
+				853AD13C2071F84500BF01CA /* menuAxis.png in Resources */,
+				853AD1112071F23E00BF01CA /* closeWhite.png in Resources */,
+				853AD13A2071F83F00BF01CA /* menuWolf.png in Resources */,
+				853AD0FB2071F22D00BF01CA /* Rocks_And.png in Resources */,
 				853AD03D2071B2E400BF01CA /* NodeTechnique.plist in Resources */,
+				853AD1322071F5DC00BF01CA /* shapeTube.png in Resources */,
+				853AD0E72071F22D00BF01CA /* Stone_16.png in Resources */,
+				853AD0EE2071F22D00BF01CA /* Stone_4.png in Resources */,
+				853AD0F52071F22D00BF01CA /* Barrel_Clo.png in Resources */,
+				853AD0F92071F22D00BF01CA /* Stone_18.png in Resources */,
+				853AD0F82071F22D00BF01CA /* Stone_12.png in Resources */,
+				853AD0EC2071F22D00BF01CA /* Crystal_4.png in Resources */,
+				853AD1042071F22D00BF01CA /* Sword.png in Resources */,
+				853AD1102071F23E00BF01CA /* checkmarkWhite.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -653,6 +908,7 @@
 				853AD0302071B2E400BF01CA /* UIView+AutoLayout.swift in Sources */,
 				853AD03C2071B2E400BF01CA /* NodeRender.metal in Sources */,
 				853AD0742071B2FF00BF01CA /* SliderInputsView.swift in Sources */,
+				853AD0B12071EF5500BF01CA /* Assets.swift in Sources */,
 				853AD0352071B2E400BF01CA /* UIView+Constraints.swift in Sources */,
 				853AD0672071B2FF00BF01CA /* HierarchyIteractor.swift in Sources */,
 				853AD0212071B2E400BF01CA /* CollectionItemConfigType.swift in Sources */,
