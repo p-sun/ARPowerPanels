@@ -2,11 +2,9 @@
 
 Reimagining the power of Xcode's View Debugger for live debugging of AR or SceneKit apps. 2018 WWDC Scolarship application in Swift 4. 
 
-* Experiment:
-Today is a good day for experimentation.
-\
-\
-"Control is for Beginners. Iteration is truly the mother of invention."
+**Today is a good day for experimentation.**
+
+*"Control is for Beginners. Iteration is truly the mother of invention."*
 
 
 Hello, fellow traveller.
@@ -57,10 +55,12 @@ Yours Truely,
 
 -- Paige Sun
 
-- Note:
 GitHub [@p-sun](https://github.com/p-sun)
+
 Email [paige.sun.dev@gmail.com](paige.sun.dev@gmail.com)
+
 LinkedIn [https://www.linkedin.com/in/paigesun/](https://www.linkedin.com/in/paigesun/)
+
 Toronto, ON, Canada
 
 ## Let's get started! 🚀
