@@ -25,18 +25,18 @@
 
 import UIKit
 
-enum ConstraintRelation: Int {
+public enum ConstraintRelation: Int {
     case equal = 0
     case equalOrLess = -1
     case equalOrGreater = 1
 }
 
-extension UIView {
+public extension UIView {
     
     // MARK: - Compound Constraints
     
     @discardableResult
-    func constrainEdges(to otherview: UIView, insets: UIEdgeInsets = .zero, usingSafeArea: Bool = false) -> [NSLayoutConstraint] {
+    public func constrainEdges(to otherview: UIView, insets: UIEdgeInsets = .zero, usingSafeArea: Bool = false) -> [NSLayoutConstraint] {
         var constraints = [NSLayoutConstraint]()
         
         let constrainable = safeConstrainable(for: otherview, usingSafeArea: usingSafeArea)
@@ -54,7 +54,7 @@ extension UIView {
     }
     
     @discardableResult
-    func constrainEdgesHorizontally(to otherview: UIView, leftInsets: CGFloat = 0, rightInsets: CGFloat = 0, usingSafeArea: Bool = false) -> [NSLayoutConstraint] {
+    public func constrainEdgesHorizontally(to otherview: UIView, leftInsets: CGFloat = 0, rightInsets: CGFloat = 0, usingSafeArea: Bool = false) -> [NSLayoutConstraint] {
         prepareForAutolayout()
         
         var constraints = [NSLayoutConstraint]()
@@ -70,7 +70,7 @@ extension UIView {
     }
     
     @discardableResult
-    func constrainEdgesVertically(to otherview: UIView, topInsets: CGFloat = 0, bottomInsets: CGFloat = 0, usingSafeArea: Bool = false) -> [NSLayoutConstraint] {
+    public func constrainEdgesVertically(to otherview: UIView, topInsets: CGFloat = 0, bottomInsets: CGFloat = 0, usingSafeArea: Bool = false) -> [NSLayoutConstraint] {
         var constraints = [NSLayoutConstraint]()
         
         let constrainable = safeConstrainable(for: otherview, usingSafeArea: usingSafeArea)

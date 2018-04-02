@@ -8,7 +8,7 @@
 
 import SceneKit
 
-struct NodeMetaData {
+public struct NodeMetaData {
     let displayInHierachy: Bool
     
     init(displayInHierachy: Bool) {
@@ -16,7 +16,7 @@ struct NodeMetaData {
     }
 }
 
-class SceneCreator {
+public class SceneCreator {
     
     static let shared = SceneCreator()
     

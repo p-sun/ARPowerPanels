@@ -8,14 +8,14 @@
 
 import UIKit
 
-struct PanelItem {
+public struct PanelItem {
     let viewToPresent: UIView
     let heightPriority: UILayoutPriority
     let preferredHeight: CGFloat? // Leave nil if item has it's own constraints for height. Set the heightPriority to the priority of that view's height constraint manually.
     let width: CGFloat
 }
 
-protocol PanelsPresenterDelegate: class {
+public protocol PanelsPresenterDelegate: class {
     func rightPanelsPresenter(didPresent view: UIView)
     func rightPanelsPresenter(didDismiss view: UIView)
 }

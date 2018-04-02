@@ -10,7 +10,7 @@ import UIKit
 import SceneKit
 import ARKit
 
-enum ARPowerPanelsType {
+public enum ARPowerPanelsType {
     case sceneGraph, info, easyMoves, allMoves, allEdits
     
     static var allTypes: [ARPowerPanelsType] {
@@ -18,7 +18,7 @@ enum ARPowerPanelsType {
     }
 }
 
-class ARPowerPanels: UIView {
+public class ARPowerPanels: UIView {
     
     var selectedNode: SCNNode? {
         didSet {
@@ -76,7 +76,7 @@ class ARPowerPanels: UIView {
         selectedNode = scene.rootNode
     }
     
-    convenience init(arSceneView: ARSCNView, panelTypes: [ARPowerPanelsType]) {
+    public convenience init(arSceneView: ARSCNView, panelTypes: [ARPowerPanelsType]) {
         self.init(rootNode: arSceneView.scene.rootNode, isARKit: true, panelTypes: panelTypes)
         self.arSceneView = arSceneView
         arSceneView.setupGlowTechnique()
@@ -121,7 +121,7 @@ class ARPowerPanels: UIView {
         allEditsPanel.transformationDelegate = self
     }
 
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
