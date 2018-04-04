@@ -46,7 +46,7 @@
 		853AD03D2071B2E400BF01CA /* NodeTechnique.plist in Resources */ = {isa = PBXBuildFile; fileRef = 853AD0172071B2E400BF01CA /* NodeTechnique.plist */; };
 		853AD03E2071B2E400BF01CA /* SCNVector3+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853AD0182071B2E400BF01CA /* SCNVector3+Extensions.swift */; };
 		853AD03F2071B2E400BF01CA /* Font+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853AD0192071B2E400BF01CA /* Font+Extensions.swift */; };
-		853AD0442071B2E900BF01CA /* ModelAssetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853AD0422071B2E900BF01CA /* ModelAssetType.swift */; };
+		853AD0442071B2E900BF01CA /* NodeCreatorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853AD0422071B2E900BF01CA /* NodeCreatorType.swift */; };
 		853AD0452071B2E900BF01CA /* NodeCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853AD0432071B2E900BF01CA /* NodeCreator.swift */; };
 		853AD0482071B2F300BF01CA /* SceneCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853AD0472071B2F300BF01CA /* SceneCreator.swift */; };
 		853AD0652071B2FF00BF01CA /* ARPowerPanels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853AD04A2071B2FF00BF01CA /* ARPowerPanels.swift */; };
@@ -208,7 +208,7 @@
 		853AD0172071B2E400BF01CA /* NodeTechnique.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = NodeTechnique.plist; sourceTree = "<group>"; };
 		853AD0182071B2E400BF01CA /* SCNVector3+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SCNVector3+Extensions.swift"; sourceTree = "<group>"; };
 		853AD0192071B2E400BF01CA /* Font+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Font+Extensions.swift"; sourceTree = "<group>"; };
-		853AD0422071B2E900BF01CA /* ModelAssetType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelAssetType.swift; sourceTree = "<group>"; };
+		853AD0422071B2E900BF01CA /* NodeCreatorType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeCreatorType.swift; sourceTree = "<group>"; };
 		853AD0432071B2E900BF01CA /* NodeCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeCreator.swift; sourceTree = "<group>"; };
 		853AD0472071B2F300BF01CA /* SceneCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneCreator.swift; sourceTree = "<group>"; };
 		853AD04A2071B2FF00BF01CA /* ARPowerPanels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARPowerPanels.swift; sourceTree = "<group>"; };
@@ -493,7 +493,7 @@
 		853AD0412071B2E900BF01CA /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				853AD0422071B2E900BF01CA /* ModelAssetType.swift */,
+				853AD0422071B2E900BF01CA /* NodeCreatorType.swift */,
 				853AD0B02071EF5500BF01CA /* Assets.swift */,
 				853AD0432071B2E900BF01CA /* NodeCreator.swift */,
 			);
@@ -889,7 +889,7 @@
 				853AD0322071B2E400BF01CA /* Constrainable.swift in Sources */,
 				853AD0362071B2E400BF01CA /* SCNScene+Glow.swift in Sources */,
 				853AD01B2071B2E400BF01CA /* LabelCell.swift in Sources */,
-				853AD0442071B2E900BF01CA /* ModelAssetType.swift in Sources */,
+				853AD0442071B2E900BF01CA /* NodeCreatorType.swift in Sources */,
 				853AD03B2071B2E400BF01CA /* ARSCNView+HitTest.swift in Sources */,
 				853AD0372071B2E400BF01CA /* UIColor+Extensions.swift in Sources */,
 				853AD0232071B2E400BF01CA /* UICollectionView+Reusable.swift in Sources */,

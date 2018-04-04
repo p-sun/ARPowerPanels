@@ -1,5 +1,5 @@
 //
-//  ModelAssetType.swift
+//  NodeCreatorType.swift
 //  ARPlanets
 //
 //  Created by Paige Sun on 2018-03-18.
@@ -9,22 +9,52 @@
 import UIKit
 import SceneKit
 
-protocol NodeMaker {
-    static var allTypes: [NodeMaker] { get }
+// Playground books require a different set of code to load image and model assets.
+var isPlaygroundBook = false
+
+protocol NodeCreatorType {
+    static var allTypes: [NodeCreatorType] { get }
     var menuImage: UIImage? { get }
     func createNode() -> SCNNode?
 }
 
-public enum Shapes: NodeMaker {
+public enum Shapes: NodeCreatorType {
 
     case sphere, plane, box, pyramid, cylinder, cone, torus, tube, capsule
     
-    static var allTypes: [NodeMaker] {
+    static var allTypes: [NodeCreatorType] {
         return [Shapes.sphere, Shapes.plane, Shapes.box, Shapes.pyramid, Shapes.cylinder, Shapes.cone, Shapes.torus, Shapes.tube, Shapes.capsule]
     }
-
-    // THIS IS FOR XCODE
-        var menuImage: UIImage? {
+    
+    var menuImage: UIImage? {
+        if isPlaygroundBook {
+            // THIS IS FOR THE PLAYGROUND
+            // Images have go in the 'Contents/PrivateResources` folder,
+            // as opposed to in the Assets.xcassets folder for Xcode.
+            // They also must be referred to by with their image extension
+            switch self {
+            case .sphere:
+                return #imageLiteral(resourceName: "shapeSphere.png")
+            case .plane:
+                return #imageLiteral(resourceName: "shapePlane.png")
+            case .box:
+                return #imageLiteral(resourceName: "shapeBox.png")
+            case .pyramid:
+                return #imageLiteral(resourceName: "shapePyramid.png")
+            case .cylinder:
+                return #imageLiteral(resourceName: "shapeCylinder.png")
+            case .cone:
+                return #imageLiteral(resourceName: "shapeCone.png")
+            case .torus:
+                return #imageLiteral(resourceName: "shapeTorus.png")
+            case .tube:
+                return #imageLiteral(resourceName: "shapeTube.png")
+            case .capsule:
+                return #imageLiteral(resourceName: "shapeCapsule.png")
+            }
+            
+        } else {
+            // THIS IS FOR XCODE
             switch self {
             case .sphere:
                 return #imageLiteral(resourceName: "sphere")
@@ -46,36 +76,9 @@ public enum Shapes: NodeMaker {
                 return #imageLiteral(resourceName: "capsule")
             }
         }
-    
-    // THIS IS FOR THE PLAYGROUND, because the images have to
-    // go in the 'private resources` folder. Not in the Assets.xcassets folder
-    // AND they must be referred to by their image extension
-    
-//    var menuImage: UIImage? {
-//        switch self {
-//        case .sphere:
-//            return #imageLiteral(resourceName: "shapeSphere.png")
-//        case .plane:
-//            return #imageLiteral(resourceName: "shapePlane.png")
-//        case .box:
-//            return #imageLiteral(resourceName: "shapeBox.png")
-//        case .pyramid:
-//            return #imageLiteral(resourceName: "shapePyramid.png")
-//        case .cylinder:
-//            return #imageLiteral(resourceName: "shapeCylinder.png")
-//        case .cone:
-//            return #imageLiteral(resourceName: "shapeCone.png")
-//        case .torus:
-//            return #imageLiteral(resourceName: "shapeTorus.png")
-//        case .tube:
-//            return #imageLiteral(resourceName: "shapeTube.png")
-//        case .capsule:
-//            return #imageLiteral(resourceName: "shapeCapsule.png")
-//        }
-//    }
+    }
     
     public func createNode() -> SCNNode? {
-        
         let basicGeometry = geometry(for: self)
         basicGeometry.firstMaterial?.diffuse.contents = UIColor.randomColor()
         
@@ -113,10 +116,10 @@ public enum Shapes: NodeMaker {
     }
 }
 
-public enum Model: NodeMaker {
+public enum Model: NodeCreatorType {
     case axis, wolf, fox, lowPolyTree, camera, custom
     
-    static var allTypes: [NodeMaker] {
+    static var allTypes: [NodeCreatorType] {
         return [Model.axis, Model.wolf, Model.fox, Model.lowPolyTree]
     }
     
@@ -152,7 +155,7 @@ public enum Model: NodeMaker {
     
     func nodeFromResource(assetName: String, extensionName: String) -> SCNNode? {
         let bundle = Bundle(for: ModelCollectionView.self)
-
+        
         if let url = bundle.url(forResource: "art.scnassets/\(assetName)", withExtension: extensionName) {
             NSLog("PAIGE LOG url \(url)")
             
@@ -169,59 +172,36 @@ public enum Model: NodeMaker {
     }
     
     var menuImage: UIImage? {
-                
-//            switch self {
-//            case .axis:
-//            return #imageLiteral(resourceName: "menuAxis")
-//            case .wolf:
-//            return #imageLiteral(resourceName: "menuWolf")
-//            case .lowPolyTree:
-//            return #imageLiteral(resourceName: "menuLowPolyTree")
-//            case .fox:
-//            return #imageLiteral(resourceName: "fox_squareLQ")
-//            case .camera:
-//            return #imageLiteral(resourceName: "menuLowPolyTree")
-//            case .custom:
-//            return #imageLiteral(resourceName: "menuLowPolyTree")
-//            }
-
-        
-        switch self {
-        case .axis:
-            return #imageLiteral(resourceName: "menuAxis.png")
-        case .wolf:
-            return #imageLiteral(resourceName: "menuWolf.png")
-        case .lowPolyTree:
-            return #imageLiteral(resourceName: "menuLowPolyTree.png")
-        case .fox:
-            return #imageLiteral(resourceName: "fox_squareLQ.jpeg")
-        case .camera:
-            return #imageLiteral(resourceName: "menuLowPolyTree.png")
-        case .custom:
-            return #imageLiteral(resourceName: "menuLowPolyTree.png")
+        if isPlaygroundBook {
+            switch self {
+            case .axis:
+                return #imageLiteral(resourceName: "menuAxis.png")
+            case .wolf:
+                return #imageLiteral(resourceName: "menuWolf.png")
+            case .lowPolyTree:
+                return #imageLiteral(resourceName: "menuLowPolyTree.png")
+            case .fox:
+                return #imageLiteral(resourceName: "fox_squareLQ.jpeg")
+            case .camera:
+                return #imageLiteral(resourceName: "menuLowPolyTree.png")
+            case .custom:
+                return #imageLiteral(resourceName: "menuLowPolyTree.png")
+            }
+        } else {
+            switch self {
+            case .axis:
+                return #imageLiteral(resourceName: "menuAxis")
+            case .wolf:
+                return #imageLiteral(resourceName: "menuWolf")
+            case .lowPolyTree:
+                return #imageLiteral(resourceName: "menuLowPolyTree")
+            case .fox:
+                return #imageLiteral(resourceName: "fox_squareLQ")
+            case .camera:
+                return #imageLiteral(resourceName: "menuLowPolyTree")
+            case .custom:
+                return #imageLiteral(resourceName: "menuLowPolyTree")
+            }
         }
-        
-        
-//        func assetName() -> String {
-//            switch self {
-//            case .axis:
-//                return "menuAxis"
-//            case .wolf:
-//                return "menuWolf"
-//            case .lowPolyTree:
-//                return "menuLowPolyTree"
-//            case .fox:
-//                return "fox_squareLQ"
-//            case .camera:
-//                return "menuLowPolyTree"
-//            case .custom:
-//                return "menuLowPolyTree"
-//            }
-//        }
-//
-//        let bundle = Bundle(for: ModelCollectionView.self)
-//        let image = UIImage(named: assetName(), in: bundle, compatibleWith: nil)
-//        NSLog("PAIGE LOG LOADING \(assetName()) \(String(describing: image))")
-//        return image
     }
 }

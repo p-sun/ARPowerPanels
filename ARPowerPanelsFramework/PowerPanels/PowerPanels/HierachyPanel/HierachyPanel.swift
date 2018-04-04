@@ -117,7 +117,7 @@ class HierachyPanel: UIView {
 // MARK: Private
 
 extension HierachyPanel: ModelCollectionViewDelegate {
-    func modelCollectionView(_ modelCollectionView: ModelCollectionView, didSelectModel nodeMaker: NodeMaker) {
+    func modelCollectionView(_ modelCollectionView: ModelCollectionView, didSelectModel nodeMaker: NodeCreatorType) {
         guard let selectedNode = dataSource?.selectedForHierachyPanel() else { return }
         if let newNode = nodeMaker.createNode() {
             SceneCreator.shared.addNode(newNode, to: selectedNode)
