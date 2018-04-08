@@ -10,6 +10,12 @@
 		850FC791207AC5090006FBA3 /* NodeRender.metal in Sources */ = {isa = PBXBuildFile; fileRef = 850FC790207AC5090006FBA3 /* NodeRender.metal */; };
 		850FC793207AC96F0006FBA3 /* SCNScene+Glow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850FC792207AC96E0006FBA3 /* SCNScene+Glow.swift */; };
 		850FC795207AC9820006FBA3 /* NodeTechnique.plist in Resources */ = {isa = PBXBuildFile; fileRef = 850FC794207AC9820006FBA3 /* NodeTechnique.plist */; };
+		850FC79C207ACBB90006FBA3 /* fox_squareLQ.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 850FC796207ACBB80006FBA3 /* fox_squareLQ.jpeg */; };
+		850FC79D207ACBB90006FBA3 /* checkmarkWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 850FC797207ACBB80006FBA3 /* checkmarkWhite.png */; };
+		850FC79E207ACBB90006FBA3 /* closeWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 850FC798207ACBB80006FBA3 /* closeWhite.png */; };
+		850FC79F207ACBB90006FBA3 /* menuAxis.png in Resources */ = {isa = PBXBuildFile; fileRef = 850FC799207ACBB80006FBA3 /* menuAxis.png */; };
+		850FC7A0207ACBB90006FBA3 /* menuLowPolyTree.png in Resources */ = {isa = PBXBuildFile; fileRef = 850FC79A207ACBB90006FBA3 /* menuLowPolyTree.png */; };
+		850FC7A1207ACBB90006FBA3 /* menuWolf.png in Resources */ = {isa = PBXBuildFile; fileRef = 850FC79B207ACBB90006FBA3 /* menuWolf.png */; };
 		853ACFE32071B2A000BF01CA /* PowerPanels.h in Headers */ = {isa = PBXBuildFile; fileRef = 853ACFE12071B2A000BF01CA /* PowerPanels.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		853AD01A2071B2E400BF01CA /* HierachyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853ACFEC2071B2E400BF01CA /* HierachyCell.swift */; };
 		853AD01B2071B2E400BF01CA /* LabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853ACFED2071B2E400BF01CA /* LabelCell.swift */; };
@@ -79,8 +85,8 @@
 		853AD0942071B3CB00BF01CA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 853AD0922071B3CB00BF01CA /* LaunchScreen.storyboard */; };
 		853AD09B2071B56A00BF01CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 853AD0992071B56A00BF01CA /* Assets.xcassets */; };
 		853AD09C2071B56A00BF01CA /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 853AD09A2071B56A00BF01CA /* art.scnassets */; };
-		853AD0A52071B88D00BF01CA /* PowerPanels.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 853ACFDE2071B2A000BF01CA /* PowerPanels.framework */; };
-		853AD0A62071B88D00BF01CA /* PowerPanels.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 853ACFDE2071B2A000BF01CA /* PowerPanels.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		853AD0A52071B88D00BF01CA /* ARPowerPanels.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 853ACFDE2071B2A000BF01CA /* ARPowerPanels.framework */; };
+		853AD0A62071B88D00BF01CA /* ARPowerPanels.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 853ACFDE2071B2A000BF01CA /* ARPowerPanels.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		853AD0AB2071BC5900BF01CA /* ARKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853AD0AA2071BC5900BF01CA /* ARKitViewController.swift */; };
 		853AD0B12071EF5500BF01CA /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853AD0B02071EF5500BF01CA /* Assets.swift */; };
 		853AD0DF2071F22D00BF01CA /* Skull.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD0B52071F22800BF01CA /* Skull.png */; };
@@ -125,10 +131,6 @@
 		853AD1062071F22D00BF01CA /* Ruby.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD0DC2071F22C00BF01CA /* Ruby.png */; };
 		853AD1072071F22D00BF01CA /* Coin.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD0DD2071F22C00BF01CA /* Coin.png */; };
 		853AD1082071F22D00BF01CA /* Box.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD0DE2071F22C00BF01CA /* Box.png */; };
-		853AD10F2071F23E00BF01CA /* menuLowPolyTree.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD1092071F23E00BF01CA /* menuLowPolyTree.png */; };
-		853AD1102071F23E00BF01CA /* checkmarkWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD10A2071F23E00BF01CA /* checkmarkWhite.png */; };
-		853AD1112071F23E00BF01CA /* closeWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD10B2071F23E00BF01CA /* closeWhite.png */; };
-		853AD1132071F23E00BF01CA /* fox_squareLQ.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 853AD10D2071F23E00BF01CA /* fox_squareLQ.jpeg */; };
 		853AD1302071F5DC00BF01CA /* shapeCone.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD1272071F5DB00BF01CA /* shapeCone.png */; };
 		853AD1312071F5DC00BF01CA /* shapeCylinder.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD1282071F5DB00BF01CA /* shapeCylinder.png */; };
 		853AD1322071F5DC00BF01CA /* shapeTube.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD1292071F5DB00BF01CA /* shapeTube.png */; };
@@ -138,8 +140,6 @@
 		853AD1362071F5DC00BF01CA /* shapeTorus.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD12D2071F5DC00BF01CA /* shapeTorus.png */; };
 		853AD1372071F5DC00BF01CA /* shapeBox.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD12E2071F5DC00BF01CA /* shapeBox.png */; };
 		853AD1382071F5DC00BF01CA /* shapePyramid.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD12F2071F5DC00BF01CA /* shapePyramid.png */; };
-		853AD13A2071F83F00BF01CA /* menuWolf.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD1392071F83F00BF01CA /* menuWolf.png */; };
-		853AD13C2071F84500BF01CA /* menuAxis.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD13B2071F84500BF01CA /* menuAxis.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -159,7 +159,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				853AD0A62071B88D00BF01CA /* PowerPanels.framework in Embed Frameworks */,
+				853AD0A62071B88D00BF01CA /* ARPowerPanels.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -170,7 +170,13 @@
 		850FC790207AC5090006FBA3 /* NodeRender.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = NodeRender.metal; sourceTree = "<group>"; };
 		850FC792207AC96E0006FBA3 /* SCNScene+Glow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SCNScene+Glow.swift"; sourceTree = "<group>"; };
 		850FC794207AC9820006FBA3 /* NodeTechnique.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = NodeTechnique.plist; sourceTree = "<group>"; };
-		853ACFDE2071B2A000BF01CA /* PowerPanels.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PowerPanels.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		850FC796207ACBB80006FBA3 /* fox_squareLQ.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = fox_squareLQ.jpeg; sourceTree = "<group>"; };
+		850FC797207ACBB80006FBA3 /* checkmarkWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkmarkWhite.png; sourceTree = "<group>"; };
+		850FC798207ACBB80006FBA3 /* closeWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = closeWhite.png; sourceTree = "<group>"; };
+		850FC799207ACBB80006FBA3 /* menuAxis.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuAxis.png; sourceTree = "<group>"; };
+		850FC79A207ACBB90006FBA3 /* menuLowPolyTree.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuLowPolyTree.png; sourceTree = "<group>"; };
+		850FC79B207ACBB90006FBA3 /* menuWolf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuWolf.png; sourceTree = "<group>"; };
+		853ACFDE2071B2A000BF01CA /* ARPowerPanels.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ARPowerPanels.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		853ACFE12071B2A000BF01CA /* PowerPanels.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PowerPanels.h; sourceTree = "<group>"; };
 		853ACFE22071B2A000BF01CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		853ACFEC2071B2E400BF01CA /* HierachyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HierachyCell.swift; sourceTree = "<group>"; };
@@ -287,10 +293,6 @@
 		853AD0DC2071F22C00BF01CA /* Ruby.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Ruby.png; sourceTree = "<group>"; };
 		853AD0DD2071F22C00BF01CA /* Coin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Coin.png; sourceTree = "<group>"; };
 		853AD0DE2071F22C00BF01CA /* Box.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Box.png; sourceTree = "<group>"; };
-		853AD1092071F23E00BF01CA /* menuLowPolyTree.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = menuLowPolyTree.png; path = PowerPanels/Resources/imagesMenu/menuLowPolyTree.png; sourceTree = SOURCE_ROOT; };
-		853AD10A2071F23E00BF01CA /* checkmarkWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = checkmarkWhite.png; path = PowerPanels/Resources/imagesMenu/checkmarkWhite.png; sourceTree = SOURCE_ROOT; };
-		853AD10B2071F23E00BF01CA /* closeWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = closeWhite.png; path = PowerPanels/Resources/imagesMenu/closeWhite.png; sourceTree = SOURCE_ROOT; };
-		853AD10D2071F23E00BF01CA /* fox_squareLQ.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = fox_squareLQ.jpeg; path = PowerPanels/Resources/imagesMenu/fox_squareLQ.jpeg; sourceTree = SOURCE_ROOT; };
 		853AD1272071F5DB00BF01CA /* shapeCone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shapeCone.png; sourceTree = "<group>"; };
 		853AD1282071F5DB00BF01CA /* shapeCylinder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shapeCylinder.png; sourceTree = "<group>"; };
 		853AD1292071F5DB00BF01CA /* shapeTube.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shapeTube.png; sourceTree = "<group>"; };
@@ -300,8 +302,6 @@
 		853AD12D2071F5DC00BF01CA /* shapeTorus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shapeTorus.png; sourceTree = "<group>"; };
 		853AD12E2071F5DC00BF01CA /* shapeBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shapeBox.png; sourceTree = "<group>"; };
 		853AD12F2071F5DC00BF01CA /* shapePyramid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shapePyramid.png; sourceTree = "<group>"; };
-		853AD1392071F83F00BF01CA /* menuWolf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = menuWolf.png; path = PowerPanels/Resources/imagesMenu/menuWolf.png; sourceTree = SOURCE_ROOT; };
-		853AD13B2071F84500BF01CA /* menuAxis.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = menuAxis.png; path = PowerPanels/Resources/imagesMenu/menuAxis.png; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -316,7 +316,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				853AD0A52071B88D00BF01CA /* PowerPanels.framework in Frameworks */,
+				853AD0A52071B88D00BF01CA /* ARPowerPanels.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,10 +332,20 @@
 			path = GlowTechnique;
 			sourceTree = "<group>";
 		};
+		850FC7A2207ACCDD0006FBA3 /* ForPlaygroundOnly */ = {
+			isa = PBXGroup;
+			children = (
+				853AD0B22071F17C00BF01CA /* imagesAdventure */,
+				853AD0B32071F17C00BF01CA /* imagesMenu */,
+				853AD0B42071F17C00BF01CA /* imagesShapes */,
+			);
+			path = ForPlaygroundOnly;
+			sourceTree = "<group>";
+		};
 		853ACFD42071B2A000BF01CA = {
 			isa = PBXGroup;
 			children = (
-				853ACFE02071B2A000BF01CA /* PowerPanels */,
+				853ACFE02071B2A000BF01CA /* ARPowerPanels */,
 				853AD0862071B3C600BF01CA /* ARPowerPanelsDemo */,
 				853ACFDF2071B2A000BF01CA /* Products */,
 				853AD09E2071B82F00BF01CA /* Frameworks */,
@@ -345,13 +355,13 @@
 		853ACFDF2071B2A000BF01CA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				853ACFDE2071B2A000BF01CA /* PowerPanels.framework */,
+				853ACFDE2071B2A000BF01CA /* ARPowerPanels.framework */,
 				853AD0852071B3C600BF01CA /* ARPowerPanelsDemo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		853ACFE02071B2A000BF01CA /* PowerPanels */ = {
+		853ACFE02071B2A000BF01CA /* ARPowerPanels */ = {
 			isa = PBXGroup;
 			children = (
 				853AD0AF2071EDA700BF01CA /* Resources */,
@@ -363,7 +373,7 @@
 				853ACFE12071B2A000BF01CA /* PowerPanels.h */,
 				853ACFE22071B2A000BF01CA /* Info.plist */,
 			);
-			path = PowerPanels;
+			path = ARPowerPanels;
 			sourceTree = "<group>";
 		};
 		853ACFE92071B2E400BF01CA /* Extensions */ = {
@@ -626,9 +636,7 @@
 		853AD0AF2071EDA700BF01CA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				853AD0B22071F17C00BF01CA /* imagesAdventure */,
-				853AD0B32071F17C00BF01CA /* imagesMenu */,
-				853AD0B42071F17C00BF01CA /* imagesShapes */,
+				850FC7A2207ACCDD0006FBA3 /* ForPlaygroundOnly */,
 				853AD0992071B56A00BF01CA /* Assets.xcassets */,
 				853AD09A2071B56A00BF01CA /* art.scnassets */,
 			);
@@ -687,12 +695,12 @@
 		853AD0B32071F17C00BF01CA /* imagesMenu */ = {
 			isa = PBXGroup;
 			children = (
-				853AD13B2071F84500BF01CA /* menuAxis.png */,
-				853AD1392071F83F00BF01CA /* menuWolf.png */,
-				853AD10A2071F23E00BF01CA /* checkmarkWhite.png */,
-				853AD10B2071F23E00BF01CA /* closeWhite.png */,
-				853AD10D2071F23E00BF01CA /* fox_squareLQ.jpeg */,
-				853AD1092071F23E00BF01CA /* menuLowPolyTree.png */,
+				850FC797207ACBB80006FBA3 /* checkmarkWhite.png */,
+				850FC798207ACBB80006FBA3 /* closeWhite.png */,
+				850FC796207ACBB80006FBA3 /* fox_squareLQ.jpeg */,
+				850FC799207ACBB80006FBA3 /* menuAxis.png */,
+				850FC79A207ACBB90006FBA3 /* menuLowPolyTree.png */,
+				850FC79B207ACBB90006FBA3 /* menuWolf.png */,
 			);
 			path = imagesMenu;
 			sourceTree = "<group>";
@@ -727,9 +735,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		853ACFDD2071B2A000BF01CA /* PowerPanels */ = {
+		853ACFDD2071B2A000BF01CA /* ARPowerPanels */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 853ACFE62071B2A000BF01CA /* Build configuration list for PBXNativeTarget "PowerPanels" */;
+			buildConfigurationList = 853ACFE62071B2A000BF01CA /* Build configuration list for PBXNativeTarget "ARPowerPanels" */;
 			buildPhases = (
 				853ACFD92071B2A000BF01CA /* Sources */,
 				853ACFDA2071B2A000BF01CA /* Frameworks */,
@@ -740,9 +748,9 @@
 			);
 			dependencies = (
 			);
-			name = PowerPanels;
+			name = ARPowerPanels;
 			productName = PowerPanels;
-			productReference = 853ACFDE2071B2A000BF01CA /* PowerPanels.framework */;
+			productReference = 853ACFDE2071B2A000BF01CA /* ARPowerPanels.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		853AD0842071B3C600BF01CA /* ARPowerPanelsDemo */ = {
@@ -782,7 +790,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 853ACFD82071B2A000BF01CA /* Build configuration list for PBXProject "PowerPanels" */;
+			buildConfigurationList = 853ACFD82071B2A000BF01CA /* Build configuration list for PBXProject "ARPowerPanels" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -795,8 +803,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				853ACFDD2071B2A000BF01CA /* PowerPanels */,
 				853AD0842071B3C600BF01CA /* ARPowerPanelsDemo */,
+				853ACFDD2071B2A000BF01CA /* ARPowerPanels */,
 			);
 		};
 /* End PBXProject section */
@@ -808,6 +816,7 @@
 			files = (
 				853AD1352071F5DC00BF01CA /* shapeSphere.png in Resources */,
 				853AD1012071F22D00BF01CA /* Bullion.png in Resources */,
+				850FC79D207ACBB90006FBA3 /* checkmarkWhite.png in Resources */,
 				853AD1382071F5DC00BF01CA /* shapePyramid.png in Resources */,
 				853AD0EB2071F22D00BF01CA /* Chest_Open.png in Resources */,
 				853AD0F72071F22D00BF01CA /* Stone_11.png in Resources */,
@@ -827,8 +836,10 @@
 				853AD1052071F22D00BF01CA /* Stone_1.png in Resources */,
 				853AD0E82071F22D00BF01CA /* Exlir_Of_.png in Resources */,
 				853AD0F12071F22D00BF01CA /* Stone_8.png in Resources */,
+				850FC7A1207ACBB90006FBA3 /* menuWolf.png in Resources */,
 				853AD1312071F5DC00BF01CA /* shapeCylinder.png in Resources */,
 				853AD0E12071F22D00BF01CA /* Emeraid.png in Resources */,
+				850FC79E207ACBB90006FBA3 /* closeWhite.png in Resources */,
 				853AD0E42071F22D00BF01CA /* Arrow.png in Resources */,
 				853AD0F22071F22D00BF01CA /* Stone_15.png in Resources */,
 				853AD1032071F22D00BF01CA /* Stone_6.png in Resources */,
@@ -837,7 +848,6 @@
 				853AD0F42071F22D00BF01CA /* Crown.png in Resources */,
 				853AD09C2071B56A00BF01CA /* art.scnassets in Resources */,
 				853AD09B2071B56A00BF01CA /* Assets.xcassets in Resources */,
-				853AD10F2071F23E00BF01CA /* menuLowPolyTree.png in Resources */,
 				853AD0FE2071F22D00BF01CA /* Stone_3.png in Resources */,
 				853AD1072071F22D00BF01CA /* Coin.png in Resources */,
 				853AD0EA2071F22D00BF01CA /* Stone_14.png in Resources */,
@@ -847,26 +857,24 @@
 				853AD0F32071F22D00BF01CA /* Exlir_Of0.png in Resources */,
 				853AD1362071F5DC00BF01CA /* shapeTorus.png in Resources */,
 				853AD0F02071F22D00BF01CA /* Stone_5.png in Resources */,
-				853AD1132071F23E00BF01CA /* fox_squareLQ.jpeg in Resources */,
 				853AD0F62071F22D00BF01CA /* Shield.png in Resources */,
 				853AD0FC2071F22D00BF01CA /* Crystal_2.png in Resources */,
 				853AD1302071F5DC00BF01CA /* shapeCone.png in Resources */,
+				850FC79C207ACBB90006FBA3 /* fox_squareLQ.jpeg in Resources */,
 				853AD1342071F5DC00BF01CA /* shapeCapsule.png in Resources */,
 				853AD1002071F22D00BF01CA /* Tree.png in Resources */,
-				853AD13C2071F84500BF01CA /* menuAxis.png in Resources */,
-				853AD1112071F23E00BF01CA /* closeWhite.png in Resources */,
-				853AD13A2071F83F00BF01CA /* menuWolf.png in Resources */,
 				853AD0FB2071F22D00BF01CA /* Rocks_And.png in Resources */,
 				853AD1322071F5DC00BF01CA /* shapeTube.png in Resources */,
 				853AD0E72071F22D00BF01CA /* Stone_16.png in Resources */,
 				853AD0EE2071F22D00BF01CA /* Stone_4.png in Resources */,
 				853AD0F52071F22D00BF01CA /* Barrel_Clo.png in Resources */,
 				853AD0F92071F22D00BF01CA /* Stone_18.png in Resources */,
+				850FC79F207ACBB90006FBA3 /* menuAxis.png in Resources */,
 				853AD0F82071F22D00BF01CA /* Stone_12.png in Resources */,
 				853AD0EC2071F22D00BF01CA /* Crystal_4.png in Resources */,
 				853AD1042071F22D00BF01CA /* Sword.png in Resources */,
-				853AD1102071F23E00BF01CA /* checkmarkWhite.png in Resources */,
 				850FC795207AC9820006FBA3 /* NodeTechnique.plist in Resources */,
+				850FC7A0207ACBB90006FBA3 /* menuLowPolyTree.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -968,7 +976,7 @@
 /* Begin PBXTargetDependency section */
 		853AD0A82071B88D00BF01CA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 853ACFDD2071B2A000BF01CA /* PowerPanels */;
+			target = 853ACFDD2071B2A000BF01CA /* ARPowerPanels */;
 			targetProxy = 853AD0A72071B88D00BF01CA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1123,14 +1131,14 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = PowerPanels/Info.plist;
+				INFOPLIST_FILE = ARPowerPanels/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.peisun.ARPowerPanels.PowerPanels;
+				PRODUCT_BUNDLE_IDENTIFIER = com.peisun.ARPowerPanels.Framework;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
@@ -1148,14 +1156,14 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = PowerPanels/Info.plist;
+				INFOPLIST_FILE = ARPowerPanels/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.peisun.ARPowerPanels.PowerPanels;
+				PRODUCT_BUNDLE_IDENTIFIER = com.peisun.ARPowerPanels.Framework;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
@@ -1175,7 +1183,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.peisun.ARPowerPanels.ARPowerPanelsDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.peisun.ARPowerPanels.Demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1194,7 +1202,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.peisun.ARPowerPanels.ARPowerPanelsDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.peisun.ARPowerPanels.Demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1204,7 +1212,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		853ACFD82071B2A000BF01CA /* Build configuration list for PBXProject "PowerPanels" */ = {
+		853ACFD82071B2A000BF01CA /* Build configuration list for PBXProject "ARPowerPanels" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				853ACFE42071B2A000BF01CA /* Debug */,
@@ -1213,7 +1221,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		853ACFE62071B2A000BF01CA /* Build configuration list for PBXNativeTarget "PowerPanels" */ = {
+		853ACFE62071B2A000BF01CA /* Build configuration list for PBXNativeTarget "ARPowerPanels" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				853ACFE72071B2A000BF01CA /* Debug */,

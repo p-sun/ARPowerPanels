@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import PowerPanels
+import ARPowerPanels
 import SceneKit
 
 @UIApplicationMain

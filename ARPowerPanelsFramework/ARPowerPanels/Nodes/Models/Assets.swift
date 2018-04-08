@@ -1,6 +1,6 @@
 //
 //  Assets.swift
-//  PowerPanels
+//  ARPowerPanels
 //
 //  Created by TSD040 on 2018-04-02.
 //  Copyright © 2018 Paige Sun. All rights reserved.

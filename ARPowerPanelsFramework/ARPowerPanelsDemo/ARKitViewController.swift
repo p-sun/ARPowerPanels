@@ -9,7 +9,7 @@
 import UIKit
 import SceneKit
 import ARKit
-import PowerPanels
+import ARPowerPanels
 
 public class ARKitViewController: UIViewController {
     
