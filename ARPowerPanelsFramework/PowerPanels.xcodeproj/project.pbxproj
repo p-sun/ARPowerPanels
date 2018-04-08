@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		850FC791207AC5090006FBA3 /* NodeRender.metal in Sources */ = {isa = PBXBuildFile; fileRef = 850FC790207AC5090006FBA3 /* NodeRender.metal */; };
+		850FC793207AC96F0006FBA3 /* SCNScene+Glow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850FC792207AC96E0006FBA3 /* SCNScene+Glow.swift */; };
+		850FC795207AC9820006FBA3 /* NodeTechnique.plist in Resources */ = {isa = PBXBuildFile; fileRef = 850FC794207AC9820006FBA3 /* NodeTechnique.plist */; };
 		853ACFE32071B2A000BF01CA /* PowerPanels.h in Headers */ = {isa = PBXBuildFile; fileRef = 853ACFE12071B2A000BF01CA /* PowerPanels.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		853AD01A2071B2E400BF01CA /* HierachyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853ACFEC2071B2E400BF01CA /* HierachyCell.swift */; };
 		853AD01B2071B2E400BF01CA /* LabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853ACFED2071B2E400BF01CA /* LabelCell.swift */; };
@@ -36,14 +39,11 @@
 		853AD0332071B2E400BF01CA /* Constraints+Activation+Priority.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853AD00A2071B2E400BF01CA /* Constraints+Activation+Priority.swift */; };
 		853AD0342071B2E400BF01CA /* NibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853AD00B2071B2E400BF01CA /* NibView.swift */; };
 		853AD0352071B2E400BF01CA /* UIView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853AD00C2071B2E400BF01CA /* UIView+Constraints.swift */; };
-		853AD0362071B2E400BF01CA /* SCNScene+Glow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853AD00E2071B2E400BF01CA /* SCNScene+Glow.swift */; };
 		853AD0372071B2E400BF01CA /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853AD00F2071B2E400BF01CA /* UIColor+Extensions.swift */; };
 		853AD0382071B2E400BF01CA /* UIView+BorderedInputBoxes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853AD0102071B2E400BF01CA /* UIView+BorderedInputBoxes.swift */; };
 		853AD0392071B2E400BF01CA /* UICollection+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853AD0112071B2E400BF01CA /* UICollection+Extensions.swift */; };
 		853AD03A2071B2E400BF01CA /* 3DUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853AD0132071B2E400BF01CA /* 3DUtilities.swift */; };
 		853AD03B2071B2E400BF01CA /* ARSCNView+HitTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853AD0142071B2E400BF01CA /* ARSCNView+HitTest.swift */; };
-		853AD03C2071B2E400BF01CA /* NodeRender.metal in Sources */ = {isa = PBXBuildFile; fileRef = 853AD0162071B2E400BF01CA /* NodeRender.metal */; };
-		853AD03D2071B2E400BF01CA /* NodeTechnique.plist in Resources */ = {isa = PBXBuildFile; fileRef = 853AD0172071B2E400BF01CA /* NodeTechnique.plist */; };
 		853AD03E2071B2E400BF01CA /* SCNVector3+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853AD0182071B2E400BF01CA /* SCNVector3+Extensions.swift */; };
 		853AD03F2071B2E400BF01CA /* Font+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853AD0192071B2E400BF01CA /* Font+Extensions.swift */; };
 		853AD0442071B2E900BF01CA /* NodeCreatorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853AD0422071B2E900BF01CA /* NodeCreatorType.swift */; };
@@ -167,6 +167,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		850FC790207AC5090006FBA3 /* NodeRender.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = NodeRender.metal; sourceTree = "<group>"; };
+		850FC792207AC96E0006FBA3 /* SCNScene+Glow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SCNScene+Glow.swift"; sourceTree = "<group>"; };
+		850FC794207AC9820006FBA3 /* NodeTechnique.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = NodeTechnique.plist; sourceTree = "<group>"; };
 		853ACFDE2071B2A000BF01CA /* PowerPanels.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PowerPanels.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		853ACFE12071B2A000BF01CA /* PowerPanels.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PowerPanels.h; sourceTree = "<group>"; };
 		853ACFE22071B2A000BF01CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -198,14 +201,11 @@
 		853AD00A2071B2E400BF01CA /* Constraints+Activation+Priority.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Constraints+Activation+Priority.swift"; sourceTree = "<group>"; };
 		853AD00B2071B2E400BF01CA /* NibView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibView.swift; sourceTree = "<group>"; };
 		853AD00C2071B2E400BF01CA /* UIView+Constraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Constraints.swift"; sourceTree = "<group>"; };
-		853AD00E2071B2E400BF01CA /* SCNScene+Glow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SCNScene+Glow.swift"; sourceTree = "<group>"; };
 		853AD00F2071B2E400BF01CA /* UIColor+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		853AD0102071B2E400BF01CA /* UIView+BorderedInputBoxes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+BorderedInputBoxes.swift"; sourceTree = "<group>"; };
 		853AD0112071B2E400BF01CA /* UICollection+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollection+Extensions.swift"; sourceTree = "<group>"; };
 		853AD0132071B2E400BF01CA /* 3DUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = 3DUtilities.swift; sourceTree = "<group>"; };
 		853AD0142071B2E400BF01CA /* ARSCNView+HitTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ARSCNView+HitTest.swift"; sourceTree = "<group>"; };
-		853AD0162071B2E400BF01CA /* NodeRender.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = NodeRender.metal; sourceTree = "<group>"; };
-		853AD0172071B2E400BF01CA /* NodeTechnique.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = NodeTechnique.plist; sourceTree = "<group>"; };
 		853AD0182071B2E400BF01CA /* SCNVector3+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SCNVector3+Extensions.swift"; sourceTree = "<group>"; };
 		853AD0192071B2E400BF01CA /* Font+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Font+Extensions.swift"; sourceTree = "<group>"; };
 		853AD0422071B2E900BF01CA /* NodeCreatorType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeCreatorType.swift; sourceTree = "<group>"; };
@@ -323,6 +323,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		850FC78B207AC3C20006FBA3 /* GlowEffect */ = {
+			isa = PBXGroup;
+			children = (
+				850FC790207AC5090006FBA3 /* NodeRender.metal */,
+			);
+			name = GlowEffect;
+			path = GlowTechnique;
+			sourceTree = "<group>";
+		};
 		853ACFD42071B2A000BF01CA = {
 			isa = PBXGroup;
 			children = (
@@ -455,7 +464,6 @@
 		853AD00D2071B2E400BF01CA /* PowerPanelExtensions */ = {
 			isa = PBXGroup;
 			children = (
-				853AD00E2071B2E400BF01CA /* SCNScene+Glow.swift */,
 				853AD00F2071B2E400BF01CA /* UIColor+Extensions.swift */,
 				853AD0102071B2E400BF01CA /* UIView+BorderedInputBoxes.swift */,
 			);
@@ -467,19 +475,19 @@
 			children = (
 				853AD0132071B2E400BF01CA /* 3DUtilities.swift */,
 				853AD0142071B2E400BF01CA /* ARSCNView+HitTest.swift */,
-				853AD0152071B2E400BF01CA /* Glow */,
+				853AD0152071B2E400BF01CA /* GlowEffect */,
 				853AD0182071B2E400BF01CA /* SCNVector3+Extensions.swift */,
 			);
 			path = 3DUtilities;
 			sourceTree = "<group>";
 		};
-		853AD0152071B2E400BF01CA /* Glow */ = {
+		853AD0152071B2E400BF01CA /* GlowEffect */ = {
 			isa = PBXGroup;
 			children = (
-				853AD0162071B2E400BF01CA /* NodeRender.metal */,
-				853AD0172071B2E400BF01CA /* NodeTechnique.plist */,
+				850FC792207AC96E0006FBA3 /* SCNScene+Glow.swift */,
+				850FC794207AC9820006FBA3 /* NodeTechnique.plist */,
 			);
-			path = Glow;
+			path = GlowEffect;
 			sourceTree = "<group>";
 		};
 		853AD0402071B2E900BF01CA /* Nodes */ = {
@@ -596,6 +604,7 @@
 		853AD0862071B3C600BF01CA /* ARPowerPanelsDemo */ = {
 			isa = PBXGroup;
 			children = (
+				850FC78B207AC3C20006FBA3 /* GlowEffect */,
 				853AD0872071B3C600BF01CA /* AppDelegate.swift */,
 				853AD0AA2071BC5900BF01CA /* ARKitViewController.swift */,
 				853AD0892071B3C600BF01CA /* art.scnassets */,
@@ -848,7 +857,6 @@
 				853AD1112071F23E00BF01CA /* closeWhite.png in Resources */,
 				853AD13A2071F83F00BF01CA /* menuWolf.png in Resources */,
 				853AD0FB2071F22D00BF01CA /* Rocks_And.png in Resources */,
-				853AD03D2071B2E400BF01CA /* NodeTechnique.plist in Resources */,
 				853AD1322071F5DC00BF01CA /* shapeTube.png in Resources */,
 				853AD0E72071F22D00BF01CA /* Stone_16.png in Resources */,
 				853AD0EE2071F22D00BF01CA /* Stone_4.png in Resources */,
@@ -858,6 +866,7 @@
 				853AD0EC2071F22D00BF01CA /* Crystal_4.png in Resources */,
 				853AD1042071F22D00BF01CA /* Sword.png in Resources */,
 				853AD1102071F23E00BF01CA /* checkmarkWhite.png in Resources */,
+				850FC795207AC9820006FBA3 /* NodeTechnique.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -887,7 +896,6 @@
 				853AD0282071B2E400BF01CA /* TableItemLayout.swift in Sources */,
 				853AD06F2071B2FF00BF01CA /* PanelsPresenter.swift in Sources */,
 				853AD0322071B2E400BF01CA /* Constrainable.swift in Sources */,
-				853AD0362071B2E400BF01CA /* SCNScene+Glow.swift in Sources */,
 				853AD01B2071B2E400BF01CA /* LabelCell.swift in Sources */,
 				853AD0442071B2E900BF01CA /* NodeCreatorType.swift in Sources */,
 				853AD03B2071B2E400BF01CA /* ARSCNView+HitTest.swift in Sources */,
@@ -902,7 +910,6 @@
 				853AD0762071B2FF00BF01CA /* SliderVector3View.swift in Sources */,
 				853AD0342071B2E400BF01CA /* NibView.swift in Sources */,
 				853AD0302071B2E400BF01CA /* UIView+AutoLayout.swift in Sources */,
-				853AD03C2071B2E400BF01CA /* NodeRender.metal in Sources */,
 				853AD0742071B2FF00BF01CA /* SliderInputsView.swift in Sources */,
 				853AD0B12071EF5500BF01CA /* Assets.swift in Sources */,
 				853AD0352071B2E400BF01CA /* UIView+Constraints.swift in Sources */,
@@ -926,6 +933,7 @@
 				853AD0312071B2E400BF01CA /* UIView+Extensions.swift in Sources */,
 				853AD02C2071B2E400BF01CA /* FunctionalTableData.swift in Sources */,
 				853AD02F2071B2E400BF01CA /* UITableView+Reusable.swift in Sources */,
+				850FC793207AC96F0006FBA3 /* SCNScene+Glow.swift in Sources */,
 				853AD06A2071B2FF00BF01CA /* RoundedButton.swift in Sources */,
 				853AD0272071B2E400BF01CA /* Separator.swift in Sources */,
 				853AD0662071B2FF00BF01CA /* HierachyPanel.swift in Sources */,
@@ -951,6 +959,7 @@
 			files = (
 				853AD0AB2071BC5900BF01CA /* ARKitViewController.swift in Sources */,
 				853AD0882071B3C600BF01CA /* AppDelegate.swift in Sources */,
+				850FC791207AC5090006FBA3 /* NodeRender.metal in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

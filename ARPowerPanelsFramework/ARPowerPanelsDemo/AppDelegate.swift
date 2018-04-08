@@ -53,6 +53,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let foxNode = Model.fox.createNode() {
             foxNode.name = "Sparky 🦊"
             addNode(foxNode, to: scene.rootNode)
+            foxNode.categoryBitMask = 2
+            foxNode.enumerateHierarchy { (node, _) in
+                node.categoryBitMask = 2
+            }
+//            foxNode.childNodes[0].categoryBitMask = 2
         }
         
         //: ## Add another fox, and move it around

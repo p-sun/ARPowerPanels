@@ -79,8 +79,10 @@ public class ARPowerPanels: UIView {
     public convenience init(arSceneView: ARSCNView, panelTypes: [ARPowerPanelsType]) {
         self.init(rootNode: arSceneView.scene.rootNode, isARKit: true, panelTypes: panelTypes)
         self.arSceneView = arSceneView
-//        arSceneView.setupGlowTechnique()
-        
+        if !isPlaygroundBook {
+            arSceneView.setupGlowTechnique()
+        }
+
         // Select AR Mode (i.e. hide the GameMode)
         sceneViewParent.isHidden = true
         
@@ -164,7 +166,9 @@ public class ARPowerPanels: UIView {
         
         sceneView.backgroundColor = #colorLiteral(red: 0.0003343143538, green: 0.03833642512, blue: 0.4235294163, alpha: 1)
         sceneView.allowsCameraControl = true // allows the user to manipulate the camera
-//        sceneView.setupGlowTechnique()
+        if !isPlaygroundBook { // TODO set a glow technique varabe, or a isPlaygroundBook var as the powerpanel's init
+            sceneView.setupGlowTechnique()
+        }
         //        sceneView.showsStatistics = true
         sceneViewParent.addSubview(sceneView)
         sceneView.constrainEdges(to: sceneViewParent)

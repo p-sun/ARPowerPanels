@@ -46,6 +46,17 @@ public class ARKitViewController: UIViewController {
         powerPanels.selectNode(scene.rootNode)
         view.addSubview(powerPanels)
         powerPanels.constrainEdges(to: view)
+        
+        
+        
+//        if let path = Bundle.main.path(forResource: "NodeTechnique", ofType: "plist") {
+//            if let dict = NSDictionary(contentsOfFile: path)  {
+//                let dict2 = dict as! [String : AnyObject]
+//                let technique = SCNTechnique(dictionary:dict2)
+//                arSceneView.technique = technique
+//            }
+//        }
+        
     }
     
     override public func viewWillAppear(_ animated: Bool) {

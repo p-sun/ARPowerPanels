@@ -15,5 +15,3 @@ FOUNDATION_EXPORT double PowerPanelsVersionNumber;
 FOUNDATION_EXPORT const unsigned char PowerPanelsVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <PowerPanels/PublicHeader.h>
-
-
