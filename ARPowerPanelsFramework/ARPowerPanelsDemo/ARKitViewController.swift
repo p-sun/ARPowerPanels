@@ -65,7 +65,7 @@ public class ARKitViewController: UIViewController {
 extension ARKitViewController: ARSCNViewDelegate {
     public func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
         guard let planeAnchor = anchor as? ARPlaneAnchor else { return }
-        print("didAdd \(node.position)")
+//        print("didAdd \(node.position)")
         
         let planeNode = NodeCreator.bluePlane(anchor: planeAnchor)
         planeNode.name = "Blue Plane"

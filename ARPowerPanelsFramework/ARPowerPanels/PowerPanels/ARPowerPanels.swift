@@ -155,7 +155,8 @@ public class ARPowerPanels: UIView {
     
     private func updatePanels() {
         updateSelectedNodeLabel()
-        if let selectedNode = selectedNode { // TODO Display error if no node was selected
+
+        if let selectedNode = selectedNode {
             infoPanel.control(selectedNode) // TODO refactor all these Transformation panels
             easyMovePanel.control(selectedNode)
             advancedMovePanel.control(selectedNode)
@@ -215,8 +216,6 @@ extension ARPowerPanels {
     
     @objc private func segmentSelected(_ segmentedControl: UISegmentedControl) { // TODO refactor
         
-        // AR MODE *********************
-        NSLog("PAIGE LOG AR MODE")
         if isARMode {
             sceneViewParent.isHidden = true
             
@@ -234,7 +233,6 @@ extension ARPowerPanels {
                 for child in sceneView.scene!.rootNode.childNodes { // TODO take care of this force unwrap
                     let newChild = child
                     child.removeFromParentNode()
-                    NSLog("PAIGE REMOVING CHILD \(child)")
 
                     if child.name != "Game Mode Camera" {
                         newScene.rootNode.addChildNode(newChild)
@@ -248,20 +246,23 @@ extension ARPowerPanels {
                 }
 
                 sceneView.scene = nil
-            }
-            //                rootNode = newScene.rootNode
+                
+                if selectedNode == sceneView.scene?.rootNode {
+                    selectedNode = arSceneView.scene.rootNode
+                }
+                
+                updatePanels()
 
-            updatePanels()
-            NSLog("PAIGE LOG DONE AR MODE")
+            } else {
+                NSLog("ERROR: Going into ARMode without an ARSCNScene")
+            }
 
         // GAME MODE *********************
 
         } else {
-            NSLog("PAIGE LOG GAME MODE")
-
             sceneViewParent.isHidden = false
             
-            if let  arSceneView = arSceneView {
+            if let arSceneView = arSceneView {
                 let newScene = SCNScene()
                 sceneView.scene = newScene
                 newScene.rootNode.name = "SceneView World Origin   🌎"
@@ -295,10 +296,13 @@ extension ARPowerPanels {
                         }
                     }
                     newScene.rootNode.addChildNode(child) // Suprisingly, feature points still work
+
                 }
                 
-//                rootNode = newScene.rootNode
-                NSLog("PAIGE LOG DONE GAME MODE")
+                if selectedNode == arSceneView.scene.rootNode {
+                    selectedNode = sceneView.scene?.rootNode
+                }
+                
                 updatePanels()
             }
         }
