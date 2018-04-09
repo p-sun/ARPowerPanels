@@ -249,10 +249,7 @@ extension ARPowerPanels {
 
                 sceneView.scene = nil
                 
-                if selectedNode == sceneView.scene?.rootNode {
-                    selectedNode = arSceneView.scene.rootNode
-                }
-                
+                selectRootNodeIfNeeded()
                 updatePanels()
             } else {
                 NSLog("ERROR: Going into ARMode without a ARSCNView -- how's this possible")
@@ -297,12 +294,15 @@ extension ARPowerPanels {
                     newScene.rootNode.addChildNode(child)
                 }
                 
-                if selectedNode == arSceneView.scene.rootNode {
-                    selectedNode = sceneView.scene?.rootNode
-                }
-                
+                selectRootNodeIfNeeded()
                 updatePanels()
             }
+        }
+    }
+    
+    private func selectRootNodeIfNeeded() {
+        if selectedNode?.parent == nil, selectedNode != rootNode {
+            selectedNode = rootNode
         }
     }
     

@@ -114,8 +114,17 @@ class HierachyPanel: UIView {
     
     @objc private func removeModelPressed(_ button: UIButton) {
         let selectedNode = dataSource?.selectedForHierachyPanel()
+        let parentNode = selectedNode?.parent
         SceneCreator.shared.removeNode(selectedNode)
-        renderHierachy()
+        
+        if let parentNode = parentNode {
+            delegate?.hierachyPanel(didSelectNode: parentNode)
+        } else if let rootNode = rootNode {
+            delegate?.hierachyPanel(didSelectNode: rootNode)
+        } else {
+            renderHierachy()
+        }
+        
         button.isSelected = true
     }
 }
