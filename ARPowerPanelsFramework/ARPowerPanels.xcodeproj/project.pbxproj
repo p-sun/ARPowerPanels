@@ -68,7 +68,6 @@
 		853AD06E2071B2FF00BF01CA /* Panel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853AD0562071B2FF00BF01CA /* Panel.swift */; };
 		853AD06F2071B2FF00BF01CA /* PanelsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853AD0572071B2FF00BF01CA /* PanelsPresenter.swift */; };
 		853AD0702071B2FF00BF01CA /* PowerPanelCheckmarkInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853AD05A2071B2FF00BF01CA /* PowerPanelCheckmarkInput.swift */; };
-		853AD0712071B2FF00BF01CA /* PowerPanelCheckmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853AD05B2071B2FF00BF01CA /* PowerPanelCheckmarkView.swift */; };
 		853AD0722071B2FF00BF01CA /* PowerPanelTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853AD05C2071B2FF00BF01CA /* PowerPanelTextField.swift */; };
 		853AD0732071B2FF00BF01CA /* DecimalTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853AD05E2071B2FF00BF01CA /* DecimalTextField.swift */; };
 		853AD0742071B2FF00BF01CA /* SliderInputsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853AD05F2071B2FF00BF01CA /* SliderInputsView.swift */; };
@@ -229,7 +228,6 @@
 		853AD0562071B2FF00BF01CA /* Panel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Panel.swift; sourceTree = "<group>"; };
 		853AD0572071B2FF00BF01CA /* PanelsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PanelsPresenter.swift; sourceTree = "<group>"; };
 		853AD05A2071B2FF00BF01CA /* PowerPanelCheckmarkInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PowerPanelCheckmarkInput.swift; sourceTree = "<group>"; };
-		853AD05B2071B2FF00BF01CA /* PowerPanelCheckmarkView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PowerPanelCheckmarkView.swift; sourceTree = "<group>"; };
 		853AD05C2071B2FF00BF01CA /* PowerPanelTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PowerPanelTextField.swift; sourceTree = "<group>"; };
 		853AD05E2071B2FF00BF01CA /* DecimalTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DecimalTextField.swift; sourceTree = "<group>"; };
 		853AD05F2071B2FF00BF01CA /* SliderInputsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderInputsView.swift; sourceTree = "<group>"; };
@@ -585,7 +583,6 @@
 			isa = PBXGroup;
 			children = (
 				853AD05A2071B2FF00BF01CA /* PowerPanelCheckmarkInput.swift */,
-				853AD05B2071B2FF00BF01CA /* PowerPanelCheckmarkView.swift */,
 			);
 			path = "Checkmark Input View";
 			sourceTree = "<group>";
@@ -936,7 +933,6 @@
 				853AD06E2071B2FF00BF01CA /* Panel.swift in Sources */,
 				853AD0682071B2FF00BF01CA /* MenuItem.swift in Sources */,
 				853AD0702071B2FF00BF01CA /* PowerPanelCheckmarkInput.swift in Sources */,
-				853AD0712071B2FF00BF01CA /* PowerPanelCheckmarkView.swift in Sources */,
 				853AD0312071B2E400BF01CA /* UIView+Extensions.swift in Sources */,
 				853AD02C2071B2E400BF01CA /* FunctionalTableData.swift in Sources */,
 				853AD02F2071B2E400BF01CA /* UITableView+Reusable.swift in Sources */,

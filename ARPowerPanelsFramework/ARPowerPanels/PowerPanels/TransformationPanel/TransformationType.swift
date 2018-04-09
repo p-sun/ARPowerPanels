@@ -9,12 +9,13 @@
 import SceneKit
 
 enum TransformationType {
-    case name, boundingBox, opacity, scale, position, eulerRotation, quaternionRotation, orientation
+    case name, boundingBox, showBoundingBox, opacity, scale, position, eulerRotation, quaternionRotation, orientation
     
     var displayName: String {
         switch self {
         case .name: return "Name"
         case .boundingBox: return "Bounding Box"
+        case .showBoundingBox: return "Show Bounding Box"
         case .opacity: return "Opacity"
             
         case .position: return "Position"
@@ -28,7 +29,7 @@ enum TransformationType {
     }
 
     static var entityInfo: [TransformationType] {
-        return [.name, .opacity, .boundingBox]
+        return [.name, .opacity, .boundingBox, .showBoundingBox]
     }
     
     static var easyMove: [TransformationType] {

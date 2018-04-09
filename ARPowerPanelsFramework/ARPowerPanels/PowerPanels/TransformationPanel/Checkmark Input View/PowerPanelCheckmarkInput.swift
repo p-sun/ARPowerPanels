@@ -8,35 +8,44 @@
 
 import UIKit
 
+protocol PowerPanelCheckmarkInputDelegate: class {
+    func powerPanelCheckmarkInput(_ checkMarkInput: PowerPanelCheckmarkInput, isCheckedDidChange isChecked: Bool)
+}
+
 class PowerPanelCheckmarkInput: UIStackView {
     
-    var isChecked: Bool = true {
-        didSet {
-            button.isSelected = isChecked
+    var isChecked: Bool {
+        get {
+            return button.isSelected
         }
-//        get {
-//            return checkmark.isChecked
-//        }
-//        set {
-//            checkmark.isChecked = newValue
-//        }
+        set {
+            button.isSelected = newValue
+        }
     }
     
-    private let checkmark = PowerPanelCheckmarkView()
-    let button = UIButton()
+    weak var delegate: PowerPanelCheckmarkInputDelegate?
+
+    private let button = UIButton()
 
     init(text: String) {
         super.init(frame: CGRect.zero)
         
+        isChecked = true
+        
+        self.axis = .horizontal
+        
         let label = UILabel()
         label.text = text
+        label.font = UIFont.inputSliderHeader
+        label.textColor = .white
         addArrangedSubview(label)
         
         button.isSelected = isChecked
         button.setImage(#imageLiteral(resourceName: "checkmarkWhite"), for: .selected)
         button.setImage(#imageLiteral(resourceName: "checkmarkWhite"), for: .highlighted)
-        button.backgroundColor = .blue
         button.setupPowerPanelBorder(tintColor: .uiControlColor)
+        button.constrainAspectRatio(to: CGSize(width: 1, height: 1))
+        button.backgroundColor = UIColor.uiControlColor
         addArrangedSubview(button)
         
         button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
@@ -48,6 +57,7 @@ class PowerPanelCheckmarkInput: UIStackView {
     
     @objc private func buttonPressed() {
         isChecked = !isChecked
-        print("button pressed")
+        button.isSelected = isChecked
+        delegate?.powerPanelCheckmarkInput(self, isCheckedDidChange: isChecked)
     }
 }

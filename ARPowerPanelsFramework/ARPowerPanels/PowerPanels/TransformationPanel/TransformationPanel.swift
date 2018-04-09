@@ -68,7 +68,9 @@ class TransformationPanel: UIStackView {
     
     // MARK: - Private
     private func setupInputView(for controlType: TransformationType) {
-        addArrangedSubview(header(for: controlType))
+        if controlType != .showBoundingBox {
+            addArrangedSubview(header(for: controlType))
+        }
         
         switch controlType {
         case .name:
@@ -92,6 +94,12 @@ class TransformationPanel: UIStackView {
             stackView.addArrangedSubview(boundingBoxLabel)
             stackView.constrainHeight(29)
             addArrangedSubview(stackView)
+        
+        case .showBoundingBox:
+            let checkMarkStack = PowerPanelCheckmarkInput(text: controlType.displayName)
+            checkMarkStack.delegate = self
+            checkMarkStack.constrainHeight(29)
+            addArrangedSubview(checkMarkStack)
             
         case .position:
             positionInput.constrainHeight(29)
@@ -155,6 +163,8 @@ class TransformationPanel: UIStackView {
             break
         case .boundingBox:
             boundingBoxLabel.text = boundingBoxText(for: transformable)
+        case .showBoundingBox:
+            break // TODO What to do here?
         case .position:
             positionInput.vector = transformable.position
         case .quaternionRotation:
@@ -168,6 +178,7 @@ class TransformationPanel: UIStackView {
             opacityInput.setValue(Float(transformable.opacity), atIndex: 0)
         case .orientation:
             orientationInput.vector = transformable.orientation
+
         }
     }
 
@@ -185,6 +196,12 @@ extension TransformationPanel: PowerPanelTextFieldDelegate {
     func powerPanelTextField(didChangeText text: String?) {
         transformable?.displayName = text ?? ""
         transformationDelegate?.transformationPanelDidChangeNodeName()
+    }
+}
+
+extension TransformationPanel: PowerPanelCheckmarkInputDelegate {
+    func powerPanelCheckmarkInput(_ checkMarkInput: PowerPanelCheckmarkInput, isCheckedDidChange isChecked: Bool) {
+        // TODO show or not show bounding box
     }
 }
 
