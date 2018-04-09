@@ -24,14 +24,15 @@ public class ARPowerPanels: UIView {
         didSet {
             guard let selectedNode = selectedNode else { return }
 
-            oldValue?.setGlow(false)
-            
-            // Don't glow ARSCNView.rootNode, because it doesn't work well with
-            // debug feature points or planes
-            if selectedNode.name?.contains("World Origin") == false {
-                selectedNode.setGlow(true)
+            if !isPlaygroundBook {
+                oldValue?.setGlow(false)
+                
+                // Don't glow ARSCNView.rootNode because doesn't work well with the debug feature points
+                if selectedNode.name?.contains("World Origin") == false {
+                    selectedNode.setGlow(true)
+                }
             }
-
+            
             updatePanels()
         }
     }

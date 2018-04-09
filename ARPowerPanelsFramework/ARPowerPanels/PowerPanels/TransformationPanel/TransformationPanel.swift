@@ -61,7 +61,15 @@ class TransformationPanel: UIStackView {
         if controlTypes.contains(.showBoundingBox), let node = transformable as? SCNNode {
             let boxNode = boundingBox(for: node)
             let hasBoundingBox = boxNode != nil
-            showBoundingBoxSwitch.isChecked = hasBoundingBox
+
+            if isPlaygroundBook {
+                if !hasBoundingBox {
+                    addBoundingBox(for: transformable)
+                }
+                showBoundingBoxSwitch.isChecked = true
+            } else {
+                showBoundingBoxSwitch.isChecked = hasBoundingBox
+            }
         }
         
         updateInputs()
@@ -219,10 +227,10 @@ extension TransformationPanel: PowerPanelCheckmarkInputDelegate {
         return nil
     }
     
-    func powerPanelCheckmarkInput(_ checkMarkInput: PowerPanelCheckmarkInput, isCheckedDidChange isChecked: Bool) {
-        let boundingBoxName = "Bounding Box"
-
+    private func addBoundingBox(for transformable: Transformable) {
         func translucentBoundingBox(for transformable: Transformable) -> SCNNode {
+            let boundingBoxName = "Bounding Box"
+
             let boundingBox = transformable.boundingBox
             let diffBox = boundingBox.max - boundingBox.min
             let translucentBox = SCNBox(width: CGFloat(diffBox.x), height: CGFloat(diffBox.y), length: CGFloat(diffBox.z), chamferRadius: 0)
@@ -236,13 +244,17 @@ extension TransformationPanel: PowerPanelCheckmarkInputDelegate {
             return boxNode
         }
         
+        let boundingBoxNode = translucentBoundingBox(for: transformable)
+        transformable.addChildNode(boundingBoxNode)
+    }
+    
+    func powerPanelCheckmarkInput(_ checkMarkInput: PowerPanelCheckmarkInput, isCheckedDidChange isChecked: Bool) {
         guard let transformable = transformable else {
             return
         }
 
         if isChecked {
-            let boundingBoxNode = translucentBoundingBox(for: transformable)
-            transformable.addChildNode(boundingBoxNode)
+            addBoundingBox(for: transformable)
             transformationDelegate?.transformationPanelDidEditNode()
         } else {
             if let selectedNode = transformable as? SCNNode,
