@@ -23,6 +23,8 @@ public class SceneCreator {
     
     private var nodeMetaDatas = [SCNNode: NodeMetaData]()
     
+    // TODO remove the to parentNode
+    // Only use this to set meta data
     public func addNode(_ node: SCNNode, to parentNode: SCNNode) {
         parentNode.addChildNode(node)
         
@@ -43,7 +45,6 @@ public class SceneCreator {
     }
     
     public func displayInHierachy(node: SCNNode) -> Bool {
-        let metadata = nodeMetaDatas[node]
-        return metadata?.displayInHierachy ?? true
+        return nodeMetaDatas[node]?.displayInHierachy ?? true
     }
 }

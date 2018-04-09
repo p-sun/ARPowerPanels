@@ -29,9 +29,7 @@ class PowerPanelCheckmarkInput: UIStackView {
 
     init(text: String) {
         super.init(frame: CGRect.zero)
-        
-        isChecked = true
-        
+                
         self.axis = .horizontal
         
         let label = UILabel()

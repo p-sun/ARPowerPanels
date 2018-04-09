@@ -371,7 +371,7 @@ extension ARPowerPanels: PanelsPresenterDelegate {
 }
 
 extension ARPowerPanels: TransformationPanelDelegate {
-    func transformationPanelDidChangeNodeName() {
+    func transformationPanelDidEditNode() {
         updateSelectedNodeLabel()
         hierachyPanel.renderHierachy(rootNode: rootNode)
     }

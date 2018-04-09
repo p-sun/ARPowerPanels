@@ -10,7 +10,7 @@ import UIKit
 import SceneKit
 
 protocol TransformationPanelDelegate: class {
-    func transformationPanelDidChangeNodeName()
+    func transformationPanelDidEditNode()
 }
 
 class TransformationPanel: UIStackView {
@@ -24,6 +24,7 @@ class TransformationPanel: UIStackView {
     // MARK: - Variables - Views
     private lazy var nameTextField = PowerPanelTextField()
     private lazy var boundingBoxLabel = header(for: .name)
+    private lazy var showBoundingBoxSwitch = PowerPanelCheckmarkInput(text: TransformationType.showBoundingBox.displayName)
 
     private lazy var positionInput = SliderVector3View()
     private lazy var quaternionRotationInput = SliderVector4View()
@@ -31,7 +32,7 @@ class TransformationPanel: UIStackView {
     private lazy var scaleInput = SliderVector3View(minValue: 0.2)
     private lazy var opacityInput = SliderInputsView(axisLabels: ["   "], minValue: 0, maxValue: 1)
     private lazy var orientationInput = SliderVector4View()
-    
+
     // MARK: - Public
     init(controlTypes: [TransformationType]) {
         self.controlTypes = controlTypes
@@ -50,10 +51,17 @@ class TransformationPanel: UIStackView {
     }
     
     func control(_ transformable: Transformable) {
+
         self.transformable = transformable
         
         if controlTypes.contains(.name) {
             nameTextField.text = transformable.displayName
+        }
+        
+        if controlTypes.contains(.showBoundingBox), let node = transformable as? SCNNode {
+            let boxNode = boundingBox(for: node)
+            let hasBoundingBox = boxNode != nil
+            showBoundingBoxSwitch.isChecked = hasBoundingBox
         }
         
         updateInputs()
@@ -96,10 +104,9 @@ class TransformationPanel: UIStackView {
             addArrangedSubview(stackView)
         
         case .showBoundingBox:
-            let checkMarkStack = PowerPanelCheckmarkInput(text: controlType.displayName)
-            checkMarkStack.delegate = self
-            checkMarkStack.constrainHeight(29)
-            addArrangedSubview(checkMarkStack)
+            showBoundingBoxSwitch.delegate = self
+            showBoundingBoxSwitch.constrainHeight(29)
+            addArrangedSubview(showBoundingBoxSwitch)
             
         case .position:
             positionInput.constrainHeight(29)
@@ -161,10 +168,11 @@ class TransformationPanel: UIStackView {
         switch controlType {
         case .name:
             break
+             // UI Controls that only need to be updated when the selectedNode is changed are updated in control(transformable), not here
         case .boundingBox:
             boundingBoxLabel.text = boundingBoxText(for: transformable)
         case .showBoundingBox:
-            break // TODO What to do here?
+            break
         case .position:
             positionInput.vector = transformable.position
         case .quaternionRotation:
@@ -195,15 +203,59 @@ class TransformationPanel: UIStackView {
 extension TransformationPanel: PowerPanelTextFieldDelegate {
     func powerPanelTextField(didChangeText text: String?) {
         transformable?.displayName = text ?? ""
-        transformationDelegate?.transformationPanelDidChangeNodeName()
+        transformationDelegate?.transformationPanelDidEditNode()
     }
 }
 
 extension TransformationPanel: PowerPanelCheckmarkInputDelegate {
+    private func boundingBox(for node: SCNNode) -> SCNNode? {
+        let boundingBoxName = "Bounding Box"
+        
+        for child in node.childNodes {
+            if child.name?.contains(boundingBoxName) == true {
+                return child
+            }
+        }
+        return nil
+    }
+    
     func powerPanelCheckmarkInput(_ checkMarkInput: PowerPanelCheckmarkInput, isCheckedDidChange isChecked: Bool) {
-        // TODO show or not show bounding box
+        let boundingBoxName = "Bounding Box"
+
+        func translucentBoundingBox(for transformable: Transformable) -> SCNNode {
+            let boundingBox = transformable.boundingBox
+            let diffBox = boundingBox.max - boundingBox.min
+            let translucentBox = SCNBox(width: CGFloat(diffBox.x), height: CGFloat(diffBox.y), length: CGFloat(diffBox.z), chamferRadius: 0)
+            let tranlucentWhite = UIColor.white.withAlphaComponent(0.5)
+            translucentBox.materials = [SCNMaterial.material(withDiffuse: tranlucentWhite, respondsToLighting: false)]
+            let boxNode = SCNNode(geometry: translucentBox)
+            boxNode.name = boundingBoxName
+            
+            let middlePosition = (boundingBox.min + boundingBox.max) / 2
+            boxNode.position = middlePosition
+            return boxNode
+        }
+        
+        guard let transformable = transformable else {
+            return
+        }
+
+        if isChecked {
+            let boundingBoxNode = translucentBoundingBox(for: transformable)
+            transformable.addChildNode(boundingBoxNode)
+            transformationDelegate?.transformationPanelDidEditNode()
+        } else {
+            if let selectedNode = transformable as? SCNNode,
+                let boundingBoxNode = boundingBox(for: selectedNode) {
+                boundingBoxNode.removeFromParentNode()
+                transformationDelegate?.transformationPanelDidEditNode()
+                return
+            }
+        }
     }
 }
+
+
 
 extension TransformationPanel: SliderVector3ViewDelegate {
     func sliderVector3View(_ sliderVector3View: SliderVector3View, didChangeValues vector: SCNVector3) {

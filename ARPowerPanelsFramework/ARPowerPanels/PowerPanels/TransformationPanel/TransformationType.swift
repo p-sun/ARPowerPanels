@@ -64,6 +64,7 @@ protocol Transformable: class {
     var rotation: SCNVector4 { get set }
     var eulerAngles: SCNVector3 { get set }
     var orientation: SCNQuaternion { get set }
+    func addChildNode(_ child: SCNNode)
 }
 
 extension SCNNode: Transformable {
