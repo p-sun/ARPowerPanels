@@ -6,6 +6,23 @@
 //  Copyright © 2018 Pei Sun. All rights reserved.
 //
 
+/*
+ TODO:
+ - Add checkmark for adding axis --> sized according to bounds. Located at the pivot.
+ - Add planet models for earth, moon, sun, saturn.
+ - Add rotateForever animations for x, y, z. Add animation panel.
+ - Use the earth planet model with axis to be world origin -- deletable
+ - Select node via hitTesting --> visible nodes only, allow for cycling through overlapping nodes when tapping at the same spot
+ - Fix re-creating the gameNodeCamera if the gameNodeCamera was deleted? -- recreate it from the POV of the scene?
+ - Make FTD Private
+ - Port onto PlaygroundBook again
+ - Add the extra Adventure models & then port again onto PlaygroundBook
+ - Other TODO tags
+ - May need to convert all of TransformationPanels to be FTD, or place the stackView in a scrollView?
+      Pro: can have long scrolling table, and can allow user to decide how tall each panel should be.
+      Con: effort, performance, need to rewrite the height priority logic. Cells might not be reused often enough to warrent the effort.
+ **/
+
 import UIKit
 import SceneKit
 import ARKit
