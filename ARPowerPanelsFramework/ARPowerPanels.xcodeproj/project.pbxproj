@@ -16,6 +16,7 @@
 		850FC79F207ACBB90006FBA3 /* menuAxis.png in Resources */ = {isa = PBXBuildFile; fileRef = 850FC799207ACBB80006FBA3 /* menuAxis.png */; };
 		850FC7A0207ACBB90006FBA3 /* menuLowPolyTree.png in Resources */ = {isa = PBXBuildFile; fileRef = 850FC79A207ACBB90006FBA3 /* menuLowPolyTree.png */; };
 		850FC7A1207ACBB90006FBA3 /* menuWolf.png in Resources */ = {isa = PBXBuildFile; fileRef = 850FC79B207ACBB90006FBA3 /* menuWolf.png */; };
+		850FC7A3207ACF0B0006FBA3 /* SceneKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853AD07D2071B30600BF01CA /* SceneKitViewController.swift */; };
 		853ACFE32071B2A000BF01CA /* PowerPanels.h in Headers */ = {isa = PBXBuildFile; fileRef = 853ACFE12071B2A000BF01CA /* PowerPanels.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		853AD01A2071B2E400BF01CA /* HierachyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853ACFEC2071B2E400BF01CA /* HierachyCell.swift */; };
 		853AD01B2071B2E400BF01CA /* LabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853ACFED2071B2E400BF01CA /* LabelCell.swift */; };
@@ -77,7 +78,6 @@
 		853AD0782071B2FF00BF01CA /* TransformationPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853AD0632071B2FF00BF01CA /* TransformationPanel.swift */; };
 		853AD0792071B2FF00BF01CA /* TransformationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853AD0642071B2FF00BF01CA /* TransformationType.swift */; };
 		853AD07F2071B30600BF01CA /* GlobalPlayground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853AD07C2071B30600BF01CA /* GlobalPlayground.swift */; };
-		853AD0802071B30600BF01CA /* SceneKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853AD07D2071B30600BF01CA /* SceneKitViewController.swift */; };
 		853AD0882071B3C600BF01CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853AD0872071B3C600BF01CA /* AppDelegate.swift */; };
 		853AD08A2071B3C600BF01CA /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 853AD0892071B3C600BF01CA /* art.scnassets */; };
 		853AD08F2071B3C600BF01CA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 853AD08D2071B3C600BF01CA /* Main.storyboard */; };
@@ -606,7 +606,6 @@
 			isa = PBXGroup;
 			children = (
 				853AD07C2071B30600BF01CA /* GlobalPlayground.swift */,
-				853AD07D2071B30600BF01CA /* SceneKitViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -617,6 +616,7 @@
 				850FC78B207AC3C20006FBA3 /* GlowEffect */,
 				853AD0872071B3C600BF01CA /* AppDelegate.swift */,
 				853AD0AA2071BC5900BF01CA /* ARKitViewController.swift */,
+				853AD07D2071B30600BF01CA /* SceneKitViewController.swift */,
 				853AD0892071B3C600BF01CA /* art.scnassets */,
 				853AD08D2071B3C600BF01CA /* Main.storyboard */,
 				853AD0902071B3CB00BF01CA /* Assets.xcassets */,
@@ -930,7 +930,6 @@
 				853AD0792071B2FF00BF01CA /* TransformationType.swift in Sources */,
 				853AD0382071B2E400BF01CA /* UIView+BorderedInputBoxes.swift in Sources */,
 				853AD0692071B2FF00BF01CA /* MenuStackView.swift in Sources */,
-				853AD0802071B30600BF01CA /* SceneKitViewController.swift in Sources */,
 				853AD0202071B2E400BF01CA /* CollectionCell.swift in Sources */,
 				853AD01A2071B2E400BF01CA /* HierachyCell.swift in Sources */,
 				853AD0782071B2FF00BF01CA /* TransformationPanel.swift in Sources */,
@@ -965,6 +964,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				850FC7A3207ACF0B0006FBA3 /* SceneKitViewController.swift in Sources */,
 				853AD0AB2071BC5900BF01CA /* ARKitViewController.swift in Sources */,
 				853AD0882071B3C600BF01CA /* AppDelegate.swift in Sources */,
 				850FC791207AC5090006FBA3 /* NodeRender.metal in Sources */,

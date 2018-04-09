@@ -13,15 +13,13 @@ import ARPowerPanels
 
 public class ARKitViewController: UIViewController {
     
-    private var powerPanels: ARPowerPanels!
     private var arSceneView = ARSCNView()
-    
-    var scene: SCNScene
-    let panelTypes: [ARPowerPanelsType] //= ARPowerPanelsType.allTypes
+    private var scene: SCNScene
+    private var powerPanels: ARPowerPanels
     
     public init(scene: SCNScene, panelTypes: [ARPowerPanelsType]) {
         self.scene = scene
-        self.panelTypes = panelTypes
+        powerPanels = ARPowerPanels(arSceneView: arSceneView, panelTypes: panelTypes)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -41,27 +39,15 @@ public class ARKitViewController: UIViewController {
         
         arSceneView.scene = scene
         scene.rootNode.name = "AR World Origin   🌎"
-        
-        powerPanels = ARPowerPanels(arSceneView: arSceneView, panelTypes: panelTypes)
         powerPanels.selectNode(scene.rootNode)
+        
         view.addSubview(powerPanels)
         powerPanels.constrainEdges(to: view)
-        
-        
-        
-//        if let path = Bundle.main.path(forResource: "NodeTechnique", ofType: "plist") {
-//            if let dict = NSDictionary(contentsOfFile: path)  {
-//                let dict2 = dict as! [String : AnyObject]
-//                let technique = SCNTechnique(dictionary:dict2)
-//                arSceneView.technique = technique
-//            }
-//        }
-        
     }
     
     override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        beginarSceneView()
+        beginArSceneView()
     }
     
     override public func viewWillDisappear(_ animated: Bool) {
@@ -69,10 +55,9 @@ public class ARKitViewController: UIViewController {
         arSceneView.session.pause()
     }
     
-    private func beginarSceneView() {
+    private func beginArSceneView() {
         let configuration = ARWorldTrackingConfiguration()
         configuration.planeDetection = .horizontal
-        
         arSceneView.session.run(configuration)
     }
 }
@@ -97,35 +82,31 @@ extension ARKitViewController: ARSCNViewDelegate {
             plane.updateSize(toMatch: planeAnchor)
         }
     }
-    
-    public func renderer(_ renderer: SCNSceneRenderer, didRemove node: SCNNode, for anchor: ARAnchor) {//
-        print("didRemove \(node.position)")
-    }
 }
-
-extension ARKitViewController {
-    
-    /*
-     // Override to create and configure nodes for anchors added to the view's session.
-     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
-     let node = SCNNode()
-     
-     return node
-     }
-     */
-    
-    public func session(_ session: ARSession, didFailWithError error: Error) {
-        // Present an error message to the user
-        
-    }
-    
-    public func sessionWasInterrupted(_ session: ARSession) {
-        // Inform the user that the session has been interrupted, for example, by presenting an overlay
-        
-    }
-    
-    public func sessionInterruptionEnded(_ session: ARSession) {
-        // Reset tracking and/or remove existing anchors if consistent tracking is required
-        
-    }
-}
+//
+//extension ARKitViewController {
+//
+//    /*
+//     // Override to create and configure nodes for anchors added to the view's session.
+//     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
+//     let node = SCNNode()
+//
+//     return node
+//     }
+//     */
+//
+//    public func session(_ session: ARSession, didFailWithError error: Error) {
+//        // Present an error message to the user
+//
+//    }
+//
+//    public func sessionWasInterrupted(_ session: ARSession) {
+//        // Inform the user that the session has been interrupted, for example, by presenting an overlay
+//
+//    }
+//
+//    public func sessionInterruptionEnded(_ session: ARSession) {
+//        // Reset tracking and/or remove existing anchors if consistent tracking is required
+//
+//    }
+//}

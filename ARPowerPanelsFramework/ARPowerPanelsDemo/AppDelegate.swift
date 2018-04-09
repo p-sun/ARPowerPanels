@@ -15,14 +15,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
+    func addNode(_ node: SCNNode, to parentNode: SCNNode) {
+        SceneCreator.shared.addNode(node, to: parentNode)
+    }
+    
+    func removeNode(_ node: SCNNode?) {
+        SceneCreator.shared.removeNode(node)
+    }
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
         window = UIWindow(frame: UIScreen.main.bounds)
-        
-//        let scene = SceneCreator.shared.createFoxPlaneScene()
-        
         
         //: ## Create a scene
         let scene = SCNScene()
@@ -53,11 +57,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let foxNode = Model.fox.createNode() {
             foxNode.name = "Sparky 🦊"
             addNode(foxNode, to: scene.rootNode)
-            foxNode.categoryBitMask = 2
-            foxNode.enumerateHierarchy { (node, _) in
-                node.categoryBitMask = 2
-            }
-//            foxNode.childNodes[0].categoryBitMask = 2
         }
         
         //: ## Add another fox, and move it around
@@ -75,23 +74,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     SCNAction.rotateBy(x: 0, y: 1, z: 0, duration: 1)))
         }
         
-        let rootViewController = ARKitViewController(
+        let arViewController = ARKitViewController(
             scene: scene,
             panelTypes: [.sceneGraph, .info, .easyMoves, .allMoves, .allEdits])
-        //        let rootViewController = SceneKitViewController()
-        window?.rootViewController = rootViewController
+        window?.rootViewController = arViewController
         window?.makeKeyAndVisible()
         
         return true
     }
 
-    func addNode(_ node: SCNNode, to parentNode: SCNNode) {
-        SceneCreator.shared.addNode(node, to: parentNode)
-    }
-    
-    func removeNode(_ node: SCNNode?) {
-        SceneCreator.shared.removeNode(node)
-    }
     
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

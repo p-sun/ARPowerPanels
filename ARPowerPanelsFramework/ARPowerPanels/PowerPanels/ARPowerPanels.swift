@@ -45,6 +45,7 @@ public class ARPowerPanels: UIView {
     private let allEditsPanel = TransformationPanel(controlTypes: TransformationType.all)
     
     // MARK: Left hand views
+    private let arGameSegmentedControl = UISegmentedControl(items: ["AR", "Game"])
     private let showHideMenuButton = RoundedButton()
     private let selectedNodeLabel = UILabel()
     private var menuItems = [MenuItem]()
@@ -54,20 +55,25 @@ public class ARPowerPanels: UIView {
     private var panelPresentor: PanelsPresenter!
     
     private let sceneViewParent = UIView()
+
     private let sceneView = SCNView()
-    
     private var arSceneView: ARSCNView?
     
     private let gameModeCameraNode = gameModeCameraMake()
 
-    private var rootNode: SCNNode { // TODO refactor
-        didSet {
-            updatePanels()
+    private var rootNode: SCNNode {
+        let toDoNode = SCNNode()
+        toDoNode.name = "TODO. Take care of this case."
+        
+        if isARMode {
+            return arSceneView?.scene.rootNode ?? toDoNode
+        } else {
+            return sceneView.scene?.rootNode ?? toDoNode
         }
     }
     
     public convenience init(scene: SCNScene, panelTypes: [ARPowerPanelsType]) { //TODO
-        self.init(rootNode: scene.rootNode, isARKit: false, panelTypes: panelTypes)
+        self.init(isARKit: false, panelTypes: panelTypes)
         sceneView.backgroundColor = #colorLiteral(red: 0.1654644267, green: 0.3628849843, blue: 0.5607843399, alpha: 1) // TODO change color
         
         sceneView.scene = scene
@@ -77,7 +83,7 @@ public class ARPowerPanels: UIView {
     }
     
     public convenience init(arSceneView: ARSCNView, panelTypes: [ARPowerPanelsType]) {
-        self.init(rootNode: arSceneView.scene.rootNode, isARKit: true, panelTypes: panelTypes)
+        self.init(isARKit: true, panelTypes: panelTypes)
         self.arSceneView = arSceneView
         if !isPlaygroundBook {
             arSceneView.setupGlowTechnique()
@@ -90,8 +96,7 @@ public class ARPowerPanels: UIView {
         selectedNode = SCNNode()//arSceneView.scene.rootNode // TOdo
     }
     
-    private init(rootNode: SCNNode, isARKit: Bool, panelTypes: [ARPowerPanelsType]) {
-        self.rootNode = rootNode
+    private init(isARKit: Bool, panelTypes: [ARPowerPanelsType]) {
         hierachyPanel = HierachyPanel()
 
         super.init(frame: CGRect.zero)
@@ -156,7 +161,7 @@ public class ARPowerPanels: UIView {
             advancedMovePanel.control(selectedNode)
             allEditsPanel.control(selectedNode)
         }
-        hierachyPanel.renderHierachy()
+        hierachyPanel.renderHierachy(rootNode: rootNode)
     }
     
     private func constrainSceneView() {
@@ -192,24 +197,27 @@ public class ARPowerPanels: UIView {
 }
 
 extension ARPowerPanels {
-    func setupARGameModeSegmentedControl() {
-        let segmentedControl = UISegmentedControl(items: ["AR", "Game"])
-        segmentedControl.selectedSegmentIndex = 0
-        segmentedControl.setTitleTextAttributes([NSAttributedStringKey.font: UIFont.inputSliderHeader],
+    private func setupARGameModeSegmentedControl() {
+        arGameSegmentedControl.selectedSegmentIndex = 0
+        arGameSegmentedControl.setTitleTextAttributes([NSAttributedStringKey.font: UIFont.inputSliderHeader],
                                                 for: .normal)
-        self.addSubview(segmentedControl)
-        segmentedControl.constrainTop(to: self, offset: 80)
-        segmentedControl.constrainLeading(to: self, offset: 30)
-        segmentedControl.constrainSize(CGSize(width: 200, height: 30))
-        segmentedControl.tintColor = .uiControlColor
-        segmentedControl.addTarget(self, action: #selector(segmentSelected), for: .valueChanged)
+        self.addSubview(arGameSegmentedControl)
+        arGameSegmentedControl.constrainTop(to: self, offset: 80)
+        arGameSegmentedControl.constrainLeading(to: self, offset: 30)
+        arGameSegmentedControl.constrainSize(CGSize(width: 200, height: 30))
+        arGameSegmentedControl.tintColor = .uiControlColor
+        arGameSegmentedControl.addTarget(self, action: #selector(segmentSelected), for: .valueChanged)
+    }
+    
+    private var isARMode: Bool {
+        return arGameSegmentedControl.selectedSegmentIndex == 0
     }
     
     @objc private func segmentSelected(_ segmentedControl: UISegmentedControl) { // TODO refactor
         
         // AR MODE *********************
         NSLog("PAIGE LOG AR MODE")
-        if segmentedControl.selectedSegmentIndex == 0 {
+        if isARMode {
             sceneViewParent.isHidden = true
             
             // When we enter game mode, the user can tap the "Game Mode Camera" and adjust its position.
@@ -223,7 +231,7 @@ extension ARPowerPanels {
                 let newScene = SCNScene()
                 newScene.rootNode.name = "AR World Origin   🌎"
 
-                for child in rootNode.childNodes {
+                for child in sceneView.scene!.rootNode.childNodes { // TODO take care of this force unwrap
                     let newChild = child
                     child.removeFromParentNode()
                     NSLog("PAIGE REMOVING CHILD \(child)")
@@ -233,7 +241,6 @@ extension ARPowerPanels {
                     }
                 }
                 arSceneView.scene = newScene
-                rootNode = newScene.rootNode
 
                 if selectedNode?.parent == sceneView.scene?.rootNode {
 
@@ -242,6 +249,9 @@ extension ARPowerPanels {
 
                 sceneView.scene = nil
             }
+            //                rootNode = newScene.rootNode
+
+            updatePanels()
             NSLog("PAIGE LOG DONE AR MODE")
 
         // GAME MODE *********************
@@ -287,9 +297,9 @@ extension ARPowerPanels {
                     newScene.rootNode.addChildNode(child) // Suprisingly, feature points still work
                 }
                 
-                rootNode = newScene.rootNode
+//                rootNode = newScene.rootNode
                 NSLog("PAIGE LOG DONE GAME MODE")
-
+                updatePanels()
             }
         }
     }
@@ -343,7 +353,7 @@ extension ARPowerPanels: MenuStackDelegate {
             panelPresentor.togglePanel(panelItem: panelItem)
 
             if panelItem.viewToPresent == hierachyPanel {
-                hierachyPanel.renderHierachy()
+                hierachyPanel.renderHierachy(rootNode: rootNode)
             }
         }
     }
@@ -366,7 +376,7 @@ extension ARPowerPanels: PanelsPresenterDelegate {
 extension ARPowerPanels: TransformationPanelDelegate {
     func transformationPanelDidChangeNodeName() {
         updateSelectedNodeLabel()
-        hierachyPanel.renderHierachy()
+        hierachyPanel.renderHierachy(rootNode: rootNode)
     }
 }
 
@@ -377,10 +387,6 @@ extension ARPowerPanels: HierachyPanelDelegate {
 }
 
 extension ARPowerPanels: HierachyPanelDataSource {
-    func rootNodeForHierachy() -> SCNNode {
-        return rootNode
-    }
-
     func selectedForHierachyPanel() -> SCNNode? {
         return selectedNode
     }

@@ -10,7 +10,6 @@ import SceneKit
 import UIKit
 
 protocol HierachyPanelDataSource: class {
-    func rootNodeForHierachy() -> SCNNode
     func selectedForHierachyPanel() -> SCNNode?
 }
 
@@ -31,6 +30,8 @@ class HierachyPanel: UIView {
             renderHierachy()
         }
     }
+    
+    private weak var rootNode: SCNNode?
     
     init() {
         super.init(frame: CGRect.zero)
@@ -81,8 +82,13 @@ class HierachyPanel: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func renderHierachy() {
-        guard let rootNode = dataSource?.rootNodeForHierachy() else { return }
+    func renderHierachy(rootNode: SCNNode) {
+        self.rootNode = rootNode
+        iterator.createHierachyStates(rootNode: rootNode)
+    }
+    
+    private func renderHierachy() {
+        guard let rootNode = rootNode else { return }
         iterator.createHierachyStates(rootNode: rootNode)
     }
     
