@@ -222,8 +222,10 @@ extension ARPowerPanels {
             // When we enter game mode, the user can tap the "Game Mode Camera" and adjust its position.
             // If the user drags the screen, then another invisible camera will be the new pointOfView.
             // To allow the "Game Mode Camera" to adjust the pointOfView again, exit to AR Mode, save the invisible camera's transform, and then come back to Game Mode.
-            if let currentCamera = sceneView.pointOfView {
-                gameModeCameraNode.transform = currentCamera.transform
+            if let currentCameraNode = sceneView.pointOfView, currentCameraNode != gameModeCameraNode,
+                let currentCamera = currentCameraNode.camera {
+                gameModeCameraNode.transform = currentCameraNode.transform
+                gameModeCameraNode.camera?.fieldOfView = currentCamera.fieldOfView
             }
             
             if let arSceneView = arSceneView {
@@ -252,12 +254,9 @@ extension ARPowerPanels {
                 }
                 
                 updatePanels()
-
             } else {
-                NSLog("ERROR: Going into ARMode without an ARSCNScene")
+                NSLog("ERROR: Going into ARMode without a ARSCNView -- how's this possible")
             }
-
-        // GAME MODE *********************
 
         } else {
             sceneViewParent.isHidden = false
@@ -271,32 +270,31 @@ extension ARPowerPanels {
                 // And move our nodes into the new scene
                 let arSceneRootNode = arSceneView.scene.rootNode
                 for child in arSceneRootNode.childNodes {
-                    NSLog("PAIGE ADDING CHILD \(child)")
 
                     if let _ = child.camera {
                         if child.name == nil {
+                            
                             // Add a camera model to the AR Camera
                             if let cameraNode = Model.camera.createNode() {
                                 child.addChildNode(cameraNode)
                                 child.name = "AR Camera"
-                                NSLog("PAIGE ADDED AR CAMERA")
-                            } else {
-                                NSLog("PAIGE LOG, COULD NOT ADD CAMERA NODE")
                             }
 
-                            // Create Add gameModeCameraNode
-                            addCamera(to: sceneView)
-
+                            // Add gameModeCameraNode
+                            sceneView.scene!.rootNode.addChildNode(gameModeCameraNode)
+                            sceneView.pointOfView = gameModeCameraNode
+                            
                             // Setup gameModeCameraNode
                             gameModeCameraNode.position = SCNVector3(x: -0.15, y: 0.31, z: 0.54) * 2
                             gameModeCameraNode.look(at: SCNVector3Make(0, 0, 0))
 
                         } else if child.name == "AR Camera" {
-                            addCamera(to: sceneView)
+                            sceneView.pointOfView = gameModeCameraNode
                         }
                     }
-                    newScene.rootNode.addChildNode(child) // Suprisingly, feature points still work
-
+                    
+                    // Suprisingly, feature points still show up in game mode
+                    newScene.rootNode.addChildNode(child)
                 }
                 
                 if selectedNode == arSceneView.scene.rootNode {
@@ -310,15 +308,10 @@ extension ARPowerPanels {
     
     private static func gameModeCameraMake() -> SCNNode {
         let node = SCNNode()
+        node.name = "Game Mode Camera"
         node.camera = SCNCamera()
         node.camera?.zNear = 0.0001
         return node
-    }
-    
-    private func addCamera(to sceneView: SCNView) {
-        gameModeCameraNode.name = "Game Mode Camera"
-        sceneView.scene!.rootNode.addChildNode(gameModeCameraNode)
-        sceneView.pointOfView = gameModeCameraNode
     }
 }
 
