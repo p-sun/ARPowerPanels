@@ -20,6 +20,7 @@ class PowerPanelCheckmarkInput: UIStackView {
         }
         set {
             button.isSelected = newValue
+            button.backgroundColor  = newValue ? .uiControlColor : .white
         }
     }
     
@@ -43,8 +44,9 @@ class PowerPanelCheckmarkInput: UIStackView {
         button.setImage(#imageLiteral(resourceName: "checkmarkWhite"), for: .highlighted)
         button.setupPowerPanelBorder(tintColor: .uiControlColor)
         button.constrainAspectRatio(to: CGSize(width: 1, height: 1))
-        button.backgroundColor = UIColor.uiControlColor
         addArrangedSubview(button)
+        
+        isChecked = false
         
         button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
     }
