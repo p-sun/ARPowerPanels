@@ -14,6 +14,7 @@
  - Use the earth planet model with axis to be world origin -- deletable
  - Select node via hitTesting --> visible nodes only, allow for cycling through overlapping nodes when tapping at the same spot
  - Fix re-creating the gameNodeCamera if the gameNodeCamera was deleted? -- recreate it from the POV of the scene?
+ - Drop models into the scene only after a plane has been detected
  - Make FTD Private
  - Port onto PlaygroundBook again
  - Add the extra Adventure models & then port again onto PlaygroundBook

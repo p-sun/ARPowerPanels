@@ -62,7 +62,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //: ## Add another fox, and move it around
         if let anotherFox = Model.fox.createNode() {
             
-            anotherFox.name = "Mythos 🦊"
+            anotherFox.name = "Spinner 🦊"
             anotherFox.position = SCNVector3Make(-0.03, 0, 0)
             anotherFox.scale = SCNVector3Make(0.8, 0.8, 0.8)
             anotherFox.eulerAngles = SCNVector3Make(0, 17, 45).degreesToRadians
