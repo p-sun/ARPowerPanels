@@ -13,7 +13,6 @@
 		850FC79C207ACBB90006FBA3 /* fox_squareLQ.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 850FC796207ACBB80006FBA3 /* fox_squareLQ.jpeg */; };
 		850FC79D207ACBB90006FBA3 /* checkmarkWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 850FC797207ACBB80006FBA3 /* checkmarkWhite.png */; };
 		850FC79E207ACBB90006FBA3 /* closeWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 850FC798207ACBB80006FBA3 /* closeWhite.png */; };
-		850FC79F207ACBB90006FBA3 /* menuAxis.png in Resources */ = {isa = PBXBuildFile; fileRef = 850FC799207ACBB80006FBA3 /* menuAxis.png */; };
 		850FC7A0207ACBB90006FBA3 /* menuLowPolyTree.png in Resources */ = {isa = PBXBuildFile; fileRef = 850FC79A207ACBB90006FBA3 /* menuLowPolyTree.png */; };
 		850FC7A1207ACBB90006FBA3 /* menuWolf.png in Resources */ = {isa = PBXBuildFile; fileRef = 850FC79B207ACBB90006FBA3 /* menuWolf.png */; };
 		850FC7A3207ACF0B0006FBA3 /* SceneKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853AD07D2071B30600BF01CA /* SceneKitViewController.swift */; };
@@ -173,7 +172,6 @@
 		850FC796207ACBB80006FBA3 /* fox_squareLQ.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = fox_squareLQ.jpeg; sourceTree = "<group>"; };
 		850FC797207ACBB80006FBA3 /* checkmarkWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkmarkWhite.png; sourceTree = "<group>"; };
 		850FC798207ACBB80006FBA3 /* closeWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = closeWhite.png; sourceTree = "<group>"; };
-		850FC799207ACBB80006FBA3 /* menuAxis.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuAxis.png; sourceTree = "<group>"; };
 		850FC79A207ACBB90006FBA3 /* menuLowPolyTree.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuLowPolyTree.png; sourceTree = "<group>"; };
 		850FC79B207ACBB90006FBA3 /* menuWolf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuWolf.png; sourceTree = "<group>"; };
 		853ACFDE2071B2A000BF01CA /* ARPowerPanels.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ARPowerPanels.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -698,7 +696,6 @@
 				850FC797207ACBB80006FBA3 /* checkmarkWhite.png */,
 				850FC798207ACBB80006FBA3 /* closeWhite.png */,
 				850FC796207ACBB80006FBA3 /* fox_squareLQ.jpeg */,
-				850FC799207ACBB80006FBA3 /* menuAxis.png */,
 				850FC79A207ACBB90006FBA3 /* menuLowPolyTree.png */,
 				850FC79B207ACBB90006FBA3 /* menuWolf.png */,
 			);
@@ -869,7 +866,6 @@
 				853AD0EE2071F22D00BF01CA /* Stone_4.png in Resources */,
 				853AD0F52071F22D00BF01CA /* Barrel_Clo.png in Resources */,
 				853AD0F92071F22D00BF01CA /* Stone_18.png in Resources */,
-				850FC79F207ACBB90006FBA3 /* menuAxis.png in Resources */,
 				853AD0F82071F22D00BF01CA /* Stone_12.png in Resources */,
 				853AD0EC2071F22D00BF01CA /* Crystal_4.png in Resources */,
 				853AD1042071F22D00BF01CA /* Sword.png in Resources */,

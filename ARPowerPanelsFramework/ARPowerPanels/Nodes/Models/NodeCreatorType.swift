@@ -117,16 +117,14 @@ public enum Shapes: NodeCreatorType {
 }
 
 public enum Model: NodeCreatorType {
-    case axis, wolf, fox, lowPolyTree, camera, custom
+    case wolf, fox, lowPolyTree, camera, custom
     
     static var allTypes: [NodeCreatorType] {
-        return [Model.axis, Model.wolf, Model.fox, Model.lowPolyTree]
+        return [Model.wolf, Model.fox, Model.lowPolyTree] // TODO remove the Axis assets
     }
     
     public func createNode() -> SCNNode? {
         switch self {
-        case .axis:
-            return NodeCreator.createAxesNode(quiverLength: 0.15, quiverThickness: 1.0)
         case .fox:
             let parentNode = SCNNode()
             parentNode.name = "Fox 🦊"
@@ -174,8 +172,6 @@ public enum Model: NodeCreatorType {
     var menuImage: UIImage? {
         if isPlaygroundBook {
             switch self {
-            case .axis:
-                return #imageLiteral(resourceName: "menuAxis.png")
             case .wolf:
                 return #imageLiteral(resourceName: "menuWolf.png")
             case .lowPolyTree:
@@ -189,8 +185,6 @@ public enum Model: NodeCreatorType {
             }
         } else {
             switch self {
-            case .axis:
-                return #imageLiteral(resourceName: "menuAxis")
             case .wolf:
                 return #imageLiteral(resourceName: "menuWolf")
             case .lowPolyTree:
