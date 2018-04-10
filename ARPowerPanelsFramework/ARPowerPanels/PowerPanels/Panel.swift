@@ -55,6 +55,6 @@ class Panel {
     
     private func setupContainer() {
         view.addCornerRadius()
-        view.backgroundColor = UIColor.white.withAlphaComponent(1)
+        view.backgroundColor = UIColor.white // A flash of color when a new panel is presented
     }
 }

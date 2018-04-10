@@ -93,7 +93,7 @@ class RoundedButton: UIButton {
     private func setupWhiteBackground() {
         let whiteBackground = UIView()
         whiteBackground.isUserInteractionEnabled = false
-        whiteBackground.backgroundColor = UIColor.white.withAlphaComponent(0.4)
+        whiteBackground.backgroundColor = .panelBackgroundColor
         self.addSubview(whiteBackground)
         whiteBackground.constrainEdges(to: self)
     }

@@ -141,7 +141,7 @@ class PanelsPresenter {
             
             if let inPanel = inPanel {
                 let container = inPanel.view
-                container.backgroundColor = UIColor.white.withAlphaComponent(0.4)
+                container.backgroundColor = .panelBackgroundColor
                 inPanel.leftConstraint?.constant = -container.bounds.width
                 middleConstraint?.isActive = true
                 self?.presentingView?.layoutIfNeeded()

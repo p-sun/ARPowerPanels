@@ -76,7 +76,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let arViewController = ARKitViewController(
             scene: scene,
-            panelTypes: [.sceneGraph, .info, .easyMoves, .allMoves, .allEdits])
+            panelTypes: [.sceneGraph, .info, .allMoves])
         window?.rootViewController = arViewController
         window?.makeKeyAndVisible()
         

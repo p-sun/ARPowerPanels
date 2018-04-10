@@ -163,7 +163,7 @@ public class ARPowerPanels: UIView {
             case .easyMoves:
                 return MenuItem(name: "EASY MOVES", panelItem: PanelItem(viewToPresent: easyMovePanel, heightPriority: .init(999), preferredHeight: nil, width: 400))
             case .allMoves:
-                return MenuItem(name: "ALL MOVES", panelItem: PanelItem(viewToPresent: advancedMovePanel, heightPriority: .init(998), preferredHeight: nil, width: 400))
+                return MenuItem(name: "TRANSFORM", panelItem: PanelItem(viewToPresent: advancedMovePanel, heightPriority: .init(998), preferredHeight: nil, width: 400))
             case .allEdits:
                 return MenuItem(name: "ALL EDITS", panelItem: PanelItem(viewToPresent: allEditsPanel, heightPriority: .init(997), preferredHeight: nil, width: 400))
             }
@@ -217,6 +217,10 @@ public class ARPowerPanels: UIView {
 
 extension ARPowerPanels {
     private func setupARGameModeSegmentedControl() {
+        // Set rounded corners to match the default segmented control corners
+        arGameSegmentedControl.layer.cornerRadius = 6
+        
+        arGameSegmentedControl.backgroundColor = .panelBackgroundColor
         arGameSegmentedControl.selectedSegmentIndex = 0
         arGameSegmentedControl.setTitleTextAttributes([NSAttributedStringKey.font: UIFont.inputSliderHeader],
                                                 for: .normal)
