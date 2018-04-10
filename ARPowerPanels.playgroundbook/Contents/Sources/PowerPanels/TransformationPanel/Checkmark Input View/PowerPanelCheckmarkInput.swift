@@ -8,36 +8,49 @@
 
 import UIKit
 
+protocol PowerPanelCheckmarkInputDelegate: class {
+    func powerPanelCheckmarkInput(_ checkMarkInput: PowerPanelCheckmarkInput, isCheckedDidChange isChecked: Bool)
+}
+
 class PowerPanelCheckmarkInput: UIStackView {
     
-    var isChecked: Bool = true {
-        didSet {
-            button.isSelected = isChecked
+    var isChecked: Bool {
+        get {
+            return button.isSelected
         }
-//        get {
-//            return checkmark.isChecked
-//        }
-//        set {
-//            checkmark.isChecked = newValue
-//        }
+        set {
+            button.isSelected = newValue
+            button.backgroundColor  = newValue ? .uiControlColor : .white
+        }
     }
     
-    private let checkmark = PowerPanelCheckmarkView()
-    let button = UIButton()
+    weak var delegate: PowerPanelCheckmarkInputDelegate?
+
+    private let button = UIButton()
 
     init(text: String) {
         super.init(frame: CGRect.zero)
+                
+        self.axis = .horizontal
         
         let label = UILabel()
         label.text = text
+        label.font = UIFont.inputSliderHeader
+        label.textColor = .white
         addArrangedSubview(label)
+        
+        let buttonParent = UIView()
+        buttonParent.constrainAspectRatio(to: CGSize(width: 1, height: 1))
+        addArrangedSubview(buttonParent)
         
         button.isSelected = isChecked
         button.setImage(#imageLiteral(resourceName: "checkmarkWhite"), for: .selected)
         button.setImage(#imageLiteral(resourceName: "checkmarkWhite"), for: .highlighted)
-        button.backgroundColor = .blue
         button.setupPowerPanelBorder(tintColor: .uiControlColor)
-        addArrangedSubview(button)
+        buttonParent.addSubview(button)
+        button.constrainEdges(to: buttonParent, insets: UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4))
+        
+        isChecked = false
         
         button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
     }
@@ -48,6 +61,7 @@ class PowerPanelCheckmarkInput: UIStackView {
     
     @objc private func buttonPressed() {
         isChecked = !isChecked
-        print("button pressed")
+        button.isSelected = isChecked
+        delegate?.powerPanelCheckmarkInput(self, isCheckedDidChange: isChecked)
     }
 }

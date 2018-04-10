@@ -58,7 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             addNode(foxNode, to: scene.rootNode)
         }
         
-        //: ## Add another fox, and move it around
+        //: ## Add another fox, re-position it, and animate it
         if let anotherFox = Model.fox.createNode() {
             
             anotherFox.name = "Dizzy 🦊"
@@ -67,7 +67,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             anotherFox.eulerAngles = SCNVector3Make(0, 17, 45).degreesToRadians
             addNode(anotherFox, to: scene.rootNode)
             
-            //: ## Animate the second fox
             anotherFox.runAction(
                 SCNAction.repeatForever(
                     SCNAction.rotateBy(x: 0, y: 1, z: 0, duration: 1)))

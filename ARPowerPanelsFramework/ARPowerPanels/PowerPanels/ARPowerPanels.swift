@@ -17,6 +17,7 @@
  - Add ability to reposition the pivot -- make sure the axis updates
  - Make FTD Private
  - Port onto PlaygroundBook again
+ - Figure out how to import .dae files into the playgroundbook.
  - Add the extra Adventure models & then port again onto PlaygroundBook
  - Other TODO tags
  - May need to convert all of TransformationPanels to be FTD, or place the stackView in a scrollView?
@@ -27,6 +28,9 @@
 import UIKit
 import SceneKit
 import ARKit
+
+// Playground books require a different set of code to load image and model assets.
+var isPlaygroundBook = false
 
 public enum ARPowerPanelsType {
     case sceneGraph, info, easyMoves, allMoves, allEdits
@@ -42,12 +46,28 @@ public class ARPowerPanels: UIView {
         didSet {
             guard let selectedNode = selectedNode else { return }
 
+            let isRootNode = selectedNode.name?.contains(NodeNames.worldOrigin.rawValue) == true
+            
             if !isPlaygroundBook {
                 oldValue?.setGlow(false)
                 
                 // Don't glow ARSCNView.rootNode because doesn't work well with the debug feature points
-                if selectedNode.name?.contains(NodeNames.worldOrigin.rawValue) == false {
+                if !isRootNode {
                     selectedNode.setGlow(true)
+                }
+            } else {
+                
+                if let oldValue = oldValue {
+                    let oldBoxNode = oldValue.directChildNode(withName: NodeNames.boundingBox.rawValue)
+                    oldBoxNode?.removeFromParentNode()
+                }
+
+                if !isRootNode {
+                    let currentBoxNode = selectedNode.directChildNode(withName: NodeNames.boundingBox.rawValue)
+                    let hasBoundingBox = currentBoxNode != nil
+                    if !hasBoundingBox {
+                        TransformationPanel.addBoundingBox(for: selectedNode)
+                    }
                 }
             }
             

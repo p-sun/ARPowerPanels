@@ -28,6 +28,10 @@ extension UIColor {
     static var uiControlColor: UIColor {
         return #colorLiteral(red: 0.3789054537, green: 1, blue: 0.9100258617, alpha: 1) 
     }
+    
+    static var panelBackgroundColor: UIColor {
+        return #colorLiteral(red: 0, green: 0.1417405471, blue: 0.2871974469, alpha: 0.4654668328)
+    }
 }
 
 extension UIColor {

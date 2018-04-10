@@ -10,7 +10,6 @@ import SceneKit
 import UIKit
 
 protocol HierachyPanelDataSource: class {
-    func rootNodeForHierachy() -> SCNNode
     func selectedForHierachyPanel() -> SCNNode?
 }
 
@@ -31,6 +30,8 @@ class HierachyPanel: UIView {
             renderHierachy()
         }
     }
+    
+    private weak var rootNode: SCNNode?
     
     init() {
         super.init(frame: CGRect.zero)
@@ -81,8 +82,13 @@ class HierachyPanel: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func renderHierachy() {
-        guard let rootNode = dataSource?.rootNodeForHierachy() else { return }
+    func renderHierachy(rootNode: SCNNode) {
+        self.rootNode = rootNode
+        iterator.createHierachyStates(rootNode: rootNode)
+    }
+    
+    private func renderHierachy() {
+        guard let rootNode = rootNode else { return }
         iterator.createHierachyStates(rootNode: rootNode)
     }
     
@@ -108,8 +114,17 @@ class HierachyPanel: UIView {
     
     @objc private func removeModelPressed(_ button: UIButton) {
         let selectedNode = dataSource?.selectedForHierachyPanel()
+        let parentNode = selectedNode?.parent
         SceneCreator.shared.removeNode(selectedNode)
-        renderHierachy()
+        
+        if let parentNode = parentNode {
+            delegate?.hierachyPanel(didSelectNode: parentNode)
+        } else if let rootNode = rootNode {
+            delegate?.hierachyPanel(didSelectNode: rootNode)
+        } else {
+            renderHierachy()
+        }
+        
         button.isSelected = true
     }
 }
@@ -117,7 +132,7 @@ class HierachyPanel: UIView {
 // MARK: Private
 
 extension HierachyPanel: ModelCollectionViewDelegate {
-    func modelCollectionView(_ modelCollectionView: ModelCollectionView, didSelectModel nodeMaker: NodeMaker) {
+    func modelCollectionView(_ modelCollectionView: ModelCollectionView, didSelectModel nodeMaker: NodeCreatorType) {
         guard let selectedNode = dataSource?.selectedForHierachyPanel() else { return }
         if let newNode = nodeMaker.createNode() {
             SceneCreator.shared.addNode(newNode, to: selectedNode)

@@ -9,13 +9,16 @@
 import SceneKit
 
 enum TransformationType {
-    case name, boundingBox, opacity, scale, position, eulerRotation, quaternionRotation, orientation
+    case name, boundingBox, showBoundingBox, showAxis, opacity, scale, position, eulerRotation, quaternionRotation, orientation
     
     var displayName: String {
         switch self {
         case .name: return "Name"
-        case .boundingBox: return "Bounding Box"
         case .opacity: return "Opacity"
+            
+        case .boundingBox: return "Bounding Box"
+        case .showBoundingBox: return "Show Bounding Box"
+        case .showAxis: return "Show Axis"
             
         case .position: return "Position"
             
@@ -28,7 +31,7 @@ enum TransformationType {
     }
 
     static var entityInfo: [TransformationType] {
-        return [.name, .opacity, .boundingBox]
+        return [.name, .opacity, .boundingBox, .showBoundingBox, .showAxis]
     }
     
     static var easyMove: [TransformationType] {
@@ -40,7 +43,7 @@ enum TransformationType {
     }
     
     static var all: [TransformationType] {
-        return [.name, .boundingBox, .opacity,
+        return [.name, .boundingBox, .showBoundingBox, .showAxis, .opacity,
                 .eulerRotation, .quaternionRotation, .orientation,
                 .position,
                 .scale]
@@ -63,6 +66,7 @@ protocol Transformable: class {
     var rotation: SCNVector4 { get set }
     var eulerAngles: SCNVector3 { get set }
     var orientation: SCNQuaternion { get set }
+    func addChildNode(_ child: SCNNode)
 }
 
 extension SCNNode: Transformable {

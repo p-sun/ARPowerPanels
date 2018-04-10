@@ -101,27 +101,25 @@ ambientLightNode.light!.color = UIColor.darkGray
 addNode(ambientLightNode, to: scene.rootNode)
 
 //: ## Add an axis at (0, 0, 0). this is the world origin.
-if let xyzAxis = Model.axis.createNode() {
-    xyzAxis.name = "World Origin Axis"
-    addNode(xyzAxis, to: scene.rootNode)
-}
+let xyzAxis = NodeCreator.createAxesNode(quiverLength: 0.15, quiverThickness: 1.0)
+xyzAxis.name = "World Origin Axis"
+addNode(xyzAxis, to: scene.rootNode)
 
 //: ## Add a fox at (0, 0, 0)
 if let foxNode = Model.fox.createNode() {
-    foxNode.name = "Sparky 🦊"
+    foxNode.name = "Boss 🦊"
     addNode(foxNode, to: scene.rootNode)
 }
 
-//: ## Add another fox, and move it around
+//: ## Add another fox, re-position it, and animate it
 if let anotherFox = Model.fox.createNode() {
     
-    anotherFox.name = "Paige 🦊"
+    anotherFox.name = "Dizzy 🦊"
     anotherFox.position = SCNVector3Make(-0.03, 0, 0)
     anotherFox.scale = SCNVector3Make(0.8, 0.8, 0.8)
     anotherFox.eulerAngles = SCNVector3Make(0, 17, 45).degreesToRadians
     addNode(anotherFox, to: scene.rootNode)
     
-//: ## Animate the second fox
     anotherFox.runAction(
         SCNAction.repeatForever(
             SCNAction.rotateBy(x: 0, y: 1, z: 0, duration: 1)))
@@ -140,7 +138,7 @@ if let anotherFox = Model.fox.createNode() {
 //#-end-editable-code
 //#-editable-code
 //: #### Tip: You customize the buttons on the left hand menu in any order, remove some if you'd like!
-let menuPanels: [ARPowerPanelsType] = [.sceneGraph, .info, .easyMoves, .allMoves, .allEdits]
+let menuPanels: [ARPowerPanelsType] = [.sceneGraph, .info, .allMoves] // [.easyMoves, .allEdits]
 //#-end-editable-code
 //#-hidden-code
 let rootViewController = ARKitViewController(scene: scene, panelTypes: menuPanels)

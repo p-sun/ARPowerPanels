@@ -10,7 +10,7 @@ import UIKit
 import SceneKit
 
 protocol TransformationPanelDelegate: class {
-    func transformationPanelDidChangeNodeName()
+    func transformationPanelDidEditNode()
 }
 
 class TransformationPanel: UIStackView {
@@ -24,14 +24,16 @@ class TransformationPanel: UIStackView {
     // MARK: - Variables - Views
     private lazy var nameTextField = PowerPanelTextField()
     private lazy var boundingBoxLabel = header(for: .name)
-
+    private lazy var showBoundingBoxSwitch = PowerPanelCheckmarkInput(text: TransformationType.showBoundingBox.displayName)
+    private lazy var showAxisSwitch = PowerPanelCheckmarkInput(text: TransformationType.showAxis.displayName)
+    
     private lazy var positionInput = SliderVector3View()
     private lazy var quaternionRotationInput = SliderVector4View()
     private lazy var eulerRotationInput = SliderVector3View()
     private lazy var scaleInput = SliderVector3View(minValue: 0.2)
     private lazy var opacityInput = SliderInputsView(axisLabels: ["   "], minValue: 0, maxValue: 1)
     private lazy var orientationInput = SliderVector4View()
-    
+
     // MARK: - Public
     init(controlTypes: [TransformationType]) {
         self.controlTypes = controlTypes
@@ -50,10 +52,23 @@ class TransformationPanel: UIStackView {
     }
     
     func control(_ transformable: Transformable) {
+
         self.transformable = transformable
         
         if controlTypes.contains(.name) {
             nameTextField.text = transformable.displayName
+        }
+        
+        if controlTypes.contains(.showBoundingBox), let node = transformable as? SCNNode {
+            let boxNode = node.directChildNode(withName: NodeNames.boundingBox.rawValue)
+            let hasBoundingBox = boxNode != nil
+            showBoundingBoxSwitch.isChecked = hasBoundingBox
+        }
+        
+        if controlTypes.contains(.showAxis),  let node = transformable as? SCNNode {
+            let axisNode = node.directChildNode(withName: NodeNames.axis.rawValue)
+            let hasAxis = axisNode != nil
+            showAxisSwitch.isChecked = hasAxis
         }
         
         updateInputs()
@@ -68,7 +83,9 @@ class TransformationPanel: UIStackView {
     
     // MARK: - Private
     private func setupInputView(for controlType: TransformationType) {
-        addArrangedSubview(header(for: controlType))
+        if controlType != .showBoundingBox && controlType != .showAxis {
+            addArrangedSubview(header(for: controlType))
+        }
         
         switch controlType {
         case .name:
@@ -92,7 +109,17 @@ class TransformationPanel: UIStackView {
             stackView.addArrangedSubview(boundingBoxLabel)
             stackView.constrainHeight(29)
             addArrangedSubview(stackView)
-            
+        
+        case .showBoundingBox:
+            showBoundingBoxSwitch.delegate = self
+            showBoundingBoxSwitch.constrainHeight(37)
+            addArrangedSubview(showBoundingBoxSwitch)
+        
+        case .showAxis:
+            showAxisSwitch.delegate = self
+            showAxisSwitch.constrainHeight(37) // 29 + 8 for insets
+            addArrangedSubview(showAxisSwitch)
+        
         case .position:
             positionInput.constrainHeight(29)
 
@@ -134,6 +161,7 @@ class TransformationPanel: UIStackView {
             orientationInput.delegate = self
             orientationInput.setPanSpeed(0.005)
             addArrangedSubview(orientationInput)
+
         }
     }
     
@@ -153,8 +181,13 @@ class TransformationPanel: UIStackView {
         switch controlType {
         case .name:
             break
+             // UI Controls that only need to be updated when the selectedNode is changed are updated in control(transformable), not here
         case .boundingBox:
             boundingBoxLabel.text = boundingBoxText(for: transformable)
+        case .showBoundingBox:
+            break
+        case .showAxis:
+            break
         case .position:
             positionInput.vector = transformable.position
         case .quaternionRotation:
@@ -168,6 +201,7 @@ class TransformationPanel: UIStackView {
             opacityInput.setValue(Float(transformable.opacity), atIndex: 0)
         case .orientation:
             orientationInput.vector = transformable.orientation
+
         }
     }
 
@@ -184,10 +218,84 @@ class TransformationPanel: UIStackView {
 extension TransformationPanel: PowerPanelTextFieldDelegate {
     func powerPanelTextField(didChangeText text: String?) {
         transformable?.displayName = text ?? ""
-        transformationDelegate?.transformationPanelDidChangeNodeName()
+        transformationDelegate?.transformationPanelDidEditNode()
     }
 }
 
+// MARK: - Checkmark Input
+extension TransformationPanel: PowerPanelCheckmarkInputDelegate {
+    func powerPanelCheckmarkInput(_ checkMarkInput: PowerPanelCheckmarkInput, isCheckedDidChange isChecked: Bool) {
+        guard let transformable = transformable else {
+            return
+        }
+        
+        if checkMarkInput == showBoundingBoxSwitch {
+            updateBoundingBoxNode(transformable: transformable, isChecked: isChecked)
+        } else if checkMarkInput == showAxisSwitch {
+            updateAxisNode(transformable: transformable, isChecked: isChecked)
+        }
+    }
+}
+
+// MARK: - Show Bounding Box
+extension TransformationPanel {
+    static func addBoundingBox(for transformable: Transformable) {
+        func translucentBoundingBox(for transformable: Transformable) -> SCNNode {
+            let boundingBoxName = NodeNames.boundingBox.rawValue
+
+            let boundingBox = transformable.boundingBox
+            let diffBox = boundingBox.max - boundingBox.min
+            let translucentBox = SCNBox(width: CGFloat(diffBox.x), height: CGFloat(diffBox.y), length: CGFloat(diffBox.z), chamferRadius: 0)
+            let tranlucentWhite = UIColor.white.withAlphaComponent(0.5)
+            translucentBox.materials = [SCNMaterial.material(withDiffuse: tranlucentWhite, respondsToLighting: false)]
+            let boxNode = SCNNode(geometry: translucentBox)
+            boxNode.name = boundingBoxName
+            
+            let middlePosition = (boundingBox.min + boundingBox.max) / 2
+            boxNode.position = middlePosition
+            return boxNode
+        }
+        
+        let boundingBoxNode = translucentBoundingBox(for: transformable)
+        transformable.addChildNode(boundingBoxNode)
+    }
+    
+    private func updateBoundingBoxNode(transformable: Transformable, isChecked: Bool) {
+        if isChecked {
+            TransformationPanel.addBoundingBox(for: transformable)
+            transformationDelegate?.transformationPanelDidEditNode() // Update the SceneGraph
+        } else if let selectedNode = transformable as? SCNNode,
+            let boundingBoxNode = selectedNode.directChildNode(withName: NodeNames.boundingBox.rawValue) {
+            boundingBoxNode.removeFromParentNode()
+            transformationDelegate?.transformationPanelDidEditNode()
+        }
+    }
+}
+
+// MARK: - Show Axis
+extension TransformationPanel {
+    private func addAxisNode(for transformable: Transformable) {
+        guard let parentNode = transformable as? SCNNode else { return }
+
+        let axisNode = NodeCreator.createAxesNode(quiverLength: 0.15, quiverThickness: 1.0)
+        axisNode.name = NodeNames.axis.rawValue
+        axisNode.transform = parentNode.pivot
+        SceneCreator.shared.addNode(axisNode, to: parentNode) // Remove children from the Scene Graph
+    }
+    
+    private func updateAxisNode(transformable: Transformable, isChecked: Bool) {
+        if isChecked {
+            addAxisNode(for: transformable)
+            transformationDelegate?.transformationPanelDidEditNode()
+        } else if let selectedNode = transformable as? SCNNode,
+            let axisNode = selectedNode.directChildNode(withName: NodeNames.axis.rawValue) {
+            SceneCreator.shared.removeNode(axisNode)
+            transformationDelegate?.transformationPanelDidEditNode()
+        }
+    }
+}
+
+// MARK: - Position, Euler Rotation, Scale
 extension TransformationPanel: SliderVector3ViewDelegate {
     func sliderVector3View(_ sliderVector3View: SliderVector3View, didChangeValues vector: SCNVector3) {
         if controlTypes.contains(.position) &&
@@ -211,6 +319,7 @@ extension TransformationPanel: SliderVector3ViewDelegate {
     }
 }
 
+// MARK: - Quaternion Rotation
 extension TransformationPanel: SliderVector4ViewDelegate {
     func sliderVector4View(_ sliderVector4View: SliderVector4View, didChangeValues vector: SCNVector4) {
         // There are two Vector 4 inputs -- quaternion and orientation
@@ -236,9 +345,22 @@ extension TransformationPanel: SliderVector4ViewDelegate {
     }
 }
 
+// MARK: - Opacity
 extension TransformationPanel: SliderInputsViewDelegate {
     func sliderInputView(didChange value: Float, at index: Int) {
         transformable?.opacity = CGFloat(value)
+    }
+}
+
+// MARK: - Helpers
+extension SCNNode { // TODO move this to an
+    func directChildNode(withName name: String) -> SCNNode? {
+        for child in childNodes {
+            if child.name?.contains(name) == true {
+                return child
+            }
+        }
+        return nil
     }
 }
 

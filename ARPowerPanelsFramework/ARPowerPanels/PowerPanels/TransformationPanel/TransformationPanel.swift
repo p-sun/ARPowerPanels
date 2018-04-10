@@ -62,15 +62,7 @@ class TransformationPanel: UIStackView {
         if controlTypes.contains(.showBoundingBox), let node = transformable as? SCNNode {
             let boxNode = node.directChildNode(withName: NodeNames.boundingBox.rawValue)
             let hasBoundingBox = boxNode != nil
-
-            if isPlaygroundBook {
-                if !hasBoundingBox {
-                    addBoundingBox(for: transformable)
-                }
-                showBoundingBoxSwitch.isChecked = true
-            } else {
-                showBoundingBoxSwitch.isChecked = hasBoundingBox
-            }
+            showBoundingBoxSwitch.isChecked = hasBoundingBox
         }
         
         if controlTypes.contains(.showAxis),  let node = transformable as? SCNNode {
@@ -247,7 +239,7 @@ extension TransformationPanel: PowerPanelCheckmarkInputDelegate {
 
 // MARK: - Show Bounding Box
 extension TransformationPanel {
-    private func addBoundingBox(for transformable: Transformable) {
+    static func addBoundingBox(for transformable: Transformable) {
         func translucentBoundingBox(for transformable: Transformable) -> SCNNode {
             let boundingBoxName = NodeNames.boundingBox.rawValue
 
@@ -270,7 +262,7 @@ extension TransformationPanel {
     
     private func updateBoundingBoxNode(transformable: Transformable, isChecked: Bool) {
         if isChecked {
-            addBoundingBox(for: transformable)
+            TransformationPanel.addBoundingBox(for: transformable)
             transformationDelegate?.transformationPanelDidEditNode() // Update the SceneGraph
         } else if let selectedNode = transformable as? SCNNode,
             let boundingBoxNode = selectedNode.directChildNode(withName: NodeNames.boundingBox.rawValue) {
@@ -361,7 +353,7 @@ extension TransformationPanel: SliderInputsViewDelegate {
 }
 
 // MARK: - Helpers
-private extension SCNNode {
+extension SCNNode { // TODO move this to an
     func directChildNode(withName name: String) -> SCNNode? {
         for child in childNodes {
             if child.name?.contains(name) == true {

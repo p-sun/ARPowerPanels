@@ -6,9 +6,30 @@
 //  Copyright © 2018 Pei Sun. All rights reserved.
 //
 
+/*
+ TODO:
+ - Add planet models for earth, moon, sun, saturn.
+ - Add rotateForever animations for x, y, z. Add animation panel.
+ - Use the earth planet model with axis to be world origin -- deletable
+ - Select node via hitTesting --> visible nodes only, allow for cycling through overlapping nodes when tapping at the same spot
+ - Fix re-creating the gameNodeCamera if the gameNodeCamera was deleted? -- recreate it from the POV of the scene?
+ - Drop models into the scene only after a plane has been detected
+ - Add ability to reposition the pivot -- make sure the axis updates
+ - Make FTD Private
+ - Port onto PlaygroundBook again
+ - Add the extra Adventure models & then port again onto PlaygroundBook
+ - Other TODO tags
+ - May need to convert all of TransformationPanels to be FTD, or place the stackView in a scrollView?
+      Pro: can have long scrolling table, and can allow user to decide how tall each panel should be.
+      Con: effort, performance, need to rewrite the height priority logic. Cells might not be reused often enough to warrent the effort.
+ **/
+
 import UIKit
 import SceneKit
 import ARKit
+
+// Playground books require a different set of code to load image and model assets.
+var isPlaygroundBook = true
 
 public enum ARPowerPanelsType {
     case sceneGraph, info, easyMoves, allMoves, allEdits
@@ -24,14 +45,31 @@ public class ARPowerPanels: UIView {
         didSet {
             guard let selectedNode = selectedNode else { return }
 
-            oldValue?.setGlow(false)
+            let isRootNode = selectedNode.name?.contains(NodeNames.worldOrigin.rawValue) == true
             
-            // Don't glow ARSCNView.rootNode, because it doesn't work well with
-            // debug feature points or planes
-            if selectedNode.name?.contains("World Origin") == false {
-                selectedNode.setGlow(true)
-            }
+            if !isPlaygroundBook {
+                oldValue?.setGlow(false)
+                
+                // Don't glow ARSCNView.rootNode because doesn't work well with the debug feature points
+                if !isRootNode {
+                    selectedNode.setGlow(true)
+                }
+            } else {
+                
+                if let oldValue = oldValue {
+                    let oldBoxNode = oldValue.directChildNode(withName: NodeNames.boundingBox.rawValue)
+                    oldBoxNode?.removeFromParentNode()
+                }
 
+                if !isRootNode {
+                    let currentBoxNode = selectedNode.directChildNode(withName: NodeNames.boundingBox.rawValue)
+                    let hasBoundingBox = currentBoxNode != nil
+                    if !hasBoundingBox {
+                        TransformationPanel.addBoundingBox(for: selectedNode)
+                    }
+                }
+            }
+            
             updatePanels()
         }
     }
@@ -45,6 +83,7 @@ public class ARPowerPanels: UIView {
     private let allEditsPanel = TransformationPanel(controlTypes: TransformationType.all)
     
     // MARK: Left hand views
+    private let arGameSegmentedControl = UISegmentedControl(items: ["AR", "Game"])
     private let showHideMenuButton = RoundedButton()
     private let selectedNodeLabel = UILabel()
     private var menuItems = [MenuItem]()
@@ -54,20 +93,25 @@ public class ARPowerPanels: UIView {
     private var panelPresentor: PanelsPresenter!
     
     private let sceneViewParent = UIView()
+
     private let sceneView = SCNView()
-    
     private var arSceneView: ARSCNView?
     
     private let gameModeCameraNode = gameModeCameraMake()
 
-    private var rootNode: SCNNode { // TODO refactor
-        didSet {
-            updatePanels()
+    private var rootNode: SCNNode {
+        let toDoNode = SCNNode()
+        toDoNode.name = "TODO. Take care of this case."
+        
+        if isARMode {
+            return arSceneView?.scene.rootNode ?? toDoNode
+        } else {
+            return sceneView.scene?.rootNode ?? toDoNode
         }
     }
     
     public convenience init(scene: SCNScene, panelTypes: [ARPowerPanelsType]) { //TODO
-        self.init(rootNode: scene.rootNode, isARKit: false, panelTypes: panelTypes)
+        self.init(isARKit: false, panelTypes: panelTypes)
         sceneView.backgroundColor = #colorLiteral(red: 0.1654644267, green: 0.3628849843, blue: 0.5607843399, alpha: 1) // TODO change color
         
         sceneView.scene = scene
@@ -77,10 +121,12 @@ public class ARPowerPanels: UIView {
     }
     
     public convenience init(arSceneView: ARSCNView, panelTypes: [ARPowerPanelsType]) {
-        self.init(rootNode: arSceneView.scene.rootNode, isARKit: true, panelTypes: panelTypes)
+        self.init(isARKit: true, panelTypes: panelTypes)
         self.arSceneView = arSceneView
-//        arSceneView.setupGlowTechnique()
-        
+        if !isPlaygroundBook {
+            arSceneView.setupGlowTechnique()
+        }
+
         // Select AR Mode (i.e. hide the GameMode)
         sceneViewParent.isHidden = true
         
@@ -88,8 +134,7 @@ public class ARPowerPanels: UIView {
         selectedNode = SCNNode()//arSceneView.scene.rootNode // TOdo
     }
     
-    private init(rootNode: SCNNode, isARKit: Bool, panelTypes: [ARPowerPanelsType]) {
-        self.rootNode = rootNode
+    private init(isARKit: Bool, panelTypes: [ARPowerPanelsType]) {
         hierachyPanel = HierachyPanel()
 
         super.init(frame: CGRect.zero)
@@ -138,7 +183,7 @@ public class ARPowerPanels: UIView {
             case .easyMoves:
                 return MenuItem(name: "EASY MOVES", panelItem: PanelItem(viewToPresent: easyMovePanel, heightPriority: .init(999), preferredHeight: nil, width: 400))
             case .allMoves:
-                return MenuItem(name: "ALL MOVES", panelItem: PanelItem(viewToPresent: advancedMovePanel, heightPriority: .init(998), preferredHeight: nil, width: 400))
+                return MenuItem(name: "TRANSFORM", panelItem: PanelItem(viewToPresent: advancedMovePanel, heightPriority: .init(998), preferredHeight: nil, width: 400))
             case .allEdits:
                 return MenuItem(name: "ALL EDITS", panelItem: PanelItem(viewToPresent: allEditsPanel, heightPriority: .init(997), preferredHeight: nil, width: 400))
             }
@@ -148,13 +193,14 @@ public class ARPowerPanels: UIView {
     
     private func updatePanels() {
         updateSelectedNodeLabel()
-        if let selectedNode = selectedNode { // TODO Display error if no node was selected
+
+        if let selectedNode = selectedNode {
             infoPanel.control(selectedNode) // TODO refactor all these Transformation panels
             easyMovePanel.control(selectedNode)
             advancedMovePanel.control(selectedNode)
             allEditsPanel.control(selectedNode)
         }
-        hierachyPanel.renderHierachy()
+        hierachyPanel.renderHierachy(rootNode: rootNode)
     }
     
     private func constrainSceneView() {
@@ -164,7 +210,9 @@ public class ARPowerPanels: UIView {
         
         sceneView.backgroundColor = #colorLiteral(red: 0.0003343143538, green: 0.03833642512, blue: 0.4235294163, alpha: 1)
         sceneView.allowsCameraControl = true // allows the user to manipulate the camera
-//        sceneView.setupGlowTechnique()
+        if !isPlaygroundBook { // TODO set a glow technique varabe, or a isPlaygroundBook var as the powerpanel's init
+            sceneView.setupGlowTechnique()
+        }
         //        sceneView.showsStatistics = true
         sceneViewParent.addSubview(sceneView)
         sceneView.constrainEdges(to: sceneViewParent)
@@ -188,48 +236,53 @@ public class ARPowerPanels: UIView {
 }
 
 extension ARPowerPanels {
-    func setupARGameModeSegmentedControl() {
-        let segmentedControl = UISegmentedControl(items: ["AR", "Game"])
-        segmentedControl.selectedSegmentIndex = 0
-        segmentedControl.setTitleTextAttributes([NSAttributedStringKey.font: UIFont.inputSliderHeader],
+    private func setupARGameModeSegmentedControl() {
+        // Set rounded corners to match the default segmented control corners
+        arGameSegmentedControl.layer.cornerRadius = 6
+        
+        arGameSegmentedControl.backgroundColor = .panelBackgroundColor
+        arGameSegmentedControl.selectedSegmentIndex = 0
+        arGameSegmentedControl.setTitleTextAttributes([NSAttributedStringKey.font: UIFont.inputSliderHeader],
                                                 for: .normal)
-        self.addSubview(segmentedControl)
-        segmentedControl.constrainTop(to: self, offset: 80)
-        segmentedControl.constrainLeading(to: self, offset: 30)
-        segmentedControl.constrainSize(CGSize(width: 200, height: 30))
-        segmentedControl.tintColor = .uiControlColor
-        segmentedControl.addTarget(self, action: #selector(segmentSelected), for: .valueChanged)
+        self.addSubview(arGameSegmentedControl)
+        arGameSegmentedControl.constrainTop(to: self, offset: 80)
+        arGameSegmentedControl.constrainLeading(to: self, offset: 30)
+        arGameSegmentedControl.constrainSize(CGSize(width: 200, height: 30))
+        arGameSegmentedControl.tintColor = .uiControlColor
+        arGameSegmentedControl.addTarget(self, action: #selector(segmentSelected), for: .valueChanged)
+    }
+    
+    private var isARMode: Bool {
+        return arGameSegmentedControl.selectedSegmentIndex == 0
     }
     
     @objc private func segmentSelected(_ segmentedControl: UISegmentedControl) { // TODO refactor
         
-        // AR MODE *********************
-        NSLog("PAIGE LOG AR MODE")
-        if segmentedControl.selectedSegmentIndex == 0 {
+        if isARMode {
             sceneViewParent.isHidden = true
             
             // When we enter game mode, the user can tap the "Game Mode Camera" and adjust its position.
             // If the user drags the screen, then another invisible camera will be the new pointOfView.
             // To allow the "Game Mode Camera" to adjust the pointOfView again, exit to AR Mode, save the invisible camera's transform, and then come back to Game Mode.
-            if let currentCamera = sceneView.pointOfView {
-                gameModeCameraNode.transform = currentCamera.transform
+            if let currentCameraNode = sceneView.pointOfView, currentCameraNode != gameModeCameraNode,
+                let currentCamera = currentCameraNode.camera {
+                gameModeCameraNode.transform = currentCameraNode.transform
+                gameModeCameraNode.camera?.fieldOfView = currentCamera.fieldOfView
             }
             
             if let arSceneView = arSceneView {
                 let newScene = SCNScene()
-                newScene.rootNode.name = "AR World Origin   🌎"
+                newScene.rootNode.name = NodeNames.arWorldOrigin.rawValue
 
-                for child in rootNode.childNodes {
+                for child in sceneView.scene!.rootNode.childNodes { // TODO take care of this force unwrap
                     let newChild = child
                     child.removeFromParentNode()
-                    NSLog("PAIGE REMOVING CHILD \(child)")
 
-                    if child.name != "Game Mode Camera" {
+                    if child.name != NodeNames.gameModeCamera.rawValue {
                         newScene.rootNode.addChildNode(newChild)
                     }
                 }
                 arSceneView.scene = newScene
-                rootNode = newScene.rootNode
 
                 if selectedNode?.parent == sceneView.scene?.rootNode {
 
@@ -237,70 +290,74 @@ extension ARPowerPanels {
                 }
 
                 sceneView.scene = nil
+                
+                selectRootNodeIfNeeded()
+                updatePanels()
+            } else {
+                NSLog("ERROR: Going into ARMode without a ARSCNView -- how's this possible")
             }
-            NSLog("PAIGE LOG DONE AR MODE")
-
-        // GAME MODE *********************
 
         } else {
-            NSLog("PAIGE LOG GAME MODE")
-
             sceneViewParent.isHidden = false
             
-            if let  arSceneView = arSceneView {
+            if let arSceneView = arSceneView {
                 let newScene = SCNScene()
                 sceneView.scene = newScene
-                newScene.rootNode.name = "SceneView World Origin   🌎"
+                newScene.rootNode.name = NodeNames.sceneViewWorldOrigin.rawValue
                 
                 // Create a new scene when we switch back to AR mode
                 // And move our nodes into the new scene
                 let arSceneRootNode = arSceneView.scene.rootNode
                 for child in arSceneRootNode.childNodes {
-                    NSLog("PAIGE ADDING CHILD \(child)")
 
                     if let _ = child.camera {
                         if child.name == nil {
+                            
                             // Add a camera model to the AR Camera
                             if let cameraNode = Model.camera.createNode() {
-                                child.addChildNode(cameraNode)
-                                child.name = "AR Camera"
-                                NSLog("PAIGE ADDED AR CAMERA")
-                            } else {
-                                NSLog("PAIGE LOG, COULD NOT ADD CAMERA NODE")
+                                cameraNode.name = "Camera Model"
+                                SceneCreator.shared.addNode(cameraNode, to: child)
+                                child.name = NodeNames.arModeCamera.rawValue
                             }
 
-                            // Create Add gameModeCameraNode
-                            addCamera(to: sceneView)
-
+                            // Add gameModeCameraNode
+                            sceneView.scene!.rootNode.addChildNode(gameModeCameraNode)
+                            sceneView.pointOfView = gameModeCameraNode
+                            
                             // Setup gameModeCameraNode
                             gameModeCameraNode.position = SCNVector3(x: -0.15, y: 0.31, z: 0.54) * 2
                             gameModeCameraNode.look(at: SCNVector3Make(0, 0, 0))
 
-                        } else if child.name == "AR Camera" {
-                            addCamera(to: sceneView)
+                        } else if child.name?.contains(NodeNames.arModeCamera.rawValue) == true {
+                            
+                            // Add gameModeCameraNode
+                            sceneView.scene!.rootNode.addChildNode(gameModeCameraNode)
+                            sceneView.pointOfView = gameModeCameraNode
                         }
                     }
-                    newScene.rootNode.addChildNode(child) // Suprisingly, feature points still work
+                    
+                    // Suprisingly, feature points still show up in game mode
+                    newScene.rootNode.addChildNode(child)
                 }
                 
-                rootNode = newScene.rootNode
-                NSLog("PAIGE LOG DONE GAME MODE")
-
+                selectRootNodeIfNeeded()
+                updatePanels()
             }
+        }
+    }
+    
+    private func selectRootNodeIfNeeded() {
+        if selectedNode?.parent == nil, selectedNode != rootNode {
+            selectedNode = rootNode
         }
     }
     
     private static func gameModeCameraMake() -> SCNNode {
         let node = SCNNode()
+        node.name = NodeNames.gameModeCamera.rawValue
         node.camera = SCNCamera()
         node.camera?.zNear = 0.0001
         return node
-    }
-    
-    private func addCamera(to sceneView: SCNView) {
-        gameModeCameraNode.name = "Game Mode Camera"
-        sceneView.scene!.rootNode.addChildNode(gameModeCameraNode)
-        sceneView.pointOfView = gameModeCameraNode
     }
 }
 
@@ -339,7 +396,7 @@ extension ARPowerPanels: MenuStackDelegate {
             panelPresentor.togglePanel(panelItem: panelItem)
 
             if panelItem.viewToPresent == hierachyPanel {
-                hierachyPanel.renderHierachy()
+                hierachyPanel.renderHierachy(rootNode: rootNode)
             }
         }
     }
@@ -360,9 +417,9 @@ extension ARPowerPanels: PanelsPresenterDelegate {
 }
 
 extension ARPowerPanels: TransformationPanelDelegate {
-    func transformationPanelDidChangeNodeName() {
+    func transformationPanelDidEditNode() {
         updateSelectedNodeLabel()
-        hierachyPanel.renderHierachy()
+        hierachyPanel.renderHierachy(rootNode: rootNode)
     }
 }
 
@@ -373,10 +430,6 @@ extension ARPowerPanels: HierachyPanelDelegate {
 }
 
 extension ARPowerPanels: HierachyPanelDataSource {
-    func rootNodeForHierachy() -> SCNNode {
-        return rootNode
-    }
-
     func selectedForHierachyPanel() -> SCNNode? {
         return selectedNode
     }

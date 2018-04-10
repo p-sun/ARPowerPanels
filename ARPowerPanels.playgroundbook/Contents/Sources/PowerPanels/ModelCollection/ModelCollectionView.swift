@@ -9,7 +9,7 @@
 import UIKit
 
 protocol ModelCollectionViewDelegate: class {
-    func modelCollectionView(_ modelCollectionView: ModelCollectionView, didSelectModel nodeMaker: NodeMaker)
+    func modelCollectionView(_ modelCollectionView: ModelCollectionView, didSelectModel nodeMaker: NodeCreatorType)
 }
 
 class ModelCollectionView: UIView {
@@ -18,9 +18,9 @@ class ModelCollectionView: UIView {
     
     private let imageCollectionView: ImageCollectionView
 
-    private let nodeMakers: [NodeMaker]
+    private let nodeMakers: [NodeCreatorType]
     
-    init(frame: CGRect, nodeMakers: [NodeMaker]) {
+    init(frame: CGRect, nodeMakers: [NodeCreatorType]) {
         self.nodeMakers = nodeMakers
         
         let images = nodeMakers.map { $0.menuImage }
