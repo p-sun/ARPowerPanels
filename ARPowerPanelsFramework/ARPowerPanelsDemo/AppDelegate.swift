@@ -55,14 +55,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //: ## Add a fox at (0, 0, 0)
         if let foxNode = Model.fox.createNode() {
-            foxNode.name = "Sparky 🦊"
+            foxNode.name = "Boss 🦊"
             addNode(foxNode, to: scene.rootNode)
         }
         
         //: ## Add another fox, and move it around
         if let anotherFox = Model.fox.createNode() {
             
-            anotherFox.name = "Spinner 🦊"
+            anotherFox.name = "Dizzy 🦊"
             anotherFox.position = SCNVector3Make(-0.03, 0, 0)
             anotherFox.scale = SCNVector3Make(0.8, 0.8, 0.8)
             anotherFox.eulerAngles = SCNVector3Make(0, 17, 45).degreesToRadians
@@ -105,7 +105,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
 }
-

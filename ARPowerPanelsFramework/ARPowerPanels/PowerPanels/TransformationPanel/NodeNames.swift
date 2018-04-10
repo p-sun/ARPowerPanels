@@ -16,4 +16,6 @@ enum NodeNames: String {
         
     case arModeCamera = "AR Camera"
     case gameModeCamera = "Game Mode Camera"
+    
+    case axis = "Axis"
 }

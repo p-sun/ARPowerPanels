@@ -8,13 +8,13 @@
 
 /*
  TODO:
- - Add checkmark for adding axis --> sized according to bounds. Located at the pivot.
  - Add planet models for earth, moon, sun, saturn.
  - Add rotateForever animations for x, y, z. Add animation panel.
  - Use the earth planet model with axis to be world origin -- deletable
  - Select node via hitTesting --> visible nodes only, allow for cycling through overlapping nodes when tapping at the same spot
  - Fix re-creating the gameNodeCamera if the gameNodeCamera was deleted? -- recreate it from the POV of the scene?
  - Drop models into the scene only after a plane has been detected
+ - Add ability to reposition the pivot -- make sure the axis updates
  - Make FTD Private
  - Port onto PlaygroundBook again
  - Add the extra Adventure models & then port again onto PlaygroundBook
@@ -309,6 +309,9 @@ extension ARPowerPanels {
                             gameModeCameraNode.look(at: SCNVector3Make(0, 0, 0))
 
                         } else if child.name?.contains(NodeNames.arModeCamera.rawValue) == true {
+                            
+                            // Add gameModeCameraNode
+                            sceneView.scene!.rootNode.addChildNode(gameModeCameraNode)
                             sceneView.pointOfView = gameModeCameraNode
                         }
                     }
