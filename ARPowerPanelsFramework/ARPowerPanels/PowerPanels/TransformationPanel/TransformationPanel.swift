@@ -120,12 +120,12 @@ class TransformationPanel: UIStackView {
         
         case .showBoundingBox:
             showBoundingBoxSwitch.delegate = self
-            showBoundingBoxSwitch.constrainHeight(34)
+            showBoundingBoxSwitch.constrainHeight(37)
             addArrangedSubview(showBoundingBoxSwitch)
         
         case .showAxis:
             showAxisSwitch.delegate = self
-            showAxisSwitch.constrainHeight(34)
+            showAxisSwitch.constrainHeight(37) // 29 + 8 for insets
             addArrangedSubview(showAxisSwitch)
         
         case .position:

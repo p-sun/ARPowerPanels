@@ -48,10 +48,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         addNode(ambientLightNode, to: scene.rootNode)
         
         //: ## Add an axis at (0, 0, 0). this is the world origin.
-        if let xyzAxis = Model.axis.createNode() {
-            xyzAxis.name = "World Origin Axis"
-            addNode(xyzAxis, to: scene.rootNode)
-        }
+        let xyzAxis = NodeCreator.createAxesNode(quiverLength: 0.15, quiverThickness: 1.0)
+        xyzAxis.name = "World Origin Axis"
+        addNode(xyzAxis, to: scene.rootNode)
         
         //: ## Add a fox at (0, 0, 0)
         if let foxNode = Model.fox.createNode() {

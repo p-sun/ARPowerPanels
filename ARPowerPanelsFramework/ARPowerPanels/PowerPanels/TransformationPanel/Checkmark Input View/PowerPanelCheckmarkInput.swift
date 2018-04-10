@@ -39,12 +39,16 @@ class PowerPanelCheckmarkInput: UIStackView {
         label.textColor = .white
         addArrangedSubview(label)
         
+        let buttonParent = UIView()
+        buttonParent.constrainAspectRatio(to: CGSize(width: 1, height: 1))
+        addArrangedSubview(buttonParent)
+        
         button.isSelected = isChecked
         button.setImage(#imageLiteral(resourceName: "checkmarkWhite"), for: .selected)
         button.setImage(#imageLiteral(resourceName: "checkmarkWhite"), for: .highlighted)
         button.setupPowerPanelBorder(tintColor: .uiControlColor)
-        button.constrainAspectRatio(to: CGSize(width: 1, height: 1))
-        addArrangedSubview(button)
+        buttonParent.addSubview(button)
+        button.constrainEdges(to: buttonParent, insets: UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4))
         
         isChecked = false
         
