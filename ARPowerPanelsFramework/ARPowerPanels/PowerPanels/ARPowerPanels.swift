@@ -296,7 +296,8 @@ extension ARPowerPanels {
                             
                             // Add a camera model to the AR Camera
                             if let cameraNode = Model.camera.createNode() {
-                                child.addChildNode(cameraNode)
+                                cameraNode.name = "Camera Model"
+                                SceneCreator.shared.addNode(cameraNode, to: child)
                                 child.name = NodeNames.arModeCamera.rawValue
                             }
 
