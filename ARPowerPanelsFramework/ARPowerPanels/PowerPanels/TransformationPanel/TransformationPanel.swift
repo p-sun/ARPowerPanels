@@ -217,8 +217,8 @@ extension TransformationPanel: PowerPanelTextFieldDelegate {
 
 extension TransformationPanel: PowerPanelCheckmarkInputDelegate {
     private func boundingBox(for node: SCNNode) -> SCNNode? {
-        let boundingBoxName = "Bounding Box"
-        
+        let boundingBoxName = NodeNames.boundingBox.rawValue
+
         for child in node.childNodes {
             if child.name?.contains(boundingBoxName) == true {
                 return child
@@ -229,7 +229,7 @@ extension TransformationPanel: PowerPanelCheckmarkInputDelegate {
     
     private func addBoundingBox(for transformable: Transformable) {
         func translucentBoundingBox(for transformable: Transformable) -> SCNNode {
-            let boundingBoxName = "Bounding Box"
+            let boundingBoxName = NodeNames.boundingBox.rawValue
 
             let boundingBox = transformable.boundingBox
             let diffBox = boundingBox.max - boundingBox.min

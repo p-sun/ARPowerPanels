@@ -139,6 +139,7 @@
 		853AD1362071F5DC00BF01CA /* shapeTorus.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD12D2071F5DC00BF01CA /* shapeTorus.png */; };
 		853AD1372071F5DC00BF01CA /* shapeBox.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD12E2071F5DC00BF01CA /* shapeBox.png */; };
 		853AD1382071F5DC00BF01CA /* shapePyramid.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD12F2071F5DC00BF01CA /* shapePyramid.png */; };
+		85F89266207C534900794839 /* NodeNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F89265207C534900794839 /* NodeNames.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -300,6 +301,7 @@
 		853AD12D2071F5DC00BF01CA /* shapeTorus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shapeTorus.png; sourceTree = "<group>"; };
 		853AD12E2071F5DC00BF01CA /* shapeBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shapeBox.png; sourceTree = "<group>"; };
 		853AD12F2071F5DC00BF01CA /* shapePyramid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shapePyramid.png; sourceTree = "<group>"; };
+		85F89265207C534900794839 /* NodeNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeNames.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -575,6 +577,7 @@
 				853AD05D2071B2FF00BF01CA /* Slider Input Views */,
 				853AD0632071B2FF00BF01CA /* TransformationPanel.swift */,
 				853AD0642071B2FF00BF01CA /* TransformationType.swift */,
+				85F89265207C534900794839 /* NodeNames.swift */,
 			);
 			path = TransformationPanel;
 			sourceTree = "<group>";
@@ -949,6 +952,7 @@
 				853AD0452071B2E900BF01CA /* NodeCreator.swift in Sources */,
 				853AD0332071B2E400BF01CA /* Constraints+Activation+Priority.swift in Sources */,
 				853AD0242071B2E400BF01CA /* HostCell.swift in Sources */,
+				85F89266207C534900794839 /* NodeNames.swift in Sources */,
 				853AD06D2071B2FF00BF01CA /* ModelCollectionView.swift in Sources */,
 				853AD02E2071B2E400BF01CA /* TableItemConfigType.swift in Sources */,
 				853AD03A2071B2E400BF01CA /* 3DUtilities.swift in Sources */,

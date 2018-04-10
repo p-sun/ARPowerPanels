@@ -38,7 +38,7 @@ public class ARKitViewController: UIViewController {
         arSceneView.debugOptions  = [.showConstraints, ARSCNDebugOptions.showFeaturePoints]//, ARSCNDebugOptions.showWorldOrigin]
         
         arSceneView.scene = scene
-        scene.rootNode.name = "AR World Origin   🌎"
+        scene.rootNode.name = "AR World Origin   🌎" // TODO Rename this node when "Scene Graph" starts
         powerPanels.selectNode(scene.rootNode)
         
         view.addSubview(powerPanels)

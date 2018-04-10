@@ -45,7 +45,7 @@ public class ARPowerPanels: UIView {
                 oldValue?.setGlow(false)
                 
                 // Don't glow ARSCNView.rootNode because doesn't work well with the debug feature points
-                if selectedNode.name?.contains("World Origin") == false {
+                if selectedNode.name?.contains(NodeNames.worldOrigin.rawValue) == false {
                     selectedNode.setGlow(true)
                 }
             }
@@ -252,13 +252,13 @@ extension ARPowerPanels {
             
             if let arSceneView = arSceneView {
                 let newScene = SCNScene()
-                newScene.rootNode.name = "AR World Origin   🌎"
+                newScene.rootNode.name = NodeNames.arWorldOrigin.rawValue
 
                 for child in sceneView.scene!.rootNode.childNodes { // TODO take care of this force unwrap
                     let newChild = child
                     child.removeFromParentNode()
 
-                    if child.name != "Game Mode Camera" {
+                    if child.name != NodeNames.gameModeCamera.rawValue {
                         newScene.rootNode.addChildNode(newChild)
                     }
                 }
@@ -283,7 +283,7 @@ extension ARPowerPanels {
             if let arSceneView = arSceneView {
                 let newScene = SCNScene()
                 sceneView.scene = newScene
-                newScene.rootNode.name = "SceneView World Origin   🌎"
+                newScene.rootNode.name = NodeNames.sceneViewWorldOrigin.rawValue
                 
                 // Create a new scene when we switch back to AR mode
                 // And move our nodes into the new scene
@@ -296,7 +296,7 @@ extension ARPowerPanels {
                             // Add a camera model to the AR Camera
                             if let cameraNode = Model.camera.createNode() {
                                 child.addChildNode(cameraNode)
-                                child.name = "AR Camera"
+                                child.name = NodeNames.arModeCamera.rawValue
                             }
 
                             // Add gameModeCameraNode
@@ -307,7 +307,7 @@ extension ARPowerPanels {
                             gameModeCameraNode.position = SCNVector3(x: -0.15, y: 0.31, z: 0.54) * 2
                             gameModeCameraNode.look(at: SCNVector3Make(0, 0, 0))
 
-                        } else if child.name == "AR Camera" {
+                        } else if child.name?.contains(NodeNames.arModeCamera.rawValue) == true {
                             sceneView.pointOfView = gameModeCameraNode
                         }
                     }
@@ -330,7 +330,7 @@ extension ARPowerPanels {
     
     private static func gameModeCameraMake() -> SCNNode {
         let node = SCNNode()
-        node.name = "Game Mode Camera"
+        node.name = NodeNames.gameModeCamera.rawValue
         node.camera = SCNCamera()
         node.camera?.zNear = 0.0001
         return node
