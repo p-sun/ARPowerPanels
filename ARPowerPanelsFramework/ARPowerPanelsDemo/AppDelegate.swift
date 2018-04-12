@@ -53,27 +53,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         addNode(xyzAxis, to: scene.rootNode)
         
         //: ## Add a fox at (0, 0, 0)
-        if let foxNode = Model.fox.createNode() {
-            foxNode.name = "Boss 🦊"
-            addNode(foxNode, to: scene.rootNode)
-        }
+        let foxNode = Model.fox.createNode()!
+        foxNode.name = "Boss 🦊"
+        addNode(foxNode, to: scene.rootNode)
         
         //: ## Add another fox, re-position it, and animate it
-        if let anotherFox = Model.fox.createNode() {
-            
-            anotherFox.name = "Dizzy 🦊"
-            anotherFox.position = SCNVector3Make(-0.03, 0, 0)
-            anotherFox.scale = SCNVector3Make(0.8, 0.8, 0.8)
-            anotherFox.eulerAngles = SCNVector3Make(0, 17, 45).degreesToRadians
-            addNode(anotherFox, to: scene.rootNode)
-            
-            anotherFox.runAction(
-                SCNAction.repeatForever(
-                    SCNAction.rotateBy(x: 0, y: 1, z: 0, duration: 1)))
-        }
+        let anotherFox = Model.fox.createNode()!
+        anotherFox.name = "Dizzy 🦊"
+        anotherFox.position = SCNVector3Make(-0.03, 0, 0)
+        anotherFox.scale = SCNVector3Make(0.8, 0.8, 0.8)
+        anotherFox.eulerAngles = SCNVector3Make(0, 17, 45).degreesToRadians
+        addNode(anotherFox, to: scene.rootNode)
+        
+        anotherFox.runAction(
+            SCNAction.repeatForever(
+                SCNAction.rotateBy(x: 0, y: 1, z: 0, duration: 1)))
         
         let arViewController = ARKitViewController(
             scene: scene,
+            selectedNode: foxNode,
             panelTypes: [.sceneGraph, .info, .allMoves])
         window?.rootViewController = arViewController
         window?.makeKeyAndVisible()

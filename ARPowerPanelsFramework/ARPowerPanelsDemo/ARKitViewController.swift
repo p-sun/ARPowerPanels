@@ -17,9 +17,10 @@ public class ARKitViewController: UIViewController {
     private var scene: SCNScene
     private var powerPanels: ARPowerPanels
     
-    public init(scene: SCNScene, panelTypes: [ARPowerPanelsType]) {
+    public init(scene: SCNScene, selectedNode: SCNNode, panelTypes: [ARPowerPanelsType]) {
         self.scene = scene
         powerPanels = ARPowerPanels(arSceneView: arSceneView, panelTypes: panelTypes)
+        powerPanels.selectNode(selectedNode)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -39,7 +40,6 @@ public class ARKitViewController: UIViewController {
         
         arSceneView.scene = scene
         scene.rootNode.name = "AR World Origin   🌎" // TODO Rename this node when "Scene Graph" starts
-        powerPanels.selectNode(scene.rootNode)
         
         view.addSubview(powerPanels)
         powerPanels.constrainEdges(to: view)
