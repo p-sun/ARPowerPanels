@@ -57,6 +57,7 @@ public class ARPowerPanels: UIView {
                 }
             } else {
                 
+                // Don't glow playground book because 
                 if let oldValue = oldValue {
                     let oldBoxNode = oldValue.directChildNode(withName: NodeNames.boundingBox.rawValue)
                     oldBoxNode?.removeFromParentNode()

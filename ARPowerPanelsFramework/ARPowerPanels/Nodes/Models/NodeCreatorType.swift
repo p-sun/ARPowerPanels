@@ -24,55 +24,26 @@ public enum Shapes: NodeCreatorType {
     }
     
     var menuImage: UIImage? {
-        if isPlaygroundBook {
-            // THIS IS FOR THE PLAYGROUND
-            // Images have go in the 'Contents/PrivateResources` folder,
-            // as opposed to in the Assets.xcassets folder for Xcode.
-            // They also must be referred to by with their image extension
-            switch self {
-            case .sphere:
-                return #imageLiteral(resourceName: "shapeSphere.png")
-            case .plane:
-                return #imageLiteral(resourceName: "shapePlane.png")
-            case .box:
-                return #imageLiteral(resourceName: "shapeBox.png")
-            case .pyramid:
-                return #imageLiteral(resourceName: "shapePyramid.png")
-            case .cylinder:
-                return #imageLiteral(resourceName: "shapeCylinder.png")
-            case .cone:
-                return #imageLiteral(resourceName: "shapeCone.png")
-            case .torus:
-                return #imageLiteral(resourceName: "shapeTorus.png")
-            case .tube:
-                return #imageLiteral(resourceName: "shapeTube.png")
-            case .capsule:
-                return #imageLiteral(resourceName: "shapeCapsule.png")
-            }
-            
-        } else {
-            // THIS IS FOR XCODE
-            switch self {
-            case .sphere:
-                return #imageLiteral(resourceName: "sphere")
-            case .plane:
-                return #imageLiteral(resourceName: "plane")
-            case .box:
-                return #imageLiteral(resourceName: "box")
-            case .pyramid:
-                return #imageLiteral(resourceName: "pyramid")
-            case .cylinder:
-                return #imageLiteral(resourceName: "cylinder")
-            case .cone:
-                return #imageLiteral(resourceName: "cone")
-            case .torus:
-                return #imageLiteral(resourceName: "torus")
-            case .tube:
-                return #imageLiteral(resourceName: "tube")
-            case .capsule:
-                return #imageLiteral(resourceName: "capsule")
-            }
-        }
+        switch self {
+        case .sphere:
+            return ImageAssets.shapeSphere.image()
+        case .plane:
+            return ImageAssets.shapePlane.image()
+        case .box:
+            return ImageAssets.shapeBox.image()
+        case .pyramid:
+            return ImageAssets.shapePyramid.image()
+        case .cylinder:
+            return ImageAssets.shapeCylinder.image()
+        case .cone:
+            return ImageAssets.shapeCone.image()
+        case .torus:
+            return ImageAssets.shapeTorus.image()
+        case .tube:
+            return ImageAssets.shapeTube.image()
+        case .capsule:
+            return ImageAssets.shapeCapsule.image()
+        }        
     }
     
     public func createNode() -> SCNNode? {
@@ -114,38 +85,48 @@ public enum Shapes: NodeCreatorType {
 }
 
 public enum Model: NodeCreatorType {
-    case wolf, fox, lowPolyTree, camera, custom
+    case wolf, fox, lowPolyTree, camera, custom, ship
     
     static var allTypes: [NodeCreatorType] {
-        return [Model.wolf, Model.fox, Model.lowPolyTree] // TODO remove the Axis assets
+        return [Model.wolf, Model.fox, Model.lowPolyTree, Model.ship] // TODO remove the Axis assets
     }
     
     public func createNode() -> SCNNode? {
         switch self {
         case .fox:
-            let parentNode = SCNNode()
-            parentNode.name = "Fox 🦊"
-            
-            let bundle = Bundle(for: ModelCollectionView.self)
-            if let url = bundle.url(forResource: "art.scnassets/fox/max", withExtension: "scn"),
-                let scene = try? SCNScene(url: url),
-                let foxNode = scene.rootNode.childNode(withName: "Max_rootNode", recursively: true)?.clone() {
-                foxNode.scale = SCNVector3Make(0.2, 0.2, 0.2)
-                parentNode.addChildNode(foxNode)
-                return parentNode
-            }
-            NSLog("PAIGE LOG: COULD NOT LOAD FOX MODEL")
-            return nil
+            return nodeFromScene(assetName: "fox/max", rootChildNodeName: "Max_rootNode", newNodeName: "Fox 🦊", newScale: SCNVector3Make(0.2, 0.2, 0.2))
         case .wolf:
             return nodeFromResource(assetName: "wolf/wolf", extensionName: "dae")?.clone()
         case .lowPolyTree:
             return nodeFromResource(assetName: "lowPolyTree", extensionName: "dae")?.clone()
         case .camera:
-            let rootCamera = nodeFromResource(assetName: "camera", extensionName: "scn")
-            return rootCamera?.childNode(withName: "Camera Shape", recursively: true)
+            return nodeFromScene(assetName: "camera", rootChildNodeName: "Camera Shape")
         case .custom:
             return SCNNode()
+        case .ship:
+            return nodeFromScene(assetName: "ship", rootChildNodeName: "ship", newNodeName: "Spaceship ✈️", newScale: SCNVector3Make(0.03, 0.03, 0.03))
         }
+    }
+    
+    private func nodeFromScene(assetName: String, rootChildNodeName: String, newNodeName: String, newScale: SCNVector3) -> SCNNode? {
+        if let foxNode = nodeFromScene(assetName: assetName, rootChildNodeName: rootChildNodeName)?.clone() {
+            let parentNode = SCNNode()
+            parentNode.name = newNodeName
+            foxNode.scale = newScale
+            parentNode.addChildNode(foxNode)
+            return parentNode
+        }
+        NSLog("PAIGE LOG: COULD NOT LOAD \(assetName) MODEL")
+        return nil
+    }
+    
+    private func nodeFromScene(assetName: String, rootChildNodeName: String) -> SCNNode? {
+        let bundle = Bundle(for: ModelCollectionView.self)
+        if let url = bundle.url(forResource: "art.scnassets/\(assetName)", withExtension: "scn"),
+            let scene = try? SCNScene(url: url) {
+            return scene.rootNode.childNode(withName: rootChildNodeName, recursively: true)
+        }
+        return nil
     }
     
     func nodeFromResource(assetName: String, extensionName: String) -> SCNNode? {
@@ -158,7 +139,6 @@ public enum Model: NodeCreatorType {
                 node.name = assetName
                 node.load()
                 return node
-                
             }
         } else {
             NSLog("PAIGE LOG: COULD NOT LOAD FROM RESOURCE")
@@ -167,32 +147,19 @@ public enum Model: NodeCreatorType {
     }
     
     var menuImage: UIImage? {
-        if isPlaygroundBook {
-            switch self {
-            case .wolf:
-                return #imageLiteral(resourceName: "menuWolf.png")
-            case .lowPolyTree:
-                return #imageLiteral(resourceName: "menuLowPolyTree.png")
-            case .fox:
-                return #imageLiteral(resourceName: "fox_squareLQ.jpeg")
-            case .camera:
-                return #imageLiteral(resourceName: "menuLowPolyTree.png")
-            case .custom:
-                return #imageLiteral(resourceName: "menuLowPolyTree.png")
-            }
-        } else {
-            switch self {
-            case .wolf:
-                return #imageLiteral(resourceName: "menuWolf")
-            case .lowPolyTree:
-                return #imageLiteral(resourceName: "menuLowPolyTree")
-            case .fox:
-                return #imageLiteral(resourceName: "fox_squareLQ")
-            case .camera:
-                return #imageLiteral(resourceName: "menuLowPolyTree")
-            case .custom:
-                return #imageLiteral(resourceName: "menuLowPolyTree")
-            }
+        switch self {
+        case .wolf:
+            return ImageAssets.menuWolf.image()
+        case .lowPolyTree:
+            return ImageAssets.menuLowPolyTree.image()
+        case .fox:
+            return ImageAssets.menuFox.image()
+        case .camera:
+            return ImageAssets.menuWolf.image()
+        case .custom:
+            return ImageAssets.menuWolf.image()
+        case .ship:
+            return ImageAssets.menuShip.image()
         }
     }
 }

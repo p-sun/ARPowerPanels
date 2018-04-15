@@ -6,7 +6,8 @@
 //  Copyright © 2018 Paige Sun. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
 enum Asset {
     enum Directory {
         case imagesShapes
@@ -49,3 +50,58 @@ enum Asset {
 //        return scene
 //    }
 }
+
+// Frameworks can't use xcassets
+// For iOS framework, images go into any folder (i.e Resources)
+// For PlaygroundBook, images go in the 'Contents/PrivateResources` folder
+enum ImageAssets {
+    case closeWhite, checkmarkWhite
+    case menuWolf, menuShip, menuLowPolyTree, menuFox
+    case shapeBox, shapeCapsule, shapeCone, shapeCylinder, shapePlane, shapePyramid, shapeSphere, shapeTorus, shapeTube
+    
+    func image() -> UIImage? {
+        switch self {
+        case .closeWhite:
+            return ImageAssets.imageForName("closeWhite", extensionName: "png")
+        case .checkmarkWhite:
+            return ImageAssets.imageForName("checkmarkWhite", extensionName: "png")
+            
+        case .menuWolf:
+            return ImageAssets.imageForName("menuWolf", extensionName: "png")
+        case .menuShip:
+            return ImageAssets.imageForName("menuShip", extensionName: "png")
+        case .menuLowPolyTree:
+            return ImageAssets.imageForName("menuLowPolyTree", extensionName: "png")
+        case .menuFox:
+            return ImageAssets.imageForName("menuFox", extensionName: "jpeg")
+            
+        case .shapeBox:
+            return ImageAssets.imageForName("shapeBox", extensionName: "png")
+        case .shapeCapsule:
+            return ImageAssets.imageForName("shapeCone", extensionName: "png")
+        case .shapeCone:
+            return ImageAssets.imageForName("shapeBox", extensionName: "png")
+        case .shapeCylinder:
+            return ImageAssets.imageForName("shapeCylinder", extensionName: "png")
+        case .shapePlane:
+            return ImageAssets.imageForName("shapePlane", extensionName: "png")
+        case .shapePyramid:
+            return ImageAssets.imageForName("shapePyramid", extensionName: "png")
+        case .shapeSphere:
+            return ImageAssets.imageForName("shapeSphere", extensionName: "png")
+        case .shapeTorus:
+            return ImageAssets.imageForName("shapeTorus", extensionName: "png")
+        case .shapeTube:
+            return ImageAssets.imageForName("shapeTube", extensionName: "png")
+        }
+    }
+    
+    static func imageForName(_ name: String, extensionName: String?) -> UIImage? {
+        let bundle = Bundle(for: ModelCollectionView.self)
+        if let url = bundle.path(forResource: name, ofType: extensionName) {
+            return UIImage(contentsOfFile: url)
+        }
+        return nil
+    }
+}
+

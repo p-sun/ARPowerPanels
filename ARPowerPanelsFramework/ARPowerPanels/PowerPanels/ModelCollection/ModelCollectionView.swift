@@ -29,7 +29,8 @@ class ModelCollectionView: UIView {
         super.init(frame: frame)
         
         let closeButton = UIButton()
-        closeButton.setImage(#imageLiteral(resourceName: "closeWhite"), for: .normal)
+        let closeButtonImage = ImageAssets.closeWhite.image()
+        closeButton.setImage(closeButtonImage, for: .normal)
         addSubview(closeButton)
         closeButton.addTarget(self, action: #selector(closeButtonPressed), for: .touchUpInside)
         closeButton.constrainTop(to: self)

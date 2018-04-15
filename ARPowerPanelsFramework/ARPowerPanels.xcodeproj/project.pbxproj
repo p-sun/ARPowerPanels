@@ -10,7 +10,7 @@
 		850FC791207AC5090006FBA3 /* NodeRender.metal in Sources */ = {isa = PBXBuildFile; fileRef = 850FC790207AC5090006FBA3 /* NodeRender.metal */; };
 		850FC793207AC96F0006FBA3 /* SCNScene+Glow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850FC792207AC96E0006FBA3 /* SCNScene+Glow.swift */; };
 		850FC795207AC9820006FBA3 /* NodeTechnique.plist in Resources */ = {isa = PBXBuildFile; fileRef = 850FC794207AC9820006FBA3 /* NodeTechnique.plist */; };
-		850FC79C207ACBB90006FBA3 /* fox_squareLQ.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 850FC796207ACBB80006FBA3 /* fox_squareLQ.jpeg */; };
+		850FC79C207ACBB90006FBA3 /* menuFox.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 850FC796207ACBB80006FBA3 /* menuFox.jpeg */; };
 		850FC79D207ACBB90006FBA3 /* checkmarkWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 850FC797207ACBB80006FBA3 /* checkmarkWhite.png */; };
 		850FC79E207ACBB90006FBA3 /* closeWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 850FC798207ACBB80006FBA3 /* closeWhite.png */; };
 		850FC7A0207ACBB90006FBA3 /* menuLowPolyTree.png in Resources */ = {isa = PBXBuildFile; fileRef = 850FC79A207ACBB90006FBA3 /* menuLowPolyTree.png */; };
@@ -81,7 +81,6 @@
 		853AD08F2071B3C600BF01CA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 853AD08D2071B3C600BF01CA /* Main.storyboard */; };
 		853AD0912071B3CB00BF01CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 853AD0902071B3CB00BF01CA /* Assets.xcassets */; };
 		853AD0942071B3CB00BF01CA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 853AD0922071B3CB00BF01CA /* LaunchScreen.storyboard */; };
-		853AD09B2071B56A00BF01CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 853AD0992071B56A00BF01CA /* Assets.xcassets */; };
 		853AD09C2071B56A00BF01CA /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 853AD09A2071B56A00BF01CA /* art.scnassets */; };
 		853AD0A52071B88D00BF01CA /* ARPowerPanels.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 853ACFDE2071B2A000BF01CA /* ARPowerPanels.framework */; };
 		853AD0A62071B88D00BF01CA /* ARPowerPanels.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 853ACFDE2071B2A000BF01CA /* ARPowerPanels.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -138,6 +137,7 @@
 		853AD1362071F5DC00BF01CA /* shapeTorus.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD12D2071F5DC00BF01CA /* shapeTorus.png */; };
 		853AD1372071F5DC00BF01CA /* shapeBox.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD12E2071F5DC00BF01CA /* shapeBox.png */; };
 		853AD1382071F5DC00BF01CA /* shapePyramid.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD12F2071F5DC00BF01CA /* shapePyramid.png */; };
+		857E9ED42083FE7C007DD189 /* menuShip.png in Resources */ = {isa = PBXBuildFile; fileRef = 857E9ED32083FE7C007DD189 /* menuShip.png */; };
 		85F89266207C534900794839 /* NodeNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F89265207C534900794839 /* NodeNames.swift */; };
 /* End PBXBuildFile section */
 
@@ -169,7 +169,7 @@
 		850FC790207AC5090006FBA3 /* NodeRender.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = NodeRender.metal; sourceTree = "<group>"; };
 		850FC792207AC96E0006FBA3 /* SCNScene+Glow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SCNScene+Glow.swift"; sourceTree = "<group>"; };
 		850FC794207AC9820006FBA3 /* NodeTechnique.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = NodeTechnique.plist; sourceTree = "<group>"; };
-		850FC796207ACBB80006FBA3 /* fox_squareLQ.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = fox_squareLQ.jpeg; sourceTree = "<group>"; };
+		850FC796207ACBB80006FBA3 /* menuFox.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = menuFox.jpeg; sourceTree = "<group>"; };
 		850FC797207ACBB80006FBA3 /* checkmarkWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkmarkWhite.png; sourceTree = "<group>"; };
 		850FC798207ACBB80006FBA3 /* closeWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = closeWhite.png; sourceTree = "<group>"; };
 		850FC79A207ACBB90006FBA3 /* menuLowPolyTree.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuLowPolyTree.png; sourceTree = "<group>"; };
@@ -244,7 +244,6 @@
 		853AD0902071B3CB00BF01CA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		853AD0932071B3CB00BF01CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		853AD0952071B3CB00BF01CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		853AD0992071B56A00BF01CA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		853AD09A2071B56A00BF01CA /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 		853AD0AA2071BC5900BF01CA /* ARKitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARKitViewController.swift; sourceTree = "<group>"; };
 		853AD0B02071EF5500BF01CA /* Assets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
@@ -299,6 +298,7 @@
 		853AD12D2071F5DC00BF01CA /* shapeTorus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shapeTorus.png; sourceTree = "<group>"; };
 		853AD12E2071F5DC00BF01CA /* shapeBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shapeBox.png; sourceTree = "<group>"; };
 		853AD12F2071F5DC00BF01CA /* shapePyramid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shapePyramid.png; sourceTree = "<group>"; };
+		857E9ED32083FE7C007DD189 /* menuShip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuShip.png; sourceTree = "<group>"; };
 		85F89265207C534900794839 /* NodeNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeNames.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -635,7 +635,6 @@
 			isa = PBXGroup;
 			children = (
 				850FC7A2207ACCDD0006FBA3 /* ForPlaygroundOnly */,
-				853AD0992071B56A00BF01CA /* Assets.xcassets */,
 				853AD09A2071B56A00BF01CA /* art.scnassets */,
 			);
 			path = Resources;
@@ -695,9 +694,10 @@
 			children = (
 				850FC797207ACBB80006FBA3 /* checkmarkWhite.png */,
 				850FC798207ACBB80006FBA3 /* closeWhite.png */,
-				850FC796207ACBB80006FBA3 /* fox_squareLQ.jpeg */,
+				850FC796207ACBB80006FBA3 /* menuFox.jpeg */,
 				850FC79A207ACBB90006FBA3 /* menuLowPolyTree.png */,
 				850FC79B207ACBB90006FBA3 /* menuWolf.png */,
+				857E9ED32083FE7C007DD189 /* menuShip.png */,
 			);
 			path = imagesMenu;
 			sourceTree = "<group>";
@@ -843,8 +843,8 @@
 				853AD1332071F5DC00BF01CA /* shapePlane.png in Resources */,
 				853AD0E62071F22D00BF01CA /* Stone_13.png in Resources */,
 				853AD0F42071F22D00BF01CA /* Crown.png in Resources */,
+				857E9ED42083FE7C007DD189 /* menuShip.png in Resources */,
 				853AD09C2071B56A00BF01CA /* art.scnassets in Resources */,
-				853AD09B2071B56A00BF01CA /* Assets.xcassets in Resources */,
 				853AD0FE2071F22D00BF01CA /* Stone_3.png in Resources */,
 				853AD1072071F22D00BF01CA /* Coin.png in Resources */,
 				853AD0EA2071F22D00BF01CA /* Stone_14.png in Resources */,
@@ -857,7 +857,7 @@
 				853AD0F62071F22D00BF01CA /* Shield.png in Resources */,
 				853AD0FC2071F22D00BF01CA /* Crystal_2.png in Resources */,
 				853AD1302071F5DC00BF01CA /* shapeCone.png in Resources */,
-				850FC79C207ACBB90006FBA3 /* fox_squareLQ.jpeg in Resources */,
+				850FC79C207ACBB90006FBA3 /* menuFox.jpeg in Resources */,
 				853AD1342071F5DC00BF01CA /* shapeCapsule.png in Resources */,
 				853AD1002071F22D00BF01CA /* Tree.png in Resources */,
 				853AD0FB2071F22D00BF01CA /* Rocks_And.png in Resources */,
