@@ -88,7 +88,11 @@ public enum Model: NodeCreatorType {
     case wolf, fox, lowPolyTree, camera, custom, ship
     
     static var allTypes: [NodeCreatorType] {
-        return [Model.wolf, Model.fox, Model.lowPolyTree, Model.ship] // TODO remove the Axis assets
+        if isPlaygroundBook {
+            return [Model.fox, Model.ship]
+        } else {
+            return [Model.wolf, Model.fox, Model.lowPolyTree, Model.ship]
+        }
     }
     
     public func createNode() -> SCNNode? {

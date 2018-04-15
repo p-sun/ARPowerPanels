@@ -17,6 +17,7 @@
  - Add ability to reposition the pivot -- make sure the axis updates
  - Make FTD Private
  - Port onto PlaygroundBook again
+ - Figure out how to import .dae files into the playgroundbook.
  - Add the extra Adventure models & then port again onto PlaygroundBook
  - Other TODO tags
  - May need to convert all of TransformationPanels to be FTD, or place the stackView in a scrollView?
@@ -56,6 +57,7 @@ public class ARPowerPanels: UIView {
                 }
             } else {
                 
+                // Don't glow playground book because 
                 if let oldValue = oldValue {
                     let oldBoxNode = oldValue.directChildNode(withName: NodeNames.boundingBox.rawValue)
                     oldBoxNode?.removeFromParentNode()
