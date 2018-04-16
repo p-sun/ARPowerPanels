@@ -9,7 +9,7 @@ Reimagining the power of Xcode's View Debugger for live debugging of AR or Scene
 
 Hello, fellow traveller.
 
-Whereever you are in your journey of learning or developing, I want to be of use to you. For people still developing their 3D intuition, this can be a playground within a playground. Once you start developing, you can use this framework to help you view and debug your scenes live, without having to pause your app.
+Where ever you are in your journey of learning or developing, I want to be of use to you. For people still developing their 3D intuition, this can be a playground within a playground. Once you start developing, you can use this framework to help you view and debug your scenes live, without having to pause your app.
 
 *"How far is 30 units?"*
 
@@ -17,21 +17,7 @@ Whereever you are in your journey of learning or developing, I want to be of use
 
 *"I dropped an model into my AR app -- but where did it go?"* <--- I feel you. This happens a lot to me.
 
-ARPowerPanels will help you answer that. 
-
-hank you so much for visiting! We could definitely use more features and some code clean up. I'd be super happy if you would like to be involved. Make a PR or contact me anytime!
-
-Yours Truely,
-
--- Paige Sun
-
-GitHub [@p-sun](https://github.com/p-sun)
-
-Email [paige.sun.dev@gmail.com](paige.sun.dev@gmail.com)
-
-LinkedIn [https://www.linkedin.com/in/paigesun/](https://www.linkedin.com/in/paigesun/)
-
-Toronto, ON, Canada
+ARPowerPanels will help you answer that.
 
 ## Let's get started! 🚀
 - Tap any panel on the left to display it. Then tap again to hide it.
@@ -92,7 +78,17 @@ Come grab the Universal iOS app, and [available on my Github](https://github.com
 
 - Of course, try to create your own world here!
 
+### Credits
 
+Build by Paige Sun
+
+GitHub [@p-sun](https://github.com/p-sun)
+
+Email [paige.sun.dev@gmail.com](paige.sun.dev@gmail.com)
+
+LinkedIn [https://www.linkedin.com/in/paigesun/](https://www.linkedin.com/in/paigesun/)
+
+Toronto, ON, Canada
 
 [image1]: https://github.com/p-sun/ARPowerPanels/blob/master/Screenshots/ARPowerPanels_1_.PNG
 [image2]: https://github.com/p-sun/ARPowerPanels/blob/master/Screenshots/ARPowerPanels_2_.PNG
