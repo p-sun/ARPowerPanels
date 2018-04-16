@@ -78,9 +78,9 @@ enum ImageAssets {
         case .shapeBox:
             return ImageAssets.imageForName("shapeBox", extensionName: "png")
         case .shapeCapsule:
-            return ImageAssets.imageForName("shapeCone", extensionName: "png")
+            return ImageAssets.imageForName("shapeCapsule", extensionName: "png")
         case .shapeCone:
-            return ImageAssets.imageForName("shapeBox", extensionName: "png")
+            return ImageAssets.imageForName("shapeCone", extensionName: "png")
         case .shapeCylinder:
             return ImageAssets.imageForName("shapeCylinder", extensionName: "png")
         case .shapePlane:

@@ -131,14 +131,14 @@ class TransformationPanel: UIStackView {
             quaternionRotationInput.constrainHeight(29)
 
             quaternionRotationInput.delegate = self
-            quaternionRotationInput.setPanSpeed(0.007)
+            quaternionRotationInput.setPanSpeed(0.8)
             addArrangedSubview(quaternionRotationInput)
             
         case .eulerRotation:
             eulerRotationInput.constrainHeight(29)
 
             eulerRotationInput.delegate = self
-            eulerRotationInput.setPanSpeed(1)
+            eulerRotationInput.setPanSpeed(0.8)
             addArrangedSubview(eulerRotationInput)
             
         case .scale:
@@ -161,7 +161,6 @@ class TransformationPanel: UIStackView {
             orientationInput.delegate = self
             orientationInput.setPanSpeed(0.005)
             addArrangedSubview(orientationInput)
-
         }
     }
     
@@ -191,7 +190,9 @@ class TransformationPanel: UIStackView {
         case .position:
             positionInput.vector = transformable.position
         case .quaternionRotation:
-            quaternionRotationInput.vector = transformable.rotation
+            let rotation = transformable.rotation
+            let displayRotation = SCNVector4Make(rotation.x, rotation.y, rotation.z, rotation.w.radiansToDegrees)
+            quaternionRotationInput.vector = displayRotation
         case .eulerRotation:
             let radiansVector = transformable.eulerAngles
             eulerRotationInput.vector = radiansVector.radiansToDegrees
@@ -305,9 +306,6 @@ extension TransformationPanel: SliderVector3ViewDelegate {
         } else if controlTypes.contains(.eulerRotation) &&
             sliderVector3View == eulerRotationInput {
             transformable?.eulerAngles = vector.degreesToRadians
-            
-//            updateInput(for: .quaternionRotation)
-//            updateInput(for: .orientation)
 
         } else if controlTypes.contains(.scale) &&
             sliderVector3View == scaleInput {
@@ -322,14 +320,12 @@ extension TransformationPanel: SliderVector3ViewDelegate {
 // MARK: - Quaternion Rotation
 extension TransformationPanel: SliderVector4ViewDelegate {
     func sliderVector4View(_ sliderVector4View: SliderVector4View, didChangeValues vector: SCNVector4) {
-        // There are two Vector 4 inputs -- quaternion and orientation
-        // If the values in either of these are updated by the user, update the others
+
         if controlTypes.contains(.quaternionRotation) &&
             sliderVector4View == quaternionRotationInput {
-            transformable?.rotation = vector
-
-//            updateInput(for: .eulerRotation)
-//            updateInput(for: .orientation)
+            
+            let newVector = SCNVector4Make(vector.x, vector.y, vector.z, vector.w.degreesToRadians)
+            transformable?.rotation = newVector
 
         } else if controlTypes.contains(.orientation) &&
             sliderVector4View == orientationInput {
