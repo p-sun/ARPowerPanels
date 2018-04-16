@@ -570,22 +570,14 @@
 		853AD0582071B2FF00BF01CA /* TransformationPanel */ = {
 			isa = PBXGroup;
 			children = (
-				853AD0592071B2FF00BF01CA /* Checkmark Input View */,
-				853AD05C2071B2FF00BF01CA /* PowerPanelTextField.swift */,
 				853AD05D2071B2FF00BF01CA /* Slider Input Views */,
+				853AD05A2071B2FF00BF01CA /* PowerPanelCheckmarkInput.swift */,
+				853AD05C2071B2FF00BF01CA /* PowerPanelTextField.swift */,
 				853AD0632071B2FF00BF01CA /* TransformationPanel.swift */,
 				853AD0642071B2FF00BF01CA /* TransformationType.swift */,
 				85F89265207C534900794839 /* NodeNames.swift */,
 			);
 			path = TransformationPanel;
-			sourceTree = "<group>";
-		};
-		853AD0592071B2FF00BF01CA /* Checkmark Input View */ = {
-			isa = PBXGroup;
-			children = (
-				853AD05A2071B2FF00BF01CA /* PowerPanelCheckmarkInput.swift */,
-			);
-			path = "Checkmark Input View";
 			sourceTree = "<group>";
 		};
 		853AD05D2071B2FF00BF01CA /* Slider Input Views */ = {
