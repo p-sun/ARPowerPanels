@@ -92,7 +92,7 @@ public class ARPowerPanels: UIView {
     private let allEditsPanel = TransformationPanel(controlTypes: TransformationType.all)
     
     // MARK: Left hand views
-    private let arGameSegmentedControl = UISegmentedControl(items: ["AR", "Game"])
+    private let arGameSegmentedControl = UISegmentedControl(items: ["AR", "Scene"])
     private let showHideMenuButton = RoundedButton()
     private let selectedNodeLabel = UILabel()
     private var menuItems = [MenuItem]()
@@ -121,7 +121,7 @@ public class ARPowerPanels: UIView {
     
     public convenience init(scene: SCNScene, panelTypes: [ARPowerPanelsType]) { //TODO
         self.init(isARKit: false, panelTypes: panelTypes)
-        sceneView.backgroundColor = #colorLiteral(red: 0.1654644267, green: 0.3628849843, blue: 0.5607843399, alpha: 1) // TODO change color
+        sceneView.backgroundColor = #colorLiteral(red: 0.1654644267, green: 0.3628849843, blue: 0.5607843399, alpha: 1)
         
         sceneView.scene = scene
         

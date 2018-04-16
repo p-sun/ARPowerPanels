@@ -56,18 +56,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let foxNode = Model.fox.createNode()!
         foxNode.name = "Boss 🦊"
         addNode(foxNode, to: scene.rootNode)
+
         
         //: ## Add another fox, re-position it, and animate it
         let anotherFox = Model.fox.createNode()!
         anotherFox.name = "Dizzy 🦊"
-        anotherFox.position = SCNVector3Make(-0.03, 0, 0)
+        anotherFox.position = SCNVector3Make(-0.12, -0.03, 0)
         anotherFox.scale = SCNVector3Make(0.8, 0.8, 0.8)
-        anotherFox.eulerAngles = SCNVector3Make(0, 17, 45).degreesToRadians
+        anotherFox.eulerAngles = SCNVector3Make(0, 17, -13.8).degreesToRadians
         addNode(anotherFox, to: scene.rootNode)
         
         anotherFox.runAction(
             SCNAction.repeatForever(
                 SCNAction.rotateBy(x: 0, y: 1, z: 0, duration: 1)))
+        
+        //: ## Add a box to orbit the spinning fox
+        let orbitingBox = Shapes.box.createNode()!
+        orbitingBox.position = SCNVector3Make(0.22, 0, 0)
+        anotherFox.addChildNode(orbitingBox)
+        
+        //: ## Draw an arrow between any two nodes
+        let arrow = NodeCreator.createArrowNode(fromNode: scene.rootNode, toNode: orbitingBox)
+        addNode(arrow, to: scene.rootNode)
         
         let arViewController = ARKitViewController(
             scene: scene,
