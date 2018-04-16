@@ -60,7 +60,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //: ## Add another fox, re-position it, and animate it
         let anotherFox = Model.fox.createNode()!
         anotherFox.name = "Dizzy 🦊"
-        anotherFox.position = SCNVector3Make(-0.12, -0.03, 0)
+        anotherFox.position = SCNVector3Make(-0.12, 0.06, 0)
         anotherFox.scale = SCNVector3Make(0.8, 0.8, 0.8)
         anotherFox.eulerAngles = SCNVector3Make(0, 17, -13.8).degreesToRadians
         addNode(anotherFox, to: scene.rootNode)
@@ -74,9 +74,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         boxGeometry.firstMaterial?.diffuse.contents = #colorLiteral(red: 1, green: 0.9390204065, blue: 0.134511675, alpha: 1)
         let yellowBox = SCNNode(geometry: boxGeometry)
         yellowBox.name = "Yellow Orbiting Box"
-        yellowBox.position = SCNVector3Make(0.22, 0, 0)
+        yellowBox.position = SCNVector3Make(0.22, -0.17, 0)
         addNode(yellowBox, to: anotherFox)
-
+        
         yellowBox.runAction(
             SCNAction.repeatForever(
                 SCNAction.rotateBy(x: 0, y: 1, z: 0, duration: 0.4)))
@@ -85,7 +85,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let sphereGeometry = SCNSphere(radius: 0.01)
         sphereGeometry.firstMaterial?.diffuse.contents = #colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1)
         let pinkSphere = SCNNode(geometry: sphereGeometry)
-        pinkSphere.name = "Yellow Orbiting Box"
+        pinkSphere.name = "Pink Orbiting Sphere"
         pinkSphere.position = SCNVector3Make(0.1, 0, 0)
         addNode(pinkSphere, to: yellowBox)
         
@@ -108,7 +108,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return true
     }
-
     
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
