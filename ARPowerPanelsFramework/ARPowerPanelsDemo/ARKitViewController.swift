@@ -39,7 +39,7 @@ public class ARKitViewController: UIViewController {
         arSceneView.debugOptions  = [.showConstraints, ARSCNDebugOptions.showFeaturePoints]//, ARSCNDebugOptions.showWorldOrigin]
         
         arSceneView.scene = scene
-        scene.rootNode.name = "AR World Origin   🌎" // TODO Rename this node when "Scene Graph" starts
+        scene.rootNode.name = "AR World Origin   🌎"
         
         view.addSubview(powerPanels)
         powerPanels.constrainEdges(to: view)
@@ -64,12 +64,12 @@ public class ARKitViewController: UIViewController {
 
 extension ARKitViewController: ARSCNViewDelegate {
     public func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
+        
         guard let planeAnchor = anchor as? ARPlaneAnchor else { return }
-//        print("didAdd \(node.position)")
+        node.name = "Plane Anchor"
         
         let planeNode = NodeCreator.bluePlane(anchor: planeAnchor)
         planeNode.name = "Blue Plane"
-        
         // ARKit owns the node corresponding to the anchor, so make the plane a child node.
         node.addChildNode(planeNode)
     }

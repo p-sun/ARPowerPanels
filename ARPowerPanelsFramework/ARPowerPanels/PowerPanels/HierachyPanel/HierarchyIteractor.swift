@@ -82,7 +82,7 @@ class HierachyIterator {
     
     private func visibleChildren(for node: SCNNode) -> [SCNNode] {
         let visible = node.childNodes.filter { child in
-            return SceneCreator.shared.displayInHierachy(node: child)
+            return SceneGraphManager.shared.displayInHierachy(node: child)
         }
         
         return visible

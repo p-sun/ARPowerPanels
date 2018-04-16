@@ -13,13 +13,14 @@
  - Add planet models for earth, moon, sun, saturn.
  - Add rotateForever animations for x, y, z. Add animation panel.
  - Use the earth planet model with axis to be world origin -- deletable
- - Drop models into the scene only after a plane has been detected
  - Add the extra Adventure models & then port again onto PlaygroundBook
 
  Bugs
  - Fix re-creating the gameNodeCamera if the gameNodeCamera was deleted? -- recreate it from the POV of the scene?
  - Add ability to reposition the pivot -- make sure the axis updates
-
+ - ARKit adds a node with a geometry that can't be deleted. Activating the metal glow on it causes a flicker and may crash the app.
+   - http://loufranco.com/blog/debug-iphone-crash-exc_bad_access
+ 
  Cleanup
  - Make FTD Private
  - Other TODO tags
@@ -324,7 +325,7 @@ extension ARPowerPanels {
                             // Add a camera model to the AR Camera
                             if let cameraNode = Model.camera.createNode() {
                                 cameraNode.name = "Camera Model"
-                                SceneCreator.shared.addNode(cameraNode, to: child)
+                                SceneGraphManager.shared.addNode(cameraNode, to: child)
                                 child.name = NodeNames.arModeCamera.rawValue
                             }
 

@@ -16,11 +16,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func addNode(_ node: SCNNode, to parentNode: SCNNode) {
-        SceneCreator.shared.addNode(node, to: parentNode)
+        SceneGraphManager.shared.addNode(node, to: parentNode)
     }
     
     func removeNode(_ node: SCNNode?) {
-        SceneCreator.shared.removeNode(node)
+        SceneGraphManager.shared.removeNode(node)
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {

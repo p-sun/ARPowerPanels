@@ -1,5 +1,5 @@
 //
-//  SceneCreator.swift
+//  SceneGraphManager.swift
 //  ARPowerPanelsDemo
 //
 //  Created by TSD040 on 2018-04-01.
@@ -17,31 +17,44 @@ struct NodeMetaData {
     }
 }
 
-public class SceneCreator {
+public class SceneGraphManager {
     
-    public static let shared = SceneCreator()
+    public static let shared = SceneGraphManager()
     
     private var nodeMetaDatas = [SCNNode: NodeMetaData]()
     
-    // TODO remove the to parentNode
-    // Only use this to set meta data
+    // TODO Refactor
     public func addNode(_ node: SCNNode, to parentNode: SCNNode) {
         parentNode.addChildNode(node)
         
-        nodeMetaDatas[node] = NodeMetaData(displayInHierachy: true)
-        node.enumerateChildNodes { (child, _) in
-            nodeMetaDatas[child] = NodeMetaData(displayInHierachy: false)
+        showInSceneGraph(parentNode)
+        showInSceneGraph(node)
+        hideChildrenInSceneGraph(of: node)
+    }
+    
+    private func hideChildrenInSceneGraph(of node: SCNNode) {
+        for child in node.childNodes {
+            hideInSceneGraph(child)
         }
-        
-        nodeMetaDatas[parentNode] = NodeMetaData(displayInHierachy: true)
+//        node.enumerateChildNodes { (child, _) in
+//            hideInSceneGraph(child)
+//        }
+    }
+    
+    public func showInSceneGraph(_ node: SCNNode) {
+        nodeMetaDatas[node] = NodeMetaData(displayInHierachy: true)
+    }
+
+    public func hideInSceneGraph(_ node: SCNNode) {
+        nodeMetaDatas[node] = NodeMetaData(displayInHierachy: false)
     }
     
     public func removeNode(_ node: SCNNode?) {
         guard let node = node else { return }
-        node.removeFromParentNode()
         node.enumerateHierarchy { (node, _) in
             nodeMetaDatas[node] = nil
         }
+        node.removeFromParentNode()
     }
     
     public func displayInHierachy(node: SCNNode) -> Bool {

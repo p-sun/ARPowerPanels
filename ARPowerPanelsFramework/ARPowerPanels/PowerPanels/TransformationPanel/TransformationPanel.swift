@@ -281,7 +281,7 @@ extension TransformationPanel {
         let axisNode = NodeCreator.createAxesNode(quiverLength: 0.15, quiverThickness: 1.0)
         axisNode.name = NodeNames.axis.rawValue
         axisNode.transform = parentNode.pivot
-        SceneCreator.shared.addNode(axisNode, to: parentNode) // Remove children from the Scene Graph
+        SceneGraphManager.shared.addNode(axisNode, to: parentNode) // Remove children from the Scene Graph
     }
     
     private func updateAxisNode(transformable: Transformable, isChecked: Bool) {
@@ -290,7 +290,7 @@ extension TransformationPanel {
             transformationDelegate?.transformationPanelDidEditNode()
         } else if let selectedNode = transformable as? SCNNode,
             let axisNode = selectedNode.directChildNode(withName: NodeNames.axis.rawValue) {
-            SceneCreator.shared.removeNode(axisNode)
+            SceneGraphManager.shared.removeNode(axisNode)
             transformationDelegate?.transformationPanelDidEditNode()
         }
     }
