@@ -57,7 +57,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         foxNode.name = "Boss 🦊"
         addNode(foxNode, to: scene.rootNode)
 
-        
         //: ## Add another fox, re-position it, and animate it
         let anotherFox = Model.fox.createNode()!
         anotherFox.name = "Dizzy 🦊"
@@ -70,14 +69,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             SCNAction.repeatForever(
                 SCNAction.rotateBy(x: 0, y: 1, z: 0, duration: 1)))
         
-        //: ## Add a box to orbit the spinning fox
-        let orbitingBox = Shapes.box.createNode()!
-        orbitingBox.position = SCNVector3Make(0.22, 0, 0)
-        anotherFox.addChildNode(orbitingBox)
+        //: ## Add a yellow box to orbit the spinning fox
+        let boxGeometry = SCNBox(width: 0.04, height: 0.04, length: 0.04, chamferRadius: 0)
+        boxGeometry.firstMaterial?.diffuse.contents = #colorLiteral(red: 1, green: 0.9390204065, blue: 0.134511675, alpha: 1)
+        let yellowBox = SCNNode(geometry: boxGeometry)
+        yellowBox.name = "Yellow Orbiting Box"
+        yellowBox.position = SCNVector3Make(0.22, 0, 0)
+        addNode(yellowBox, to: anotherFox)
+
+        yellowBox.runAction(
+            SCNAction.repeatForever(
+                SCNAction.rotateBy(x: 0, y: 1, z: 0, duration: 0.4)))
         
-        //: ## Draw an arrow between any two nodes
-        let arrow = NodeCreator.createArrowNode(fromNode: scene.rootNode, toNode: orbitingBox)
-        addNode(arrow, to: scene.rootNode)
+        //: ## Add a pink sphere to orbit the spinning fox
+        let sphereGeometry = SCNSphere(radius: 0.01)
+        sphereGeometry.firstMaterial?.diffuse.contents = #colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1)
+        let pinkSphere = SCNNode(geometry: sphereGeometry)
+        pinkSphere.name = "Yellow Orbiting Box"
+        pinkSphere.position = SCNVector3Make(0.1, 0, 0)
+        addNode(pinkSphere, to: yellowBox)
+        
+        //: ## Draw an arrow between Root Node to the Yellow Box
+        let arrow = NodeCreator.createArrowNode(fromNode: scene.rootNode, toNode: yellowBox)
+        arrow.name = "Root Node to Yellow Box"
+        addNode(arrow, to: yellowBox)
+
+        //: ## Draw an arrow between Yellow Box and the Pink Sphere
+        let arrow2 = NodeCreator.createArrowNode(fromNode: yellowBox, toNode: pinkSphere)
+        arrow2.name = "Yellow Box to Pink Sphere"
+        addNode(arrow2, to: pinkSphere)
         
         let arViewController = ARKitViewController(
             scene: scene,

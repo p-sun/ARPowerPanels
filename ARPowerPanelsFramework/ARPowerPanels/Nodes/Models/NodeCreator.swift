@@ -15,7 +15,7 @@ public struct NodeCreator {
     public static func createArrowNode(fromNode: SCNNode, toNode: SCNNode) -> SCNNode {
         func arrowShape() -> SCNNode {
             let coneGeometry = SCNCone(topRadius: 0, bottomRadius: 0.02, height: 0.04)
-            coneGeometry.firstMaterial?.diffuse.contents = #colorLiteral(red: 0.7292214378, green: 0.9352593591, blue: 0.4135628749, alpha: 1)
+            coneGeometry.firstMaterial?.diffuse.contents = #colorLiteral(red: 0.8792779051, green: 0.9352593591, blue: 0.8162432972, alpha: 1)
             let arrowShape = SCNNode(geometry: coneGeometry)
             arrowShape.name = "Arrow Shape"
             arrowShape.eulerAngles = SCNVector3Make(Float(-90.0).degreesToRadians, 0, 0)
@@ -23,7 +23,7 @@ public struct NodeCreator {
         }
 
         let boxGeometry = SCNBox(width: 0.004, height: 0.004, length: 0.5, chamferRadius: 0.02)
-        boxGeometry.firstMaterial?.diffuse.contents = #colorLiteral(red: 0.8075761506, green: 0.9352593591, blue: 0.6293838224, alpha: 1)
+        boxGeometry.firstMaterial?.diffuse.contents = #colorLiteral(red: 0.8792779051, green: 0.9352593591, blue: 0.8162432972, alpha: 1)
 
         func boxShape() -> SCNNode {
             let node = SCNNode()
@@ -41,15 +41,13 @@ public struct NodeCreator {
         // Add Constraints
         let lookAtConstraint = SCNLookAtConstraint(target: toNode)
 
-        let transformConstraint = SCNTransformConstraint(inWorldSpace: true) { [weak fromNode, weak toNode, weak boxGeometry] (node, transform) -> SCNMatrix4 in
-            guard let fromNode = fromNode, let toNode = toNode, let boxGeometry = boxGeometry else { return transform }
+        let transformConstraint = SCNTransformConstraint(inWorldSpace: true) { (node, transform) -> SCNMatrix4 in
             
             let transformNode = SCNNode()
             transformNode.transform = transform
 
-            let deltaPosition = toNode.worldPosition - fromNode.worldPosition
-            
-            let middlePosition = fromNode.worldPosition + deltaPosition / 2
+            let deltaPosition = toNode.presentation.worldPosition - fromNode.presentation.worldPosition
+            let middlePosition = fromNode.presentation.worldPosition + deltaPosition / 2
             transformNode.position = middlePosition
 
             boxGeometry.length = CGFloat(deltaPosition.length)

@@ -23,15 +23,17 @@ class TransformationPanel: UIStackView {
     
     // MARK: - Variables - Views
     private lazy var nameTextField = PowerPanelTextField()
+    private lazy var opacityInput = SliderInputsView(axisLabels: ["   "], minValue: 0, maxValue: 1)
     private lazy var boundingBoxLabel = header(for: .name)
+    
     private lazy var showBoundingBoxSwitch = PowerPanelCheckmarkInput(text: TransformationType.showBoundingBox.displayName)
     private lazy var showAxisSwitch = PowerPanelCheckmarkInput(text: TransformationType.showAxis.displayName)
+    private lazy var showLocalVectorSwitch = PowerPanelCheckmarkInput(text: TransformationType.showLocalVector.displayName)
     
     private lazy var positionInput = SliderVector3View()
     private lazy var quaternionRotationInput = SliderVector4View()
     private lazy var eulerRotationInput = SliderVector3View()
     private lazy var scaleInput = SliderVector3View(minValue: 0.2)
-    private lazy var opacityInput = SliderInputsView(axisLabels: ["   "], minValue: 0, maxValue: 1)
     private lazy var orientationInput = SliderVector4View()
 
     // MARK: - Public
@@ -71,6 +73,12 @@ class TransformationPanel: UIStackView {
             showAxisSwitch.isChecked = hasAxis
         }
         
+        if controlTypes.contains(.showLocalVector), let node = transformable as? SCNNode {
+            let localVectorNode = node.directChildNode(withName: NodeNames.localVector.rawValue)
+            let hasVector = localVectorNode != nil
+            showLocalVectorSwitch.isChecked = hasVector
+        }
+        
         updateInputs()
         Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(updateInputs), userInfo: nil, repeats: true)
     }
@@ -83,7 +91,9 @@ class TransformationPanel: UIStackView {
     
     // MARK: - Private
     private func setupInputView(for controlType: TransformationType) {
-        if controlType != .showBoundingBox && controlType != .showAxis {
+        if controlType != .showBoundingBox &&
+            controlType != .showAxis &&
+            controlType != .showLocalVector {
             addArrangedSubview(header(for: controlType))
         }
         
@@ -120,6 +130,11 @@ class TransformationPanel: UIStackView {
             showAxisSwitch.constrainHeight(37) // 29 + 8 for insets
             addArrangedSubview(showAxisSwitch)
         
+        case .showLocalVector:
+            showLocalVectorSwitch.delegate = self
+            showLocalVectorSwitch.constrainHeight(37)
+            addArrangedSubview(showLocalVectorSwitch)
+            
         case .position:
             positionInput.constrainHeight(29)
 
@@ -178,15 +193,13 @@ class TransformationPanel: UIStackView {
         guard let transformable = transformable, controlTypes.contains(controlType) else { return }
         
         switch controlType {
-        case .name:
+        case .name, .showBoundingBox, .showAxis, .showLocalVector:
+            // UI Controls that only need to be updated when the selectedNode is changed
+            // are updated in control(transformable), not here
             break
-             // UI Controls that only need to be updated when the selectedNode is changed are updated in control(transformable), not here
+        
         case .boundingBox:
             boundingBoxLabel.text = boundingBoxText(for: transformable)
-        case .showBoundingBox:
-            break
-        case .showAxis:
-            break
         case .position:
             positionInput.vector = transformable.position
         case .quaternionRotation:
@@ -234,11 +247,13 @@ extension TransformationPanel: PowerPanelCheckmarkInputDelegate {
             updateBoundingBoxNode(transformable: transformable, isChecked: isChecked)
         } else if checkMarkInput == showAxisSwitch {
             updateAxisNode(transformable: transformable, isChecked: isChecked)
+        } else if checkMarkInput == showLocalVectorSwitch {
+            updateLocalVectorNode(transformable: transformable, isChecked: isChecked)
         }
     }
 }
 
-// MARK: - Show Bounding Box
+// MARK: - Show Bounding Box // TODO refactor
 extension TransformationPanel {
     static func addBoundingBox(for transformable: Transformable) {
         func translucentBoundingBox(for transformable: Transformable) -> SCNNode {
@@ -281,7 +296,7 @@ extension TransformationPanel {
         let axisNode = NodeCreator.createAxesNode(quiverLength: 0.15, quiverThickness: 1.0)
         axisNode.name = NodeNames.axis.rawValue
         axisNode.transform = parentNode.pivot
-        SceneGraphManager.shared.addNode(axisNode, to: parentNode) // Remove children from the Scene Graph
+        SceneGraphManager.shared.addNode(axisNode, to: parentNode)
     }
     
     private func updateAxisNode(transformable: Transformable, isChecked: Bool) {
@@ -291,6 +306,28 @@ extension TransformationPanel {
         } else if let selectedNode = transformable as? SCNNode,
             let axisNode = selectedNode.directChildNode(withName: NodeNames.axis.rawValue) {
             SceneGraphManager.shared.removeNode(axisNode)
+            transformationDelegate?.transformationPanelDidEditNode()
+        }
+    }
+}
+
+// MARK: - Show Local Vector
+extension TransformationPanel {
+    private func addLocalVectorNode(for transformable: Transformable) {
+        guard let parentNode = transformable as? SCNNode, let grandparentNode = parentNode.parent else { return }
+        
+        let localVectorNode = NodeCreator.createArrowNode(fromNode: grandparentNode, toNode: parentNode)
+        localVectorNode.name = NodeNames.localVector.rawValue
+        SceneGraphManager.shared.addNode(localVectorNode, to: parentNode)
+    }
+    
+    private func updateLocalVectorNode(transformable: Transformable, isChecked: Bool) {
+        if isChecked {
+            addLocalVectorNode(for: transformable)
+            transformationDelegate?.transformationPanelDidEditNode()
+        } else if let selectedNode = transformable as? SCNNode,
+            let localVectorNode = selectedNode.directChildNode(withName: NodeNames.localVector.rawValue) {
+            SceneGraphManager.shared.removeNode(localVectorNode)
             transformationDelegate?.transformationPanelDidEditNode()
         }
     }
