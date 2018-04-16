@@ -98,30 +98,31 @@ public enum Model: NodeCreatorType {
     public func createNode() -> SCNNode? {
         switch self {
         case .fox:
-            return nodeFromScene(assetName: "fox/max", rootChildNodeName: "Max_rootNode", newNodeName: "Fox 🦊", newScale: SCNVector3Make(0.2, 0.2, 0.2))
+            let foxNode = nodeFromScene(assetName: "fox/max", rootChildNodeName: "Max_rootNode")?.clone()
+            return wrapInParentNode(childNode: foxNode, parentName: "Fox 🦊", newScale: SCNVector3Make(0.3, 0.3, 0.3))
         case .wolf:
-            return nodeFromResource(assetName: "wolf/wolf", extensionName: "dae")?.clone()
+            let wolfNode = nodeFromResource(assetName: "wolf/wolf", extensionName: "dae")?.clone()
+            return wrapInParentNode(childNode: wolfNode, parentName: "Wolf 🐺", newScale: SCNVector3Make(0.16, 0.16, 0.16))
         case .lowPolyTree:
-            return nodeFromResource(assetName: "lowPolyTree", extensionName: "dae")?.clone()
+            let treeNode = nodeFromResource(assetName: "lowPolyTree", extensionName: "dae")?.clone()
+            return wrapInParentNode(childNode: treeNode, parentName: "Low Poly Tree 🌳", newScale: SCNVector3Make(0.2, 0.2, 0.2))
         case .camera:
-            return nodeFromScene(assetName: "camera", rootChildNodeName: "Camera Shape")
+            return nodeFromScene(assetName: "camera", rootChildNodeName: "Camera Shape")?.clone()
         case .custom:
             return SCNNode()
         case .ship:
-            return nodeFromScene(assetName: "ship", rootChildNodeName: "ship", newNodeName: "Spaceship ✈️", newScale: SCNVector3Make(0.03, 0.03, 0.03))
+            let shipNode = nodeFromScene(assetName: "ship", rootChildNodeName: "ship")?.clone()
+            return wrapInParentNode(childNode: shipNode, parentName: "Spaceship ✈️", newScale: SCNVector3Make(0.05, 0.05, 0.05))
         }
     }
     
-    private func nodeFromScene(assetName: String, rootChildNodeName: String, newNodeName: String, newScale: SCNVector3) -> SCNNode? {
-        if let foxNode = nodeFromScene(assetName: assetName, rootChildNodeName: rootChildNodeName)?.clone() {
-            let parentNode = SCNNode()
-            parentNode.name = newNodeName
-            foxNode.scale = newScale
-            parentNode.addChildNode(foxNode)
-            return parentNode
-        }
-        NSLog("PAIGE LOG: COULD NOT LOAD \(assetName) MODEL")
-        return nil
+    private func wrapInParentNode(childNode: SCNNode?, parentName: String, newScale: SCNVector3) -> SCNNode? {
+        guard let childNode = childNode else { return nil }
+        let parentNode = SCNNode()
+        parentNode.name = parentName
+        parentNode.addChildNode(childNode)
+        childNode.scale = newScale
+        return parentNode
     }
     
     private func nodeFromScene(assetName: String, rootChildNodeName: String) -> SCNNode? {
