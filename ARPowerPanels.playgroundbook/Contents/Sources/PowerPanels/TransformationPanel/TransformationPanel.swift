@@ -262,7 +262,7 @@ extension TransformationPanel {
             let boundingBox = transformable.boundingBox
             let diffBox = boundingBox.max - boundingBox.min
             let translucentBox = SCNBox(width: CGFloat(diffBox.x), height: CGFloat(diffBox.y), length: CGFloat(diffBox.z), chamferRadius: 0)
-            let tranlucentWhite = UIColor.white.withAlphaComponent(0.5)
+            let tranlucentWhite = UIColor.white.withAlphaComponent(0.3)
             translucentBox.materials = [SCNMaterial.material(withDiffuse: tranlucentWhite, respondsToLighting: false)]
             let boxNode = SCNNode(geometry: translucentBox)
             boxNode.name = boundingBoxName

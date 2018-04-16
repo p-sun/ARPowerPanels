@@ -63,19 +63,19 @@ public class ARPowerPanels: UIView {
                 }
             } else {
                 
-                // Don't glow playground book because 
-                if let oldValue = oldValue {
-                    let oldBoxNode = oldValue.directChildNode(withName: NodeNames.boundingBox.rawValue)
-                    oldBoxNode?.removeFromParentNode()
-                }
-
-                if !isRootNode {
-                    let currentBoxNode = selectedNode.directChildNode(withName: NodeNames.boundingBox.rawValue)
-                    let hasBoundingBox = currentBoxNode != nil
-                    if !hasBoundingBox {
-                        TransformationPanel.addBoundingBox(for: selectedNode)
-                    }
-                }
+//                // Don't glow playground book because 
+//                if let oldValue = oldValue {
+//                    let oldBoxNode = oldValue.directChildNode(withName: NodeNames.boundingBox.rawValue)
+//                    oldBoxNode?.removeFromParentNode()
+//                }
+//
+//                if !isRootNode {
+//                    let currentBoxNode = selectedNode.directChildNode(withName: NodeNames.boundingBox.rawValue)
+//                    let hasBoundingBox = currentBoxNode != nil
+//                    if !hasBoundingBox {
+//                        TransformationPanel.addBoundingBox(for: selectedNode)
+//                    }
+//                }
             }
             
             updatePanels()

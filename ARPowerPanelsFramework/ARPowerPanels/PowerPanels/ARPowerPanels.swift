@@ -36,7 +36,7 @@ import SceneKit
 import ARKit
 
 // Playground books require a different set of code to load image and model assets.
-var isPlaygroundBook = true
+var isPlaygroundBook = false
 
 public enum ARPowerPanelsType {
     case sceneGraph, info, easyMoves, allMoves, allEdits
@@ -63,19 +63,19 @@ public class ARPowerPanels: UIView {
                 }
             } else {
                 
-                // Don't glow playground book because 
-                if let oldValue = oldValue {
-                    let oldBoxNode = oldValue.directChildNode(withName: NodeNames.boundingBox.rawValue)
-                    oldBoxNode?.removeFromParentNode()
-                }
-
-                if !isRootNode {
-                    let currentBoxNode = selectedNode.directChildNode(withName: NodeNames.boundingBox.rawValue)
-                    let hasBoundingBox = currentBoxNode != nil
-                    if !hasBoundingBox {
-                        TransformationPanel.addBoundingBox(for: selectedNode)
-                    }
-                }
+//                // Don't glow playground book because
+//                if let oldValue = oldValue {
+//                    let oldBoxNode = oldValue.directChildNode(withName: NodeNames.boundingBox.rawValue)
+//                    oldBoxNode?.removeFromParentNode()
+//                }
+//
+//                if !isRootNode {
+//                    let currentBoxNode = selectedNode.directChildNode(withName: NodeNames.boundingBox.rawValue)
+//                    let hasBoundingBox = currentBoxNode != nil
+//                    if !hasBoundingBox {
+//                        TransformationPanel.addBoundingBox(for: selectedNode)
+//                    }
+//                }
             }
             
             updatePanels()
