@@ -21,13 +21,14 @@ class HierachyIterator {
     
     weak var delegate: HierachyIteratorDelegate?
 
-    func createHierachyStates(rootNode: SCNNode) {
+    func createHierachyStates(rootNode: SCNNode) -> [HierachyState] {
         self.rootNode = rootNode
 
         hierachyStates = []
         createHierachyStates(node: rootNode, level: 0)
         
-        delegate?.hierachyIterator(didChange: hierachyStates)
+        delegate?.hierachyIterator(didChange: hierachyStates) // TODO Refactor: make this not a callback
+        return hierachyStates
     }
     
     private func createHierachyStates(node: SCNNode, level: Int) {
@@ -37,7 +38,7 @@ class HierachyIterator {
             spaces += "-"
         }
         
-        let visibleChildNodes = visibleChildren(for: node)
+        let visibleChildNodes = SceneGraphManager.shared.visibleChildren(for: node)
         
         let expandableState: ExpandableState
         if visibleChildNodes.count == 0 {
@@ -78,13 +79,5 @@ class HierachyIterator {
     
     private func expandState(for node: SCNNode) -> ExpandableState {
         return expandStateForNode[node] ?? .isExpanded
-    }
-    
-    private func visibleChildren(for node: SCNNode) -> [SCNNode] {
-        let visible = node.childNodes.filter { child in
-            return SceneGraphManager.shared.displayInHierachy(node: child)
-        }
-        
-        return visible
     }
 }

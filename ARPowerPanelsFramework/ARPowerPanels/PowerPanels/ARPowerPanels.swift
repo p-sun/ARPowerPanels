@@ -9,7 +9,6 @@
 /*
  TODO:
  Features
- - Select node via hitTesting --> visible nodes only, allow for cycling through overlapping nodes when tapping at the same spot
  - Add planet models for earth, moon, sun, saturn.
  - Add rotateForever animations for x, y, z. Add animation panel.
  - Use the earth planet model with axis to be world origin -- deletable
@@ -18,7 +17,7 @@
  Bugs
  - Fix re-creating the gameNodeCamera if the gameNodeCamera was deleted? -- recreate it from the POV of the scene?
  - Add ability to reposition the pivot -- make sure the axis updates
- - ARKit adds a node with a geometry that can't be deleted. Activating the metal glow on it causes a flicker and may crash the app.
+ - ARKit adds a node with a geometry that can't be deleted. Activating the yellow glow on it causes a flicker and may crash the app. Hackily removed from the Scene Graph for now.
    - http://loufranco.com/blog/debug-iphone-crash-exc_bad_access
  
  Cleanup
@@ -132,6 +131,8 @@ public class ARPowerPanels: UIView {
     public convenience init(arSceneView: ARSCNView, panelTypes: [ARPowerPanelsType]) {
         self.init(isARKit: true, panelTypes: panelTypes)
         self.arSceneView = arSceneView
+        allowTapGestureToSelectNode(arView: arSceneView)
+        
         if !isPlaygroundBook {
             arSceneView.setupGlowTechnique()
         }
@@ -181,6 +182,34 @@ public class ARPowerPanels: UIView {
     
     public func selectNode(_ node: SCNNode) {
         self.selectedNode = node
+    }
+    
+    // TODO - Pass Gesture to Underlying View
+    private func allowTapGestureToSelectNode(arView: ARSCNView) {
+        let tapGesture = UITapGestureRecognizer()
+        tapGesture.delegate = self
+        tapGesture.addTarget(self, action: #selector(viewTapped))
+        addGestureRecognizer(tapGesture)
+    }
+    
+    @objc private func viewTapped(_ sender: UITapGestureRecognizer) {
+        let tapPoint = sender.location(in: self)
+
+        let hitTestResults: [SCNHitTestResult]
+        if isARMode {
+            hitTestResults = arSceneView?.hitTest(
+                tapPoint,
+                options: [.firstFoundOnly: true]) ?? []
+        } else {
+            hitTestResults = sceneView.hitTest(
+                tapPoint,
+                options: [.firstFoundOnly: true])
+        }
+        
+        if let hitTestNode = hitTestResults.first?.node,
+            let nodeInSceneGraph = SceneGraphManager.shared.findParentInHierachy(for: hitTestNode, in: rootNode) {
+            selectedNode = nodeInSceneGraph
+        }
     }
     
     private func menuForPanelType(_ panelType: ARPowerPanelsType) -> MenuItem {
@@ -441,5 +470,15 @@ extension ARPowerPanels: HierachyPanelDelegate {
 extension ARPowerPanels: HierachyPanelDataSource {
     func selectedForHierachyPanel() -> SCNNode? {
         return selectedNode
+    }
+}
+
+extension ARPowerPanels: UIGestureRecognizerDelegate {
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        // Only receive touches to select nodes if the bottomMost view is selected
+        if touch.view == sceneView || touch.view == self {
+            return true
+        }
+        return false
     }
 }

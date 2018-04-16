@@ -79,7 +79,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         yellowBox.runAction(
             SCNAction.repeatForever(
-                SCNAction.rotateBy(x: 0, y: 1, z: 0, duration: 0.4)))
+                SCNAction.rotateBy(x: 0, y: 1, z: 0, duration: 3)))
         
         //: ## Add a pink sphere to orbit the spinning fox
         let sphereGeometry = SCNSphere(radius: 0.01)
