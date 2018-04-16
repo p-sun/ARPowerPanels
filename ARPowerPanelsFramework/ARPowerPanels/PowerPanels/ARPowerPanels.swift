@@ -36,7 +36,7 @@ import SceneKit
 import ARKit
 
 // Playground books require a different set of code to load image and model assets.
-var isPlaygroundBook = false
+var isPlaygroundBook = true
 
 public enum ARPowerPanelsType {
     case sceneGraph, info, easyMoves, allMoves, allEdits

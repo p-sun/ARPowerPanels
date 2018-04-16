@@ -115,7 +115,7 @@ class HierachyPanel: UIView {
     @objc private func removeModelPressed(_ button: UIButton) {
         let selectedNode = dataSource?.selectedForHierachyPanel()
         let parentNode = selectedNode?.parent
-        SceneCreator.shared.removeNode(selectedNode)
+        SceneGraphManager.shared.removeNode(selectedNode)
         
         if let parentNode = parentNode {
             delegate?.hierachyPanel(didSelectNode: parentNode)
@@ -135,7 +135,7 @@ extension HierachyPanel: ModelCollectionViewDelegate {
     func modelCollectionView(_ modelCollectionView: ModelCollectionView, didSelectModel nodeMaker: NodeCreatorType) {
         guard let selectedNode = dataSource?.selectedForHierachyPanel() else { return }
         if let newNode = nodeMaker.createNode() {
-            SceneCreator.shared.addNode(newNode, to: selectedNode)
+            SceneGraphManager.shared.addNode(newNode, to: selectedNode)
             delegate?.hierachyPanel(didSelectNode: newNode)
         } else {
             NSLog("PAIGE LOG: could not get model for node \(String(describing: nodeMaker.menuImage))")

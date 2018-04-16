@@ -8,21 +8,27 @@
 
 /*
  TODO:
+ Features
  - Add planet models for earth, moon, sun, saturn.
  - Add rotateForever animations for x, y, z. Add animation panel.
  - Use the earth planet model with axis to be world origin -- deletable
- - Select node via hitTesting --> visible nodes only, allow for cycling through overlapping nodes when tapping at the same spot
- - Fix re-creating the gameNodeCamera if the gameNodeCamera was deleted? -- recreate it from the POV of the scene?
- - Drop models into the scene only after a plane has been detected
- - Add ability to reposition the pivot -- make sure the axis updates
- - Make FTD Private
- - Port onto PlaygroundBook again
- - Figure out how to import .dae files into the playgroundbook.
  - Add the extra Adventure models & then port again onto PlaygroundBook
+
+ Bugs
+ - Fix re-creating the gameNodeCamera if the gameNodeCamera was deleted? -- recreate it from the POV of the scene?
+ - Add ability to reposition the pivot -- make sure the axis updates
+ - ARKit adds a node with a geometry that can't be deleted. Activating the yellow glow on it causes a flicker and may crash the app. Hackily removed from the Scene Graph for now.
+   - http://loufranco.com/blog/debug-iphone-crash-exc_bad_access
+ 
+ Cleanup
+ - Make FTD Private
  - Other TODO tags
  - May need to convert all of TransformationPanels to be FTD, or place the stackView in a scrollView?
-      Pro: can have long scrolling table, and can allow user to decide how tall each panel should be.
-      Con: effort, performance, need to rewrite the height priority logic. Cells might not be reused often enough to warrent the effort.
+ Pro: can have long scrolling table, and can allow user to decide how tall each panel should be.
+ Con: effort, performance, need to rewrite the height priority logic. Cells might not be reused often enough to warrant the effort.
+ 
+ PlaygroundBook Strangeness
+ - Figure out how to import .dae files into the playgroundbook.
  **/
 
 import UIKit
@@ -85,7 +91,7 @@ public class ARPowerPanels: UIView {
     private let allEditsPanel = TransformationPanel(controlTypes: TransformationType.all)
     
     // MARK: Left hand views
-    private let arGameSegmentedControl = UISegmentedControl(items: ["AR", "Game"])
+    private let arGameSegmentedControl = UISegmentedControl(items: ["AR", "Scene"])
     private let showHideMenuButton = RoundedButton()
     private let selectedNodeLabel = UILabel()
     private var menuItems = [MenuItem]()
@@ -114,7 +120,7 @@ public class ARPowerPanels: UIView {
     
     public convenience init(scene: SCNScene, panelTypes: [ARPowerPanelsType]) { //TODO
         self.init(isARKit: false, panelTypes: panelTypes)
-        sceneView.backgroundColor = #colorLiteral(red: 0.1654644267, green: 0.3628849843, blue: 0.5607843399, alpha: 1) // TODO change color
+        sceneView.backgroundColor = #colorLiteral(red: 0.1654644267, green: 0.3628849843, blue: 0.5607843399, alpha: 1)
         
         sceneView.scene = scene
         
@@ -125,6 +131,8 @@ public class ARPowerPanels: UIView {
     public convenience init(arSceneView: ARSCNView, panelTypes: [ARPowerPanelsType]) {
         self.init(isARKit: true, panelTypes: panelTypes)
         self.arSceneView = arSceneView
+        allowTapGestureToSelectNode(arView: arSceneView)
+        
         if !isPlaygroundBook {
             arSceneView.setupGlowTechnique()
         }
@@ -174,6 +182,34 @@ public class ARPowerPanels: UIView {
     
     public func selectNode(_ node: SCNNode) {
         self.selectedNode = node
+    }
+    
+    // TODO - Pass Gesture to Underlying View
+    private func allowTapGestureToSelectNode(arView: ARSCNView) {
+        let tapGesture = UITapGestureRecognizer()
+        tapGesture.delegate = self
+        tapGesture.addTarget(self, action: #selector(viewTapped))
+        addGestureRecognizer(tapGesture)
+    }
+    
+    @objc private func viewTapped(_ sender: UITapGestureRecognizer) {
+        let tapPoint = sender.location(in: self)
+
+        let hitTestResults: [SCNHitTestResult]
+        if isARMode {
+            hitTestResults = arSceneView?.hitTest(
+                tapPoint,
+                options: [.firstFoundOnly: true]) ?? []
+        } else {
+            hitTestResults = sceneView.hitTest(
+                tapPoint,
+                options: [.firstFoundOnly: true])
+        }
+        
+        if let hitTestNode = hitTestResults.first?.node,
+            let nodeInSceneGraph = SceneGraphManager.shared.findParentInHierachy(for: hitTestNode, in: rootNode) {
+            selectedNode = nodeInSceneGraph
+        }
     }
     
     private func menuForPanelType(_ panelType: ARPowerPanelsType) -> MenuItem {
@@ -318,7 +354,7 @@ extension ARPowerPanels {
                             // Add a camera model to the AR Camera
                             if let cameraNode = Model.camera.createNode() {
                                 cameraNode.name = "Camera Model"
-                                SceneCreator.shared.addNode(cameraNode, to: child)
+                                SceneGraphManager.shared.addNode(cameraNode, to: child)
                                 child.name = NodeNames.arModeCamera.rawValue
                             }
 
@@ -434,5 +470,15 @@ extension ARPowerPanels: HierachyPanelDelegate {
 extension ARPowerPanels: HierachyPanelDataSource {
     func selectedForHierachyPanel() -> SCNNode? {
         return selectedNode
+    }
+}
+
+extension ARPowerPanels: UIGestureRecognizerDelegate {
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        // Only receive touches to select nodes if the bottomMost view is selected
+        if touch.view == sceneView || touch.view == self {
+            return true
+        }
+        return false
     }
 }

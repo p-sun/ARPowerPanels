@@ -16,9 +16,10 @@ public class ARKitViewController: UIViewController {
     private var scene: SCNScene
     private var powerPanels: ARPowerPanels
     
-    public init(scene: SCNScene, panelTypes: [ARPowerPanelsType]) {
+    public init(scene: SCNScene, selectedNode: SCNNode, panelTypes: [ARPowerPanelsType]) {
         self.scene = scene
         powerPanels = ARPowerPanels(arSceneView: arSceneView, panelTypes: panelTypes)
+        powerPanels.selectNode(selectedNode)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -37,8 +38,7 @@ public class ARKitViewController: UIViewController {
         arSceneView.debugOptions  = [.showConstraints, ARSCNDebugOptions.showFeaturePoints]//, ARSCNDebugOptions.showWorldOrigin]
         
         arSceneView.scene = scene
-        scene.rootNode.name = "AR World Origin   🌎" // TODO Rename this node when "Scene Graph" starts
-        powerPanels.selectNode(scene.rootNode)
+        scene.rootNode.name = "AR World Origin   🌎"
         
         view.addSubview(powerPanels)
         powerPanels.constrainEdges(to: view)
@@ -63,14 +63,29 @@ public class ARKitViewController: UIViewController {
 
 extension ARKitViewController: ARSCNViewDelegate {
     public func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
+        
         guard let planeAnchor = anchor as? ARPlaneAnchor else { return }
-//        print("didAdd \(node.position)")
+        node.name = "Plane Anchor"
         
         let planeNode = NodeCreator.bluePlane(anchor: planeAnchor)
         planeNode.name = "Blue Plane"
-        
         // ARKit owns the node corresponding to the anchor, so make the plane a child node.
         node.addChildNode(planeNode)
+        
+        hideUnnamedNodeFromSceneGraph()
+    }
+
+    // ARKit generates a node with geometry that can't be deleted.
+    // Maybe it has to do with generating feature points?
+    // Selecting the node crashes the app eventually because it confuses the metal shader.
+    // Hackily remove the node for now.
+    private func hideUnnamedNodeFromSceneGraph() {
+        for child in arSceneView.scene.rootNode.childNodes {
+            if child.name == nil, let _ = child.geometry?.firstMaterial?.diffuse.contents as? UIColor {
+                SceneGraphManager.shared.hideInSceneGraph(child)
+                return
+            }
+        }
     }
     
     public func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
@@ -82,30 +97,3 @@ extension ARKitViewController: ARSCNViewDelegate {
         }
     }
 }
-//
-//extension ARKitViewController {
-//
-//    /*
-//     // Override to create and configure nodes for anchors added to the view's session.
-//     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
-//     let node = SCNNode()
-//
-//     return node
-//     }
-//     */
-//
-//    public func session(_ session: ARSession, didFailWithError error: Error) {
-//        // Present an error message to the user
-//
-//    }
-//
-//    public func sessionWasInterrupted(_ session: ARSession) {
-//        // Inform the user that the session has been interrupted, for example, by presenting an overlay
-//
-//    }
-//
-//    public func sessionInterruptionEnded(_ session: ARSession) {
-//        // Reset tracking and/or remove existing anchors if consistent tracking is required
-//
-//    }
-//}

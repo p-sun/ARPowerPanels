@@ -18,4 +18,5 @@ enum NodeNames: String {
     case gameModeCamera = "Game Mode Camera"
     
     case axis = "Axis"
+    case localVector = "Parent to Child Vector"
 }

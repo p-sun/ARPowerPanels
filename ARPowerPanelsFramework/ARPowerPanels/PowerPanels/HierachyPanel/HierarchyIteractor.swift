@@ -21,6 +21,7 @@ class HierachyIterator {
     
     weak var delegate: HierachyIteratorDelegate?
 
+    @discardableResult // TODO fix
     func createHierachyStates(rootNode: SCNNode) -> [HierachyState] {
         self.rootNode = rootNode
 

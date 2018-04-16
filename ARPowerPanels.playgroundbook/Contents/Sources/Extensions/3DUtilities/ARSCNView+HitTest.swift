@@ -8,25 +8,12 @@
 
 import ARKit
 
-extension ARSCNView {
-    func sceneHitTest(at screenPos: CGPoint, within rootNode: SCNNode) -> SCNVector3? {
-        let hits = hitTest(screenPos, options: [
-            .boundingBoxOnly: true,
-            .firstFoundOnly: true,
-            .rootNode: rootNode,
-            .ignoreChildNodes: true
-            ])
-        
-        return hits.first?.worldCoordinates
-    }
-    
+extension ARSCNView {    
     func realWorldHit(at screenPos: CGPoint) -> (transformInWorld: SCNMatrix4?, planeAnchor: ARPlaneAnchor?, hitAPlane: Bool) {
         
         // -------------------------------------------------------------------------------
         // 1. Always do a hit test against exisiting plane anchors first.
         //    (If any such anchors exist & only within their extents.)
-        
-        
         
         let planeHitTestResults = hitTest(screenPos, types: [.existingPlaneUsingExtent]) // .existingPlane will assume a bigger plane (altho not infinite), but it created other problems we saw in hackathon, show us the problems, we will figure if we can do something about it
         if let result = planeHitTestResults.first {

@@ -23,15 +23,17 @@ class TransformationPanel: UIStackView {
     
     // MARK: - Variables - Views
     private lazy var nameTextField = PowerPanelTextField()
+    private lazy var opacityInput = SliderInputsView(axisLabels: ["   "], minValue: 0, maxValue: 1)
     private lazy var boundingBoxLabel = header(for: .name)
+    
     private lazy var showBoundingBoxSwitch = PowerPanelCheckmarkInput(text: TransformationType.showBoundingBox.displayName)
     private lazy var showAxisSwitch = PowerPanelCheckmarkInput(text: TransformationType.showAxis.displayName)
+    private lazy var showLocalVectorSwitch = PowerPanelCheckmarkInput(text: TransformationType.showLocalVector.displayName)
     
     private lazy var positionInput = SliderVector3View()
     private lazy var quaternionRotationInput = SliderVector4View()
     private lazy var eulerRotationInput = SliderVector3View()
     private lazy var scaleInput = SliderVector3View(minValue: 0.2)
-    private lazy var opacityInput = SliderInputsView(axisLabels: ["   "], minValue: 0, maxValue: 1)
     private lazy var orientationInput = SliderVector4View()
 
     // MARK: - Public
@@ -71,6 +73,12 @@ class TransformationPanel: UIStackView {
             showAxisSwitch.isChecked = hasAxis
         }
         
+        if controlTypes.contains(.showLocalVector), let node = transformable as? SCNNode {
+            let localVectorNode = node.directChildNode(withName: NodeNames.localVector.rawValue)
+            let hasVector = localVectorNode != nil
+            showLocalVectorSwitch.isChecked = hasVector
+        }
+        
         updateInputs()
         Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(updateInputs), userInfo: nil, repeats: true)
     }
@@ -83,7 +91,9 @@ class TransformationPanel: UIStackView {
     
     // MARK: - Private
     private func setupInputView(for controlType: TransformationType) {
-        if controlType != .showBoundingBox && controlType != .showAxis {
+        if controlType != .showBoundingBox &&
+            controlType != .showAxis &&
+            controlType != .showLocalVector {
             addArrangedSubview(header(for: controlType))
         }
         
@@ -120,6 +130,11 @@ class TransformationPanel: UIStackView {
             showAxisSwitch.constrainHeight(37) // 29 + 8 for insets
             addArrangedSubview(showAxisSwitch)
         
+        case .showLocalVector:
+            showLocalVectorSwitch.delegate = self
+            showLocalVectorSwitch.constrainHeight(37)
+            addArrangedSubview(showLocalVectorSwitch)
+            
         case .position:
             positionInput.constrainHeight(29)
 
@@ -131,14 +146,14 @@ class TransformationPanel: UIStackView {
             quaternionRotationInput.constrainHeight(29)
 
             quaternionRotationInput.delegate = self
-            quaternionRotationInput.setPanSpeed(0.007)
+            quaternionRotationInput.setPanSpeed(0.8)
             addArrangedSubview(quaternionRotationInput)
             
         case .eulerRotation:
             eulerRotationInput.constrainHeight(29)
 
             eulerRotationInput.delegate = self
-            eulerRotationInput.setPanSpeed(1)
+            eulerRotationInput.setPanSpeed(0.8)
             addArrangedSubview(eulerRotationInput)
             
         case .scale:
@@ -161,7 +176,6 @@ class TransformationPanel: UIStackView {
             orientationInput.delegate = self
             orientationInput.setPanSpeed(0.005)
             addArrangedSubview(orientationInput)
-
         }
     }
     
@@ -179,19 +193,19 @@ class TransformationPanel: UIStackView {
         guard let transformable = transformable, controlTypes.contains(controlType) else { return }
         
         switch controlType {
-        case .name:
+        case .name, .showBoundingBox, .showAxis, .showLocalVector:
+            // UI Controls that only need to be updated when the selectedNode is changed
+            // are updated in control(transformable), not here
             break
-             // UI Controls that only need to be updated when the selectedNode is changed are updated in control(transformable), not here
+        
         case .boundingBox:
             boundingBoxLabel.text = boundingBoxText(for: transformable)
-        case .showBoundingBox:
-            break
-        case .showAxis:
-            break
         case .position:
             positionInput.vector = transformable.position
         case .quaternionRotation:
-            quaternionRotationInput.vector = transformable.rotation
+            let rotation = transformable.rotation
+            let displayRotation = SCNVector4Make(rotation.x, rotation.y, rotation.z, rotation.w.radiansToDegrees)
+            quaternionRotationInput.vector = displayRotation
         case .eulerRotation:
             let radiansVector = transformable.eulerAngles
             eulerRotationInput.vector = radiansVector.radiansToDegrees
@@ -233,11 +247,13 @@ extension TransformationPanel: PowerPanelCheckmarkInputDelegate {
             updateBoundingBoxNode(transformable: transformable, isChecked: isChecked)
         } else if checkMarkInput == showAxisSwitch {
             updateAxisNode(transformable: transformable, isChecked: isChecked)
+        } else if checkMarkInput == showLocalVectorSwitch {
+            updateLocalVectorNode(transformable: transformable, isChecked: isChecked)
         }
     }
 }
 
-// MARK: - Show Bounding Box
+// MARK: - Show Bounding Box // TODO refactor
 extension TransformationPanel {
     static func addBoundingBox(for transformable: Transformable) {
         func translucentBoundingBox(for transformable: Transformable) -> SCNNode {
@@ -280,7 +296,7 @@ extension TransformationPanel {
         let axisNode = NodeCreator.createAxesNode(quiverLength: 0.15, quiverThickness: 1.0)
         axisNode.name = NodeNames.axis.rawValue
         axisNode.transform = parentNode.pivot
-        SceneCreator.shared.addNode(axisNode, to: parentNode) // Remove children from the Scene Graph
+        SceneGraphManager.shared.addNode(axisNode, to: parentNode)
     }
     
     private func updateAxisNode(transformable: Transformable, isChecked: Bool) {
@@ -289,7 +305,29 @@ extension TransformationPanel {
             transformationDelegate?.transformationPanelDidEditNode()
         } else if let selectedNode = transformable as? SCNNode,
             let axisNode = selectedNode.directChildNode(withName: NodeNames.axis.rawValue) {
-            SceneCreator.shared.removeNode(axisNode)
+            SceneGraphManager.shared.removeNode(axisNode)
+            transformationDelegate?.transformationPanelDidEditNode()
+        }
+    }
+}
+
+// MARK: - Show Local Vector
+extension TransformationPanel {
+    private func addLocalVectorNode(for transformable: Transformable) {
+        guard let parentNode = transformable as? SCNNode, let grandparentNode = parentNode.parent else { return }
+        
+        let localVectorNode = NodeCreator.createArrowNode(fromNode: grandparentNode, toNode: parentNode)
+        localVectorNode.name = NodeNames.localVector.rawValue
+        SceneGraphManager.shared.addNode(localVectorNode, to: parentNode)
+    }
+    
+    private func updateLocalVectorNode(transformable: Transformable, isChecked: Bool) {
+        if isChecked {
+            addLocalVectorNode(for: transformable)
+            transformationDelegate?.transformationPanelDidEditNode()
+        } else if let selectedNode = transformable as? SCNNode,
+            let localVectorNode = selectedNode.directChildNode(withName: NodeNames.localVector.rawValue) {
+            SceneGraphManager.shared.removeNode(localVectorNode)
             transformationDelegate?.transformationPanelDidEditNode()
         }
     }
@@ -305,9 +343,6 @@ extension TransformationPanel: SliderVector3ViewDelegate {
         } else if controlTypes.contains(.eulerRotation) &&
             sliderVector3View == eulerRotationInput {
             transformable?.eulerAngles = vector.degreesToRadians
-            
-//            updateInput(for: .quaternionRotation)
-//            updateInput(for: .orientation)
 
         } else if controlTypes.contains(.scale) &&
             sliderVector3View == scaleInput {
@@ -322,14 +357,12 @@ extension TransformationPanel: SliderVector3ViewDelegate {
 // MARK: - Quaternion Rotation
 extension TransformationPanel: SliderVector4ViewDelegate {
     func sliderVector4View(_ sliderVector4View: SliderVector4View, didChangeValues vector: SCNVector4) {
-        // There are two Vector 4 inputs -- quaternion and orientation
-        // If the values in either of these are updated by the user, update the others
+
         if controlTypes.contains(.quaternionRotation) &&
             sliderVector4View == quaternionRotationInput {
-            transformable?.rotation = vector
-
-//            updateInput(for: .eulerRotation)
-//            updateInput(for: .orientation)
+            
+            let newVector = SCNVector4Make(vector.x, vector.y, vector.z, vector.w.degreesToRadians)
+            transformable?.rotation = newVector
 
         } else if controlTypes.contains(.orientation) &&
             sliderVector4View == orientationInput {

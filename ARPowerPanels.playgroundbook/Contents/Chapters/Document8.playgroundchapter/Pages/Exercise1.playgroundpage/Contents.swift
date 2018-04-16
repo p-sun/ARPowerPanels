@@ -72,11 +72,11 @@ import ARKit
 import PlaygroundSupport
 
 func addNode(_ node: SCNNode, to parentNode: SCNNode) {
-    SceneCreator.shared.addNode(node, to: parentNode)
+    SceneGraphManager.shared.addNode(node, to: parentNode)
 }
 
 func removeNode(_ node: SCNNode?) {
-    SceneCreator.shared.removeNode(node)
+    SceneGraphManager.shared.removeNode(node)
 }
 //#-end-hidden-code
 
@@ -106,24 +106,51 @@ xyzAxis.name = "World Origin Axis"
 addNode(xyzAxis, to: scene.rootNode)
 
 //: ## Add a fox at (0, 0, 0)
-if let foxNode = Model.fox.createNode() {
-    foxNode.name = "Boss 🦊"
-    addNode(foxNode, to: scene.rootNode)
-}
+let foxNode = Model.fox.createNode()!
+foxNode.name = "Boss 🦊"
+addNode(foxNode, to: scene.rootNode)
 
 //: ## Add another fox, re-position it, and animate it
-if let anotherFox = Model.fox.createNode() {
-    
-    anotherFox.name = "Dizzy 🦊"
-    anotherFox.position = SCNVector3Make(-0.03, 0, 0)
-    anotherFox.scale = SCNVector3Make(0.8, 0.8, 0.8)
-    anotherFox.eulerAngles = SCNVector3Make(0, 17, 45).degreesToRadians
-    addNode(anotherFox, to: scene.rootNode)
-    
-    anotherFox.runAction(
-        SCNAction.repeatForever(
-            SCNAction.rotateBy(x: 0, y: 1, z: 0, duration: 1)))
-}
+let anotherFox = Model.fox.createNode()!
+anotherFox.name = "Dizzy 🦊"
+anotherFox.position = SCNVector3Make(-0.12, 0.06, 0)
+anotherFox.scale = SCNVector3Make(0.8, 0.8, 0.8)
+anotherFox.eulerAngles = SCNVector3Make(0, 17, -13.8).degreesToRadians
+addNode(anotherFox, to: scene.rootNode)
+
+anotherFox.runAction(
+    SCNAction.repeatForever(
+        SCNAction.rotateBy(x: 0, y: 1, z: 0, duration: 1)))
+
+//: ## Add a yellow box to orbit the spinning fox
+let boxGeometry = SCNBox(width: 0.04, height: 0.04, length: 0.04, chamferRadius: 0)
+boxGeometry.firstMaterial?.diffuse.contents = #colorLiteral(red: 1, green: 0.9390204065, blue: 0.134511675, alpha: 1)
+let yellowBox = SCNNode(geometry: boxGeometry)
+yellowBox.name = "Yellow Orbiting Box"
+yellowBox.position = SCNVector3Make(0.22, -0.17, 0)
+addNode(yellowBox, to: anotherFox)
+
+yellowBox.runAction(
+    SCNAction.repeatForever(
+        SCNAction.rotateBy(x: 0, y: 1, z: 0, duration: 3)))
+
+//: ## Add a pink sphere to orbit the spinning fox
+let sphereGeometry = SCNSphere(radius: 0.01)
+sphereGeometry.firstMaterial?.diffuse.contents = #colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1)
+let pinkSphere = SCNNode(geometry: sphereGeometry)
+pinkSphere.name = "Pink Orbiting Sphere"
+pinkSphere.position = SCNVector3Make(0.1, 0, 0)
+addNode(pinkSphere, to: yellowBox)
+
+//: ## Draw an arrow between Root Node to the Yellow Box
+let arrow = NodeCreator.createArrowNode(fromNode: scene.rootNode, toNode: yellowBox)
+arrow.name = "Root Node to Yellow Box"
+addNode(arrow, to: yellowBox)
+
+//: ## Draw an arrow between Yellow Box and the Pink Sphere
+let arrow2 = NodeCreator.createArrowNode(fromNode: yellowBox, toNode: pinkSphere)
+arrow2.name = "Yellow Box to Pink Sphere"
+addNode(arrow2, to: pinkSphere)
 
 //: ## Your turn! 😁
 
@@ -136,11 +163,11 @@ if let anotherFox = Model.fox.createNode() {
 
 
 //#-end-editable-code
-//#-editable-code
-//: #### Tip: You customize the buttons on the left hand menu in any order, remove some if you'd like!
-let menuPanels: [ARPowerPanelsType] = [.sceneGraph, .info, .allMoves] // [.easyMoves, .allEdits]
-//#-end-editable-code
+
 //#-hidden-code
-let rootViewController = ARKitViewController(scene: scene, panelTypes: menuPanels)
-PlaygroundPage.current.liveView = rootViewController
+let arViewController = ARKitViewController(
+    scene: scene,
+    selectedNode: foxNode,
+    panelTypes: [.sceneGraph, .info, .allMoves])
+PlaygroundPage.current.liveView = arViewController
 //#-end-hidden-code

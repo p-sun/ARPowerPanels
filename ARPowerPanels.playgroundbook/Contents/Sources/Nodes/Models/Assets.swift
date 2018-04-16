@@ -8,22 +8,22 @@
 
 import UIKit
 
-enum Asset {
-    enum Directory {
-        case imagesShapes
-        case imagesAdventure
-        case imagesMenu
-        case scnAssets
-
-        func directoryName() -> String? {
-            switch self {
-            case .imagesShapes: return "imagesShapes/"
-            case .imagesAdventure: return "imagesAdventure/"
-            case .imagesMenu: return "imagesMenu/"
-            case .scnAssets: return "art.scnassets/"
-            }
-        }
-    }
+//enum Asset {
+//    enum Directory {
+//        case imagesShapes
+//        case imagesAdventure
+//        case imagesMenu
+//        case scnAssets
+//
+//        func directoryName() -> String? {
+//            switch self {
+//            case .imagesShapes: return "imagesShapes/"
+//            case .imagesAdventure: return "imagesAdventure/"
+//            case .imagesMenu: return "imagesMenu/"
+//            case .scnAssets: return "art.scnassets/"
+//            }
+//        }
+//    }
 
 //    static func node(named name: String, in directory: Directory, fileExtension: String = "dae") -> SCNNode? {
 //        let path = directory.path + name
@@ -49,7 +49,7 @@ enum Asset {
 //        }
 //        return scene
 //    }
-}
+//}
 
 // Frameworks can't use xcassets
 // For iOS framework, images go into any folder (i.e Resources)
@@ -78,9 +78,9 @@ enum ImageAssets {
         case .shapeBox:
             return ImageAssets.imageForName("shapeBox", extensionName: "png")
         case .shapeCapsule:
-            return ImageAssets.imageForName("shapeCone", extensionName: "png")
+            return ImageAssets.imageForName("shapeCapsule", extensionName: "png")
         case .shapeCone:
-            return ImageAssets.imageForName("shapeBox", extensionName: "png")
+            return ImageAssets.imageForName("shapeCone", extensionName: "png")
         case .shapeCylinder:
             return ImageAssets.imageForName("shapeCylinder", extensionName: "png")
         case .shapePlane:
