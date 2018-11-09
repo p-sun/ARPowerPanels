@@ -36,7 +36,7 @@ public class ARKitViewController: UIViewController {
         
         arSceneView.delegate = self
         //        arSceneView.showsStatistics = true
-        arSceneView.debugOptions  = [.showConstraints, ARSCNDebugOptions.showFeaturePoints]//, ARSCNDebugOptions.showWorldOrigin]
+        arSceneView.debugOptions  = [.showConstraints, SCNDebugOptions.showFeaturePoints]//, ARSCNDebugOptions.showWorldOrigin]
         
         arSceneView.scene = scene
         scene.rootNode.name = "AR World Origin   🌎"

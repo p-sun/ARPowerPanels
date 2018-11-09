@@ -710,9 +710,11 @@
 				TargetAttributes = {
 					853ACFDD2071B2A000BF01CA = {
 						CreatedOnToolsVersion = 9.3;
+						LastSwiftMigration = 1010;
 					};
 					853AD0842071B3C600BF01CA = {
 						CreatedOnToolsVersion = 9.3;
+						LastSwiftMigration = 1010;
 					};
 				};
 			};
@@ -1114,7 +1116,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.peisun.ARPowerPanels.Framework;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1140,7 +1142,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.peisun.ARPowerPanels.Framework;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -1160,7 +1162,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.peisun.ARPowerPanels.Demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1180,7 +1182,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.peisun.ARPowerPanels.Demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

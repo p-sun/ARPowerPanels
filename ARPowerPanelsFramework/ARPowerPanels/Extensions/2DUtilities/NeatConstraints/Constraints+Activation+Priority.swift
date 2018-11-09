@@ -53,11 +53,11 @@ extension NSLayoutConstraint {
 
 extension UIView {
     
-    func setHugging(_ priority: UILayoutPriority, for axis: UILayoutConstraintAxis) {
+    func setHugging(_ priority: UILayoutPriority, for axis: NSLayoutConstraint.Axis) {
         setContentHuggingPriority(priority, for: axis)
     }
     
-    func setCompressionResistance(_ priority: UILayoutPriority, for axis: UILayoutConstraintAxis) {
+    func setCompressionResistance(_ priority: UILayoutPriority, for axis: NSLayoutConstraint.Axis) {
         setContentCompressionResistancePriority(priority, for: axis)
     }
 }

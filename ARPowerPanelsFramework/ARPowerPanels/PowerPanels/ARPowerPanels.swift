@@ -280,7 +280,7 @@ extension ARPowerPanels {
         
         arGameSegmentedControl.backgroundColor = .panelBackgroundColor
         arGameSegmentedControl.selectedSegmentIndex = 0
-        arGameSegmentedControl.setTitleTextAttributes([NSAttributedStringKey.font: UIFont.inputSliderHeader],
+        arGameSegmentedControl.setTitleTextAttributes([NSAttributedString.Key.font: UIFont.inputSliderHeader],
                                                 for: .normal)
         self.addSubview(arGameSegmentedControl)
         arGameSegmentedControl.constrainTop(to: self, offset: 80)
