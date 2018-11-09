@@ -13,6 +13,7 @@
  - Add rotateForever animations for x, y, z. Add animation panel.
  - Use the earth planet model with axis to be world origin -- deletable
  - Add the extra Adventure models & then port again onto PlaygroundBook
+ - Add a button to disable tapping on the object to select it (b/c that object may have other selection actions). Alternatively, allow selection of objects by tapping, and allow multiple actions simultaneously.
 
  Bugs
  - Fix re-creating the gameNodeCamera if the gameNodeCamera was deleted? -- recreate it from the POV of the scene?
@@ -21,12 +22,12 @@
    - http://loufranco.com/blog/debug-iphone-crash-exc_bad_access
  
  Cleanup
- - Make FTD Private
  - Other TODO tags
  - May need to convert all of TransformationPanels to be FTD, or place the stackView in a scrollView?
  Pro: can have long scrolling table, and can allow user to decide how tall each panel should be.
  Con: effort, performance, need to rewrite the height priority logic. Cells might not be reused often enough to warrant the effort.
- 
+
+
  PlaygroundBook Strangeness
  - Figure out how to import .dae files into the playgroundbook.
  **/
