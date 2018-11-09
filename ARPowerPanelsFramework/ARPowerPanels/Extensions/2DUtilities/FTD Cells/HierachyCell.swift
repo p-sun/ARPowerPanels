@@ -8,6 +8,7 @@
 
 import UIKit
 import SceneKit
+import SwiftyTables
 
 typealias HierachyCell = HostCell<HierachyView, HierachyState, LayoutMarginsTableItemLayout>
 

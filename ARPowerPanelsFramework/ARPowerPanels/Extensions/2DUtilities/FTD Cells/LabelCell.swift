@@ -1,4 +1,5 @@
 import UIKit
+import SwiftyTables
 
 public typealias LabelCell = HostCell<UILabel, LabelState, LayoutMarginsTableItemLayout>
 

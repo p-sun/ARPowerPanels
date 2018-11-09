@@ -1,0 +1,16 @@
+PODS:
+  - SwiftyTables (1.0.0)
+
+DEPENDENCIES:
+  - SwiftyTables
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - SwiftyTables
+
+SPEC CHECKSUMS:
+  SwiftyTables: 4e4a70172b26e5383fc859b9d751b7ce59219b57
+
+PODFILE CHECKSUM: f7507d6f9e67ae288eb535ccf02965b950754de5
+
+COCOAPODS: 1.5.3

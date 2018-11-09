@@ -6,15 +6,14 @@
 //
 
 import Foundation
-import SwiftyTables
 
-protocol StateType {
+public protocol StateType {
     associatedtype View
     static func updateView(_ view: View, state: Self?)
 }
 
-extension HostCell where State: StateType, State.View == View {
-    init(key: String, style: CellStyle? = nil, actions: CellActions = CellActions(), state: State) {
+public extension HostCell where State: StateType, State.View == View {
+    public init(key: String, style: CellStyle? = nil, actions: CellActions = CellActions(), state: State) {
         self.key = key
         self.style = style
         self.actions = actions

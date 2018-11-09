@@ -1,0 +1,6 @@
+framework module SwiftyTables {
+  umbrella header "SwiftyTables-umbrella.h"
+
+  export *
+  module * { export * }
+}
