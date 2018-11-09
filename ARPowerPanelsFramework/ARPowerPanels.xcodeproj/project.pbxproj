@@ -28,7 +28,6 @@
 		853AD0222071B2E400BF01CA /* FunctionalCollectionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853ACFF72071B2E400BF01CA /* FunctionalCollectionData.swift */; };
 		853AD0232071B2E400BF01CA /* UICollectionView+Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853ACFF82071B2E400BF01CA /* UICollectionView+Reusable.swift */; };
 		853AD0242071B2E400BF01CA /* HostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853ACFF92071B2E400BF01CA /* HostCell.swift */; };
-		853AD0252071B2E400BF01CA /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 853ACFFA2071B2E400BF01CA /* Info.plist */; };
 		853AD0262071B2E400BF01CA /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853ACFFB2071B2E400BF01CA /* Reusable.swift */; };
 		853AD0272071B2E400BF01CA /* Separator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853ACFFC2071B2E400BF01CA /* Separator.swift */; };
 		853AD0282071B2E400BF01CA /* TableItemLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853ACFFD2071B2E400BF01CA /* TableItemLayout.swift */; };
@@ -77,7 +76,6 @@
 		853AD0792071B2FF00BF01CA /* TransformationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853AD0642071B2FF00BF01CA /* TransformationType.swift */; };
 		853AD07F2071B30600BF01CA /* GlobalPlayground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853AD07C2071B30600BF01CA /* GlobalPlayground.swift */; };
 		853AD0882071B3C600BF01CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853AD0872071B3C600BF01CA /* AppDelegate.swift */; };
-		853AD08A2071B3C600BF01CA /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 853AD0892071B3C600BF01CA /* art.scnassets */; };
 		853AD08F2071B3C600BF01CA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 853AD08D2071B3C600BF01CA /* Main.storyboard */; };
 		853AD0912071B3CB00BF01CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 853AD0902071B3CB00BF01CA /* Assets.xcassets */; };
 		853AD0942071B3CB00BF01CA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 853AD0922071B3CB00BF01CA /* LaunchScreen.storyboard */; };
@@ -188,7 +186,6 @@
 		853ACFF72071B2E400BF01CA /* FunctionalCollectionData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionalCollectionData.swift; sourceTree = "<group>"; };
 		853ACFF82071B2E400BF01CA /* UICollectionView+Reusable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Reusable.swift"; sourceTree = "<group>"; };
 		853ACFF92071B2E400BF01CA /* HostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HostCell.swift; sourceTree = "<group>"; };
-		853ACFFA2071B2E400BF01CA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		853ACFFB2071B2E400BF01CA /* Reusable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
 		853ACFFC2071B2E400BF01CA /* Separator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Separator.swift; sourceTree = "<group>"; };
 		853ACFFD2071B2E400BF01CA /* TableItemLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableItemLayout.swift; sourceTree = "<group>"; };
@@ -239,7 +236,6 @@
 		853AD07D2071B30600BF01CA /* SceneKitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneKitViewController.swift; sourceTree = "<group>"; };
 		853AD0852071B3C600BF01CA /* ARPowerPanelsDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARPowerPanelsDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		853AD0872071B3C600BF01CA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		853AD0892071B3C600BF01CA /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 		853AD08E2071B3C600BF01CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		853AD0902071B3CB00BF01CA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		853AD0932071B3CB00BF01CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -422,7 +418,6 @@
 				853ACFF32071B2E400BF01CA /* CellStyle.swift */,
 				853ACFF42071B2E400BF01CA /* CollectionView */,
 				853ACFF92071B2E400BF01CA /* HostCell.swift */,
-				853ACFFA2071B2E400BF01CA /* Info.plist */,
 				853ACFFB2071B2E400BF01CA /* Reusable.swift */,
 				853ACFFC2071B2E400BF01CA /* Separator.swift */,
 				853ACFFD2071B2E400BF01CA /* TableItemLayout.swift */,
@@ -607,7 +602,6 @@
 				853AD0872071B3C600BF01CA /* AppDelegate.swift */,
 				853AD0AA2071BC5900BF01CA /* ARKitViewController.swift */,
 				853AD07D2071B30600BF01CA /* SceneKitViewController.swift */,
-				853AD0892071B3C600BF01CA /* art.scnassets */,
 				853AD08D2071B3C600BF01CA /* Main.storyboard */,
 				853AD0902071B3CB00BF01CA /* Assets.xcassets */,
 				853AD0922071B3CB00BF01CA /* LaunchScreen.storyboard */,
@@ -821,7 +815,6 @@
 				853AD0FA2071F22D00BF01CA /* Chest_Clos.png in Resources */,
 				853AD0FD2071F22D00BF01CA /* Barrel_Open.png in Resources */,
 				853AD0DF2071F22D00BF01CA /* Skull.png in Resources */,
-				853AD0252071B2E400BF01CA /* Info.plist in Resources */,
 				853AD1052071F22D00BF01CA /* Stone_1.png in Resources */,
 				853AD0E82071F22D00BF01CA /* Exlir_Of_.png in Resources */,
 				853AD0F12071F22D00BF01CA /* Stone_8.png in Resources */,
@@ -870,7 +863,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				853AD08A2071B3C600BF01CA /* art.scnassets in Resources */,
 				853AD0942071B3CB00BF01CA /* LaunchScreen.storyboard in Resources */,
 				853AD0912071B3CB00BF01CA /* Assets.xcassets in Resources */,
 				853AD08F2071B3C600BF01CA /* Main.storyboard in Resources */,
@@ -1174,7 +1166,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.peisun.ARPowerPanels.Demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -1193,7 +1185,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.peisun.ARPowerPanels.Demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
