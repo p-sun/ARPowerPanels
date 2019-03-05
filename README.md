@@ -1,6 +1,6 @@
 # Welcome to ARPowerPanels!
 
-Reimagining the power of Xcode's View Debugger for live debugging of AR or SceneKit apps. 2018 WWDC Scolarship application in Swift 4. Pan vertically or type into the textfields to change the numbers, your node will update instantly. Drop more models and basic shapes into your scene. View and edit your node heirachy.
+Reimagining the power of Xcode's View Debugger for live debugging of AR or SceneKit apps. Pan vertically or type into the textfields to change the numbers, your node will update instantly. Drop more models and basic shapes into your scene. View and edit your node heirachy.
 
 **Today is a good day for experimentation.**
 
