@@ -19,7 +19,7 @@ public class ARKitViewController: UIViewController {
     
     public init(scene: SCNScene, selectedNode: SCNNode, panelTypes: [ARPowerPanelsType]) {
         self.scene = scene
-        powerPanels = ARPowerPanels(arSceneView: arSceneView, panelTypes: panelTypes)
+        powerPanels = ARPowerPanels(arSceneView: arSceneView, panelTypes: panelTypes, enableMetalGlow: true)
         powerPanels.selectNode(selectedNode)
         super.init(nibName: nil, bundle: nil)
     }
@@ -33,14 +33,15 @@ public class ARKitViewController: UIViewController {
         
         view.addSubview(arSceneView)
         arSceneView.constrainEdges(to: view)
-        
+
         arSceneView.delegate = self
         //        arSceneView.showsStatistics = true
-        arSceneView.debugOptions  = [.showConstraints, ARSCNDebugOptions.showFeaturePoints]//, ARSCNDebugOptions.showWorldOrigin]
         
+        arSceneView.debugOptions  = [.showConstraints]//, SCNDebugOptions.showFeaturePoints]
+
         arSceneView.scene = scene
         scene.rootNode.name = "AR World Origin   🌎"
-        
+
         view.addSubview(powerPanels)
         powerPanels.constrainEdges(to: view)
     }
@@ -65,15 +66,15 @@ public class ARKitViewController: UIViewController {
 extension ARKitViewController: ARSCNViewDelegate {
     public func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
         
-        guard let planeAnchor = anchor as? ARPlaneAnchor else { return }
-        node.name = "Plane Anchor"
-        
-        let planeNode = NodeCreator.bluePlane(anchor: planeAnchor)
-        planeNode.name = "Blue Plane"
-        // ARKit owns the node corresponding to the anchor, so make the plane a child node.
-        node.addChildNode(planeNode)
-        
-        hideUnnamedNodeFromSceneGraph()
+//        guard let planeAnchor = anchor as? ARPlaneAnchor else { return }
+//        node.name = "Plane Anchor"
+//
+//        let planeNode = NodeCreator.bluePlane(anchor: planeAnchor)
+//        planeNode.name = "Blue Plane"
+//        // ARKit owns the node corresponding to the anchor, so make the plane a child node.
+//        node.addChildNode(planeNode)
+//
+//        hideUnnamedNodeFromSceneGraph()
     }
 
     // ARKit generates a node with geometry that can't be deleted.

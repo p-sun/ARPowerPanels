@@ -89,7 +89,7 @@ extension ImageCollectionView : UICollectionViewDelegateFlowLayout {
     }
     
     private func calculateCellSize(content : NSString) -> CGSize {
-        let size: CGSize = content.size(withAttributes: [NSAttributedStringKey.font : cellFont])
+        let size: CGSize = content.size(withAttributes: [NSAttributedString.Key.font : cellFont])
         return CGSize(width: size.width + 40, height: cellItemHeight)
     }
 }

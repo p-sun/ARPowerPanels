@@ -27,7 +27,7 @@ class MenuStack: UIScrollView {
     
     private let stackView = UIStackView()
     
-    init(axis: UILayoutConstraintAxis) {
+    init(axis: NSLayoutConstraint.Axis) {
         super.init(frame: CGRect.zero)
         showsHorizontalScrollIndicator = false
         showsVerticalScrollIndicator = false

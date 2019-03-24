@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftyTables
 
 protocol StateType {
     associatedtype View

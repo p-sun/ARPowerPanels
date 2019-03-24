@@ -7,7 +7,7 @@
 //
 
 import SceneKit
-import UIKit
+import SwiftyTables
 
 protocol HierachyPanelDataSource: class {
     func selectedForHierachyPanel() -> SCNNode?

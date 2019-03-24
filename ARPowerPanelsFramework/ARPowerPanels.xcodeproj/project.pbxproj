@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1CB5C546EF155133D3B60E8C /* Pods_ARPowerPanelsDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04DAA5C9C8F49C25F4764B5C /* Pods_ARPowerPanelsDemo.framework */; };
 		850FC791207AC5090006FBA3 /* NodeRender.metal in Sources */ = {isa = PBXBuildFile; fileRef = 850FC790207AC5090006FBA3 /* NodeRender.metal */; };
 		850FC793207AC96F0006FBA3 /* SCNScene+Glow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850FC792207AC96E0006FBA3 /* SCNScene+Glow.swift */; };
 		850FC795207AC9820006FBA3 /* NodeTechnique.plist in Resources */ = {isa = PBXBuildFile; fileRef = 850FC794207AC9820006FBA3 /* NodeTechnique.plist */; };
@@ -20,26 +21,6 @@
 		853AD01A2071B2E400BF01CA /* HierachyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853ACFEC2071B2E400BF01CA /* HierachyCell.swift */; };
 		853AD01B2071B2E400BF01CA /* LabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853ACFED2071B2E400BF01CA /* LabelCell.swift */; };
 		853AD01C2071B2E400BF01CA /* HostCell+StateType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853ACFEF2071B2E400BF01CA /* HostCell+StateType.swift */; };
-		853AD01D2071B2E400BF01CA /* CellActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853ACFF12071B2E400BF01CA /* CellActions.swift */; };
-		853AD01E2071B2E400BF01CA /* CellConfigType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853ACFF22071B2E400BF01CA /* CellConfigType.swift */; };
-		853AD01F2071B2E400BF01CA /* CellStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853ACFF32071B2E400BF01CA /* CellStyle.swift */; };
-		853AD0202071B2E400BF01CA /* CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853ACFF52071B2E400BF01CA /* CollectionCell.swift */; };
-		853AD0212071B2E400BF01CA /* CollectionItemConfigType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853ACFF62071B2E400BF01CA /* CollectionItemConfigType.swift */; };
-		853AD0222071B2E400BF01CA /* FunctionalCollectionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853ACFF72071B2E400BF01CA /* FunctionalCollectionData.swift */; };
-		853AD0232071B2E400BF01CA /* UICollectionView+Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853ACFF82071B2E400BF01CA /* UICollectionView+Reusable.swift */; };
-		853AD0242071B2E400BF01CA /* HostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853ACFF92071B2E400BF01CA /* HostCell.swift */; };
-		853AD0262071B2E400BF01CA /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853ACFFB2071B2E400BF01CA /* Reusable.swift */; };
-		853AD0272071B2E400BF01CA /* Separator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853ACFFC2071B2E400BF01CA /* Separator.swift */; };
-		853AD0282071B2E400BF01CA /* TableItemLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853ACFFD2071B2E400BF01CA /* TableItemLayout.swift */; };
-		853AD0292071B2E400BF01CA /* TableSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853ACFFE2071B2E400BF01CA /* TableSection.swift */; };
-		853AD02A2071B2E400BF01CA /* TableSectionChangeSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853ACFFF2071B2E400BF01CA /* TableSectionChangeSet.swift */; };
-		853AD02B2071B2E400BF01CA /* TableSectionHeaderFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853AD0002071B2E400BF01CA /* TableSectionHeaderFooter.swift */; };
-		853AD02C2071B2E400BF01CA /* FunctionalTableData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853AD0022071B2E400BF01CA /* FunctionalTableData.swift */; };
-		853AD02D2071B2E400BF01CA /* TableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853AD0032071B2E400BF01CA /* TableCell.swift */; };
-		853AD02E2071B2E400BF01CA /* TableItemConfigType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853AD0042071B2E400BF01CA /* TableItemConfigType.swift */; };
-		853AD02F2071B2E400BF01CA /* UITableView+Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853AD0052071B2E400BF01CA /* UITableView+Reusable.swift */; };
-		853AD0302071B2E400BF01CA /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853AD0062071B2E400BF01CA /* UIView+AutoLayout.swift */; };
-		853AD0312071B2E400BF01CA /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853AD0072071B2E400BF01CA /* UIView+Extensions.swift */; };
 		853AD0322071B2E400BF01CA /* Constrainable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853AD0092071B2E400BF01CA /* Constrainable.swift */; };
 		853AD0332071B2E400BF01CA /* Constraints+Activation+Priority.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853AD00A2071B2E400BF01CA /* Constraints+Activation+Priority.swift */; };
 		853AD0342071B2E400BF01CA /* NibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853AD00B2071B2E400BF01CA /* NibView.swift */; };
@@ -137,6 +118,7 @@
 		853AD1382071F5DC00BF01CA /* shapePyramid.png in Resources */ = {isa = PBXBuildFile; fileRef = 853AD12F2071F5DC00BF01CA /* shapePyramid.png */; };
 		857E9ED42083FE7C007DD189 /* menuShip.png in Resources */ = {isa = PBXBuildFile; fileRef = 857E9ED32083FE7C007DD189 /* menuShip.png */; };
 		85F89266207C534900794839 /* NodeNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F89265207C534900794839 /* NodeNames.swift */; };
+		A8C7E4978576AA3AB339885C /* Pods_ARPowerPanels.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 870CC6BC42837824EE7F5858 /* Pods_ARPowerPanels.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -164,6 +146,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		04DAA5C9C8F49C25F4764B5C /* Pods_ARPowerPanelsDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ARPowerPanelsDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		49840E04D94CC27E23DF0664 /* Pods-ARPowerPanelsDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARPowerPanelsDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-ARPowerPanelsDemo/Pods-ARPowerPanelsDemo.release.xcconfig"; sourceTree = "<group>"; };
 		850FC790207AC5090006FBA3 /* NodeRender.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = NodeRender.metal; sourceTree = "<group>"; };
 		850FC792207AC96E0006FBA3 /* SCNScene+Glow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SCNScene+Glow.swift"; sourceTree = "<group>"; };
 		850FC794207AC9820006FBA3 /* NodeTechnique.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = NodeTechnique.plist; sourceTree = "<group>"; };
@@ -178,26 +162,6 @@
 		853ACFEC2071B2E400BF01CA /* HierachyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HierachyCell.swift; sourceTree = "<group>"; };
 		853ACFED2071B2E400BF01CA /* LabelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelCell.swift; sourceTree = "<group>"; };
 		853ACFEF2071B2E400BF01CA /* HostCell+StateType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HostCell+StateType.swift"; sourceTree = "<group>"; };
-		853ACFF12071B2E400BF01CA /* CellActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellActions.swift; sourceTree = "<group>"; };
-		853ACFF22071B2E400BF01CA /* CellConfigType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellConfigType.swift; sourceTree = "<group>"; };
-		853ACFF32071B2E400BF01CA /* CellStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellStyle.swift; sourceTree = "<group>"; };
-		853ACFF52071B2E400BF01CA /* CollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionCell.swift; sourceTree = "<group>"; };
-		853ACFF62071B2E400BF01CA /* CollectionItemConfigType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionItemConfigType.swift; sourceTree = "<group>"; };
-		853ACFF72071B2E400BF01CA /* FunctionalCollectionData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionalCollectionData.swift; sourceTree = "<group>"; };
-		853ACFF82071B2E400BF01CA /* UICollectionView+Reusable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Reusable.swift"; sourceTree = "<group>"; };
-		853ACFF92071B2E400BF01CA /* HostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HostCell.swift; sourceTree = "<group>"; };
-		853ACFFB2071B2E400BF01CA /* Reusable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
-		853ACFFC2071B2E400BF01CA /* Separator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Separator.swift; sourceTree = "<group>"; };
-		853ACFFD2071B2E400BF01CA /* TableItemLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableItemLayout.swift; sourceTree = "<group>"; };
-		853ACFFE2071B2E400BF01CA /* TableSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableSection.swift; sourceTree = "<group>"; };
-		853ACFFF2071B2E400BF01CA /* TableSectionChangeSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableSectionChangeSet.swift; sourceTree = "<group>"; };
-		853AD0002071B2E400BF01CA /* TableSectionHeaderFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableSectionHeaderFooter.swift; sourceTree = "<group>"; };
-		853AD0022071B2E400BF01CA /* FunctionalTableData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionalTableData.swift; sourceTree = "<group>"; };
-		853AD0032071B2E400BF01CA /* TableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableCell.swift; sourceTree = "<group>"; };
-		853AD0042071B2E400BF01CA /* TableItemConfigType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableItemConfigType.swift; sourceTree = "<group>"; };
-		853AD0052071B2E400BF01CA /* UITableView+Reusable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Reusable.swift"; sourceTree = "<group>"; };
-		853AD0062071B2E400BF01CA /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
-		853AD0072071B2E400BF01CA /* UIView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		853AD0092071B2E400BF01CA /* Constrainable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constrainable.swift; sourceTree = "<group>"; };
 		853AD00A2071B2E400BF01CA /* Constraints+Activation+Priority.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Constraints+Activation+Priority.swift"; sourceTree = "<group>"; };
 		853AD00B2071B2E400BF01CA /* NibView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibView.swift; sourceTree = "<group>"; };
@@ -296,6 +260,10 @@
 		853AD12F2071F5DC00BF01CA /* shapePyramid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shapePyramid.png; sourceTree = "<group>"; };
 		857E9ED32083FE7C007DD189 /* menuShip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuShip.png; sourceTree = "<group>"; };
 		85F89265207C534900794839 /* NodeNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeNames.swift; sourceTree = "<group>"; };
+		870CC6BC42837824EE7F5858 /* Pods_ARPowerPanels.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ARPowerPanels.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		94038F7A903DCE14C03D582B /* Pods-ARPowerPanels.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARPowerPanels.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ARPowerPanels/Pods-ARPowerPanels.debug.xcconfig"; sourceTree = "<group>"; };
+		C8D9AE92A76370C3D34CD93A /* Pods-ARPowerPanelsDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARPowerPanelsDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ARPowerPanelsDemo/Pods-ARPowerPanelsDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		C9FCE3A973CC813E65333E28 /* Pods-ARPowerPanels.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARPowerPanels.release.xcconfig"; path = "Pods/Target Support Files/Pods-ARPowerPanels/Pods-ARPowerPanels.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -303,6 +271,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8C7E4978576AA3AB339885C /* Pods_ARPowerPanels.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -311,6 +280,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				853AD0A52071B88D00BF01CA /* ARPowerPanels.framework in Frameworks */,
+				1CB5C546EF155133D3B60E8C /* Pods_ARPowerPanelsDemo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -343,6 +313,7 @@
 				853AD0862071B3C600BF01CA /* ARPowerPanelsDemo */,
 				853ACFDF2071B2A000BF01CA /* Products */,
 				853AD09E2071B82F00BF01CA /* Frameworks */,
+				F94AAB51F103EC24B9316E39 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -385,7 +356,6 @@
 			children = (
 				853ACFEB2071B2E400BF01CA /* FTD Cells */,
 				853ACFEE2071B2E400BF01CA /* FTD Helpers */,
-				853ACFF02071B2E400BF01CA /* FTD Original */,
 				853AD0082071B2E400BF01CA /* NeatConstraints */,
 				853AD00D2071B2E400BF01CA /* PowerPanelExtensions */,
 				853AD0112071B2E400BF01CA /* UICollection+Extensions.swift */,
@@ -408,49 +378,6 @@
 				853ACFEF2071B2E400BF01CA /* HostCell+StateType.swift */,
 			);
 			path = "FTD Helpers";
-			sourceTree = "<group>";
-		};
-		853ACFF02071B2E400BF01CA /* FTD Original */ = {
-			isa = PBXGroup;
-			children = (
-				853ACFF12071B2E400BF01CA /* CellActions.swift */,
-				853ACFF22071B2E400BF01CA /* CellConfigType.swift */,
-				853ACFF32071B2E400BF01CA /* CellStyle.swift */,
-				853ACFF42071B2E400BF01CA /* CollectionView */,
-				853ACFF92071B2E400BF01CA /* HostCell.swift */,
-				853ACFFB2071B2E400BF01CA /* Reusable.swift */,
-				853ACFFC2071B2E400BF01CA /* Separator.swift */,
-				853ACFFD2071B2E400BF01CA /* TableItemLayout.swift */,
-				853ACFFE2071B2E400BF01CA /* TableSection.swift */,
-				853ACFFF2071B2E400BF01CA /* TableSectionChangeSet.swift */,
-				853AD0002071B2E400BF01CA /* TableSectionHeaderFooter.swift */,
-				853AD0012071B2E400BF01CA /* TableView */,
-				853AD0062071B2E400BF01CA /* UIView+AutoLayout.swift */,
-				853AD0072071B2E400BF01CA /* UIView+Extensions.swift */,
-			);
-			path = "FTD Original";
-			sourceTree = "<group>";
-		};
-		853ACFF42071B2E400BF01CA /* CollectionView */ = {
-			isa = PBXGroup;
-			children = (
-				853ACFF52071B2E400BF01CA /* CollectionCell.swift */,
-				853ACFF62071B2E400BF01CA /* CollectionItemConfigType.swift */,
-				853ACFF72071B2E400BF01CA /* FunctionalCollectionData.swift */,
-				853ACFF82071B2E400BF01CA /* UICollectionView+Reusable.swift */,
-			);
-			path = CollectionView;
-			sourceTree = "<group>";
-		};
-		853AD0012071B2E400BF01CA /* TableView */ = {
-			isa = PBXGroup;
-			children = (
-				853AD0022071B2E400BF01CA /* FunctionalTableData.swift */,
-				853AD0032071B2E400BF01CA /* TableCell.swift */,
-				853AD0042071B2E400BF01CA /* TableItemConfigType.swift */,
-				853AD0052071B2E400BF01CA /* UITableView+Reusable.swift */,
-			);
-			path = TableView;
 			sourceTree = "<group>";
 		};
 		853AD0082071B2E400BF01CA /* NeatConstraints */ = {
@@ -613,6 +540,8 @@
 		853AD09E2071B82F00BF01CA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				870CC6BC42837824EE7F5858 /* Pods_ARPowerPanels.framework */,
+				04DAA5C9C8F49C25F4764B5C /* Pods_ARPowerPanelsDemo.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -704,6 +633,17 @@
 			path = imagesShapes;
 			sourceTree = "<group>";
 		};
+		F94AAB51F103EC24B9316E39 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				94038F7A903DCE14C03D582B /* Pods-ARPowerPanels.debug.xcconfig */,
+				C9FCE3A973CC813E65333E28 /* Pods-ARPowerPanels.release.xcconfig */,
+				C8D9AE92A76370C3D34CD93A /* Pods-ARPowerPanelsDemo.debug.xcconfig */,
+				49840E04D94CC27E23DF0664 /* Pods-ARPowerPanelsDemo.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -722,6 +662,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 853ACFE62071B2A000BF01CA /* Build configuration list for PBXNativeTarget "ARPowerPanels" */;
 			buildPhases = (
+				5E72F853BA2C91F1E81ADD53 /* [CP] Check Pods Manifest.lock */,
 				853ACFD92071B2A000BF01CA /* Sources */,
 				853ACFDA2071B2A000BF01CA /* Frameworks */,
 				853ACFDB2071B2A000BF01CA /* Headers */,
@@ -740,10 +681,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 853AD0962071B3CB00BF01CA /* Build configuration list for PBXNativeTarget "ARPowerPanelsDemo" */;
 			buildPhases = (
+				2ADB90E70E40750E5CF83721 /* [CP] Check Pods Manifest.lock */,
 				853AD0812071B3C600BF01CA /* Sources */,
 				853AD0822071B3C600BF01CA /* Frameworks */,
 				853AD0832071B3C600BF01CA /* Resources */,
 				853AD0A92071B88D00BF01CA /* Embed Frameworks */,
+				AE571081219E324DB851C102 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -767,9 +710,11 @@
 				TargetAttributes = {
 					853ACFDD2071B2A000BF01CA = {
 						CreatedOnToolsVersion = 9.3;
+						LastSwiftMigration = 1010;
 					};
 					853AD0842071B3C600BF01CA = {
 						CreatedOnToolsVersion = 9.3;
+						LastSwiftMigration = 1010;
 					};
 				};
 			};
@@ -871,38 +816,98 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2ADB90E70E40750E5CF83721 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ARPowerPanelsDemo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5E72F853BA2C91F1E81ADD53 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ARPowerPanels-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AE571081219E324DB851C102 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-ARPowerPanelsDemo/Pods-ARPowerPanelsDemo-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SwiftyTables/SwiftyTables.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyTables.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ARPowerPanelsDemo/Pods-ARPowerPanelsDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		853ACFD92071B2A000BF01CA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				853AD0262071B2E400BF01CA /* Reusable.swift in Sources */,
 				853AD0652071B2FF00BF01CA /* ARPowerPanels.swift in Sources */,
-				853AD02D2071B2E400BF01CA /* TableCell.swift in Sources */,
 				853AD0772071B2FF00BF01CA /* SliderVector4View.swift in Sources */,
 				853AD06B2071B2FF00BF01CA /* ImageCollectionCell.swift in Sources */,
-				853AD0282071B2E400BF01CA /* TableItemLayout.swift in Sources */,
 				853AD06F2071B2FF00BF01CA /* PanelsPresenter.swift in Sources */,
 				853AD0322071B2E400BF01CA /* Constrainable.swift in Sources */,
 				853AD01B2071B2E400BF01CA /* LabelCell.swift in Sources */,
 				853AD0442071B2E900BF01CA /* NodeCreatorType.swift in Sources */,
 				853AD03B2071B2E400BF01CA /* ARSCNView+HitTest.swift in Sources */,
 				853AD0372071B2E400BF01CA /* UIColor+Extensions.swift in Sources */,
-				853AD0232071B2E400BF01CA /* UICollectionView+Reusable.swift in Sources */,
 				853AD0732071B2FF00BF01CA /* DecimalTextField.swift in Sources */,
-				853AD01D2071B2E400BF01CA /* CellActions.swift in Sources */,
-				853AD02A2071B2E400BF01CA /* TableSectionChangeSet.swift in Sources */,
 				853AD0722071B2FF00BF01CA /* PowerPanelTextField.swift in Sources */,
-				853AD01E2071B2E400BF01CA /* CellConfigType.swift in Sources */,
 				853AD01C2071B2E400BF01CA /* HostCell+StateType.swift in Sources */,
 				853AD0762071B2FF00BF01CA /* SliderVector3View.swift in Sources */,
 				853AD0342071B2E400BF01CA /* NibView.swift in Sources */,
-				853AD0302071B2E400BF01CA /* UIView+AutoLayout.swift in Sources */,
 				853AD0742071B2FF00BF01CA /* SliderInputsView.swift in Sources */,
 				853AD0B12071EF5500BF01CA /* Assets.swift in Sources */,
 				853AD0352071B2E400BF01CA /* UIView+Constraints.swift in Sources */,
 				853AD0672071B2FF00BF01CA /* HierarchyIteractor.swift in Sources */,
-				853AD0212071B2E400BF01CA /* CollectionItemConfigType.swift in Sources */,
 				853AD0752071B2FF00BF01CA /* SliderTextView.swift in Sources */,
 				853AD06C2071B2FF00BF01CA /* ImageCollectionView.swift in Sources */,
 				853AD03F2071B2E400BF01CA /* Font+Extensions.swift in Sources */,
@@ -910,31 +915,20 @@
 				853AD0792071B2FF00BF01CA /* TransformationType.swift in Sources */,
 				853AD0382071B2E400BF01CA /* UIView+BorderedInputBoxes.swift in Sources */,
 				853AD0692071B2FF00BF01CA /* MenuStackView.swift in Sources */,
-				853AD0202071B2E400BF01CA /* CollectionCell.swift in Sources */,
 				853AD01A2071B2E400BF01CA /* HierachyCell.swift in Sources */,
 				853AD0782071B2FF00BF01CA /* TransformationPanel.swift in Sources */,
 				853AD06E2071B2FF00BF01CA /* Panel.swift in Sources */,
 				853AD0682071B2FF00BF01CA /* MenuItem.swift in Sources */,
 				853AD0702071B2FF00BF01CA /* PowerPanelCheckmarkInput.swift in Sources */,
-				853AD0312071B2E400BF01CA /* UIView+Extensions.swift in Sources */,
-				853AD02C2071B2E400BF01CA /* FunctionalTableData.swift in Sources */,
-				853AD02F2071B2E400BF01CA /* UITableView+Reusable.swift in Sources */,
 				850FC793207AC96F0006FBA3 /* SCNScene+Glow.swift in Sources */,
 				853AD06A2071B2FF00BF01CA /* RoundedButton.swift in Sources */,
-				853AD0272071B2E400BF01CA /* Separator.swift in Sources */,
 				853AD0662071B2FF00BF01CA /* HierachyPanel.swift in Sources */,
-				853AD0292071B2E400BF01CA /* TableSection.swift in Sources */,
-				853AD0222071B2E400BF01CA /* FunctionalCollectionData.swift in Sources */,
 				853AD07F2071B30600BF01CA /* GlobalPlayground.swift in Sources */,
 				853AD0392071B2E400BF01CA /* UICollection+Extensions.swift in Sources */,
-				853AD02B2071B2E400BF01CA /* TableSectionHeaderFooter.swift in Sources */,
-				853AD01F2071B2E400BF01CA /* CellStyle.swift in Sources */,
 				853AD0452071B2E900BF01CA /* NodeCreator.swift in Sources */,
 				853AD0332071B2E400BF01CA /* Constraints+Activation+Priority.swift in Sources */,
-				853AD0242071B2E400BF01CA /* HostCell.swift in Sources */,
 				85F89266207C534900794839 /* NodeNames.swift in Sources */,
 				853AD06D2071B2FF00BF01CA /* ModelCollectionView.swift in Sources */,
-				853AD02E2071B2E400BF01CA /* TableItemConfigType.swift in Sources */,
 				853AD03A2071B2E400BF01CA /* 3DUtilities.swift in Sources */,
 				853AD03E2071B2E400BF01CA /* SCNVector3+Extensions.swift in Sources */,
 			);
@@ -1103,6 +1097,7 @@
 		};
 		853ACFE72071B2A000BF01CA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 94038F7A903DCE14C03D582B /* Pods-ARPowerPanels.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
@@ -1121,13 +1116,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.peisun.ARPowerPanels.Framework;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		853ACFE82071B2A000BF01CA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C9FCE3A973CC813E65333E28 /* Pods-ARPowerPanels.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
@@ -1146,45 +1142,53 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.peisun.ARPowerPanels.Framework;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
 		853AD0972071B3CB00BF01CA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C8D9AE92A76370C3D34CD93A /* Pods-ARPowerPanelsDemo.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 66T4X4PK9Q;
 				INFOPLIST_FILE = ARPowerPanelsDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.peisun.ARPowerPanels.Demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		853AD0982071B3CB00BF01CA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 49840E04D94CC27E23DF0664 /* Pods-ARPowerPanelsDemo.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 66T4X4PK9Q;
 				INFOPLIST_FILE = ARPowerPanelsDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.peisun.ARPowerPanels.Demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

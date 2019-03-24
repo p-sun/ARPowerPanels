@@ -256,24 +256,24 @@ extension TransformationPanel: PowerPanelCheckmarkInputDelegate {
 // MARK: - Show Bounding Box // TODO refactor
 extension TransformationPanel {
     static func addBoundingBox(for transformable: Transformable) {
-        func translucentBoundingBox(for transformable: Transformable) -> SCNNode {
-            let boundingBoxName = NodeNames.boundingBox.rawValue
-
-            let boundingBox = transformable.boundingBox
-            let diffBox = boundingBox.max - boundingBox.min
-            let translucentBox = SCNBox(width: CGFloat(diffBox.x), height: CGFloat(diffBox.y), length: CGFloat(diffBox.z), chamferRadius: 0)
-            let tranlucentWhite = UIColor.white.withAlphaComponent(0.3)
-            translucentBox.materials = [SCNMaterial.material(withDiffuse: tranlucentWhite, respondsToLighting: false)]
-            let boxNode = SCNNode(geometry: translucentBox)
-            boxNode.name = boundingBoxName
-            
-            let middlePosition = (boundingBox.min + boundingBox.max) / 2
-            boxNode.position = middlePosition
-            return boxNode
-        }
-        
-        let boundingBoxNode = translucentBoundingBox(for: transformable)
+        let boundingBoxNode = translucentBoundingBox(for: transformable, boundingBox: transformable.boundingBox)
         transformable.addChildNode(boundingBoxNode)
+    }
+    
+    private static func translucentBoundingBox(for transformable: Transformable, boundingBox: (min: SCNVector3, max: SCNVector3)) -> SCNNode {
+        let boundingBoxName = NodeNames.boundingBox.rawValue
+        let diffBox = boundingBox.max - boundingBox.min
+        let translucentBox = SCNBox(width: CGFloat(diffBox.x), height: CGFloat(diffBox.y), length: CGFloat(diffBox.z), chamferRadius: 0)
+        
+        let cyan = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
+        let tranlucentWhite = cyan.withAlphaComponent(0.3)
+        translucentBox.materials = [SCNMaterial.material(withDiffuse: tranlucentWhite, respondsToLighting: false)]
+        let boxNode = SCNNode(geometry: translucentBox)
+        boxNode.name = boundingBoxName
+        
+        let middlePosition = (boundingBox.min + boundingBox.max) / 2
+        boxNode.position = middlePosition
+        return boxNode
     }
     
     private func updateBoundingBoxNode(transformable: Transformable, isChecked: Bool) {

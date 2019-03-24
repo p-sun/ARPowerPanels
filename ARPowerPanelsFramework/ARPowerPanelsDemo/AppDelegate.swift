@@ -23,10 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         SceneGraphManager.shared.removeNode(node)
     }
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
-        window = UIWindow(frame: UIScreen.main.bounds)
         
         //: ## Create a scene
         let scene = SCNScene()
@@ -103,6 +101,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             scene: scene,
             selectedNode: foxNode,
             panelTypes: [.sceneGraph, .info, .allMoves])
+        
+        window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = arViewController
         window?.makeKeyAndVisible()
         
