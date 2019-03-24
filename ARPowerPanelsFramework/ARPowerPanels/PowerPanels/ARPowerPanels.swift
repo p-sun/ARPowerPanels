@@ -58,8 +58,11 @@ public class ARPowerPanels: UIView {
             if enableMetalGlow {
                 oldValue?.setGlow(false)
 
+                // Don't glow things with no children or geometry
+                let shouldNotGlow = selectedNode.childNodes.isEmpty && selectedNode.geometry == nil
+                
                 // Don't glow ARSCNView.rootNode because doesn't work well with the debug feature points
-                if !isRootNode {
+                if !isRootNode && !shouldNotGlow {
                     selectedNode.setGlow(true)
                 }
 
@@ -109,7 +112,7 @@ public class ARPowerPanels: UIView {
     
     private let gameModeCameraNode = gameModeCameraMake()
 
-    let enableMetalGlow: Bool
+    private let enableMetalGlow: Bool
     
     private var rootNode: SCNNode {
         let toDoNode = SCNNode()
