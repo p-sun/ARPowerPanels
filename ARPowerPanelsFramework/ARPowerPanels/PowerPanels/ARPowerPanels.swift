@@ -37,7 +37,7 @@ import SceneKit
 import ARKit
 
 // Playground books require a different set of code to load image and model assets.
-var isPlaygroundBook = false
+var isPlaygroundBook = true
 
 public enum ARPowerPanelsType {
     case sceneGraph, info, easyMoves, allMoves, allEdits
@@ -55,28 +55,29 @@ public class ARPowerPanels: UIView {
 
             let isRootNode = selectedNode.name?.contains(NodeNames.worldOrigin.rawValue) == true
             
-            if !isPlaygroundBook {
+            if enableMetalGlow {
                 oldValue?.setGlow(false)
-                
+
                 // Don't glow ARSCNView.rootNode because doesn't work well with the debug feature points
                 if !isRootNode {
                     selectedNode.setGlow(true)
                 }
+
             } else {
-                
-//                // Don't glow playground book because
-//                if let oldValue = oldValue {
-//                    let oldBoxNode = oldValue.directChildNode(withName: NodeNames.boundingBox.rawValue)
-//                    oldBoxNode?.removeFromParentNode()
-//                }
-//
-//                if !isRootNode {
-//                    let currentBoxNode = selectedNode.directChildNode(withName: NodeNames.boundingBox.rawValue)
-//                    let hasBoundingBox = currentBoxNode != nil
-//                    if !hasBoundingBox {
-//                        TransformationPanel.addBoundingBox(for: selectedNode)
-//                    }
-//                }
+            
+                // Don't glow playground book because it does not like metal
+                if let oldValue = oldValue {
+                    let oldBoxNode = oldValue.directChildNode(withName: NodeNames.boundingBox.rawValue)
+                    oldBoxNode?.removeFromParentNode()
+                }
+
+                if !isRootNode {
+                    let currentBoxNode = selectedNode.directChildNode(withName: NodeNames.boundingBox.rawValue)
+                    let hasBoundingBox = currentBoxNode != nil
+                    if !hasBoundingBox {
+                        TransformationPanel.addBoundingBox(for: selectedNode)
+                    }
+                }
             }
             
             updatePanels()
@@ -108,6 +109,8 @@ public class ARPowerPanels: UIView {
     
     private let gameModeCameraNode = gameModeCameraMake()
 
+    let enableMetalGlow: Bool
+    
     private var rootNode: SCNNode {
         let toDoNode = SCNNode()
         toDoNode.name = "TODO. Take care of this case."
@@ -119,22 +122,22 @@ public class ARPowerPanels: UIView {
         }
     }
     
-    public convenience init(scene: SCNScene, panelTypes: [ARPowerPanelsType]) { //TODO
-        self.init(isARKit: false, panelTypes: panelTypes)
+    public convenience init(scene: SCNScene,  panelTypes: [ARPowerPanelsType]) { //TODO
+        self.init(isARKit: false, panelTypes: panelTypes, enableMetalGlow: true)
         sceneView.backgroundColor = #colorLiteral(red: 0.1654644267, green: 0.3628849843, blue: 0.5607843399, alpha: 1)
-        
+
         sceneView.scene = scene
-        
+
         // Set the selected node, and update all the panels to control this node
         selectedNode = scene.rootNode
     }
     
-    public convenience init(arSceneView: ARSCNView, panelTypes: [ARPowerPanelsType]) {
-        self.init(isARKit: true, panelTypes: panelTypes)
+    public convenience init(arSceneView: ARSCNView, panelTypes: [ARPowerPanelsType], enableMetalGlow: Bool) {
+        self.init(isARKit: true, panelTypes: panelTypes, enableMetalGlow: enableMetalGlow)
         self.arSceneView = arSceneView
         allowTapGestureToSelectNode(arView: arSceneView)
         
-        if !isPlaygroundBook {
+        if enableMetalGlow {
             arSceneView.setupGlowTechnique()
         }
 
@@ -145,8 +148,9 @@ public class ARPowerPanels: UIView {
         selectedNode = SCNNode()//arSceneView.scene.rootNode // TOdo
     }
     
-    private init(isARKit: Bool, panelTypes: [ARPowerPanelsType]) {
+    private init(isARKit: Bool, panelTypes: [ARPowerPanelsType], enableMetalGlow: Bool) {
         hierachyPanel = HierachyPanel()
+        self.enableMetalGlow = enableMetalGlow
 
         super.init(frame: CGRect.zero)
         
@@ -249,7 +253,7 @@ public class ARPowerPanels: UIView {
         
         sceneView.backgroundColor = #colorLiteral(red: 0.0003343143538, green: 0.03833642512, blue: 0.4235294163, alpha: 1)
         sceneView.allowsCameraControl = true // allows the user to manipulate the camera
-        if !isPlaygroundBook { // TODO set a glow technique varabe, or a isPlaygroundBook var as the powerpanel's init
+        if enableMetalGlow {
             sceneView.setupGlowTechnique()
         }
         //        sceneView.showsStatistics = true
@@ -457,8 +461,13 @@ extension ARPowerPanels: PanelsPresenterDelegate {
 
 extension ARPowerPanels: TransformationPanelDelegate {
     func transformationPanelDidEditNode() {
-        updateSelectedNodeLabel()
-        hierachyPanel.renderHierachy(rootNode: rootNode)
+        DispatchQueue.main.async { [weak self] in
+            guard let strongSelf = self else {
+                return
+            }
+            strongSelf.updateSelectedNodeLabel()
+            strongSelf.hierachyPanel.renderHierachy(rootNode: strongSelf.rootNode)
+        }
     }
 }
 

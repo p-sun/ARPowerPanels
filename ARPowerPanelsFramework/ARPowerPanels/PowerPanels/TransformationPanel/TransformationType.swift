@@ -57,6 +57,7 @@ protocol Transformable: class {
     var displayName: String { get set }
     
     var boundingBox: (min: SCNVector3, max: SCNVector3) { get }
+    var geometryBoundingBox: (min: SCNVector3, max: SCNVector3)? { get }
     var boundingSphere: (center: SCNVector3, radius: Float) { get }
     
     var opacity: CGFloat { get set }
@@ -73,6 +74,13 @@ protocol Transformable: class {
 }
 
 extension SCNNode: Transformable {
+    
+    var geometryBoundingBox: (min: SCNVector3, max: SCNVector3)? {
+        get {
+            return geometry?.boundingBox
+        }
+    }
+
     var displayName: String {
         get {
             var icons = ""
