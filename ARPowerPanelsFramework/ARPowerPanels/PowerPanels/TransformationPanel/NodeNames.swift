@@ -10,7 +10,6 @@
 enum NodeNames: String {
     case boundingBox = "Bounding Box"
     
-    case arWorldOrigin = "AR World Origin   🌎"
     case sceneViewWorldOrigin = "SceneView World Origin   🌎"
     case worldOrigin = "World Origin"
         

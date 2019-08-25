@@ -19,6 +19,8 @@ public class ARKitViewController: UIViewController {
     
     public init(scene: SCNScene, selectedNode: SCNNode, panelTypes: [ARPowerPanelsType]) {
         self.scene = scene
+        arSceneView.scene = scene
+
         powerPanels = ARPowerPanels(arSceneView: arSceneView, panelTypes: panelTypes, enableMetalGlow: true)
         powerPanels.selectNode(selectedNode)
         super.init(nibName: nil, bundle: nil)
@@ -35,19 +37,13 @@ public class ARKitViewController: UIViewController {
         arSceneView.constrainEdges(to: view)
 
         arSceneView.delegate = self
-        //        arSceneView.showsStatistics = true
-        
-        arSceneView.debugOptions  = [.showConstraints]//, SCNDebugOptions.showFeaturePoints]
+        arSceneView.debugOptions  = [.showFeaturePoints]
 
-        arSceneView.scene = scene
         scene.rootNode.name = "AR World Origin   🌎"
 
         view.addSubview(powerPanels)
         powerPanels.constrainEdges(to: view)
-    }
-    
-    override public func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+        
         beginArSceneView()
     }
     
