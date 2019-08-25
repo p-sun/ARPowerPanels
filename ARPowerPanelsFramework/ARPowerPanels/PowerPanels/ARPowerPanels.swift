@@ -54,27 +54,27 @@ public class ARPowerPanels: UIView {
             guard let selectedNode = selectedNode else { return }
 
             let isRootNode = selectedNode.name?.contains(NodeNames.worldOrigin.rawValue) == true
+            let shouldNotGlow = selectedNode.childNodes.isEmpty && selectedNode.geometry == nil
+            let shouldHighlightNode = !isRootNode && !shouldNotGlow
             
             if enableMetalGlow {
                 oldValue?.setGlow(false)
 
+                // PlaygroundBook doesn't work with Metal shaders
                 // Don't glow things with no children or geometry
-                let shouldNotGlow = selectedNode.childNodes.isEmpty && selectedNode.geometry == nil
-                
                 // Don't glow ARSCNView.rootNode because doesn't work well with the debug feature points
-                if !isRootNode && !shouldNotGlow {
+                if shouldHighlightNode {
                     selectedNode.setGlow(true)
                 }
 
             } else {
             
-                // Don't glow playground book because it does not like metal
                 if let oldValue = oldValue {
                     let oldBoxNode = oldValue.directChildNode(withName: NodeNames.boundingBox.rawValue)
                     oldBoxNode?.removeFromParentNode()
                 }
 
-                if !isRootNode {
+                if shouldHighlightNode {
                     let currentBoxNode = selectedNode.directChildNode(withName: NodeNames.boundingBox.rawValue)
                     let hasBoundingBox = currentBoxNode != nil
                     if !hasBoundingBox {
@@ -140,10 +140,6 @@ public class ARPowerPanels: UIView {
         self.arSceneView = arSceneView
         allowTapGestureToSelectNode(arView: arSceneView)
         
-        if enableMetalGlow {
-            arSceneView.setupGlowTechnique()
-        }
-
         // Select AR Mode (i.e. hide the GameMode)
         sceneViewParent.isHidden = true
         
@@ -162,7 +158,10 @@ public class ARPowerPanels: UIView {
 
         // Setup background
         constrainSceneView()
-
+        //        if enableMetalGlow {
+        //            sceneView.setupGlowTechnique()
+        //        }
+        
         panelPresentor = PanelsPresenter(presentingView: self)
         panelPresentor.delegate = self
         
@@ -256,9 +255,6 @@ public class ARPowerPanels: UIView {
         
         sceneView.backgroundColor = #colorLiteral(red: 0.0003343143538, green: 0.03833642512, blue: 0.4235294163, alpha: 1)
         sceneView.allowsCameraControl = true // allows the user to manipulate the camera
-        if enableMetalGlow {
-            sceneView.setupGlowTechnique()
-        }
         //        sceneView.showsStatistics = true
         sceneViewParent.addSubview(sceneView)
         sceneView.constrainEdges(to: sceneViewParent)
